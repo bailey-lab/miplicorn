@@ -12,10 +12,7 @@ read <- function(alternate_table, coverage_table) {
   alternate_table <- read_file(alternate_table, "alternate")
   coverage_table  <- read_file(coverage_table, "coverage")
 
-  bind_table <- dplyr::full_join(alternate_table, coverage_table,
-                                    by = c("sample", "gene_id", "gene",
-                                           "mutation_name", "exonic_func",
-                                           "aa_change", "targeted")) %>%
+  bind_table <- dplyr::full_join(alternate_table, coverage_table) %>%
     dplyr::mutate(dplyr::across(.data$umi_count:.data$coverage, as.numeric))
 }
 
@@ -44,14 +41,14 @@ read_file <- function(file, type = c("alternate", "coverage")) {
     data <- data %>%
       # Convert out data to a long format, where now we have a column with the
       # umi_count
-      tidyr::pivot_longer(cols = -c(.data$`Gene ID`:.data$Targeted),
+      tidyr::pivot_longer(cols = -c(1:6),
                           names_to = "sample" ,
                           values_to = "umi_count")
   } else if (type == "coverage") {
     data <- data %>%
       # Convert out data to a long format, where now we have a column with the
       # coverage
-      tidyr::pivot_longer(cols = -c(.data$`Gene ID`:.data$Targeted),
+      tidyr::pivot_longer(cols = -c(1:6),
                           names_to = "sample" ,
                           values_to = "coverage")
   } else {
