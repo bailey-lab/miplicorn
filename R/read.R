@@ -30,7 +30,7 @@ read <- function(alternate_table, coverage_table) {
 #'
 #' @keywords internal
 read_file <- function(file, type = c("alternate", "coverage")) {
-  data <- readr::read_csv(file, col_names = FALSE) %>%
+  data <- vroom::vroom(file, col_names = FALSE, show_col_types = FALSE) %>%
     # Take the tranpose of our matrix, making rows columns and columns rows. This
     # will allows us to keep all the data in our .csv file.
     tibble::rownames_to_column() %>%
