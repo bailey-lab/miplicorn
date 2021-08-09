@@ -25,5 +25,5 @@ To install the package, please follow the code below. In order to install,
 `devtools` must be installed.
 ```{r, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("https://github.com/arisp099/MIPr")
+devtools::install_github("https://github.com/bailey-lab/MIPr")
 ```

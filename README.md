@@ -18,5 +18,5 @@ install, `devtools` must be installed.
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("https://github.com/arisp099/MIPr")
+devtools::install_github("https://github.com/bailey-lab/MIPr")
 ```
