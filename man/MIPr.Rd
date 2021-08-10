@@ -6,7 +6,16 @@
 \alias{MIPr-package}
 \title{\pkg{MIPr} Collection of Functions for MIPTools Analysis}
 \description{
-What the package does (one paragraph).
+A collection of functions and tools for analysis of MIP data 
+  resulting from the MIPTools pipeline.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/bailey-lab/MIPr}
+  \item Report bugs at \url{https://github.com/bailey-lab/MIPr/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Aris Paschalidis \email{aris.paschalidis@gmail.com} (\href{https://orcid.org/0000-0003-2247-1885}{ORCID})

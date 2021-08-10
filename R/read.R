@@ -9,8 +9,8 @@
 #' @return A tibble containing the parsed data.
 #' @export
 read <- function(alternate_table, coverage_table) {
-  alternate_table <- read_file(alternate_table, "alternate")
-  coverage_table  <- read_file(coverage_table, "coverage")
+  alternate_table <- read_table(alternate_table, "alternate")
+  coverage_table  <- read_table(coverage_table, "coverage")
 
   bind_table <- dplyr::full_join(alternate_table, coverage_table) %>%
     dplyr::mutate(dplyr::across(.data$umi_count:.data$coverage, as.numeric))
@@ -19,14 +19,15 @@ read <- function(alternate_table, coverage_table) {
 #------------------------------------------------
 #' Read file
 #'
-#' Read data files.
+#' Read data table.
 #'
-#' @param file Alternate table.
+#' @param file The path to the file to be read.
+#' @param type Whether the table is an alternate or coverage table.
 #'
 #' @return Parsed file.
 #'
-#' @keywords internal
-read_file <- function(file, type = c("alternate", "coverage")) {
+#' @export
+read_table <- function(file, type = c("alternate", "coverage")) {
   data <- vroom::vroom(file, col_names = FALSE, show_col_types = FALSE) %>%
     # Take the tranpose of our matrix, making rows columns and columns rows. This
     # will allows us to keep all the data in our .csv file.

@@ -2,5 +2,6 @@
 
 export("%>%")
 export(read)
+export(read_table)
 importFrom(magrittr,"%>%")
 importFrom(rlang,.data)
