@@ -19,18 +19,18 @@ read <- function(alternate_table, coverage_table) {
 #------------------------------------------------
 #' Read file
 #'
-#' Read data table.
+#' Read file containing MIPtools' data table.
 #'
 #' @param file The path to the file to be read.
 #' @param type Whether the table is an alternate or coverage table.
 #'
 #' @return Parsed file.
 #'
-#' @export
 read_table <- function(file, type = c("alternate", "coverage")) {
+#' @keywords internal
   data <- vroom::vroom(file, col_names = FALSE, show_col_types = FALSE) %>%
-    # Take the tranpose of our matrix, making rows columns and columns rows. This
-    # will allows us to keep all the data in our .csv file.
+    # Take the transpose of our matrix, making rows columns and columns rows.
+    # This will allows us to keep all the data in our .csv file.
     tibble::rownames_to_column() %>%
     tidyr::pivot_longer(-.data$rowname) %>%
     tidyr::pivot_wider(names_from = .data$rowname,
