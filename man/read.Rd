@@ -4,16 +4,18 @@
 \alias{read}
 \title{Read data}
 \usage{
-read(alternate_table, coverage_table)
+read(reference_table, alternate_table, coverage_table)
 }
 \arguments{
-\item{alternate_table}{Alternate table.}
+\item{reference_table}{File path to the reference table.}
 
-\item{coverage_table}{Coverage table.}
+\item{alternate_table}{File path to the alternate table.}
+
+\item{coverage_table}{File path to the coverage table.}
 }
 \value{
 A tibble containing the parsed data.
 }
 \description{
-Read paired data files and combine the files.
+Read files containing MIPtools' data tables and combine them.
 }

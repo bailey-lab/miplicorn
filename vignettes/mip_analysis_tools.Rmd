@@ -31,12 +31,16 @@ ID, and whether the site was targeted or not. I would urge for the use of
 solution 2, as even though this information may not be useful immediately, there
 may come a time down the road where having the extra information is important.
 ```{r analysis aa tibble, message = FALSE}
+reference_aa_table <- system.file("extdata", "reference_AA_table.csv", 
+                               package = "MIPr", mustWork = TRUE)
 alternate_aa_table <- system.file("extdata", "alternate_AA_table.csv", 
                                package = "MIPr", mustWork = TRUE)
 coverage_aa_table  <- system.file("extdata", "coverage_AA_table.csv",  
                                package = "MIPr", mustWork = TRUE)
 
-analysis_aa_tibble <- MIPr::read(alternate_aa_table, coverage_aa_table)
+analysis_aa_tibble <- MIPr::read(reference_aa_table, 
+                                 alternate_aa_table, 
+                                 coverage_aa_table)
 ```
 
 # Extracting clinically relevant mutations
