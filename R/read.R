@@ -6,10 +6,12 @@
 #' @param reference_table File path to the reference table.
 #' @param alternate_table File path to the alternate table.
 #' @param coverage_table File path to the coverage table.
+#' @param filter_chrom Select chromosome to filter data to.
 #'
 #' @return A tibble containing the parsed data.
 #' @export
-read <- function(reference_table, alternate_table, coverage_table) {
+read <- function(reference_table, alternate_table, coverage_table,
+                 filter_chrom = NULL) {
   reference_table <- read_file(reference_table, "reference")
   alternate_table <- read_file(alternate_table, "alternate")
   coverage_table  <- read_file(coverage_table, "coverage")
@@ -17,6 +19,13 @@ read <- function(reference_table, alternate_table, coverage_table) {
   bind_table <- dplyr::full_join(reference_table, alternate_table) %>%
     dplyr::full_join(coverage_table) %>%
     dplyr::mutate(dplyr::across(.data$ref_umi_count:.data$coverage, as.numeric))
+
+  # Option to filter by chromosome
+  if (!is.null(filter_chrom)) {
+    bind_table <- bind_table %>% dplyr::filter(.data$chrom == filter_chrom)
+  }
+
+  return(bind_table)
 }
 
 #------------------------------------------------
