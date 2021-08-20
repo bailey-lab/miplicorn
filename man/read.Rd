@@ -4,7 +4,13 @@
 \alias{read}
 \title{Read data}
 \usage{
-read(reference_table, alternate_table, coverage_table, chrom = NULL)
+read(
+  reference_table,
+  alternate_table,
+  coverage_table,
+  chrom = NULL,
+  gene = NULL
+)
 }
 \arguments{
 \item{reference_table}{File path to the reference table.}
@@ -14,6 +20,8 @@ read(reference_table, alternate_table, coverage_table, chrom = NULL)
 \item{coverage_table}{File path to the coverage table.}
 
 \item{chrom}{The chromosome(s) to filter to.}
+
+\item{gene}{The gene(s) to filter to.}
 }
 \value{
 A tibble containing the parsed data.
