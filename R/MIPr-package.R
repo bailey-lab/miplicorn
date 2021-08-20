@@ -3,6 +3,7 @@
 
 #------------------------------------------------
 #' @importFrom rlang .data
+#' @importFrom rlang :=
 
 #------------------------------------------------
 # The following block is used by usethis to automatically manage
