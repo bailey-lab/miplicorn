@@ -31,16 +31,11 @@ ID, and whether the site was targeted or not. I would urge for the use of
 solution 2, as even though this information may not be useful immediately, there
 may come a time down the road where having the extra information is important.
 ```{r analysis aa tibble, message = FALSE}
-reference_aa_table <- system.file("extdata", "reference_AA_table.csv", 
-                               package = "MIPr", mustWork = TRUE)
-alternate_aa_table <- system.file("extdata", "alternate_AA_table.csv", 
-                               package = "MIPr", mustWork = TRUE)
-coverage_aa_table  <- system.file("extdata", "coverage_AA_table.csv",  
-                               package = "MIPr", mustWork = TRUE)
+ref_file <- MIPr_example("reference_AA_table.csv")
+alt_file <- MIPr_example("alternate_AA_table.csv")
+cov_file <- MIPr_example("coverage_AA_table.csv")
 
-analysis_aa_tibble <- MIPr::read(reference_aa_table, 
-                                 alternate_aa_table, 
-                                 coverage_aa_table)
+analysis_tibble <- MIPr::read(ref_file, alt_file, cov_file)
 ```
 
 # Extracting clinically relevant mutations
@@ -52,7 +47,7 @@ alphabetically by gene and then by mutation location.
 relevant_mutations <- c("dhps", "k13", "atp6", "crt", 
                         "cytb", "mdr1", "mdr2", "dhfr-ts")
 
-clinical_summary <- analysis_aa_tibble %>% 
+clinical_summary <- analysis_tibble %>% 
   # Select only genes that are considered to have relevant mutations
   dplyr::filter(gene %in% relevant_mutations) %>% 
   dplyr::relocate(aa_change, .after = gene) %>% 
