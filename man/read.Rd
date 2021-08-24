@@ -4,7 +4,13 @@
 \alias{read}
 \title{Read data}
 \usage{
-read(reference_table, alternate_table, coverage_table, filter_chrom = NULL)
+read(
+  reference_table,
+  alternate_table,
+  coverage_table,
+  chrom = NULL,
+  gene = NULL
+)
 }
 \arguments{
 \item{reference_table}{File path to the reference table.}
@@ -13,11 +19,39 @@ read(reference_table, alternate_table, coverage_table, filter_chrom = NULL)
 
 \item{coverage_table}{File path to the coverage table.}
 
-\item{filter_chrom}{Select chromosome to filter data to.}
+\item{chrom}{The chromosome(s) to filter to.}
+
+\item{gene}{The gene(s) to filter to.}
 }
 \value{
 A tibble containing the parsed data.
 }
 \description{
 Read files containing MIPtools' data tables and combine them.
+}
+\examples{
+# Get path to example file
+ref_file <- MIPr_example("reference_AA_table.csv")
+alt_file <- MIPr_example("alternate_AA_table.csv")
+cov_file <- MIPr_example("coverage_AA_table.csv")
+ref_file
+
+# Input sources -------------------------------------------------------------
+# Read from a path
+read(ref_file, alt_file, cov_file)
+# You can also use paths directly
+# read("reference_AA_table.csv", "alternate_AA_table.csv", "coverage_AA_table.csv")
+
+# Read entire file ----------------------------------------------------------
+read(ref_file, alt_file, cov_file)
+
+# Data selection ------------------------------------------------------------
+# Pass gene names to select them
+read(ref_file, alt_file, cov_file, gene = "atp6")
+read(ref_file, alt_file, cov_file, gene = c("atp6", "crt"))
+
+\dontrun{
+# Pass chromosome names to select them
+read(ref_file, alt_file, cov_file, chrom = "chr13")
+read(ref_file, alt_file, cov_file, chrom = c("chr4", "chr13"))}
 }

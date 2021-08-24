@@ -4,12 +4,21 @@
 \alias{read_file}
 \title{Read file}
 \usage{
-read_file(file, type = c("reference", "alternate", "coverage"))
+read_file(
+  file,
+  chrom,
+  gene,
+  name = c("ref_umi_count", "alt_umi_count", "coverage")
+)
 }
 \arguments{
 \item{file}{The path to the file to be read.}
 
-\item{type}{Whether the table is an alternate or coverage table.}
+\item{chrom}{The chromosome(s) to filter to.}
+
+\item{gene}{The gene(s) to filter to.}
+
+\item{name}{The name of the value we are interested in.}
 }
 \value{
 Parsed file.
