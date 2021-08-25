@@ -20,12 +20,12 @@
 #'
 #' # List all available examples
 #' MIPr_examples()
-MIPr_example <- function (path) {
+MIPr_example <- function(path) {
   system.file("extdata", path, package = "MIPr", mustWork = TRUE)
 }
 
 #' @rdname MIPr_example
 #' @export
-MIPr_examples <- function (pattern = NULL) {
+MIPr_examples <- function(pattern = NULL) {
   list.files(system.file("extdata", package = "MIPr"), pattern = pattern)
 }

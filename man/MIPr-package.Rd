@@ -6,8 +6,8 @@
 \alias{MIPr-package}
 \title{MIPr: Collection of Functions for MIPTools Analysis}
 \description{
-A collection of functions and tools for analysis of MIP data 
-  resulting from the MIPTools pipeline.
+A collection of functions and tools for analysis of MIP data
+    resulting from the MIPTools pipeline.
 }
 \seealso{
 Useful links:
