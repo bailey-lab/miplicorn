@@ -49,7 +49,6 @@ read(ref_file, alt_file, cov_file)
 # Pass gene names to select them
 read(ref_file, alt_file, cov_file, gene = "atp6")
 read(ref_file, alt_file, cov_file, gene = c("atp6", "crt"))
-
 \dontrun{
 # Pass chromosome names to select them
 read(ref_file, alt_file, cov_file, chrom = "chr13")

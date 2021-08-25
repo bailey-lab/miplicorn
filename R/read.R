@@ -31,7 +31,6 @@
 #' # Pass gene names to select them
 #' read(ref_file, alt_file, cov_file, gene = "atp6")
 #' read(ref_file, alt_file, cov_file, gene = c("atp6", "crt"))
-#'
 #' \dontrun{
 #' # Pass chromosome names to select them
 #' read(ref_file, alt_file, cov_file, chrom = "chr13")
@@ -40,8 +39,10 @@ read <- function(reference_table, alternate_table, coverage_table,
                  chrom = NULL, gene = NULL) {
   # Error message if multiple criteria selected
   if (!is.null(chrom) && !is.null(gene)) {
-    message <- glue::glue("Multiple filtering criteria selected:",
-                          '\n\u2139 Select only one piece of information to filter on.')
+    message <- glue::glue(
+      "Multiple filtering criteria selected:",
+      "\n\u2139 Select only one piece of information to filter on."
+    )
     stop(message, call. = FALSE)
   }
 
@@ -79,15 +80,19 @@ read_file <- function(file,
       # This will allows us to keep all the data in our .csv file.
       tibble::rownames_to_column() %>%
       tidyr::pivot_longer(-.data$rowname) %>%
-      tidyr::pivot_wider(names_from = .data$rowname,
-                         values_from = .data$value) %>%
+      tidyr::pivot_wider(
+        names_from = .data$rowname,
+        values_from = .data$value
+      ) %>%
       # Assign the column names of our tibble and clean them up
       dplyr::select(-.data$name) %>%
       janitor::row_to_names(1) %>%
       # Convert our data to a long format
-      tidyr::pivot_longer(cols = -c(1:6),
-                          names_to = "sample" ,
-                          values_to = "value") %>%
+      tidyr::pivot_longer(
+        cols = -c(1:6),
+        names_to = "sample",
+        values_to = "value"
+      ) %>%
       janitor::clean_names() %>%
       dplyr::relocate(sample) %>%
       dplyr::rename({{ name }} := .data$value)
@@ -105,24 +110,35 @@ read_file <- function(file,
     # In this case, we want to filter by chromosome.
     # Get the header
     header <- suppressMessages(
-      vroom::vroom(file, col_select = (1 | dplyr::contains(chrom)),
-                   n_max = 5, show_col_types = FALSE))
+      vroom::vroom(file,
+        col_select = (1 | dplyr::contains(chrom)),
+        n_max = 5, show_col_types = FALSE
+      )
+    )
 
     # Get the filtered data
     filtered <- suppressMessages(
-      vroom::vroom(file, col_select = (1 | dplyr::contains(chrom)),
-                   show_col_types = FALSE)) %>%
+      vroom::vroom(file,
+        col_select = (1 | dplyr::contains(chrom)),
+        show_col_types = FALSE
+      )
+    ) %>%
       dplyr::slice(6:dplyr::n())
-
   } else if (is.null(chrom) & !is.null(gene)) {
     # In this case, we want to filter by gene
     header <- suppressMessages(
-      vroom::vroom(file, col_select = (1 | dplyr::contains(gene)),
-                   n_max = 4, skip = 1, show_col_types = FALSE))
+      vroom::vroom(file,
+        col_select = (1 | dplyr::contains(gene)),
+        n_max = 4, skip = 1, show_col_types = FALSE
+      )
+    )
 
     filtered <- suppressMessages(
-      vroom::vroom(file, col_select = (1 | dplyr::contains(gene)),
-                   skip = 1, show_col_types = FALSE)) %>%
+      vroom::vroom(file,
+        col_select = (1 | dplyr::contains(gene)),
+        skip = 1, show_col_types = FALSE
+      )
+    ) %>%
       dplyr::slice(5:dplyr::n())
   }
 
@@ -130,8 +146,10 @@ read_file <- function(file,
   header_t <- header %>%
     tibble::rownames_to_column() %>%
     tidyr::pivot_longer(-.data$rowname) %>%
-    tidyr::pivot_wider(names_from = .data$rowname,
-                       values_from = .data$value) %>%
+    tidyr::pivot_wider(
+      names_from = .data$rowname,
+      values_from = .data$value
+    ) %>%
     janitor::row_to_names(1) %>%
     janitor::clean_names()
 
@@ -139,20 +157,27 @@ read_file <- function(file,
   filtered_t <- filtered %>%
     tibble::rownames_to_column() %>%
     tidyr::pivot_longer(-.data$rowname,
-                        values_transform = list(value = as.character)) %>%
-    tidyr::pivot_wider(names_from = .data$rowname,
-                       values_from = .data$value) %>%
+      values_transform = list(value = as.character)
+    ) %>%
+    tidyr::pivot_wider(
+      names_from = .data$rowname,
+      values_from = .data$value
+    ) %>%
     janitor::row_to_names(1) %>%
-    tidyr::pivot_longer(cols = -1,
-                        names_to = "sample" ,
-                        values_to = "value",
-                        values_transform = list(value = as.numeric)) %>%
+    tidyr::pivot_longer(
+      cols = -1,
+      names_to = "sample",
+      values_to = "value",
+      values_transform = list(value = as.numeric)
+    ) %>%
     janitor::clean_names()
 
   # Combine the two tibbles together
   combined <- dplyr::full_join(header_t, filtered_t) %>%
-    dplyr::mutate(dplyr::across(where(is.character),
-                                ~stringr::str_remove(., "\\.{3}.*"))) %>%
+    dplyr::mutate(dplyr::across(
+      where(is.character),
+      ~ stringr::str_remove(., "\\.{3}.*")
+    )) %>%
     dplyr::relocate(sample) %>%
     dplyr::rename({{ name }} := .data$value)
 
