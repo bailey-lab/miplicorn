@@ -16,7 +16,10 @@
 #' # Convert 3-letter abbreviation
 #' convert_three("Gly235Leu")
 convert_single <- function(str) {
+  # Generate regex pattern
   pattern <- stringr::str_c(aa_conversion$single, collapse = "|")
+
+  # Function for replacing with 3-letter abbreviation
   fun <- function(query) {
     dplyr::filter(
       aa_conversion,
@@ -24,7 +27,12 @@ convert_single <- function(str) {
     )[2]
   }
 
-  aa_change <- stringr::str_replace_all(str, pattern, fun)
+  # Replace pattern with function, ignoring case
+  aa_change <- stringr::str_replace_all(
+    str,
+    stringr::regex(pattern, ignore_case = TRUE),
+    fun
+    )
 
   return(aa_change)
 }
@@ -32,18 +40,23 @@ convert_single <- function(str) {
 #' @rdname convert_single
 #' @export
 convert_three <- function(str) {
-  lower <- stringr::str_to_lower(str)
-  pattern <- stringr::str_c(stringr::str_to_lower(aa_conversion$three),
-    collapse = "|"
-  )
+  # Generate regex pattern
+  pattern <- stringr::str_c(aa_conversion$three, collapse = "|")
+
+  # Function for replacing with 1-letter abbreviation
   fun <- function(query) {
     dplyr::filter(
       aa_conversion,
-      stringr::str_to_lower(.data$three) == query
+      stringr::str_to_lower(.data$three) == stringr::str_to_lower(query)
     )[1]
   }
 
-  aa_change <- stringr::str_replace_all(lower, pattern, fun)
+  # Replace pattern with function, ignoring case
+  aa_change <- stringr::str_replace_all(
+    str,
+    stringr::regex(pattern, ignore_case = TRUE),
+    fun
+  )
 
   return(aa_change)
 }
