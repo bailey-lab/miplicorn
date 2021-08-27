@@ -12,10 +12,9 @@
 #'   expression, which is like a blueprint for the delayed computation.
 #'   \code{enquos()} returns a list of such quoted expressions.
 #'
-#' * \code{\link[rlang:nse-defuse]{expr}()} quotes a new expression _locally_. It
-#'   is mostly useful to build new expressions around arguments
-#'   captured with [enquo()] or [enquos()]:
-#'   \code{expr(mean(!!enquo(arg), na.rm = TRUE))}.
+#' * \code{\link[rlang:nse-defuse]{expr}()} quotes a new expression _locally_.
+#'   It is mostly useful to build new expressions around arguments captured with
+#'   [enquo()] or [enquos()]: \code{expr(mean(!!enquo(arg), na.rm = TRUE))}.
 #'
 #' * \code{\link[rlang]{as_name}()} transforms a quoted variable name
 #'   into a string. Supplying something else than a quoted variable
@@ -24,7 +23,7 @@
 #'   That's unlike \code{\link[rlang]{as_label}()} which also returns
 #'   a single string but supports any kind of R object as input,
 #'   including quoted function calls and vectors. Its purpose is to
-#'   summarise that object into a single label. That label is often
+#'   summarize that object into a single label. That label is often
 #'   suitable as a default name.
 #'
 #'   If you don't know what a quoted expression contains (for instance
