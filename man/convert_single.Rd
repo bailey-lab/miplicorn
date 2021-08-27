@@ -17,10 +17,16 @@ convert_three(str)
 \code{convert_single()} converts the 1-letter abbreviation to the 3-letter
 abbreviation and \code{convert_three()} does the opposite.
 }
+\details{
+Conversion is case-insensitive, but always returns capitalized 1-letter
+abbreviation and 3-letter abbreviation in title-case.
+}
 \examples{
 # Convert 1-letter abbreviation
 convert_single("G235L")
+convert_single("s545p")
 
 # Convert 3-letter abbreviation
 convert_three("Gly235Leu")
+convert_three("SER545LEU")
 }
