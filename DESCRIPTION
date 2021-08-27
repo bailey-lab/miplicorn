@@ -24,15 +24,17 @@ Imports:
     tidyr,
     vroom
 Suggests: 
-    roxygen2,
     forcats,
     ggplot2,
     knitr,
     rmarkdown,
+    roxygen2,
     spelling,
-    stringr
+    stringr,
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
+Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
