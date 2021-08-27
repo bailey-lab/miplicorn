@@ -22,10 +22,9 @@ character vector.
 several function arguments. \code{enquo()} returns a single quoted
 expression, which is like a blueprint for the delayed computation.
 \code{enquos()} returns a list of such quoted expressions.
-\item \code{\link[rlang:nse-defuse]{expr}()} quotes a new expression \emph{locally}. It
-is mostly useful to build new expressions around arguments
-captured with \code{\link[=enquo]{enquo()}} or \code{\link[=enquos]{enquos()}}:
-\code{expr(mean(!!enquo(arg), na.rm = TRUE))}.
+\item \code{\link[rlang:nse-defuse]{expr}()} quotes a new expression \emph{locally}.
+It is mostly useful to build new expressions around arguments captured with
+\code{\link[=enquo]{enquo()}} or \code{\link[=enquos]{enquos()}}: \code{expr(mean(!!enquo(arg), na.rm = TRUE))}.
 \item \code{\link[rlang]{as_name}()} transforms a quoted variable name
 into a string. Supplying something else than a quoted variable
 name is an error.
@@ -33,7 +32,7 @@ name is an error.
 That's unlike \code{\link[rlang]{as_label}()} which also returns
 a single string but supports any kind of R object as input,
 including quoted function calls and vectors. Its purpose is to
-summarise that object into a single label. That label is often
+summarize that object into a single label. That label is often
 suitable as a default name.
 
 If you don't know what a quoted expression contains (for instance

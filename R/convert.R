@@ -32,7 +32,7 @@ convert_single <- function(str) {
     str,
     stringr::regex(pattern, ignore_case = TRUE),
     fun
-    )
+  )
 
   return(aa_change)
 }
