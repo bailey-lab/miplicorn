@@ -27,9 +27,11 @@ Suggests:
     forcats,
     ggplot2,
     knitr,
+    purrr,
     rmarkdown,
     roxygen2,
     spelling,
+    stringi,
     stringr,
     testthat (>= 3.0.0)
 VignetteBuilder: 
