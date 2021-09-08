@@ -6,11 +6,11 @@ df <- tibble::tribble(
   "D10-15", "atp6",
 )
 
-test_that("empty sort() returns input", {
-  expect_identical(sort(df), df)
+test_that("empty arrange_natural() returns input", {
+  expect_identical(arrange_natural(df), df)
 })
 
-test_that("sorts alphanumerically", {
+test_that("applies natural sorting", {
   rf <- tibble::tribble(
     ~sample, ~gene,
     "D10-5", "mdr1",
@@ -19,7 +19,7 @@ test_that("sorts alphanumerically", {
     "D10-55", "atp6",
   )
 
-  expect_identical(sort(df, sample), rf)
+  expect_identical(arrange_natural(df, sample), rf)
 })
 
 test_that("sorts on multiple variables", {
@@ -31,5 +31,5 @@ test_that("sorts on multiple variables", {
     "D10-55", "atp6",
   )
 
-  expect_identical(sort(df, sample, gene), rf)
+  expect_identical(arrange_natural(df, sample, gene), rf)
 })

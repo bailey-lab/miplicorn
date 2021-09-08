@@ -1,17 +1,20 @@
 #------------------------------------------------
-#' Sort rows by column values
+#' Arrange rows by column values naturally
 #'
-#' `sort()` orders the rows of a data frame by the values of selected columns.
+#' @description
+#' `arrange_natural()` orders the rows of a data frame by the values of selected
+#' columns.
+#'
+#' Data is naturally sorted (see *Details*, below) in ascending order.
+#' Grouping is ignored.
 #'
 #' @details
-#' ## Ordering
-#' Data is sorted in ascending order.
-#'
 #' ## Natural sorting
-#' `sort()` is built on `dplyr::arrange()` to provide
+#' `arrange_natural()` is built on [dplyr::arrange()] to provide
 #' \href{https://en.wikipedia.org/wiki/Natural_sort_order}{natural sorting}
 #' (sorting of strings with both letters and numerals). The underlying
-#' implementation for natural sorting is based on the `stringi` library.
+#' implementation for natural sorting is based on the
+#' \href{https://stringi.gagolewski.com/}{`stringi`} library.
 #'
 #' @param .data A data frame, data frame extension (e.g. a tibble), or a lazy
 #'   data frame (e.g. from dbplyr or dtplyr).
@@ -38,16 +41,16 @@
 #'   "D10-15", "atp6"
 #' )
 #'
-#' sort(df, sample, gene)
-#' df %>% sort(sample, gene)
-sort <- function(.data, ...) {
-  # Store variables to sort by
-  sort_vars <- enquos(...)
+#' arrange_natural(df, sample)
+#' df %>% arrange_natural(sample, gene)
+arrange_natural <- function(.data, ...) {
+  # Store variables to arrange by
+  dots <- enquos(..., .named = TRUE)
 
   if (requireNamespace("stringi", quietly = TRUE) &
     requireNamespace("purrr", quietly = TRUE)) {
-    # Manipulate variables
-    sort_vars <- purrr::map(sort_vars, function(var) {
+    # Manipulate dots to get arrange variables
+    arrange_vars <- purrr::map(dots, function(var) {
       expr(stringi::stri_rank(!!var, numeric = TRUE))
     })
   } else {
@@ -56,5 +59,5 @@ sort <- function(.data, ...) {
 
   # Call dplyr::arrange
   .data %>%
-    dplyr::arrange(!!!sort_vars)
+    dplyr::arrange(!!!arrange_vars)
 }
