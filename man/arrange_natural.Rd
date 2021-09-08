@@ -17,7 +17,8 @@ An object of the same type as \code{.data}. The output has the following
 properties:
 \itemize{
 \item All rows appear in the output, but (usually) in a different place.
-\item Columns are not modified.
+\item Sorted columns are converted to factors.
+\item All other columns are not modified.
 \item Data frame attributes are preserved.
 }
 }
@@ -25,7 +26,8 @@ properties:
 \code{arrange_natural()} orders the rows of a data frame by the values of selected
 columns.
 
-Data is naturally sorted (see \emph{Details}, below) in ascending order.
+Data is naturally sorted (see \emph{Details}, below) in ascending order. Columns
+used for sorting are converted to factors to preserve their ordering.
 Grouping is ignored.
 }
 \details{

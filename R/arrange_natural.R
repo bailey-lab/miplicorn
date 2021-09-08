@@ -5,7 +5,8 @@
 #' `arrange_natural()` orders the rows of a data frame by the values of selected
 #' columns.
 #'
-#' Data is naturally sorted (see *Details*, below) in ascending order.
+#' Data is naturally sorted (see *Details*, below) in ascending order. Columns
+#' used for sorting are converted to factors to preserve their ordering.
 #' Grouping is ignored.
 #'
 #' @details
@@ -25,7 +26,8 @@
 #' properties:
 #'
 #' * All rows appear in the output, but (usually) in a different place.
-#' * Columns are not modified.
+#' * Sorted columns are converted to factors.
+#' * All other columns are not modified.
 #' * Data frame attributes are preserved.
 #'
 #' @seealso [dplyr::arrange()]
@@ -48,10 +50,15 @@ arrange_natural <- function(.data, ...) {
   dots <- enquos(..., .named = TRUE)
 
   if (requireNamespace("stringi", quietly = TRUE) &
-    requireNamespace("purrr", quietly = TRUE)) {
+      requireNamespace("purrr", quietly = TRUE)) {
     # Manipulate dots to get arrange variables
     arrange_vars <- purrr::map(dots, function(var) {
       expr(stringi::stri_rank(!!var, numeric = TRUE))
+    })
+
+    # Manipulate dots to get mutate variables
+    mutate_vars <- purrr::map(dots, function(var) {
+      expr(forcats::as_factor(!!var))
     })
   } else {
     warning("Packages \"purrr\" and \"stringi\" needed for natural sorting. Please install them.")
@@ -59,5 +66,6 @@ arrange_natural <- function(.data, ...) {
 
   # Call dplyr::arrange
   .data %>%
-    dplyr::arrange(!!!arrange_vars)
+    dplyr::arrange(!!!arrange_vars) %>%
+    dplyr::mutate(!!!mutate_vars)
 }
