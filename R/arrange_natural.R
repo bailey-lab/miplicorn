@@ -53,12 +53,12 @@ arrange_natural <- function(.data, ...) {
       requireNamespace("purrr", quietly = TRUE)) {
     # Manipulate dots to get arrange variables
     arrange_vars <- purrr::map(dots, function(var) {
-      expr(stringi::stri_rank(!!var, numeric = TRUE))
+      expr(stringi::stri_rank(as.character(!!var), numeric = TRUE))
     })
 
     # Manipulate dots to get mutate variables
     mutate_vars <- purrr::map(dots, function(var) {
-      expr(forcats::as_factor(!!var))
+      expr(forcats::as_factor(as.character(!!var)))
     })
   } else {
     warning("Packages \"purrr\" and \"stringi\" needed for natural sorting. Please install them.")
