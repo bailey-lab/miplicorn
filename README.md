@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/bailey-lab/MIPr/workflows/R-CMD-check/badge.svg)](https://github.com/bailey-lab/MIPr/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/bailey-lab/MIPr/branch/master/graph/badge.svg)](https://codecov.io/gh/bailey-lab/MIPr?branch=master)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:

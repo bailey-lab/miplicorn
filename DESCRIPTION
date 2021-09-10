@@ -24,6 +24,7 @@ Imports:
     tidyr,
     vroom
 Suggests: 
+    covr,
     forcats,
     ggplot2,
     knitr,
