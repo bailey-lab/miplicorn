@@ -15,9 +15,11 @@ BugReports: https://github.com/bailey-lab/MIPr/issues
 Depends: 
     R (>= 2.10)
 Imports: 
+    cli,
     dplyr,
     glue,
     janitor,
+    lifecycle,
     magrittr,
     rlang (>= 0.1.2),
     tibble,
