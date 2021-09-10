@@ -8,8 +8,8 @@ read(
   reference_table,
   alternate_table,
   coverage_table,
-  chrom = NULL,
-  gene = NULL
+  chrom = deprecated(),
+  gene = deprecated()
 )
 }
 \arguments{

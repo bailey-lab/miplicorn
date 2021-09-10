@@ -35,10 +35,33 @@
 #' # Pass chromosome names to select them
 #' read(ref_file, alt_file, cov_file, chrom = "chr13")
 #' read(ref_file, alt_file, cov_file, chrom = c("chr4", "chr13"))}
-read <- function(reference_table, alternate_table, coverage_table,
-                 chrom = NULL, gene = NULL) {
+read <- function(
+  reference_table,
+  alternate_table,
+  coverage_table,
+  chrom = deprecated(),
+  gene = deprecated()
+) {
+  # Deprecated chrom
+  if (lifecycle::is_present(chrom)) {
+    lifecycle::deprecate_warn(
+      when = "0.1.0",
+      what = "read(chrom)",
+      details = "Please use the `...` argument instead to filter data."
+    )
+  }
+
+  # Deprecated gene
+  if (lifecycle::is_present(gene)) {
+    lifecycle::deprecate_warn(
+      when = "0.1.0",
+      what = "read(gene)",
+      details = "Please use the `...` argument instead to filter data."
+    )
+  }
+
   # Error message if multiple criteria selected
-  if (!is.null(chrom) && !is.null(gene)) {
+  if (lifecycle::is_present(chrom) && lifecycle::is_present(gene)) {
     message <- glue::glue(
       "Multiple filtering criteria selected:",
       "\n\u2139 Select only one piece of information to filter on."
@@ -47,34 +70,28 @@ read <- function(reference_table, alternate_table, coverage_table,
   }
 
   # Read in the three tables
-  reference_table <- read_file(reference_table, chrom, gene, "ref_umi_count")
-  alternate_table <- read_file(alternate_table, chrom, gene, "alt_umi_count")
-  coverage_table  <- read_file(coverage_table,  chrom, gene, "coverage")
+  reference_table <- deprec_read_file(reference_table, chrom, gene, "ref_umi_count")
+  alternate_table <- deprec_read_file(alternate_table, chrom, gene, "alt_umi_count")
+  coverage_table <- deprec_read_file(coverage_table, chrom, gene, "coverage")
 
   # Combine three tibbles together
   bind_table <- dplyr::full_join(reference_table, alternate_table) %>%
     dplyr::full_join(coverage_table) %>%
     dplyr::mutate(dplyr::across(.data$ref_umi_count:.data$coverage, as.numeric))
-
-  return(bind_table)
 }
 
-#------------------------------------------------
-#' Read file
-#'
-#' Read file containing MIPtools' data table.
-#'
-#' @param file The path to the file to be read.
-#' @inheritParams read
-#' @param name The name of the value we are interested in.
-#'
-#' @return Parsed file.
-#' @keywords internal
-read_file <- function(file,
-                      chrom, gene,
-                      name = c("ref_umi_count", "alt_umi_count", "coverage")) {
+# #' #------------------------------------------------Read file
+# #'
+
+# Deprecated version of read_file
+deprec_read_file <- function(
+  file,
+  chrom,
+  gene,
+  name = c("ref_umi_count", "alt_umi_count", "coverage")
+) {
   # If the user does not want to filter out any data
-  if (is.null(chrom) & is.null(gene)) {
+  if (!is_present(chrom) & !is_present(gene)) {
     combined <- vroom::vroom(file, col_names = FALSE, show_col_types = FALSE) %>%
       # Take the transpose of our matrix, making rows columns and columns rows.
       # This will allows us to keep all the data in our .csv file.
@@ -106,7 +123,7 @@ read_file <- function(file,
   # 1st row, but for filtering by gene, the information is in a later row.
   # Depending on which row we want to look at, we must have different
   # expressions.
-  if (!is.null(chrom) & is.null(gene)) {
+  if (is_present(chrom) & !is_present(gene)) {
     # In this case, we want to filter by chromosome.
     # Get the header
     header <- suppressMessages(
@@ -124,7 +141,7 @@ read_file <- function(file,
       )
     ) %>%
       dplyr::slice(6:dplyr::n())
-  } else if (is.null(chrom) & !is.null(gene)) {
+  } else if (!is_present(chrom) & is_present(gene)) {
     # In this case, we want to filter by gene
     header <- suppressMessages(
       vroom::vroom(file,
