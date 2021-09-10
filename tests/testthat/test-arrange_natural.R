@@ -74,3 +74,9 @@ test_that("arranges numerics", {
 
   expect_identical(arrange_natural(ndf, pos), rf)
 })
+
+test_that("warning if packages not intalled", {
+  # Trick R to think packages not installed
+  mockery::stub(arrange_natural, "requireNamespace", FALSE)
+  expect_snapshot(arrange_natural(df, gene))
+})

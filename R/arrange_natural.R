@@ -61,7 +61,8 @@ arrange_natural <- function(.data, ...) {
       expr(forcats::as_factor(as.character(!!var)))
     })
   } else {
-    warning("Packages \"purrr\" and \"stringi\" needed for natural sorting. Please install them.")
+    rlang::warn('Packages "purrr" and "stringi" needed for natural sorting. Please install them.')
+    return(dplyr::arrange(.data, !!!dots))
   }
 
   # Call dplyr::arrange
