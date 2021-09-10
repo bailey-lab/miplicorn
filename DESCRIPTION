@@ -28,6 +28,7 @@ Suggests:
     forcats,
     ggplot2,
     knitr,
+    mockery,
     purrr,
     rmarkdown,
     roxygen2,
