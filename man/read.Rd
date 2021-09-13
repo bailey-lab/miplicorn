@@ -59,12 +59,11 @@ when a condition evaluates to NA, the row will be dropped.
 }
 \section{Data structure}{
 
-Input data must contain six rows of metadata. This can vary depending on what
-type of file is read, but typically contains information about the location
-of a mutation. The remaining rows represent the data for each sample
+Input data must contain six rows of metadata. The metadata can vary depending
+on what type of file is read, but typically contains information about the
+location of a mutation. The remaining rows represent the data for each sample
 sequenced. Together, the alternate, reference, and coverage tables can
-provide information about mutations observed and the coverage at each
-site.
+provide information about mutations observed and the coverage at each site.
 }
 
 \section{Useful filter functions}{
