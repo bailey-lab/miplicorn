@@ -62,17 +62,29 @@ read <- function(
 
   # Error message if multiple criteria selected
   if (lifecycle::is_present(chrom) && lifecycle::is_present(gene)) {
+    abort(c(
+      glue("Multiple filtering criteria selected."),
+      x = glue("Cannot filter on both `chrom` and `gene`."),
+      i = glue("Select only one piece of information to filter on.")
+    ))
+
     message <- glue::glue(
-      "Multiple filtering criteria selected:",
+      # "Multiple filtering criteria selected:",
       "\n\u2139 Select only one piece of information to filter on."
     )
     stop(message, call. = FALSE)
   }
 
-  # Read in the three tables
-  reference_table <- deprec_read_file(reference_table, chrom, gene, "ref_umi_count")
-  alternate_table <- deprec_read_file(alternate_table, chrom, gene, "alt_umi_count")
-  coverage_table <- deprec_read_file(coverage_table, chrom, gene, "coverage")
+  if (lifecycle::is_present(chrom) || lifecycle::is_present(gene)) {
+    # Read in the three tables
+    reference_table <- deprec_read_file(.ref_file, chrom, gene, "ref_umi_count")
+    alternate_table <- deprec_read_file(.alt_file, chrom, gene, "alt_umi_count")
+    coverage_table <- deprec_read_file(.cov_file, chrom, gene, "coverage")
+  } else {
+    reference_table <- read_file(.ref_file, ..., .name = "ref_umi_count")
+    alternate_table <- read_file(.alt_file, ..., .name = "alt_umi_count")
+    coverage_table <- read_file(.cov_file, ..., .name = "coverage")
+  }
 
   # Combine three tibbles together
   bind_table <- dplyr::full_join(reference_table, alternate_table) %>%
