@@ -1,15 +1,58 @@
 #------------------------------------------------
 #' Read data
 #'
-#' Read files containing MIPtools' data tables and combine them.
+#' Read files containing
+#' \href{https://github.com/bailey-lab/MIPTools}{MIPtools'} data tables.
+#' `read_file()` reads a single file. `read()` is a convenience function that
+#' reads all files output by
+#' \href{https://github.com/bailey-lab/MIPTools}{MIPtools} and combines them.
+#' Data files include the reference table, the alternate table, and the coverage
+#' table. Data is read lazily using the
+#' \href{https://vroom.r-lib.org/index.html}{`vroom`} package. Data can be
+#' filtered, retaining all rows that satisfy the conditions. To be retained, the
+#' row in question must produce a value of `TRUE` for all conditions. Note that
+#' when a condition evaluates to NA, the row will be dropped.
 #'
-#' @param reference_table File path to the reference table.
-#' @param alternate_table File path to the alternate table.
-#' @param coverage_table File path to the coverage table.
+#' @section Data structure:
+#' Input data must contain six rows of metadata. This can vary depending on what
+#' type of file is read, but typically contains information about the location
+#' of a mutation. The remaining rows represent the data for each sample
+#' sequenced. Together, the alternate, reference, and coverage tables can
+#' provide information about mutations observed and the coverage at each
+#' site.
+#'
+#' @section Useful filter functions:
+#' The `dplyr::filter()` function is employed to subset the rows of the data
+#' applying the expressions in `...` to the column values to determine which
+#' rows should be retained.
+#'
+#' There are many functions and operators that are useful when constructing the
+#' expressions used to filter the data:
+#'
+#' * [`==`], [`>`], [`>=`], etc.
+#' * [`&`], [`|`], [`!`], [xor()]
+#' * [is.na()]
+#' * [between()], [near()]
+#'
+#' @param .ref_file File path to the reference table.
+#' @param .alt_file File path to the alternate table.
+#' @param .cov_file File path to the coverage table.
+#' @param ... <[`data-masking`][dplyr_data_masking]> Expressions that return a
+#'   logical value and are used to filter the data. If multiple expressions are
+#'   included, they are combined with the `&` operator. Only rows for which all
+#'   conditions evaluate to `TRUE` are kept.
 #' @param chrom The chromosome(s) to filter to.
 #' @param gene The gene(s) to filter to.
+#' @param .file File path to a file.
+#' @param .name The information contained in the specific file. For example
+#'   `"coverage"` or `"ref_umi_count"`.
 #'
-#' @return A tibble containing the parsed data.
+#' @return A [tibble()]. The first six columns contain the metadata associated
+#' with each sample and mutation. Columns `ref_umi_count` and `alt_umi_count`
+#' contain the umi count of the reference and alternate allele, respectively.
+#' Column `coverage` contains the coverage for each data point.
+#'
+#' @seealso [vroom::vroom()] [dplyr::filter()]
 #' @export
 #' @examples
 #' # Get path to example file
@@ -20,25 +63,36 @@
 #'
 #' # Input sources -------------------------------------------------------------
 #' # Read from a path
+#' read_file(ref_file, .name = "umi")
 #' read(ref_file, alt_file, cov_file)
+#'
 #' # You can also use paths directly
+#' # read_file("reference_AA_table.csv")
 #' # read("reference_AA_table.csv", "alternate_AA_table.csv", "coverage_AA_table.csv")
 #'
 #' # Read entire file ----------------------------------------------------------
+#' read_file(ref_file, .name = "umi")
 #' read(ref_file, alt_file, cov_file)
 #'
-#' # Data selection ------------------------------------------------------------
-#' # Pass gene names to select them
-#' read(ref_file, alt_file, cov_file, gene = "atp6")
-#' read(ref_file, alt_file, cov_file, gene = c("atp6", "crt"))
-#' \dontrun{
-#' # Pass chromosome names to select them
-#' read(ref_file, alt_file, cov_file, chrom = "chr13")
-#' read(ref_file, alt_file, cov_file, chrom = c("chr4", "chr13"))}
+#' # Data filtering ------------------------------------------------------------
+#' # Filtering by one criterion
+#' read_file(ref_file, gene == "atp6", .name = "umi")
+#' read(ref_file, alt_file, cov_file, gene == "atp6")
+#'
+#' # Filtering by multiple criteria within a single logical expression
+#' read_file(ref_file, gene == "atp6" & targeted == "Yes", .name = "umi")
+#' read_file(ref_file, gene == "atp6" | targeted == "Yes", .name = "umi")
+#' read(ref_file, alt_file, cov_file, gene == "atp6" & targeted == "Yes")
+#' read(ref_file, alt_file, cov_file, gene == "atp6" | targeted == "Yes")
+#'
+#' # When multiple expressions are used, they are combined using &
+#' read_file(ref_file, gene == "atp6", targeted == "Yes", .name = "umi")
+#' read(ref_file, alt_file, cov_file, gene == "atp6", targeted == "Yes")
 read <- function(
-  reference_table,
-  alternate_table,
-  coverage_table,
+  .ref_file,
+  .alt_file,
+  .cov_file,
+  ...,
   chrom = deprecated(),
   gene = deprecated()
 ) {
@@ -92,17 +146,8 @@ read <- function(
     dplyr::mutate(dplyr::across(.data$ref_umi_count:.data$coverage, as.numeric))
 }
 
-#' #------------------------------------------------
-#' Read file
-#'
-#' Read file containing MIPtools' data table.
-#'
-#' @param .file The path to the file to be read.
-#' @inheritParams read
-#' @param .name The name of the value we are interested in.
-#'
-#' @return Parsed file.
-#' @keywords internal
+#' @rdname read
+#' @export
 read_file <- function(.file, ..., .name) {
   dots <- enquos(..., .ignore_empty = "all")
   check_named(dots)
