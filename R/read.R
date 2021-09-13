@@ -92,90 +92,12 @@ read <- function(
 #' @return Parsed file.
 #' @keywords internal
 read_file <- function(.file, ..., .name) {
-  ### Ideas is to model this function like dplyr::filter
-  ### The dots will represent a logical argument that can be used for
-  ### filtering data
-
-  ### This may be a bit tricky, because we don't actually use filter, we
-  ### use the values in dplyr::contains(). So what we really need is both
-  ### the name of the column we are interested in and the value we want to
-  ### filter our data by....
-
-  ### Another strategy could be just feeding in a names list into the dots.
-  ### For instance, read_file(file, c(chrom = "chr13), .name = coverage)
-  ### If we want multiple filtering steps, we may need to apply some sort of
-  ### map to manipulate the expressions
   dots <- enquos(..., .ignore_empty = "all")
   check_named(dots)
 
-  # If the user does not want to filter out any data
-  if (length(dots) == 0) {
-    combined <- vroom::vroom(
-      file,
-      col_names = FALSE,
-      show_col_types = FALSE
-    ) %>%
-      # Take the transpose of our matrix, making rows columns and columns rows.
-      # This will allows us to keep all the data in our .csv file.
-      tibble::rownames_to_column() %>%
-      tidyr::pivot_longer(-.data$rowname) %>%
-      tidyr::pivot_wider(
-        names_from = .data$rowname,
-        values_from = .data$value
-      ) %>%
-      # Assign the column names of our tibble and clean them up
-      dplyr::select(-.data$name) %>%
-      janitor::row_to_names(1) %>%
-      # Convert our data to a long format
-      tidyr::pivot_longer(
-        cols = -c(1:6),
-        names_to = "sample",
-        values_to = "value"
-      ) %>%
-      janitor::clean_names() %>%
-      dplyr::relocate(sample) %>%
-      dplyr::rename({{ .name }} := .data$value)
-
-    return(combined)
-  }
-
-  # From here on out, we deal with filtering data. The difference between
-  # filtering by different objects is the location of this information in the
-  # header. For instance, in the case of chromosome, the information is in the
-  # 1st row, but for filtering by gene, the information is in a later row.
-  # To determine how many lines to skip when reading in out data, we find the
-  # filtering object's position in the header.
-  full_header <- .file %>%
-    vroom::vroom(col_names = FALSE, col_select = 1, n_max = 6) %>%
-    tibble::deframe() %>%
-    stringr::str_to_lower() %>%
-    stringr::str_replace(" ", "_")
-
-  filter <- names(dots[1]) %>%
-    stringr::str_to_lower() %>%
-    stringr::str_replace(" ", "_")
-
-  filter_pos <- which(full_header == filter) - 1
-  if (!is_double(filter_pos, n = 1L)) {
-    abort(c(
-      "Unable to filter data.",
-      i = "Must supply one filtering condition.",
-      x = pluralize("{length(pos)} condition{?s} supplied.")))
-  }
-
-  # Read in the header
-  header <- suppressMessages(
-    vroom::vroom(
-      file = .file,
-      col_select = (1 | !!dots[[1]]),
-      n_max = length(full_header) - filter_pos,
-      skip = filter_pos,
-      show_col_types = FALSE
-    )
-  )
-
-  # Transpose the header
-  header_t <- header %>%
+  # Read in complete header
+  header <- .file %>%
+    vroom::vroom(col_names = FALSE, show_col_types = FALSE, n_max = 6) %>%
     tibble::rownames_to_column() %>%
     tidyr::pivot_longer(-.data$rowname) %>%
     tidyr::pivot_wider(
@@ -185,42 +107,48 @@ read_file <- function(.file, ..., .name) {
     janitor::row_to_names(1) %>%
     janitor::clean_names()
 
-  # Read in the data
-  data <- suppressMessages(
-    vroom::vroom(
-      file = .file,
-      col_select = (1 | !!dots[[1]]),
-      skip = filter_pos,
-      show_col_types = FALSE
-    )
-  ) %>%
-    dplyr::slice((length(full_header) + 1 - filter_pos):dplyr::n())
+  # Filter the header based on conditions specified
+  tryCatch(
+    filter_header <- dplyr::filter(header, ...),
+    error = function(e) {
+      e <- catch_cnd(dplyr::filter(header, ...))
+      msg <- e$message %>%
+        stringr::str_replace("filter", "read") %>%
+        stringr::str_replace("object", "Object") %>%
+        stringr::str_c(".")
+      abort(msg)
+    }
+  )
 
-  # Transpose the filtered data
-  data_t <- data %>%
-    tibble::rownames_to_column() %>%
-    tidyr::pivot_longer(-.data$rowname,
-                        values_transform = list(value = as.character)
+  # Extract which columns of data we are interested in
+  col_select <- filter_header[[1]] %>%
+    stringr::str_extract("\\d+") %>%
+    as.numeric()
+
+  # Read in entire data set but select only columns we are interested in
+  data <- vroom::vroom(
+      file = .file,
+      col_names = FALSE,
+      col_select = c(1, col_select),
+      show_col_types = FALSE
     ) %>%
+    # Take the transpose of our matrix, making rows columns and columns rows.
+    tibble::rownames_to_column() %>%
+    tidyr::pivot_longer(-.data$rowname) %>%
     tidyr::pivot_wider(
       names_from = .data$rowname,
       values_from = .data$value
     ) %>%
+    # Assign the column names of our tibble and clean them up
+    dplyr::select(-.data$name) %>%
     janitor::row_to_names(1) %>%
+    # Convert our data to a long format
     tidyr::pivot_longer(
-      cols = -1,
+      cols = -c(1:6),
       names_to = "sample",
-      values_to = "value",
-      values_transform = list(value = as.numeric)
+      values_to = "value"
     ) %>%
-    janitor::clean_names()
-
-  # Combine the two tibbles together
-  combined <- dplyr::full_join(header_t, data_t) %>%
-    dplyr::mutate(dplyr::across(
-      where(is.character),
-      ~ stringr::str_remove(., "\\.{3}.*")
-    )) %>%
+    janitor::clean_names() %>%
     dplyr::relocate(sample) %>%
     dplyr::rename({{ .name }} := .data$value)
 }
@@ -228,17 +156,19 @@ read_file <- function(.file, ..., .name) {
 check_named <- function(dots) {
   named <- have_name(dots)
 
-  for (i in which(!named)) {
+  for (i in which(named)) {
     quo <- dots[[i]]
 
-    # only allow named logical vectors, anything else is suspicious
+    # only allow unnamed logical vectors, anything else is suspicious
     expr <- quo_get_expr(quo)
-    abort(c(
-      glue("Problem with `read()` input `..{i}`."),
-      x = glue("Input `..{i}` is unnamed."),
-      i = glue("This usually means that you've used `==` instead of `=`."),
-      i = glue("Faulty expression is `{as_label(expr)}`.")
-    ))
+    if (!is_logical(expr)) {
+      abort(c(
+        glue("Problem with `read()` input `..{i}`."),
+        x = glue("Input `..{i}` is named"),
+        i = glue("This usually means that you've used `=` instead of `==`."),
+        i = glue("Did you mean `{name} == {as_label(expr)}`?", name = names(dots)[i])
+      ))
+    }
   }
 }
 
