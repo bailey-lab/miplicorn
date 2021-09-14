@@ -1,0 +1,8 @@
+Gene ID,PF3D7_0106300,PF3D7_0523000
+Gene,atp6,mdr1
+Mutation Name,atp6-Ala623Glu,mdr1-Asn86Tyr
+ExonicFunc,missense_variant,missense_variant
+AA Change,Ala623Glu,Asn86Tyr
+Targeted,Yes,Yes
+D10-JJJ-23,0,13
+D10-JJJ-43,0,0
