@@ -14,7 +14,7 @@ read(
   gene = deprecated()
 )
 
-read_file(.file, ..., .name)
+read_file(.file, ..., .name = "value")
 }
 \arguments{
 \item{.ref_file}{File path to the reference table.}

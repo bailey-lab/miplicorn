@@ -121,12 +121,6 @@ read <- function(
       x = glue("Cannot filter on both `chrom` and `gene`."),
       i = glue("Select only one piece of information to filter on.")
     ))
-
-    message <- glue::glue(
-      # "Multiple filtering criteria selected:",
-      "\n\u2139 Select only one piece of information to filter on."
-    )
-    stop(message, call. = FALSE)
   }
 
   # If all 3 files are empty, return empty object
@@ -163,7 +157,7 @@ read <- function(
 
 #' @rdname read
 #' @export
-read_file <- function(.file, ..., .name) {
+read_file <- function(.file, ..., .name = "value") {
   dots <- enquos(..., .ignore_empty = "all")
   check_named(dots)
 
