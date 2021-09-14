@@ -99,7 +99,7 @@ read <- function(
   # Deprecated chrom
   if (lifecycle::is_present(chrom)) {
     lifecycle::deprecate_warn(
-      when = "0.1.0",
+      when = "0.0.0.9001",
       what = "read(chrom)",
       details = "Please use the `...` argument instead to filter data."
     )
@@ -108,7 +108,7 @@ read <- function(
   # Deprecated gene
   if (lifecycle::is_present(gene)) {
     lifecycle::deprecate_warn(
-      when = "0.1.0",
+      when = "0.0.0.9001",
       what = "read(gene)",
       details = "Please use the `...` argument instead to filter data."
     )
