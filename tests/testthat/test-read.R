@@ -37,3 +37,20 @@ test_that("named filter inputs returns error", {
     read_file("small.csv", gene = "mdr1", .name = value)
   )
 })
+
+test_that("handles named logical vectors", {
+  skip_on_cran()
+
+  filters_tb <- tibble::tibble(keep = c(TRUE, FALSE))
+  filters_df <- data.frame(keep = c(TRUE, FALSE))
+
+  expect_identical(
+    read_file("small.csv", !!filters_df),
+    read_file("small.csv", !!filters_tb)
+  )
+
+  expect_identical(
+    read_file("small.csv", !!filters_df),
+    read_file("small.csv", !!unname(filters_df))
+  )
+})
