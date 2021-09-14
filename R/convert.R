@@ -32,13 +32,11 @@ convert_single <- function(str) {
   }
 
   # Replace pattern with function, ignoring case
-  aa_change <- stringr::str_replace_all(
-    str,
-    stringr::regex(pattern, ignore_case = TRUE),
-    fun
+  stringr::str_replace_all(
+    string = str,
+    pattern = stringr::regex(pattern, ignore_case = TRUE),
+    replacement = fun
   )
-
-  return(aa_change)
 }
 
 #' @rdname convert_single
@@ -56,11 +54,9 @@ convert_three <- function(str) {
   }
 
   # Replace pattern with function, ignoring case
-  aa_change <- stringr::str_replace_all(
-    str,
-    stringr::regex(pattern, ignore_case = TRUE),
-    fun
+  stringr::str_replace_all(
+    string = str,
+    pattern = stringr::regex(pattern, ignore_case = TRUE),
+    replacement = fun
   )
-
-  return(aa_change)
 }
