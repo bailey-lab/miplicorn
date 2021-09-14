@@ -173,7 +173,11 @@ read_file <- function(.file, ..., .name) {
         stringr::str_replace("filter", "read") %>%
         stringr::str_replace("object", "Object") %>%
         stringr::str_c(".")
-      abort(msg)
+      objects <- stringr::str_c("'", colnames(header)[-1], "'")
+      abort(c(
+        msg,
+        i = pluralize("Available objects are {objects}.")
+      ))
     }
   )
 
