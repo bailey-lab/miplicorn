@@ -129,6 +129,11 @@ read <- function(
     stop(message, call. = FALSE)
   }
 
+  # If all 3 files are empty, return empty object
+  if (empty_file(.ref_file) && empty_file(.alt_file) && empty_file(.cov_file)) {
+    return(tibble::tibble())
+  }
+
   if (lifecycle::is_present(chrom) || lifecycle::is_present(gene)) {
     # Read in the three tables
     reference_table <- deprec_read_file(.ref_file, chrom, gene, "ref_umi_count")
@@ -140,9 +145,19 @@ read <- function(
     coverage_table <- read_file(.cov_file, ..., .name = "coverage")
   }
 
+  # Determine overlapping columns
+  by <- Reduce(
+    intersect,
+    list(
+      colnames(reference_table),
+      colnames(alternate_table),
+      colnames(coverage_table)
+      )
+    )
+
   # Combine three tibbles together
-  bind_table <- dplyr::full_join(reference_table, alternate_table) %>%
-    dplyr::full_join(coverage_table) %>%
+  dplyr::full_join(reference_table, alternate_table, by = by) %>%
+    dplyr::full_join(coverage_table, by = by) %>%
     dplyr::mutate(dplyr::across(.data$ref_umi_count:.data$coverage, as.numeric))
 }
 
@@ -151,6 +166,10 @@ read <- function(
 read_file <- function(.file, ..., .name) {
   dots <- enquos(..., .ignore_empty = "all")
   check_named(dots)
+
+  if (empty_file(.file)) {
+    return(tibble::tibble())
+  }
 
   # Read in complete header
   header <- .file %>%
@@ -192,8 +211,10 @@ read_file <- function(.file, ..., .name) {
       col_names = FALSE,
       col_select = c(1, col_select),
       show_col_types = FALSE
-    ) %>%
-    # Take the transpose of our matrix, making rows columns and columns rows.
+    )
+
+  # Take the transpose of our matrix, making rows columns and columns rows
+  t_data <- data %>%
     tibble::rownames_to_column() %>%
     tidyr::pivot_longer(-.data$rowname) %>%
     tidyr::pivot_wider(
@@ -202,8 +223,10 @@ read_file <- function(.file, ..., .name) {
     ) %>%
     # Assign the column names of our tibble and clean them up
     dplyr::select(-.data$name) %>%
-    janitor::row_to_names(1) %>%
-    # Convert our data to a long format
+    janitor::row_to_names(1)
+
+  # Convert our data to a long format
+  t_data %>%
     tidyr::pivot_longer(
       cols = -c(1:6),
       names_to = "sample",
