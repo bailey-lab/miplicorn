@@ -10,7 +10,8 @@ Authors@R:
 Description: A collection of functions and tools for analysis of MIP data
     resulting from the MIPTools pipeline.
 License: MIT + file LICENSE
-URL: https://github.com/bailey-lab/miplicorn
+URL: https://bailey-lab.github.io/miplicorn/,
+    https://github.com/bailey-lab/miplicorn
 BugReports: https://github.com/bailey-lab/miplicorn/issues
 Depends: 
     R (>= 2.10)

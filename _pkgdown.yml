@@ -1,0 +1,47 @@
+url: https://bailey-lab.github.io/miplicorn/
+
+template:
+  params:
+    bootswatch: flatly
+
+development:
+  mode: auto
+
+reference:
+  - title: Read files
+    desc: >
+      These functions parse files obtained from
+      [MIPTools](https://github.com/bailey-lab/MIPTools) into tibbles.
+    contents:
+    - read
+
+  - title: Data Manipulation
+    desc: >
+      These functions are used to manipulate data objects.
+    contents:
+    - arrange_natural
+    - convert_single
+
+  - title: Miscellaneous
+    desc: >
+      These functions are used to inspect objects.
+    contents:
+    - miplicorn_example
+
+navbar:
+  title: miplicorn
+  type: default
+  left:
+  - icon: fa-home fa-lg
+    href: index.html
+  - text: Reference
+    href: reference/index.html
+  - text: Articles
+    menu:
+    - text: Demonstration
+      href: articles/mip_analysis_tools.html
+  - text: News
+    menu:
+    - text: "Change log"
+      href: news/index.html
+
