@@ -56,9 +56,9 @@
 #' @export
 #' @examples
 #' # Get path to example file
-#' ref_file <- MIPr_example("reference_AA_table.csv")
-#' alt_file <- MIPr_example("alternate_AA_table.csv")
-#' cov_file <- MIPr_example("coverage_AA_table.csv")
+#' ref_file <- miplicorn_example("reference_AA_table.csv")
+#' alt_file <- miplicorn_example("alternate_AA_table.csv")
+#' cov_file <- miplicorn_example("coverage_AA_table.csv")
 #' ref_file
 #'
 #' # Input sources -------------------------------------------------------------
