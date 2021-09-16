@@ -1,4 +1,4 @@
-# MIPr (development version)
+# miplicorn (development version)
 
 * `read()` now allows for filtering on multiple conditions (@arisp99, #7).
 * New `arrange_natural()` naturally sorts a data frame (@arisp99, #6).

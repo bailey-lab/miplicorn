@@ -1,4 +1,4 @@
 library(testthat)
-library(MIPr)
+library(miplicorn)
 
-test_check("MIPr")
+test_check("miplicorn")

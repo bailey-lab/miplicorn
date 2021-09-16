@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-library(MIPr)
+library(miplicorn)
 library(ggplot2)
 
 mytheme <- list(theme_classic(), 
@@ -31,11 +31,11 @@ ID, and whether the site was targeted or not. I would urge for the use of
 solution 2, as even though this information may not be useful immediately, there
 may come a time down the road where having the extra information is important.
 ```{r analysis aa tibble, message = FALSE}
-ref_file <- MIPr::MIPr_example("reference_AA_table.csv")
-alt_file <- MIPr::MIPr_example("alternate_AA_table.csv")
-cov_file <- MIPr::MIPr_example("coverage_AA_table.csv")
+ref_file <- miplicorn::MIPr_example("reference_AA_table.csv")
+alt_file <- miplicorn::MIPr_example("alternate_AA_table.csv")
+cov_file <- miplicorn::MIPr_example("coverage_AA_table.csv")
 
-analysis_tibble <- MIPr::read(ref_file, alt_file, cov_file)
+analysis_tibble <- miplicorn::read(ref_file, alt_file, cov_file)
 ```
 
 # Extracting clinically relevant mutations

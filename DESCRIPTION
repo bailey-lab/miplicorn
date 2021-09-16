@@ -1,4 +1,4 @@
-Package: MIPr
+Package: miplicorn
 Title: Collection of Functions for MIPTools Analysis
 Version: 0.0.0.9001
 Authors@R: 
@@ -10,8 +10,8 @@ Authors@R:
 Description: A collection of functions and tools for analysis of MIP data
     resulting from the MIPTools pipeline.
 License: MIT + file LICENSE
-URL: https://github.com/bailey-lab/MIPr
-BugReports: https://github.com/bailey-lab/MIPr/issues
+URL: https://github.com/bailey-lab/miplicorn
+BugReports: https://github.com/bailey-lab/miplicorn/issues
 Depends: 
     R (>= 2.10)
 Imports: 

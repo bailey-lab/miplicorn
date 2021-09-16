@@ -1,13 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# MIPr
+# miplicorn
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/bailey-lab/MIPr/workflows/R-CMD-check/badge.svg)](https://github.com/bailey-lab/MIPr/actions)
+[![R-CMD-check](https://github.com/bailey-lab/miplicorn/workflows/R-CMD-check/badge.svg)](https://github.com/bailey-lab/miplicorn/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/bailey-lab/MIPr/branch/master/graph/badge.svg)](https://codecov.io/gh/bailey-lab/MIPr?branch=master)
+coverage](https://codecov.io/gh/bailey-lab/miplicorn/branch/master/graph/badge.svg)](https://codecov.io/gh/bailey-lab/miplicorn?branch=master)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
@@ -26,6 +26,6 @@ to generate a personal access token (PAT) for github.
 
 ``` r
 # install.packages("devtools")
-devtools::install_github(repo = "https://github.com/bailey-lab/MIPr",
+devtools::install_github(repo = "https://github.com/bailey-lab/miplicorn",
                          auth_token = "PAT token")
 ```
