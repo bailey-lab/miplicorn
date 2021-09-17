@@ -1,0 +1,52 @@
+---
+title: "Dealing With Large Data Sets"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Dealing With Large Data Sets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(miplicorn)
+```
+
+## File Sizes
+In the world of genomic sequencing, files are often several gigabytes large
+containing millions of data points. Reading in such files to local machines,
+such as your laptop, can take an excruciating amount of time.
+
+While there are programs that can handle large amounts of data, an easy and
+simple solution is to process your data in chunks. For instance, instead of
+looking at ten chromosomes simultaneously, it may be simpler to focus on two or
+three at a time.
+
+<!-- ### Benchmark -->
+<!-- ```{r benchmark} -->
+<!-- library(bench) -->
+<!-- path = "~/Desktop/Bailey Lab Data/Extended Haplotype Uganda/Tables/" -->
+
+<!-- mark(read_file(paste0(path, "hap1_HAP_reference_AN_table.csv"))) -->
+<!-- ``` -->
+
+## Filters
+Both `read_file()` and `read()` provide the ability to filter data so that data
+may load and run faster. This works by filtering even before objects are loaded
+into R. Data can be filtered using any of the information present in the
+metadata, and you may even filter on multiple conditions.
+
+```{r filter}
+cov_file <- miplicorn_example("coverage_AA_table.csv")
+
+read_file(cov_file)
+
+read_file(cov_file, gene == "atp6")
+
+read_file(cov_file, gene == "atp6", targeted == "Yes")
+```
+
