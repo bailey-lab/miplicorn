@@ -18,6 +18,7 @@ Depends:
 Imports: 
     cli,
     dplyr,
+    ggplot2,
     glue,
     janitor,
     lifecycle,
@@ -29,7 +30,6 @@ Imports:
 Suggests: 
     covr,
     forcats,
-    ggplot2,
     knitr,
     mockery,
     purrr,

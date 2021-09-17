@@ -8,19 +8,25 @@ development:
   mode: auto
 
 reference:
-  - title: Read files
+  - title: Parse
     desc: >
       These functions parse files obtained from
       [MIPTools](https://github.com/bailey-lab/MIPTools) into tibbles.
     contents:
     - read
 
-  - title: Data Manipulation
+  - title: Manipulate
     desc: >
       These functions are used to manipulate data objects.
     contents:
     - arrange_natural
     - convert_single
+
+  - title: Visualize
+    desc: >
+      These functions are used to visualize data.
+    contents:
+    - theme_miplicorn
 
   - title: Miscellaneous
     desc: >
