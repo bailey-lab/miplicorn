@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//index.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//reference/arrange_natural.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//reference/convert_single.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//reference/miplicorn-package.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//reference/miplicorn_example.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//reference/read.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//reference/theme_miplicorn.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//reference/tidyeval.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//articles/large-files.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//articles/miplicorn.html</loc>
+  </url>
+</urlset>
