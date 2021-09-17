@@ -17,13 +17,6 @@ knitr::opts_chunk$set(
 
 library(miplicorn)
 library(ggplot2)
-
-mytheme <- list(theme_classic(), 
-  theme(plot.title = element_text(hjust = 0.5, size = 12),
-        axis.title = element_text(size = 10),
-        legend.position = "right",
-        legend.title = element_text(size = 10),
-        legend.text = element_text(size = 10)))
 ```
 
 ## Parse
@@ -113,8 +106,8 @@ ggplot(data, aes(x = aa_change, y = value, fill = gene)) +
     y = "Average Coverage", 
     title = "Average Coverage by Mutation Site"
   ) +
-  mytheme +
   scale_fill_brewer(name = "Gene", palette = "PuBuGn") +
+  theme_miplicorn() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
@@ -145,7 +138,7 @@ ggplot(aes(x = aa_change, y = value, fill = gene, alpha = validated)) +
   geom_col() +
   labs(y = "Average Coverage", x = "Amino Acid Change", title = "Average Coverage by Mutation Site") +
   scale_fill_brewer(name = "Gene", palette = "PuBuGn") +
-  mytheme + 
+  theme_miplicorn() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 
 validated %>%
@@ -156,6 +149,6 @@ ggplot(aes(x = aa_change, y = value, fill = gene)) +
   facet_grid(validated ~ .) +
   labs(y = "Average Coverage", x = "Amino Acid Change", title = "Average Coverage by Mutation Site") +
   scale_fill_brewer(name = "Gene", palette = "PuBuGn") +
-  mytheme +
+  theme_miplicorn() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```

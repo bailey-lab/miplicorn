@@ -1,5 +1,6 @@
 # miplicorn (development version)
 
+* `theme_miplicorn()` specifies a custom theme for creating figures
 * `read()` now allows for filtering on multiple conditions (@arisp99, #7).
 * New `arrange_natural()` naturally sorts a data frame (@arisp99, #6).
 * New `convert_single()` and `convert_three` convert amino acid abbreviations 
