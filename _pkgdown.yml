@@ -34,12 +34,14 @@ navbar:
   left:
   - icon: fa-home fa-lg
     href: index.html
+  - text: Get started
+    href: articles/miplicorn.html
   - text: Reference
     href: reference/index.html
-  - text: Articles
-    menu:
-    - text: Demonstration
-      href: articles/mip_analysis_tools.html
+  # - text: Articles
+  #   menu:
+  #   - text: Demonstration
+  #     href: articles/mip_analysis_tools.html
   - text: News
     menu:
     - text: "Change log"

@@ -1,0 +1,161 @@
+---
+title: "Introduction to miplicorn"
+description: >
+  Learn how to get started with the basics of miplicorn.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to miplicorn}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(miplicorn)
+library(ggplot2)
+
+mytheme <- list(theme_classic(), 
+  theme(plot.title = element_text(hjust = 0.5, size = 12),
+        axis.title = element_text(size = 10),
+        legend.position = "right",
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 10)))
+```
+
+## Parse
+
+While MIPTools provides several .csv files that can be analyzed, parsing such
+files is difficult because of their non-rectangular structure. As such,
+attempting to read these files with default parameters fails.
+
+```{r MIPTools output, message = FALSE, echo = FALSE}
+cov_file <- miplicorn::miplicorn_example("coverage_AA_table.csv")
+vroom::vroom(cov_file, col_names = FALSE, n_max = 10, col_select = 1:5)
+```
+
+As visible, there are six rows of metadata, which specify the gene ID, gene,
+mutation name, etc. The remaining rows contain the data we are actually
+interested in: the rows contain the samples and the columns contain the
+positions we are interested in. The difficult part of reading in these files is
+that the metadata must be extracted and treated differently from the data
+itself.
+
+miplicorn, therefore, provides two functions: `read_file()` and `read()` which
+quickly read in such non-rectangular files. The functions generate a tibble
+where each row represents a sample and a position. Thus, there will be multiple
+entries for each unique sample.
+
+```{r miplicorn parsing}
+cov_file <- miplicorn::miplicorn_example("coverage_AA_table.csv")
+
+data <- miplicorn::read_file(cov_file)
+data
+```
+
+## Manipulate
+
+### Amino acids
+ 
+In some the user may want to convert amino acid abbreviations from the three to
+one letters abbreviation, or vice versa for easier interpretation of data.
+
+```{r amino acid abbreviation}
+data %>% 
+  dplyr::mutate(aa_change = convert_three(aa_change))
+```
+
+### Sort
+
+In plotting data, it is useful to be able to control the order in which data
+appears. While `dplyr::arrange()` provides the functionality to sort numeric or
+character data, it lacks the ability to naturally sort alphanumeric vectors,
+vectors containing both letters and numerics. Furthermore, the ordering of data
+is not kept when fed into plotting functions. `arrange_natural()` attempts to
+address these limitations.
+
+```{r sort}
+arrange_natural(data, sample, gene)
+```
+
+## Visualize
+
+There are an almost limitless different ways to visualize a single set of data.
+While `miplicorn` cannot address every method, it aims to simplify the creation
+of key figures.
+
+**N.B. these have not yet been incorporated into miplicorn, but as time goes**
+**on more and more visualization methods will be added.**
+
+### Average coverage
+```{r visualize, echo = F, messsage = F}
+# For the purposes of visualization, we select a small subset of genes
+relevant_mutations <- c(
+  "dhps", "k13", "atp6", "crt", "cytb",
+  "mdr1", "mdr2", "dhfr-ts"
+)
+
+# Determine average coverage
+data <- data %>%
+  dplyr::filter(gene %in% relevant_mutations) %>%
+  dplyr::group_by(gene, mutation_name, aa_change) %>%
+  dplyr::summarise(value = mean(as.numeric(value)), .groups = "keep") %>%
+  arrange_natural(gene, mutation_name, aa_change)
+
+# Plot
+ggplot(data, aes(x = aa_change, y = value, fill = gene)) +
+  geom_col() +
+  labs(
+    x = "Amino Acid Change",
+    y = "Average Coverage", 
+    title = "Average Coverage by Mutation Site"
+  ) +
+  mytheme +
+  scale_fill_brewer(name = "Gene", palette = "PuBuGn") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+
+## "Validated" mutations
+```{r mutation validation, echo = F, messsage = F}
+# Create a fake list of validated mutations
+set.seed(100)
+valid_mutations <- tibble::tibble(
+  mutation = unique(data$mutation_name),
+  validated = sample(
+    c("validated", "suspect"), 
+    replace = TRUE, 
+    size = length(unique(data$mutation_name)))
+  )
+
+# Combine the fake list of validated mutations with the previous tibble
+validated <- data %>%
+  dplyr::left_join(valid_mutations, by = c("mutation_name" = "mutation")) %>%
+  dplyr::relocate(validated, .after = mutation_name)
+```
+
+```{r mutation validation plot, echo = F, warning = F}
+validated %>%
+  dplyr::group_by(mutation_name, aa_change, gene, validated) %>%
+  dplyr::summarise(value = mean(value), .groups = "keep") %>%
+ggplot(aes(x = aa_change, y = value, fill = gene, alpha = validated)) +
+  geom_col() +
+  labs(y = "Average Coverage", x = "Amino Acid Change", title = "Average Coverage by Mutation Site") +
+  scale_fill_brewer(name = "Gene", palette = "PuBuGn") +
+  mytheme + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+validated %>%
+  dplyr::group_by(mutation_name, aa_change, gene, validated) %>%
+  dplyr::summarise(value = mean(value), .groups = "keep") %>%
+ggplot(aes(x = aa_change, y = value, fill = gene)) +
+  geom_col() +
+  facet_grid(validated ~ .) +
+  labs(y = "Average Coverage", x = "Amino Acid Change", title = "Average Coverage by Mutation Site") +
+  scale_fill_brewer(name = "Gene", palette = "PuBuGn") +
+  mytheme +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
