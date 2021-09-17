@@ -12,15 +12,15 @@ test_that("read returns an empty tibble on an empty file", {
 
 test_that("chrom and gene are deprecated", {
   expect_warning(suppressMessages(
-    read("small.csv", "small.csv", "small.csv", chrom = "13"))
-  )
+    read("small.csv", "small.csv", "small.csv", chrom = "13")
+  ))
   expect_warning(suppressMessages(
-    read("small.csv", "small.csv", "small.csv", gene = "atp"))
-  )
+    read("small.csv", "small.csv", "small.csv", gene = "atp")
+  ))
 
   expect_error(suppressMessages(suppressWarnings(
-    read("small.csv", "small.csv", "small.csv", chrom = "13", gene = "atp")))
-  )
+    read("small.csv", "small.csv", "small.csv", chrom = "13", gene = "atp")
+  )))
   expect_snapshot(
     error = TRUE,
     suppressMessages(

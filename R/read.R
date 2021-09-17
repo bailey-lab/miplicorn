@@ -88,14 +88,12 @@
 #' # When multiple expressions are used, they are combined using &
 #' read_file(ref_file, gene == "atp6", targeted == "Yes", .name = "umi")
 #' read(ref_file, alt_file, cov_file, gene == "atp6", targeted == "Yes")
-read <- function(
-  .ref_file,
-  .alt_file,
-  .cov_file,
-  ...,
-  chrom = deprecated(),
-  gene = deprecated()
-) {
+read <- function(.ref_file,
+                 .alt_file,
+                 .cov_file,
+                 ...,
+                 chrom = deprecated(),
+                 gene = deprecated()) {
   # Deprecated chrom
   if (lifecycle::is_present(chrom)) {
     lifecycle::deprecate_warn(
@@ -146,8 +144,8 @@ read <- function(
       colnames(reference_table),
       colnames(alternate_table),
       colnames(coverage_table)
-      )
     )
+  )
 
   # Combine three tibbles together
   dplyr::full_join(reference_table, alternate_table, by = by) %>%
@@ -201,11 +199,11 @@ read_file <- function(.file, ..., .name = "value") {
 
   # Read in entire data set but select only columns we are interested in
   data <- vroom::vroom(
-      file = .file,
-      col_names = FALSE,
-      col_select = c(1, col_select),
-      show_col_types = FALSE
-    )
+    file = .file,
+    col_names = FALSE,
+    col_select = c(1, col_select),
+    show_col_types = FALSE
+  )
 
   # Take the transpose of our matrix, making rows columns and columns rows
   t_data <- data %>%
@@ -251,12 +249,10 @@ check_named <- function(dots) {
 }
 
 # Deprecated version of read_file
-deprec_read_file <- function(
-  file,
-  chrom,
-  gene,
-  name = c("ref_umi_count", "alt_umi_count", "coverage")
-) {
+deprec_read_file <- function(file,
+                             chrom,
+                             gene,
+                             name = c("ref_umi_count", "alt_umi_count", "coverage")) {
   # If the user does not want to filter out any data
   if (!is_present(chrom) & !is_present(gene)) {
     combined <- vroom::vroom(file, col_names = FALSE, show_col_types = FALSE) %>%

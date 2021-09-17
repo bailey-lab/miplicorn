@@ -50,7 +50,7 @@ arrange_natural <- function(.data, ...) {
   dots <- enquos(..., .named = TRUE)
 
   if (requireNamespace("stringi", quietly = TRUE) &
-      requireNamespace("purrr", quietly = TRUE)) {
+    requireNamespace("purrr", quietly = TRUE)) {
     # Manipulate dots to get arrange variables
     arrange_vars <- purrr::map(dots, function(var) {
       expr(stringi::stri_rank(as.character(!!var), numeric = TRUE))
