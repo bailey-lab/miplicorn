@@ -7,7 +7,7 @@ empty_file <- function(x) {
 #------------------------------------------------
 #' Custom ggplot2 theme
 #'
-#' Custom ggplot2 theme that builds off of `ggplot2::theme_classic()`.
+#' Custom `ggplot2` theme that builds off of `ggplot2::theme_classic()`.
 #'
 #' @inheritParams ggplot2::theme_classic
 #'

@@ -21,7 +21,7 @@ theme_miplicorn(
 \item{base_rect_size}{base size for rect elements}
 }
 \description{
-Custom ggplot2 theme that builds off of \code{ggplot2::theme_classic()}.
+Custom \code{ggplot2} theme that builds off of \code{ggplot2::theme_classic()}.
 }
 \examples{
 library("ggplot2")

@@ -112,7 +112,7 @@ ggplot(data, aes(x = aa_change, y = value, fill = gene)) +
 ```
 
 
-## "Validated" mutations
+### "Validated" mutations
 ```{r mutation validation, echo = F, messsage = F}
 # Create a fake list of validated mutations
 set.seed(100)
