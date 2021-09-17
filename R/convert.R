@@ -1,5 +1,5 @@
 #------------------------------------------------
-#' Convert amino acid abbreviation
+#' Convert amino acid abbreviations
 #'
 #' `convert_single()` converts the 1-letter abbreviation to the 3-letter
 #' abbreviation and `convert_three()` does the opposite.

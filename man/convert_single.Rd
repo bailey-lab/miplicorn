@@ -4,7 +4,7 @@
 \alias{convert_single}
 \alias{convert}
 \alias{convert_three}
-\title{Convert amino acid abbreviation}
+\title{Convert amino acid abbreviations}
 \usage{
 convert_single(str)
 

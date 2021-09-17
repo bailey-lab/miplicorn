@@ -12,6 +12,7 @@ A collection of functions and tools for analysis of MIP data
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://bailey-lab.github.io/miplicorn/}
   \item \url{https://github.com/bailey-lab/miplicorn}
   \item Report bugs at \url{https://github.com/bailey-lab/miplicorn/issues}
 }
