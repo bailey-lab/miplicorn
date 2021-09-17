@@ -36,3 +36,11 @@ theme_miplicorn <- function(base_size = 10, base_family = "",
       complete = TRUE
     )
 }
+
+# Need to have a function that returns the default theme which will be used in
+# figures. This is according to the best practices for using ggplot2 in a
+# package. Link:
+# <https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html#creating-a-new-theme-1>
+default_theme <- function() {
+  theme_miplicorn()
+}
