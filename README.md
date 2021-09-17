@@ -14,18 +14,56 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
+miplicorn provides a unified framework for analyzing molecular inversion
+probes (MIPs) and amplicons. It aims to quickly read in files several
+gigabytes large and provide the tools to filter data, manipulate data,
+and, most informatively, visualize data.
+
 ## Installation
 
-To install the package, please follow the code below. In order to
-install, `devtools` must be installed. Note that as this is still a
-private repo, you must enter an authorization token to
-`devtools::install_github`. Follow the instructions at [Managing
-Git(Hub)
+You may install the package from
+[Github](https://github.com/bailey-lab/miplicorn) using `devtools`. Note
+that as this is still a private repo, you must enter an authorization
+token to `devtools::install_github`. Follow the instructions at
+[Managing Git(Hub)
 Credentials](https://usethis.r-lib.org/articles/articles/git-credentials.html)
-to generate a personal access token (PAT) for github.
+to generate a personal access token (PAT).
 
 ``` r
 # install.packages("devtools")
 devtools::install_github(repo = "https://github.com/bailey-lab/miplicorn",
-                         auth_token = "PAT token")
+                         auth_token = "<your PAT token>")
+```
+
+## Usage
+
+See `vignette("miplicorn")` for a more extensive introduction and a
+demonstration of several features of the package.
+
+``` r
+library(miplicorn)
+
+file <- miplicorn_example("reference_AA_table.csv")
+
+data <- read_file(file, gene == "atp6")
+data  
+#> # A tibble: 260 × 8
+#>   sample     gene_id   gene  mutation_name exonic_func  aa_change targeted value
+#>   <chr>      <chr>     <chr> <chr>         <chr>        <chr>     <chr>    <chr>
+#> 1 D10-JJJ-23 PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes      608.0
+#> 2 D10-JJJ-43 PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes      20.0 
+#> 3 D10-JJJ-55 PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes      158.0
+#> 4 D10-JJJ-5  PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes      2.0  
+#> 5 D10-JJJ-47 PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes      1.0  
+#> # … with 255 more rows
+arrange_natural(data, sample, targeted)
+#> # A tibble: 260 × 8
+#>   sample    gene_id   gene  mutation_name  exonic_func  aa_change targeted value
+#>   <fct>     <chr>     <chr> <chr>          <chr>        <chr>     <fct>    <chr>
+#> 1 D10-JJJ-1 PF3D7_01… atp6  atp6-Gly639Asp missense_va… Gly639Asp No       10.0 
+#> 2 D10-JJJ-1 PF3D7_01… atp6  atp6-Ser466Asn missense_va… Ser466Asn No       2.0  
+#> 3 D10-JJJ-1 PF3D7_01… atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes      10.0 
+#> 4 D10-JJJ-1 PF3D7_01… atp6  atp6-Glu431Lys missense_va… Glu431Lys Yes      5.0  
+#> 5 D10-JJJ-1 PF3D7_01… atp6  atp6-Ser769Asn missense_va… Ser769Asn Yes      1.0  
+#> # … with 255 more rows
 ```
