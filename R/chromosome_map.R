@@ -57,9 +57,24 @@ chromosome_map <- function(genome,
                            title = "",
                            colours = list(),
                            ...) {
+  if(!requireNamespace("chromoMap", quietly = TRUE) |
+     !requireNamespace("readr", quietly = TRUE) |
+     !requireNamespace("withr", quietly = TRUE)) {
+    rlang::abort('Packages "chromoMap", "readr", and "withr" needed to create chromosome maps. Please install them.')
+  }
+
   # Write temp .txt files
-  genome_path <- tempfile("genome.txt")
-  probes_path <- tempfile("probes.txt")
+  tempdir <- withr::local_tempdir()
+  genome_path <- withr::local_tempfile(
+    pattern = "genome",
+    fileext = ".txt",
+    tmpdir = tempdir
+  )
+  probes_path <- withr::local_tempfile(
+    pattern = "probes",
+    fileext = ".txt",
+    tmpdir = tempdir
+  )
   readr::write_tsv(genome, genome_path, col_names = FALSE)
   readr::write_tsv(probes, probes_path, col_names = FALSE)
 
@@ -85,7 +100,4 @@ chromosome_map <- function(genome,
 
   # Evaluate call
   print(quiet(eval(call)))
-
-  # Delete temp files
-  unlink(c(genome_path, probes_path))
 }

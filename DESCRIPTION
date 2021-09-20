@@ -28,11 +28,13 @@ Imports:
     tidyr,
     vroom
 Suggests: 
+    chromoMap,
     covr,
     forcats,
     knitr,
     mockery,
     purrr,
+    readr,
     rmarkdown,
     roxygen2,
     spelling,
@@ -40,6 +42,7 @@ Suggests:
     stringr,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.0)
+    withr
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
