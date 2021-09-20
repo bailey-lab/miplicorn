@@ -35,7 +35,6 @@ Suggests:
     knitr,
     mockery,
     purrr,
-    readr,
     rmarkdown,
     roxygen2,
     spelling,

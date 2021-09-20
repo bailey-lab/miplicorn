@@ -58,9 +58,8 @@ chromosome_map <- function(genome,
                            colours = list(),
                            ...) {
   if (!requireNamespace("chromoMap", quietly = TRUE) |
-    !requireNamespace("readr", quietly = TRUE) |
     !requireNamespace("withr", quietly = TRUE)) {
-    rlang::abort('Packages "chromoMap", "readr", and "withr" needed to create chromosome maps. Please install them.')
+    rlang::abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
   }
 
   # Write temp .txt files
@@ -75,8 +74,8 @@ chromosome_map <- function(genome,
     fileext = ".txt",
     tmpdir = tempdir
   )
-  readr::write_tsv(genome, genome_path, col_names = FALSE)
-  readr::write_tsv(probes, probes_path, col_names = FALSE)
+  vroom::vroom_write(genome, genome_path, col_names = FALSE)
+  vroom::vroom_write(probes, probes_path, col_names = FALSE)
 
   # Generate list of arguments and set default values
   arguments <- dots_list(
