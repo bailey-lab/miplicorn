@@ -46,7 +46,7 @@ save_widget <- function(widget) {
 test_that("chromosome_map() draws correctly", {
   # NB tests require webshot2, which is not on cran yet...
   # skip_on_cran()
-  # skip_on_ci()
+  skip_on_ci()
   skip_if_not_installed("webshot2")
 
   default <- chromosome_map(genome_Pf3D7, probes)
@@ -67,7 +67,7 @@ test_that("chromosome_map() draws correctly", {
 test_that("chromosome_map() overrides defaults with user input", {
   # NB tests require webshot2, which is not on cran yet...
   # skip_on_cran()
-  # skip_on_ci()
+  skip_on_ci()
   skip_if_not_installed("webshot2")
 
   no_colour <- chromosome_map(genome_Pf3D7, probes, data_based_color_map = F)
