@@ -27,10 +27,11 @@ Imports:
     tibble,
     tidyr,
     vroom
-Suggests: 
+Suggests:
     chromoMap,
     covr,
     forcats,
+    htmlwidgets,
     knitr,
     mockery,
     purrr,
@@ -41,7 +42,8 @@ Suggests:
     stringi,
     stringr,
     testthat (>= 3.0.0),
-    vdiffr (>= 1.0.0)
+    vdiffr (>= 1.0.0),
+    webshot2,
     withr
 VignetteBuilder: 
     knitr
