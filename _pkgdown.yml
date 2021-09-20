@@ -26,6 +26,7 @@ reference:
     desc: >
       These functions are used to visualize data.
     contents:
+    - chromosome_map
     - theme_miplicorn
 
   - title: Miscellaneous
@@ -33,6 +34,10 @@ reference:
       These functions are used to inspect objects.
     contents:
     - miplicorn_example
+
+  - title: Data
+    contents:
+    - genome_Pf3D7
 
 navbar:
   title: miplicorn
