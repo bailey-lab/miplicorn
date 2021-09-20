@@ -31,17 +31,17 @@
 #' @export
 #' @examples
 #' probes <- tibble::tribble(
-#'   ~rowid,  ~chrom,  ~start,    ~end, ~probe_set,
-#'   4487L, "chr14", 2342135L, 2342284L,      "IBC",
-#'   2813L,  "chr3",  830503L,  830769L,      "DR2",
-#'   4673L,  "chr5",  482233L,  482391L,      "IBC",
-#'   3337L,  "chr9",  375274L,  375417L,      "IBC",
-#'   2449L, "chr12",  532032L,  532281L,      "DR2",
-#'   1565L,  "chr7",  383447L,  383653L,      "HAP",
-#'   3115L, "chr14", 1401991L, 1402160L,      "IBC",
-#'   1446L,  "chr4",  734737L,  734936L,      "HAP",
-#'   4555L, "chr10",   93054L,   93223L,      "IBC",
-#'   3627L,  "chr7",  162127L,  162277L,      "IBC"
+#'   ~rowid, ~chrom, ~start, ~end, ~probe_set,
+#'   4487L, "chr14", 2342135L, 2342284L, "IBC",
+#'   2813L, "chr3", 830503L, 830769L, "DR2",
+#'   4673L, "chr5", 482233L, 482391L, "IBC",
+#'   3337L, "chr9", 375274L, 375417L, "IBC",
+#'   2449L, "chr12", 532032L, 532281L, "DR2",
+#'   1565L, "chr7", 383447L, 383653L, "HAP",
+#'   3115L, "chr14", 1401991L, 1402160L, "IBC",
+#'   1446L, "chr4", 734737L, 734936L, "HAP",
+#'   4555L, "chr10", 93054L, 93223L, "IBC",
+#'   3627L, "chr7", 162127L, 162277L, "IBC"
 #' )
 #'
 #' chromosome_map(genome_Pf3D7, probes)
@@ -57,9 +57,9 @@ chromosome_map <- function(genome,
                            title = "",
                            colours = list(),
                            ...) {
-  if(!requireNamespace("chromoMap", quietly = TRUE) |
-     !requireNamespace("readr", quietly = TRUE) |
-     !requireNamespace("withr", quietly = TRUE)) {
+  if (!requireNamespace("chromoMap", quietly = TRUE) |
+    !requireNamespace("readr", quietly = TRUE) |
+    !requireNamespace("withr", quietly = TRUE)) {
     rlang::abort('Packages "chromoMap", "readr", and "withr" needed to create chromosome maps. Please install them.')
   }
 

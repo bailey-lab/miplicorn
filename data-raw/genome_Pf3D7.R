@@ -20,8 +20,10 @@ genome_Pf3D7 <- readr::read_tsv(
   ) %>%
   dplyr::select(-feature) %>%
   dplyr::rename(start = num, end = size) %>%
-  dplyr::mutate(chrom = c(paste0("chr", seq(1:14)), "chrapi", "chrmit"),
-                dplyr::across(start:end, as.integer))
+  dplyr::mutate(
+    chrom = c(paste0("chr", seq(1:14)), "chrapi", "chrmit"),
+    dplyr::across(start:end, as.integer)
+  )
 
 # Store data in package
 usethis::use_data(genome_Pf3D7, overwrite = TRUE)
