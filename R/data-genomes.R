@@ -1,7 +1,7 @@
 #' Plasmodium falciparum 3D7 genome
 #'
-#' This data set contains information on the P. falciparum 3D7 reference
-#' genome. The original source is from the NCBI taxonomy browser.
+#' This data set contains information on the P. falciparum 3D7 reference genome.
+#' The original source is from [PlasmoDB](https://plasmodb.org/plasmo/app/).
 #'
 #' @format A tibble with 16 rows and 3 variables:
 #' \describe{
@@ -9,7 +9,9 @@
 #' \item{start}{The starting position of the chromosome}
 #' \item{end}{The ending position of the chromosome}
 #' }
-#' @source \url{http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=36329}
+#' @source [PlasmoDB Pf.
+#'   3D7](https://plasmodb.org/plasmo/app/downloads/Current_Release/Pfalciparum3D7/gff/data/PlasmoDB-54_Pfalciparum3D7.gff)
+#'
 #' @examples
 #' genome_Pf3D7
 "genome_Pf3D7"
