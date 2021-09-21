@@ -78,7 +78,7 @@ chromosome_map <- function(genome,
   vroom::vroom_write(probes, probes_path, col_names = FALSE)
 
   # Generate list of arguments and set default values
-  arguments <- dots_list(
+  arguments <- rlang::dots_list(
     ch.files = genome_path,
     data.files = probes_path,
     title = title,
@@ -95,7 +95,7 @@ chromosome_map <- function(genome,
   )
 
   # Function call
-  call <- call2(quote(chromoMap::chromoMap), !!!arguments)
+  call <- rlang::call2(quote(chromoMap::chromoMap), !!!arguments)
 
   # Evaluate call
   print(quiet(eval(call)))

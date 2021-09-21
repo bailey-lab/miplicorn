@@ -8,6 +8,7 @@
 #' @importFrom glue glue glue_collapse glue_data
 #' @importFrom lifecycle deprecated is_present
 #' @importFrom cli pluralize
+#' @importFrom rlang inform warn abort
 ## usethis namespace: end
 NULL
 

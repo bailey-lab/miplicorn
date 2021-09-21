@@ -179,7 +179,7 @@ read_file <- function(.file, ..., .name = "value") {
   tryCatch(
     filter_header <- dplyr::filter(header, ...),
     error = function(e) {
-      e <- catch_cnd(dplyr::filter(header, ...))
+      e <- rlang::catch_cnd(dplyr::filter(header, ...))
       msg <- e$message %>%
         stringr::str_replace("filter", "read") %>%
         stringr::str_replace("object", "Object") %>%
@@ -230,14 +230,14 @@ read_file <- function(.file, ..., .name = "value") {
 }
 
 check_named <- function(dots) {
-  named <- have_name(dots)
+  named <- rlang::have_name(dots)
 
   for (i in which(named)) {
     quo <- dots[[i]]
 
     # only allow unnamed logical vectors, anything else is suspicious
-    expr <- quo_get_expr(quo)
-    if (!is_logical(expr)) {
+    expr <- rlang::quo_get_expr(quo)
+    if (!rlang::is_logical(expr)) {
       abort(c(
         glue("Problem with `read()` input `..{i}`."),
         x = glue("Input `..{i}` is named"),
