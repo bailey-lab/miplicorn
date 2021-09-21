@@ -59,7 +59,7 @@ chromosome_map <- function(genome,
                            ...) {
   if (!requireNamespace("chromoMap", quietly = TRUE) |
     !requireNamespace("withr", quietly = TRUE)) {
-    rlang::abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
+    abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
   }
 
   # Write temp .txt files
