@@ -22,17 +22,11 @@ and, most informatively, visualize data.
 ## Installation
 
 You may install the package from
-[Github](https://github.com/bailey-lab/miplicorn) using `devtools`. Note
-that as this is still a private repo, you must enter an authorization
-token to `devtools::install_github`. Follow the instructions at
-[Managing Git(Hub)
-Credentials](https://usethis.r-lib.org/articles/articles/git-credentials.html)
-to generate a personal access token (PAT).
+[Github](https://github.com/bailey-lab/miplicorn) using `devtools`.
 
 ``` r
 # install.packages("devtools")
-devtools::install_github(repo = "https://github.com/bailey-lab/miplicorn",
-                         auth_token = "<your PAT token>")
+devtools::install_github("bailey-lab/miplicorn")
 ```
 
 ## Usage
