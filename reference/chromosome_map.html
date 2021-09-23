@@ -173,8 +173,7 @@ chromosome. Contains three columns:</p><ul>
     <tr>
       <th>probes</th>
       <td><p>A tibble indicating the starting and ending position of each
-probe. Contains five columns:</p><ul>
-<li><p>A unique identifier for the particular probe</p></li>
+probe. Contains four columns:</p><ul>
 <li><p>Name of the chromosome the probe is on</p></li>
 <li><p>The starting position of the probe</p></li>
 <li><p>The ending position of the probe</p></li>
@@ -203,17 +202,17 @@ probe set.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>probes</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
-  <span class='op'>~</span><span class='va'>rowid</span>, <span class='op'>~</span><span class='va'>chrom</span>, <span class='op'>~</span><span class='va'>start</span>, <span class='op'>~</span><span class='va'>end</span>, <span class='op'>~</span><span class='va'>probe_set</span>,
-  <span class='fl'>4487L</span>, <span class='st'>"chr14"</span>, <span class='fl'>2342135L</span>, <span class='fl'>2342284L</span>, <span class='st'>"IBC"</span>,
-  <span class='fl'>2813L</span>, <span class='st'>"chr3"</span>, <span class='fl'>830503L</span>, <span class='fl'>830769L</span>, <span class='st'>"DR2"</span>,
-  <span class='fl'>4673L</span>, <span class='st'>"chr5"</span>, <span class='fl'>482233L</span>, <span class='fl'>482391L</span>, <span class='st'>"IBC"</span>,
-  <span class='fl'>3337L</span>, <span class='st'>"chr9"</span>, <span class='fl'>375274L</span>, <span class='fl'>375417L</span>, <span class='st'>"IBC"</span>,
-  <span class='fl'>2449L</span>, <span class='st'>"chr12"</span>, <span class='fl'>532032L</span>, <span class='fl'>532281L</span>, <span class='st'>"DR2"</span>,
-  <span class='fl'>1565L</span>, <span class='st'>"chr7"</span>, <span class='fl'>383447L</span>, <span class='fl'>383653L</span>, <span class='st'>"HAP"</span>,
-  <span class='fl'>3115L</span>, <span class='st'>"chr14"</span>, <span class='fl'>1401991L</span>, <span class='fl'>1402160L</span>, <span class='st'>"IBC"</span>,
-  <span class='fl'>1446L</span>, <span class='st'>"chr4"</span>, <span class='fl'>734737L</span>, <span class='fl'>734936L</span>, <span class='st'>"HAP"</span>,
-  <span class='fl'>4555L</span>, <span class='st'>"chr10"</span>, <span class='fl'>93054L</span>, <span class='fl'>93223L</span>, <span class='st'>"IBC"</span>,
-  <span class='fl'>3627L</span>, <span class='st'>"chr7"</span>, <span class='fl'>162127L</span>, <span class='fl'>162277L</span>, <span class='st'>"IBC"</span>
+   <span class='op'>~</span><span class='va'>chrom</span>, <span class='op'>~</span><span class='va'>start</span>, <span class='op'>~</span><span class='va'>end</span>, <span class='op'>~</span><span class='va'>probe_set</span>,
+  <span class='st'>"chr14"</span>, <span class='fl'>2342135L</span>, <span class='fl'>2342284L</span>, <span class='st'>"IBC"</span>,
+  <span class='st'>"chr3"</span>, <span class='fl'>830503L</span>, <span class='fl'>830769L</span>, <span class='st'>"DR2"</span>,
+  <span class='st'>"chr5"</span>, <span class='fl'>482233L</span>, <span class='fl'>482391L</span>, <span class='st'>"IBC"</span>,
+  <span class='st'>"chr9"</span>, <span class='fl'>375274L</span>, <span class='fl'>375417L</span>, <span class='st'>"IBC"</span>,
+  <span class='st'>"chr12"</span>, <span class='fl'>532032L</span>, <span class='fl'>532281L</span>, <span class='st'>"DR2"</span>,
+  <span class='st'>"chr7"</span>, <span class='fl'>383447L</span>, <span class='fl'>383653L</span>, <span class='st'>"HAP"</span>,
+  <span class='st'>"chr14"</span>, <span class='fl'>1401991L</span>, <span class='fl'>1402160L</span>, <span class='st'>"IBC"</span>,
+  <span class='st'>"chr4"</span>, <span class='fl'>734737L</span>, <span class='fl'>734936L</span>, <span class='st'>"HAP"</span>,
+  <span class='st'>"chr10"</span>, <span class='fl'>93054L</span>, <span class='fl'>93223L</span>, <span class='st'>"IBC"</span>,
+  <span class='st'>"chr7"</span>, <span class='fl'>162127L</span>, <span class='fl'>162277L</span>, <span class='st'>"IBC"</span>
 <span class='op'>)</span>
 
 <span class='fu'>chromosome_map</span><span class='op'>(</span><span class='va'>genome_Pf3D7</span>, <span class='va'>probes</span><span class='op'>)</span>
