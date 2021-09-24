@@ -26,7 +26,7 @@ probe. Contains four columns:
 
 \item{title}{The title of the plot.}
 
-\item{colours}{A list of colours indicating the annotation colour for each
+\item{colours}{A vector of colours indicating the annotation colour for each
 probe set.}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Additional arguments passed to
@@ -51,14 +51,25 @@ probes <- tibble::tribble(
   "chr10", 93054L, 93223L, "IBC",
   "chr7", 162127L, 162277L, "IBC"
 )
+single_probe <- tibble::tribble(
+   ~chrom, ~start, ~end, ~probe_set,
+  "chr14", 2342135L, 2342284L, "IBC",
+  "chr5", 482233L, 482391L, "IBC",
+  "chr9", 375274L, 375417L, "IBC",
+  "chr14", 1401991L, 1402160L, "IBC",
+  "chr10", 93054L, 93223L, "IBC",
+  "chr7", 162127L, 162277L, "IBC"
+)
 
+chromosome_map(genome_Pf3D7, single_probe)
 chromosome_map(genome_Pf3D7, probes)
 
+chromosome_map(genome_Pf3D7, single_probe, colours = "red")
 chromosome_map(
   genome_Pf3D7,
   probes,
   title = "Example Chromosome Map",
-  colours = list(c("#006A8EFF", "#A8A6A7FF", "#B1283AFF"))
+  colours = c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
 )
 }
 \seealso{

@@ -21,7 +21,7 @@
 #'     \item An identifier indicating the probe set the probe belongs to.
 #'   }
 #' @param title The title of the plot.
-#' @param colours A list of colours indicating the annotation colour for each
+#' @param colours A vector of colours indicating the annotation colour for each
 #'   probe set.
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Additional arguments passed to
 #'   [chromoMap::chromoMap()].
@@ -42,14 +42,25 @@
 #'   "chr10", 93054L, 93223L, "IBC",
 #'   "chr7", 162127L, 162277L, "IBC"
 #' )
+#' single_probe <- tibble::tribble(
+#'    ~chrom, ~start, ~end, ~probe_set,
+#'   "chr14", 2342135L, 2342284L, "IBC",
+#'   "chr5", 482233L, 482391L, "IBC",
+#'   "chr9", 375274L, 375417L, "IBC",
+#'   "chr14", 1401991L, 1402160L, "IBC",
+#'   "chr10", 93054L, 93223L, "IBC",
+#'   "chr7", 162127L, 162277L, "IBC"
+#' )
 #'
+#' chromosome_map(genome_Pf3D7, single_probe)
 #' chromosome_map(genome_Pf3D7, probes)
 #'
+#' chromosome_map(genome_Pf3D7, single_probe, colours = "red")
 #' chromosome_map(
 #'   genome_Pf3D7,
 #'   probes,
 #'   title = "Example Chromosome Map",
-#'   colours = list(c("#006A8EFF", "#A8A6A7FF", "#B1283AFF"))
+#'   colours = c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
 #' )
 chromosome_map <- function(genome,
                            probes,
@@ -78,13 +89,32 @@ chromosome_map <- function(genome,
   vroom::vroom_write(genome, genome_path, col_names = FALSE)
   vroom::vroom_write(probes, probes_path, col_names = FALSE)
 
+  # Determine whether there is one or more probe_sets and assign colors
+  # accordingly.
+  n_probe_sets <- dplyr::n_distinct(probes[, 5])
+  if (n_probe_sets == 1) {
+    data_based_color_map <- F
+    anno_col <- if (rlang::is_empty(colours)) "#A8A6A7FF" else colours
+  } else if (n_probe_sets >= 1) {
+    data_based_color_map <- T
+    anno_col <- "#A8A6A7FF"
+    data_colors <- colours
+  } else {
+    abort(c(
+      "Invalid number of probe sets.",
+      x = "0 probe sets have been selected.",
+      i = "Must select at least 1 probe set."
+    ))
+  }
+
   # Generate list of arguments and set default values
   arguments <- rlang::dots_list(
     ch.files = genome_path,
     data.files = probes_path,
     title = title,
-    data_based_color_map = T,
-    data_colors = colours,
+    data_based_color_map = data_based_color_map,
+    anno_col = anno_col,
+    data_colors = if (rlang::is_list(colours)) colours else list(colours),
     data_type = "categorical",
     segment_annotation = T,
     canvas_width = 650,

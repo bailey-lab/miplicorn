@@ -42,7 +42,28 @@ save_widget <- function(widget) {
   webshot2::webshot(html, png)
 }
 
-test_that("chromosome_map() draws correctly", {
+test_that("chromosome_map() draws correctly for one probe", {
+  # NB tests require webshot2, which is not on cran yet...
+  # skip_on_cran()
+  skip_on_ci()
+  skip_if_not_installed("webshot2")
+
+  single_probe <- dplyr::filter(probes, probe_set == "IBC")
+
+  single <- chromosome_map(genome_Pf3D7, single_probe)
+  expect_snapshot_file(save_widget(single), "single_default.png")
+
+  single_col <- chromosome_map(genome_Pf3D7, single_probe, colours = "red")
+  expect_snapshot_file(save_widget(single_col), "single_colour.png")
+
+  single_col_vec <- chromosome_map(genome_Pf3D7, single_probe, colours = c("red"))
+  expect_snapshot_file(save_widget(single_col_vec), "single_colour_vec.png")
+
+  single_col_list <- chromosome_map(genome_Pf3D7, single_probe, colours = list("red"))
+  expect_snapshot_file(save_widget(single_col_list), "single_colour_list.png")
+})
+
+test_that("chromosome_map() draws correctly for multiple probes", {
   # NB tests require webshot2, which is not on cran yet...
   # skip_on_cran()
   skip_on_ci()
@@ -54,13 +75,21 @@ test_that("chromosome_map() draws correctly", {
   title <- chromosome_map(genome_Pf3D7, probes, title = "Example Chromosome Map")
   expect_snapshot_file(save_widget(title), "title.png")
 
-  colours <- chromosome_map(
+  colours_vec <- chromosome_map(
+    genome_Pf3D7,
+    probes,
+    title = "Example Chromosome Map",
+    colours = c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
+  )
+  expect_snapshot_file(save_widget(colours_vec), "colours_vec.png")
+
+  colours_list <- chromosome_map(
     genome_Pf3D7,
     probes,
     title = "Example Chromosome Map",
     colours = list(c("#006A8EFF", "#A8A6A7FF", "#B1283AFF"))
   )
-  expect_snapshot_file(save_widget(colours), "colours.png")
+  expect_snapshot_file(save_widget(colours_vec), "colours_list.png")
 })
 
 test_that("chromosome_map() overrides defaults with user input", {
