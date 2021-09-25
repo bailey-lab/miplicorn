@@ -3,7 +3,7 @@
     Code
       arrange_natural(df, gene)
     Warning <warning>
-      Packages "purrr" and "stringi" needed for natural sorting. Please install them.
+      Package "stringi" needed for natural sorting. Please install it.
     Output
       # A tibble: 4 x 2
         sample gene 
