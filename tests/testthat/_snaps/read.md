@@ -1,4 +1,4 @@
-# read returns an empty tibble on an empty file
+# read returns error if a file is empty
 
     Code
       read("empty-file", "empty-file", "empty-file")

@@ -129,31 +129,33 @@ read <- function(.ref_file,
             ))
   }
 
+  # Read in the three files
   if (lifecycle::is_present(chrom) || lifecycle::is_present(gene)) {
-    # Read in the three tables
-    reference_table <- deprec_read_file(.ref_file, chrom, gene, "ref_umi_count")
-    alternate_table <- deprec_read_file(.alt_file, chrom, gene, "alt_umi_count")
-    coverage_table <- deprec_read_file(.cov_file, chrom, gene, "coverage")
+    tables <- purrr::pmap(
+      list(
+        file = c(.ref_file, .alt_file, .cov_file),
+        name = c("ref_umi_count", "alt_umit_count", "coverage")
+      ),
+      deprec_read_file,
+      chrom = chrom,
+      gene = gene
+    )
   } else {
-    reference_table <- read_file(.ref_file, ..., .name = "ref_umi_count")
-    alternate_table <- read_file(.alt_file, ..., .name = "alt_umi_count")
-    coverage_table <- read_file(.cov_file, ..., .name = "coverage")
+    tables <- purrr::pmap(
+      list(
+        .file = c(.ref_file, .alt_file, .cov_file),
+        .name = c("ref_umi_count", "alt_umit_count", "coverage")
+      ),
+      read_file,
+      ...
+    )
   }
 
   # Determine overlapping columns
-  by <- Reduce(
-    intersect,
-    list(
-      colnames(reference_table),
-      colnames(alternate_table),
-      colnames(coverage_table)
-    )
-  )
+  by <- purrr::reduce(purrr::map(tables, colnames), intersect)
 
   # Combine three tibbles together
-  dplyr::full_join(reference_table, alternate_table, by = by) %>%
-    dplyr::full_join(coverage_table, by = by) %>%
-    dplyr::mutate(dplyr::across(.data$ref_umi_count:.data$coverage, as.numeric))
+  purrr::reduce(tables, dplyr::full_join, by = by)
 }
 
 #' @rdname read
