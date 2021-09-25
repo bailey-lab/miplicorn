@@ -229,6 +229,7 @@ read_file <- function(.file, ..., .name = "value") {
     ) %>%
     janitor::clean_names() %>%
     dplyr::relocate(sample) %>%
+    dplyr::mutate(value = as.numeric(.data$value)) %>%
     dplyr::rename({{ .name }} := .data$value)
 }
 
