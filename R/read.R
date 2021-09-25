@@ -121,9 +121,12 @@ read <- function(.ref_file,
     ))
   }
 
-  # If all 3 files are empty, return empty object
-  if (empty_file(.ref_file) && empty_file(.alt_file) && empty_file(.cov_file)) {
-    return(tibble::tibble())
+  # Error if any file is empty
+  if (purrr::some(list(.ref_file, .alt_file, .cov_file), empty_file)) {
+    empty = purrr::detect(list(.ref_file, .alt_file, .cov_file), empty_file)
+    abort(c("Unable to read files.",
+            x = glue('"{empty}" is an empty file.')
+            ))
   }
 
   if (lifecycle::is_present(chrom) || lifecycle::is_present(gene)) {

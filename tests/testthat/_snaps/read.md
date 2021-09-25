@@ -1,3 +1,19 @@
+# read returns an empty tibble on an empty file
+
+    Code
+      read("empty-file", "empty-file", "empty-file")
+    Error <rlang_error>
+      Unable to read files.
+      x "empty-file" is an empty file.
+
+---
+
+    Code
+      read("small.csv", "empty-file", "empty-file")
+    Error <rlang_error>
+      Unable to read files.
+      x "empty-file" is an empty file.
+
 # chrom and gene are deprecated
 
     Code

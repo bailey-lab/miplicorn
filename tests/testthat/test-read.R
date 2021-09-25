@@ -6,8 +6,12 @@ test_that("read_file returns an empty tibble on an empty file", {
   expect_equal(read_file("empty-file"), tibble::tibble())
 })
 
-test_that("read returns an empty tibble on an empty file", {
-  expect_equal(read("empty-file", "empty-file", "empty-file"), tibble::tibble())
+test_that("read returns error if a file is empty", {
+  expect_error(read("empty-file", "empty-file", "empty-file"))
+  expect_error(read("small.csv", "empty-file", "empty-file"))
+  expect_error(read("small.csv", "small.csv", "empty-file"))
+  expect_snapshot(error = TRUE, read("empty-file", "empty-file", "empty-file"))
+  expect_snapshot(error = TRUE, read("small.csv", "empty-file", "empty-file"))
 })
 
 test_that("chrom and gene are deprecated", {
