@@ -71,6 +71,17 @@ chromosome_map <- function(genome,
     !requireNamespace("withr", quietly = TRUE)) {
     abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
   }
+  # Check formatting of inputs
+  if (ncol(genome) != 3) {
+    abort(c("Genomic information is misformatted."))
+  }
+
+  if (ncol(probes) != 4) {
+    abort(c("Annotation information is misformatted.",
+            i = "Did you forget to indicate the probe sets?"
+          ))
+  }
+
   # Add unique id to probes
   probes <- tibble::rowid_to_column(probes)
 
@@ -95,16 +106,10 @@ chromosome_map <- function(genome,
   if (n_probe_sets == 1) {
     data_based_color_map <- F
     anno_col <- if (rlang::is_empty(colours)) "#A8A6A7FF" else colours
-  } else if (n_probe_sets >= 1) {
+  } else {
     data_based_color_map <- T
     anno_col <- "#A8A6A7FF"
     data_colors <- colours
-  } else {
-    abort(c(
-      "Invalid number of probe sets.",
-      x = "0 probe sets have been selected.",
-      i = "Must select at least 1 probe set."
-    ))
   }
 
   # Generate list of arguments and set default values

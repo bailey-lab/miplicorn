@@ -27,6 +27,21 @@ test_that("error if packages not intalled", {
   # Trick R to think packages not installed
   mockery::stub(chromosome_map, "requireNamespace", FALSE)
   expect_error(chromosome_map(genome_Pf3D7, probes))
+  expect_snapshot(error = TRUE, chromosome_map(genome_Pf3D7, probes))
+})
+
+test_that("error if genome is misformatted", {
+  expect_error(chromosome_map(genome_Pf3D7[, -1], probes))
+  expect_snapshot(error = TRUE, chromosome_map(genome_Pf3D7[, -1], probes))
+})
+
+test_that("error if probes is misformatted", {
+  expect_error(chromosome_map(genome_Pf3D7, probes[, -4]))
+  expect_snapshot(error = TRUE, chromosome_map(genome_Pf3D7, probes[, -4]))
+})
+
+test_that("chromosome_map works silently", {
+  expect_silent(chromosome_map(genome_Pf3D7, probes))
 })
 
 # test_that("chromosome_map() leaves directory unchanged", {
