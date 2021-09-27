@@ -131,9 +131,6 @@ chromosome_map <- function(genome,
     .homonyms = "last"
   )
 
-  # Function call
-  call <- rlang::call2(quote(chromoMap::chromoMap), !!!arguments)
-
-  # Evaluate call
-  print(quiet(eval(call)))
+  # Execute function
+  print(quiet(rlang::exec(rlang::expr(chromoMap::chromoMap), !!!arguments)))
 }
