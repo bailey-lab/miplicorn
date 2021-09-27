@@ -270,18 +270,18 @@ expressions used to filter the data:</p><ul>
 <span class='co'># Read from a path</span>
 <span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,344 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted umi  
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      608.0
-#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      20.0 
-#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      158.0
-#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      2.0  
-#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      1.0  
-#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      129.0
-#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      90.0 
-#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      175.0
+#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
+#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
+#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
+#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
+#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
+#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
+#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
+#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
 #&gt; <span style='color: #949494;'># … with 6,334 more rows</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,344 × 10</span>
 #&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
@@ -297,7 +297,7 @@ expressions used to filter the data:</p><ul>
 #&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #949494;'># … with 6,334 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
+#&gt; <span style='color: #949494;'>#   alt_umit_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
 <span class='co'># You can also use paths directly</span>
 <span class='co'># read_file("reference_AA_table.csv")</span>
 <span class='co'># read("reference_AA_table.csv", "alternate_AA_table.csv", "coverage_AA_table.csv")</span>
@@ -305,18 +305,18 @@ expressions used to filter the data:</p><ul>
 <span class='co'># Read entire file ----------------------------------------------------------</span>
 <span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,344 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted umi  
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      608.0
-#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      20.0 
-#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      158.0
-#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      2.0  
-#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      1.0  
-#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      129.0
-#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      90.0 
-#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      175.0
+#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
+#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
+#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
+#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
+#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
+#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
+#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
+#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
 #&gt; <span style='color: #949494;'># … with 6,334 more rows</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,344 × 10</span>
 #&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
@@ -332,23 +332,23 @@ expressions used to filter the data:</p><ul>
 #&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #949494;'># … with 6,334 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
+#&gt; <span style='color: #949494;'>#   alt_umit_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
 <span class='co'># Data filtering ------------------------------------------------------------</span>
 <span class='co'># Filtering by one criterion</span>
 <span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 260 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted umi  
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      608.0
-#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      20.0 
-#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      158.0
-#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      2.0  
-#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      1.0  
-#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      129.0
-#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      90.0 
-#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      175.0
+#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
+#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
+#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
+#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
+#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
+#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
+#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
+#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
 #&gt; <span style='color: #949494;'># … with 250 more rows</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 260 × 10</span>
 #&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
@@ -364,36 +364,36 @@ expressions used to filter the data:</p><ul>
 #&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #949494;'># … with 250 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
+#&gt; <span style='color: #949494;'>#   alt_umit_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
 <span class='co'># Filtering by multiple criteria within a single logical expression</span>
 <span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>&amp;</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 156 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted umi  
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      608.0
-#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      20.0 
-#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      158.0
-#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      2.0  
-#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      1.0  
-#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      129.0
-#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      90.0 
-#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      175.0
+#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
+#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
+#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
+#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
+#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
+#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
+#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
+#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
 #&gt; <span style='color: #949494;'># … with 146 more rows</span></div><div class='input'><span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>|</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2,496 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted umi  
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      608.0
-#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      20.0 
-#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      158.0
-#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      2.0  
-#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      1.0  
-#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      129.0
-#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      90.0 
-#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      175.0
+#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
+#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
+#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
+#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
+#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
+#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
+#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
+#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
 #&gt; <span style='color: #949494;'># … with 2,486 more rows</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>&amp;</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 156 × 10</span>
 #&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
@@ -409,7 +409,7 @@ expressions used to filter the data:</p><ul>
 #&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #949494;'># … with 146 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>|</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span><span class='op'>)</span>
+#&gt; <span style='color: #949494;'>#   alt_umit_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>|</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2,496 × 10</span>
 #&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
@@ -424,22 +424,22 @@ expressions used to filter the data:</p><ul>
 #&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #949494;'># … with 2,486 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
+#&gt; <span style='color: #949494;'>#   alt_umit_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
 <span class='co'># When multiple expressions are used, they are combined using &amp;</span>
 <span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span>, <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 156 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted umi  
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      608.0
-#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      20.0 
-#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      158.0
-#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      2.0  
-#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      1.0  
-#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      129.0
-#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  
-#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      90.0 
-#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      175.0
+#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
+#&gt; <span style='color: #BCBCBC;'> 2</span> D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
+#&gt; <span style='color: #BCBCBC;'> 3</span> D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
+#&gt; <span style='color: #BCBCBC;'> 4</span> D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
+#&gt; <span style='color: #BCBCBC;'> 5</span> D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
+#&gt; <span style='color: #BCBCBC;'> 6</span> D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
+#&gt; <span style='color: #BCBCBC;'> 7</span> D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 8</span> D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
+#&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
+#&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
 #&gt; <span style='color: #949494;'># … with 146 more rows</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span>, <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 156 × 10</span>
 #&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
@@ -455,7 +455,7 @@ expressions used to filter the data:</p><ul>
 #&gt; <span style='color: #BCBCBC;'> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #BCBCBC;'>10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
 #&gt; <span style='color: #949494;'># … with 146 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div></pre>
+#&gt; <span style='color: #949494;'>#   alt_umit_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

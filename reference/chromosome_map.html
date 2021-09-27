@@ -186,7 +186,7 @@ probe. Contains four columns:</p><ul>
     </tr>
     <tr>
       <th>colours</th>
-      <td><p>A list of colours indicating the annotation colour for each
+      <td><p>A vector of colours indicating the annotation colour for each
 probe set.</p></td>
     </tr>
     <tr>
@@ -214,14 +214,25 @@ probe set.</p></td>
   <span class='st'>"chr10"</span>, <span class='fl'>93054L</span>, <span class='fl'>93223L</span>, <span class='st'>"IBC"</span>,
   <span class='st'>"chr7"</span>, <span class='fl'>162127L</span>, <span class='fl'>162277L</span>, <span class='st'>"IBC"</span>
 <span class='op'>)</span>
+<span class='va'>single_probe</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
+   <span class='op'>~</span><span class='va'>chrom</span>, <span class='op'>~</span><span class='va'>start</span>, <span class='op'>~</span><span class='va'>end</span>, <span class='op'>~</span><span class='va'>probe_set</span>,
+  <span class='st'>"chr14"</span>, <span class='fl'>2342135L</span>, <span class='fl'>2342284L</span>, <span class='st'>"IBC"</span>,
+  <span class='st'>"chr5"</span>, <span class='fl'>482233L</span>, <span class='fl'>482391L</span>, <span class='st'>"IBC"</span>,
+  <span class='st'>"chr9"</span>, <span class='fl'>375274L</span>, <span class='fl'>375417L</span>, <span class='st'>"IBC"</span>,
+  <span class='st'>"chr14"</span>, <span class='fl'>1401991L</span>, <span class='fl'>1402160L</span>, <span class='st'>"IBC"</span>,
+  <span class='st'>"chr10"</span>, <span class='fl'>93054L</span>, <span class='fl'>93223L</span>, <span class='st'>"IBC"</span>,
+  <span class='st'>"chr7"</span>, <span class='fl'>162127L</span>, <span class='fl'>162277L</span>, <span class='st'>"IBC"</span>
+<span class='op'>)</span>
 
+<span class='fu'>chromosome_map</span><span class='op'>(</span><span class='va'>genome_Pf3D7</span>, <span class='va'>single_probe</span><span class='op'>)</span>
 <span class='fu'>chromosome_map</span><span class='op'>(</span><span class='va'>genome_Pf3D7</span>, <span class='va'>probes</span><span class='op'>)</span>
 
+<span class='fu'>chromosome_map</span><span class='op'>(</span><span class='va'>genome_Pf3D7</span>, <span class='va'>single_probe</span>, colours <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
 <span class='fu'>chromosome_map</span><span class='op'>(</span>
   <span class='va'>genome_Pf3D7</span>,
   <span class='va'>probes</span>,
   title <span class='op'>=</span> <span class='st'>"Example Chromosome Map"</span>,
-  colours <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#006A8EFF"</span>, <span class='st'>"#A8A6A7FF"</span>, <span class='st'>"#B1283AFF"</span><span class='op'>)</span><span class='op'>)</span>
+  colours <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#006A8EFF"</span>, <span class='st'>"#A8A6A7FF"</span>, <span class='st'>"#B1283AFF"</span><span class='op'>)</span>
 <span class='op'>)</span>
 </div></pre>
   </div>

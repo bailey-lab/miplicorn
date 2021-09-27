@@ -138,17 +138,17 @@
 <span class="va">data</span>
 <span class="co">#&gt; # A tibble: 6,344 × 8</span>
 <span class="co">#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted value</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;</span>
-<span class="co">#&gt;  1 D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      608.0</span>
-<span class="co">#&gt;  2 D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      20.0 </span>
-<span class="co">#&gt;  3 D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      158.0</span>
-<span class="co">#&gt;  4 D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      2.0  </span>
-<span class="co">#&gt;  5 D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      1.0  </span>
-<span class="co">#&gt;  6 D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      129.0</span>
-<span class="co">#&gt;  7 D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  </span>
-<span class="co">#&gt;  8 D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      0.0  </span>
-<span class="co">#&gt;  9 D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      90.0 </span>
-<span class="co">#&gt; 10 D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes      175.0</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608</span>
+<span class="co">#&gt;  2 D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20</span>
+<span class="co">#&gt;  3 D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158</span>
+<span class="co">#&gt;  4 D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2</span>
+<span class="co">#&gt;  5 D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1</span>
+<span class="co">#&gt;  6 D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129</span>
+<span class="co">#&gt;  7 D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class="co">#&gt;  8 D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class="co">#&gt;  9 D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90</span>
+<span class="co">#&gt; 10 D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175</span>
 <span class="co">#&gt; # … with 6,334 more rows</span></code></pre></div>
 </div>
 <div id="manipulate" class="section level2">
@@ -163,17 +163,17 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>aa_change <span class="op">=</span> <span class="fu"><a href="../reference/convert_single.html">convert_three</a></span><span class="op">(</span><span class="va">aa_change</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6,344 × 8</span>
 <span class="co">#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted value</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;</span>
-<span class="co">#&gt;  1 D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes      608.0</span>
-<span class="co">#&gt;  2 D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes      20.0 </span>
-<span class="co">#&gt;  3 D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes      158.0</span>
-<span class="co">#&gt;  4 D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes      2.0  </span>
-<span class="co">#&gt;  5 D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes      1.0  </span>
-<span class="co">#&gt;  6 D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes      129.0</span>
-<span class="co">#&gt;  7 D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes      0.0  </span>
-<span class="co">#&gt;  8 D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes      0.0  </span>
-<span class="co">#&gt;  9 D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes      90.0 </span>
-<span class="co">#&gt; 10 D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes      175.0</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 D10-JJJ-23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes        608</span>
+<span class="co">#&gt;  2 D10-JJJ-43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes         20</span>
+<span class="co">#&gt;  3 D10-JJJ-55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes        158</span>
+<span class="co">#&gt;  4 D10-JJJ-5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes          2</span>
+<span class="co">#&gt;  5 D10-JJJ-47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes          1</span>
+<span class="co">#&gt;  6 D10-JJJ-15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes        129</span>
+<span class="co">#&gt;  7 D10-JJJ-27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes          0</span>
+<span class="co">#&gt;  8 D10-JJJ-10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes          0</span>
+<span class="co">#&gt;  9 D10-JJJ-28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes         90</span>
+<span class="co">#&gt; 10 D10-JJJ-52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… A623E     Yes        175</span>
 <span class="co">#&gt; # … with 6,334 more rows</span></code></pre></div>
 </div>
 <div id="sort" class="section level3">
@@ -184,17 +184,17 @@
 <code class="sourceCode R"><span class="fu"><a href="../reference/arrange_natural.html">arrange_natural</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">sample</span>, <span class="va">gene</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6,344 × 8</span>
 <span class="co">#&gt;    sample    gene_id   gene  mutation_name exonic_func  aa_change targeted value</span>
-<span class="co">#&gt;    &lt;fct&gt;     &lt;chr&gt;     &lt;fct&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;</span>
-<span class="co">#&gt;  1 D10-JJJ-1 PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes      10.0 </span>
-<span class="co">#&gt;  2 D10-JJJ-1 PF3D7_01… atp6  atp6-Glu431L… missense_va… Glu431Lys Yes      5.0  </span>
-<span class="co">#&gt;  3 D10-JJJ-1 PF3D7_01… atp6  atp6-Gly639A… missense_va… Gly639Asp No       10.0 </span>
-<span class="co">#&gt;  4 D10-JJJ-1 PF3D7_01… atp6  atp6-Ser466A… missense_va… Ser466Asn No       2.0  </span>
-<span class="co">#&gt;  5 D10-JJJ-1 PF3D7_01… atp6  atp6-Ser769A… missense_va… Ser769Asn Yes      1.0  </span>
-<span class="co">#&gt;  6 D10-JJJ-1 PF3D7_07… crt   crt-Ala220Ser missense_va… Ala220Ser Yes      2.0  </span>
-<span class="co">#&gt;  7 D10-JJJ-1 PF3D7_07… crt   crt-Asn326Asp missense_va… Asn326Asp No       2.0  </span>
-<span class="co">#&gt;  8 D10-JJJ-1 PF3D7_07… crt   crt-Asn326Ser missense_va… Asn326Ser Yes      2.0  </span>
-<span class="co">#&gt;  9 D10-JJJ-1 PF3D7_07… crt   crt-Asn75Glu  missense_va… Asn75Glu  Yes      0.0  </span>
-<span class="co">#&gt; 10 D10-JJJ-1 PF3D7_07… crt   crt-Cys72Ser  missense_va… Cys72Ser  Yes      0.0  </span>
+<span class="co">#&gt;    &lt;fct&gt;     &lt;chr&gt;     &lt;fct&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 D10-JJJ-1 PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes         10</span>
+<span class="co">#&gt;  2 D10-JJJ-1 PF3D7_01… atp6  atp6-Glu431L… missense_va… Glu431Lys Yes          5</span>
+<span class="co">#&gt;  3 D10-JJJ-1 PF3D7_01… atp6  atp6-Gly639A… missense_va… Gly639Asp No          10</span>
+<span class="co">#&gt;  4 D10-JJJ-1 PF3D7_01… atp6  atp6-Ser466A… missense_va… Ser466Asn No           2</span>
+<span class="co">#&gt;  5 D10-JJJ-1 PF3D7_01… atp6  atp6-Ser769A… missense_va… Ser769Asn Yes          1</span>
+<span class="co">#&gt;  6 D10-JJJ-1 PF3D7_07… crt   crt-Ala220Ser missense_va… Ala220Ser Yes          2</span>
+<span class="co">#&gt;  7 D10-JJJ-1 PF3D7_07… crt   crt-Asn326Asp missense_va… Asn326Asp No           2</span>
+<span class="co">#&gt;  8 D10-JJJ-1 PF3D7_07… crt   crt-Asn326Ser missense_va… Asn326Ser Yes          2</span>
+<span class="co">#&gt;  9 D10-JJJ-1 PF3D7_07… crt   crt-Asn75Glu  missense_va… Asn75Glu  Yes          0</span>
+<span class="co">#&gt; 10 D10-JJJ-1 PF3D7_07… crt   crt-Cys72Ser  missense_va… Cys72Ser  Yes          0</span>
 <span class="co">#&gt; # … with 6,334 more rows</span></code></pre></div>
 </div>
 </div>
