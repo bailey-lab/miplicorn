@@ -6,6 +6,8 @@
 \alias{miplicorn-package}
 \title{miplicorn: Collection of Functions for MIPTools Analysis}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 A collection of functions and tools for analysis of MIP data
     resulting from the MIPTools pipeline.
 }
