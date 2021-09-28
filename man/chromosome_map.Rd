@@ -54,7 +54,7 @@ Annotate multiple targeted regions to visualize probe targets.
 }
 \examples{
 probes <- tibble::tribble(
-   ~chrom, ~start, ~end, ~probe_set,
+  ~chrom, ~start, ~end, ~probe_set,
   "chr14", 2342135L, 2342284L, "IBC",
   "chr3", 830503L, 830769L, "DR2",
   "chr5", 482233L, 482391L, "IBC",
@@ -67,7 +67,7 @@ probes <- tibble::tribble(
   "chr7", 162127L, 162277L, "IBC"
 )
 single_probe <- tibble::tribble(
-   ~chrom, ~start, ~end, ~probe_set,
+  ~chrom, ~start, ~end, ~probe_set,
   "chr14", 2342135L, 2342284L, "IBC",
   "chr5", 482233L, 482391L, "IBC",
   "chr9", 375274L, 375417L, "IBC",

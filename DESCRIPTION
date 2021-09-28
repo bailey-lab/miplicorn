@@ -45,6 +45,7 @@ Suggests:
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.0),
     webshot2 (>= 0.0.0.9000),
+    widgetframe,
     withr
 VignetteBuilder: 
     knitr
