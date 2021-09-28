@@ -1,9 +1,8 @@
 #------------------------------------------------
 #' Create annotated chromosome map
 #'
-#' Render an interactive graphics visualization of entire chromosomes or
-#' chromosomal regions. Annotate multiple targeted regions to visualize probe
-#' targets.
+#' Render a graphics visualization of entire chromosomes or chromosomal regions.
+#' Annotate multiple targeted regions to visualize probe targets.
 #'
 #' @param genome A tibble indicating the starting and ending position of each
 #'   chromosome. Contains three columns:
@@ -20,13 +19,15 @@
 #'     \item The ending position of the probe
 #'     \item An identifier indicating the probe set the probe belongs to.
 #'   }
+#' @param map_pkg The package used for the underlying implementation of the
+#'   chromosome map.
 #' @param title The title of the plot.
 #' @param colours A vector of colours indicating the annotation colour for each
 #'   probe set.
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Additional arguments passed to
-#'   [chromoMap::chromoMap()].
+#'   internal plotting functions.
 #'
-#' @seealso [chromoMap::chromoMap()]
+#' @seealso [chromoMap::chromoMap()] [karyoploteR::plotKaryotype()]
 #' @export
 #' @examples
 #' probes <- tibble::tribble(
@@ -52,13 +53,14 @@
 #'   "chr7", 162127L, 162277L, "IBC"
 #' )
 #'
-#' chromosome_map(genome_Pf3D7, single_probe)
-#' chromosome_map(genome_Pf3D7, probes)
+#' chromosome_map(genome_Pf3D7, single_probe, "karyoploteR")
+#' chromosome_map(genome_Pf3D7, probes, "chromoMap")
 #'
-#' chromosome_map(genome_Pf3D7, single_probe, colours = "red")
+#' chromosome_map(genome_Pf3D7, single_probe, "chromoMap", colours = "red")
 #' chromosome_map(
 #'   genome_Pf3D7,
 #'   probes,
+#'   "karyoploteR",
 #'   title = "Example Chromosome Map",
 #'   colours = c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
 #' )
@@ -96,6 +98,8 @@ chromosome_map <- function(genome,
   }
 }
 
+#' @rdname chromosome_map
+#' @export
 plot_chromoMap <- function(genome,
                            probes,
                            title = "",
@@ -160,6 +164,8 @@ plot_chromoMap <- function(genome,
   print(quiet(rlang::exec(rlang::expr(chromoMap::chromoMap), !!!arguments)))
 }
 
+#' @rdname chromosome_map
+#' @export
 plot_karyoploteR <- function(genome,
                            probes,
                            title = "",
@@ -231,7 +237,7 @@ plot_karyoploteR <- function(genome,
     purrr::as_vector(probe_sets),
     function(x) {
       probes %>%
-        dplyr::filter(probe_set == {{ x }}) %>%
+        dplyr::filter(.data$probe_set == {{ x }}) %>%
         data.frame() %>%
         regioneR::toGRanges()
     }
@@ -261,7 +267,11 @@ plot_karyoploteR <- function(genome,
   )
 
   # Add legend
-  legend(x = "right", fill = colours, legend = purrr::as_vector(probe_sets))
+  graphics::legend(
+    x = "right",
+    fill = colours,
+    legend = purrr::as_vector(probe_sets)
+  )
 }
 
 # Extract arguments of a function from a list
@@ -291,3 +301,6 @@ add_data_layer <- function(karyoplot, data, r0, r1, col) {
     col = col
   )
 }
+
+# To silence the R CMD Check
+globalVariables(".")

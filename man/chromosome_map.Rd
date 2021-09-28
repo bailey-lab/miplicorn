@@ -2,9 +2,22 @@
 % Please edit documentation in R/chromosome_map.R
 \name{chromosome_map}
 \alias{chromosome_map}
+\alias{plot_chromoMap}
+\alias{plot_karyoploteR}
 \title{Create annotated chromosome map}
 \usage{
-chromosome_map(genome, probes, title = "", colours = list(), ...)
+chromosome_map(
+  genome,
+  probes,
+  map_pkg = c("chromoMap", "karyoploteR"),
+  title = "",
+  colours = list(),
+  ...
+)
+
+plot_chromoMap(genome, probes, title = "", colours = list(), ...)
+
+plot_karyoploteR(genome, probes, title = "", colours = list(), ...)
 }
 \arguments{
 \item{genome}{A tibble indicating the starting and ending position of each
@@ -24,18 +37,20 @@ probe. Contains four columns:
 \item An identifier indicating the probe set the probe belongs to.
 }}
 
+\item{map_pkg}{The package used for the underlying implementation of the
+chromosome map.}
+
 \item{title}{The title of the plot.}
 
 \item{colours}{A vector of colours indicating the annotation colour for each
 probe set.}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Additional arguments passed to
-\code{\link[chromoMap:chromoMap]{chromoMap::chromoMap()}}.}
+internal plotting functions.}
 }
 \description{
-Render an interactive graphics visualization of entire chromosomes or
-chromosomal regions. Annotate multiple targeted regions to visualize probe
-targets.
+Render a graphics visualization of entire chromosomes or chromosomal regions.
+Annotate multiple targeted regions to visualize probe targets.
 }
 \examples{
 probes <- tibble::tribble(
@@ -61,17 +76,18 @@ single_probe <- tibble::tribble(
   "chr7", 162127L, 162277L, "IBC"
 )
 
-chromosome_map(genome_Pf3D7, single_probe)
-chromosome_map(genome_Pf3D7, probes)
+chromosome_map(genome_Pf3D7, single_probe, "karyoploteR")
+chromosome_map(genome_Pf3D7, probes, "chromoMap")
 
-chromosome_map(genome_Pf3D7, single_probe, colours = "red")
+chromosome_map(genome_Pf3D7, single_probe, "chromoMap", colours = "red")
 chromosome_map(
   genome_Pf3D7,
   probes,
+  "karyoploteR",
   title = "Example Chromosome Map",
   colours = c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
 )
 }
 \seealso{
-\code{\link[chromoMap:chromoMap]{chromoMap::chromoMap()}}
+\code{\link[chromoMap:chromoMap]{chromoMap::chromoMap()}} \code{\link[karyoploteR:plotKaryotype]{karyoploteR::plotKaryotype()}}
 }
