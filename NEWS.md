@@ -1,5 +1,6 @@
 # miplicorn (development version)
 
+* `chromosome_map()` can now create an additional type of map (@arisp99, #12).
 * New `chromosome_map()` creates a chromosome map annotated with probe
 locations.
 * `theme_miplicorn()` specifies a custom theme for creating figures
