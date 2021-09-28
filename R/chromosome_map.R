@@ -31,7 +31,7 @@
 #' @export
 #' @examples
 #' probes <- tibble::tribble(
-#'    ~chrom, ~start, ~end, ~probe_set,
+#'   ~chrom, ~start, ~end, ~probe_set,
 #'   "chr14", 2342135L, 2342284L, "IBC",
 #'   "chr3", 830503L, 830769L, "DR2",
 #'   "chr5", 482233L, 482391L, "IBC",
@@ -44,7 +44,7 @@
 #'   "chr7", 162127L, 162277L, "IBC"
 #' )
 #' single_probe <- tibble::tribble(
-#'    ~chrom, ~start, ~end, ~probe_set,
+#'   ~chrom, ~start, ~end, ~probe_set,
 #'   "chr14", 2342135L, 2342284L, "IBC",
 #'   "chr5", 482233L, 482391L, "IBC",
 #'   "chr9", 375274L, 375417L, "IBC",
@@ -75,9 +75,10 @@ chromosome_map <- function(genome,
     abort(c("Genomic information is misformatted."))
   }
   if (ncol(probes) != 4) {
-    abort(c("Annotation information is misformatted.",
-            i = "Did you forget to indicate the probe sets?"
-          ))
+    abort(c(
+      "Annotation information is misformatted.",
+      i = "Did you forget to indicate the probe sets?"
+    ))
   }
 
   # Call underlying implementation
@@ -107,7 +108,7 @@ plot_chromoMap <- function(genome,
                            ...) {
   # Ensure packages installed
   if (!requireNamespace("chromoMap", quietly = TRUE) |
-      !requireNamespace("withr", quietly = TRUE)) {
+    !requireNamespace("withr", quietly = TRUE)) {
     abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
   }
 
@@ -167,10 +168,10 @@ plot_chromoMap <- function(genome,
 #' @rdname chromosome_map
 #' @export
 plot_karyoploteR <- function(genome,
-                           probes,
-                           title = "",
-                           colours = list(),
-                           ...) {
+                             probes,
+                             title = "",
+                             colours = list(),
+                             ...) {
   # Ensure packages installed
   if (!requireNamespace("karyoploteR", quietly = TRUE)) {
     abort('Package "karyoploteR" needed to create chromosome maps. Please install it.')

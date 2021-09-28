@@ -11,7 +11,7 @@ test_that("quiet() shows messages, warnings, and errors", {
 })
 
 probes <- tibble::tribble(
-   ~chrom, ~start, ~end, ~probe_set,
+  ~chrom, ~start, ~end, ~probe_set,
   "chr14", 2342135L, 2342284L, "IBC",
   "chr3", 830503L, 830769L, "DR2",
   "chr5", 482233L, 482391L, "IBC",
@@ -215,7 +215,6 @@ test_that("plot_karyoploteR() accepts colors", {
   #   "karyoploteR many colours list",
   #   plot_karyoploteR(genome_Pf3D7, probes, colours = list(c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")))
   # )
-
 })
 
 test_that("plot_karyoploteR() accepts title", {
