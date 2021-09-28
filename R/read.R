@@ -123,10 +123,11 @@ read <- function(.ref_file,
 
   # Error if any file is empty
   if (purrr::some(list(.ref_file, .alt_file, .cov_file), empty_file)) {
-    empty = purrr::detect(list(.ref_file, .alt_file, .cov_file), empty_file)
-    abort(c("Unable to read files.",
-            x = glue('"{empty}" is an empty file.')
-            ))
+    empty <- purrr::detect(list(.ref_file, .alt_file, .cov_file), empty_file)
+    abort(c(
+      "Unable to read files.",
+      x = glue('"{empty}" is an empty file.')
+    ))
   }
 
   # Read in the three files

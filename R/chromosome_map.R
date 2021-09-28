@@ -1,9 +1,8 @@
 #------------------------------------------------
 #' Create annotated chromosome map
 #'
-#' Render an interactive graphics visualization of entire chromosomes or
-#' chromosomal regions. Annotate multiple targeted regions to visualize probe
-#' targets.
+#' Render a graphics visualization of entire chromosomes or chromosomal regions.
+#' Annotate multiple targeted regions to visualize probe targets.
 #'
 #' @param genome A tibble indicating the starting and ending position of each
 #'   chromosome. Contains three columns:
@@ -20,17 +19,19 @@
 #'     \item The ending position of the probe
 #'     \item An identifier indicating the probe set the probe belongs to.
 #'   }
+#' @param map_pkg The package used for the underlying implementation of the
+#'   chromosome map.
 #' @param title The title of the plot.
 #' @param colours A vector of colours indicating the annotation colour for each
 #'   probe set.
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Additional arguments passed to
-#'   [chromoMap::chromoMap()].
+#'   internal plotting functions.
 #'
-#' @seealso [chromoMap::chromoMap()]
+#' @seealso [chromoMap::chromoMap()] [karyoploteR::plotKaryotype()]
 #' @export
 #' @examples
 #' probes <- tibble::tribble(
-#'    ~chrom, ~start, ~end, ~probe_set,
+#'   ~chrom, ~start, ~end, ~probe_set,
 #'   "chr14", 2342135L, 2342284L, "IBC",
 #'   "chr3", 830503L, 830769L, "DR2",
 #'   "chr5", 482233L, 482391L, "IBC",
@@ -43,7 +44,7 @@
 #'   "chr7", 162127L, 162277L, "IBC"
 #' )
 #' single_probe <- tibble::tribble(
-#'    ~chrom, ~start, ~end, ~probe_set,
+#'   ~chrom, ~start, ~end, ~probe_set,
 #'   "chr14", 2342135L, 2342284L, "IBC",
 #'   "chr5", 482233L, 482391L, "IBC",
 #'   "chr9", 375274L, 375417L, "IBC",
@@ -52,34 +53,63 @@
 #'   "chr7", 162127L, 162277L, "IBC"
 #' )
 #'
-#' chromosome_map(genome_Pf3D7, single_probe)
-#' chromosome_map(genome_Pf3D7, probes)
+#' chromosome_map(genome_Pf3D7, single_probe, "karyoploteR")
+#' chromosome_map(genome_Pf3D7, probes, "chromoMap")
 #'
-#' chromosome_map(genome_Pf3D7, single_probe, colours = "red")
+#' chromosome_map(genome_Pf3D7, single_probe, "chromoMap", colours = "red")
 #' chromosome_map(
 #'   genome_Pf3D7,
 #'   probes,
+#'   "karyoploteR",
 #'   title = "Example Chromosome Map",
 #'   colours = c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
 #' )
 chromosome_map <- function(genome,
                            probes,
+                           map_pkg = c("chromoMap", "karyoploteR"),
                            title = "",
                            colours = list(),
                            ...) {
-  if (!requireNamespace("chromoMap", quietly = TRUE) |
-    !requireNamespace("withr", quietly = TRUE)) {
-    abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
-  }
   # Check formatting of inputs
   if (ncol(genome) != 3) {
     abort(c("Genomic information is misformatted."))
   }
-
   if (ncol(probes) != 4) {
-    abort(c("Annotation information is misformatted.",
-            i = "Did you forget to indicate the probe sets?"
-          ))
+    abort(c(
+      "Annotation information is misformatted.",
+      i = "Did you forget to indicate the probe sets?"
+    ))
+  }
+
+  # Call underlying implementation
+  if (length(map_pkg) > 1) {
+    abort(c(
+      "`map_pkg` must be of length 1.",
+      i = '`map_pkg` must be either "chromoMap" or "karyoploteR".'
+    ))
+  } else if (map_pkg == "chromoMap") {
+    plot_chromoMap(genome, probes, title, colours)
+  } else if (map_pkg == "karyoploteR") {
+    plot_karyoploteR(genome, probes, title, colours)
+  } else {
+    abort(c(
+      '`map_pkg` must be either "chromoMap" or "karyoploteR".',
+      x = glue('You\'ve input "{ map_pkg }".')
+    ))
+  }
+}
+
+#' @rdname chromosome_map
+#' @export
+plot_chromoMap <- function(genome,
+                           probes,
+                           title = "",
+                           colours = list(),
+                           ...) {
+  # Ensure packages installed
+  if (!requireNamespace("chromoMap", quietly = TRUE) |
+    !requireNamespace("withr", quietly = TRUE)) {
+    abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
   }
 
   # Add unique id to probes
@@ -134,3 +164,144 @@ chromosome_map <- function(genome,
   # Execute function
   print(quiet(rlang::exec(rlang::expr(chromoMap::chromoMap), !!!arguments)))
 }
+
+#' @rdname chromosome_map
+#' @export
+plot_karyoploteR <- function(genome,
+                             probes,
+                             title = "",
+                             colours = list(),
+                             ...) {
+  # Ensure packages installed
+  if (!requireNamespace("karyoploteR", quietly = TRUE)) {
+    abort('Package "karyoploteR" needed to create chromosome maps. Please install it.')
+  }
+
+  genome <- genome %>%
+    data.frame() %>%
+    regioneR::toGRanges()
+
+  arguments <- rlang::dots_list(
+    # Default plot params
+    data1height = 200,
+    data1outmargin = 70,
+    bottommargin = 150,
+    topmargin = 150,
+
+    # Default base plot params
+    plot.type = 1,
+    labels.plotter = NULL,
+    main = title,
+
+    # Default tick marks params
+    tick.dist = 500000,
+    minor.tick.dist = 100000,
+    add.units = TRUE,
+    minor.ticks = TRUE,
+    tick.len = 10,
+    minor.tick.len = 5,
+    minor.tick.col = "black",
+
+    # Default chrom color
+    color.schema = "biovizbase",
+
+    # Default chrom label size
+    cex = 0.8,
+
+    # Other parameters and options
+    ...,
+    .homonyms = "last"
+  )
+
+  # Modify plotting params
+  plot_params <- karyoploteR::getDefaultPlotParams(plot.type = 1)
+  to_modify <- arguments %>% purrr::keep(names(.) %in% names(plot_params))
+  plot_params <- purrr::list_modify(plot_params, !!!to_modify)
+
+  # Create base plot
+  base <- rlang::exec(
+    rlang::expr(karyoploteR::plotKaryotype),
+    genome = genome,
+    plot.params = plot_params,
+    !!!extract_args(arguments, karyoploteR::plotKaryotype)
+  ) %>%
+    add_base_layer(karyoploteR::kpAddBaseNumbers, arguments) %>%
+    add_base_layer(karyoploteR::kpAddCytobands, arguments) %>%
+    add_base_layer(karyoploteR::kpAddChromosomeNames, arguments)
+
+  # Find the number of probe sets
+  probe_sets <- dplyr::distinct(probes[, 4])
+  n_probe_sets <- nrow(probe_sets)
+
+  # Create list of plotting data
+  plot_data <- purrr::map(
+    purrr::as_vector(probe_sets),
+    function(x) {
+      probes %>%
+        dplyr::filter(.data$probe_set == {{ x }}) %>%
+        data.frame() %>%
+        regioneR::toGRanges()
+    }
+  )
+
+  # Create list of plotting areas
+  plot_areas <- purrr::map(
+    seq_len(n_probe_sets),
+    karyoploteR::autotrack,
+    n_probe_sets
+  ) %>%
+    purrr::transpose()
+
+  # Default colour
+  colours <- if (rlang::is_empty(colours)) "black" else colours
+
+  # Add each probe set to plot
+  purrr::pwalk(
+    list(
+      data = plot_data,
+      r0 = plot_areas$r0,
+      r1 = plot_areas$r1,
+      col = colours
+    ),
+    add_data_layer,
+    karyoplot = base
+  )
+
+  # Add legend
+  graphics::legend(
+    x = "right",
+    fill = colours,
+    legend = purrr::as_vector(probe_sets)
+  )
+}
+
+# Extract arguments of a function from a list
+extract_args <- function(list, fn) {
+  list %>%
+    purrr::keep(names(.) %in% rlang::fn_fmls_names(fn))
+}
+
+# Add a base layer to the karyoplot
+add_base_layer <- function(karyoplot, fn, arguments) {
+  rlang::exec(
+    rlang::expr(fn),
+    karyoplot = karyoplot,
+    !!!extract_args(arguments, fn)
+  )
+}
+
+# Add a data layer to the karyoplot
+add_data_layer <- function(karyoplot, data, r0, r1, col) {
+  rlang::exec(
+    rlang::expr(karyoploteR::kpPlotRegions),
+    karyoplot = karyoplot,
+    data = data,
+    r0 = r0,
+    r1 = r1,
+    avoid.overlapping = FALSE,
+    col = col
+  )
+}
+
+# To silence the R CMD Check
+globalVariables(".")
