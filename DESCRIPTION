@@ -1,5 +1,5 @@
 Package: miplicorn
-Title: Collection of Functions for MIPTools Analysis
+Title: A Framework for MIP and Amplicon Analysis
 Version: 0.0.0.9001
 Authors@R: 
     person(given = "Aris",
@@ -7,8 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "aris.paschalidis@gmail.com",
            comment = c(ORCID = "0000-0003-2247-1885"))
-Description: A collection of functions and tools for analysis of MIP data
-    resulting from the MIPTools pipeline.
+Description: A unified framework for molecular inversion probe and amplicon 
+    analysis. Provides the tools to parse, manipulate, analysize, and visualize
+    data.
 License: MIT + file LICENSE
 URL: https://bailey-lab.github.io/miplicorn/,
     https://github.com/bailey-lab/miplicorn

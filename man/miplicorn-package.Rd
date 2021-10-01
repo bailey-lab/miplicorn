@@ -4,12 +4,11 @@
 \name{miplicorn-package}
 \alias{miplicorn}
 \alias{miplicorn-package}
-\title{miplicorn: Collection of Functions for MIPTools Analysis}
+\title{miplicorn: A Framework for MIP and Amplicon Analysis}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-A collection of functions and tools for analysis of MIP data
-    resulting from the MIPTools pipeline.
+A unified framework for molecular inversion probe and amplicon analysis. Provides the tools to parse, manipulate, analysize, and visualize data.
 }
 \seealso{
 Useful links:
