@@ -3,33 +3,21 @@
 \name{miplicorn_example}
 \alias{miplicorn_example}
 \alias{example}
-\alias{examples}
-\alias{miplicorn_examples}
 \title{Get path to miplicorn examples}
 \usage{
-miplicorn_example(path)
-
-miplicorn_examples(pattern = NULL)
+miplicorn_example(path = NULL)
 }
 \arguments{
-\item{path}{Name of file.}
-
-\item{pattern}{A regular expression of filenames to match. If \code{NULL} all
-available files are listed.}
+\item{path}{Name of file. If \code{NULL}, all example files will be listed.}
 }
 \description{
-miplicorn contains several example files in its 'inst/extdata' directory. Use
-\code{miplicorn_example()} to retrieve the path to one file and
-\code{miplicorn_examples()} to list all the available files.
-}
-\details{
-Thanks to Jim Hester's and Hadley Wickham's \code{\link[vroom]{vroom}}
-package for these functions.
+miplicorn contains several example files in its 'inst/extdata' directory.
+This function can be used to access file paths.
 }
 \examples{
 # Get path to one example
 miplicorn_example("reference_AA_table.csv")
 
 # List all available examples
-miplicorn_examples()
+miplicorn_example()
 }
