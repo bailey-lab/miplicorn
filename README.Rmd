@@ -24,9 +24,9 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
-miplicorn provides a unified framework for analyzing molecular inversion probes
-(MIPs) and amplicons. It aims to quickly read in files several gigabytes
-large and provide the tools to filter data, manipulate data, and, most
+miplicorn establishes a unified framework for molecular inversion probe (MIP)
+and amplicon analysis. It provides the tools to quickly parse files several
+gigabytes large, filter and manipulate data, analyze data, and, most
 informatively, visualize data.
 
 ## Installation

@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-A unified framework for molecular inversion probe and amplicon analysis. Provides the tools to parse, manipulate, analysize, and visualize data.
+A unified framework for molecular inversion probe and amplicon analysis. Provides the tools to parse, manipulate, analyze, and visualize data.
 }
 \seealso{
 Useful links:
