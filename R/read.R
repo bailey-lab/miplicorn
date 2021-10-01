@@ -114,19 +114,19 @@ read <- function(.ref_file,
 
   # Error message if multiple criteria selected
   if (lifecycle::is_present(chrom) && lifecycle::is_present(gene)) {
-    abort(c(
-      glue("Multiple filtering criteria selected."),
-      x = glue("Cannot filter on both `chrom` and `gene`."),
-      i = glue("Select only one piece of information to filter on.")
+    cli_abort(c(
+      "Multiple filtering criteria selected.",
+      "x" = "Cannot filter on both `chrom` and `gene`.",
+      "i" = "Select only one piece of information to filter on."
     ))
   }
 
   # Error if any file is empty
   if (purrr::some(list(.ref_file, .alt_file, .cov_file), empty_file)) {
     empty <- purrr::detect(list(.ref_file, .alt_file, .cov_file), empty_file)
-    abort(c(
+    cli_abort(c(
       "Unable to read files.",
-      x = glue('"{empty}" is an empty file.')
+      "x" = '"{empty}" is an empty file.'
     ))
   }
 
@@ -191,9 +191,9 @@ read_file <- function(.file, ..., .name = "value") {
         stringr::str_replace("object", "Object") %>%
         stringr::str_c(".")
       objects <- stringr::str_c("'", colnames(header)[-1], "'")
-      abort(c(
+      cli_abort(c(
         msg,
-        i = pluralize("Available objects are {objects}.")
+        "i" = "Available objects are {objects}."
       ))
     }
   )
@@ -245,11 +245,12 @@ check_named <- function(dots) {
     # only allow unnamed logical vectors, anything else is suspicious
     expr <- rlang::quo_get_expr(quo)
     if (!rlang::is_logical(expr)) {
-      abort(c(
-        glue("Problem with `read()` input `..{i}`."),
-        x = glue("Input `..{i}` is named"),
-        i = glue("This usually means that you've used `=` instead of `==`."),
-        i = glue("Did you mean `{name} == {as_label(expr)}`?", name = names(dots)[i])
+      name = names(dots)[i]
+      cli_abort(c(
+        "Problem with `read()` input `..{i}`.",
+        "x" = "Input `..{i}` is named",
+        "i" = "This usually means that you've used `=` instead of `==`.",
+        "i" = "Did you mean `{name} == {as_label(expr)}`?"
       ))
     }
   }

@@ -72,29 +72,29 @@ chromosome_map <- function(genome,
                            ...) {
   # Check formatting of inputs
   if (ncol(genome) != 3) {
-    abort(c("Genomic information is misformatted."))
+    cli_abort("Genomic information is misformatted.")
   }
   if (ncol(probes) != 4) {
-    abort(c(
+    cli_abort(c(
       "Annotation information is misformatted.",
-      i = "Did you forget to indicate the probe sets?"
+      "i" = "Did you forget to indicate the probe sets?"
     ))
   }
 
   # Call underlying implementation
   if (length(map_pkg) > 1) {
-    abort(c(
+    cli_abort(c(
       "`map_pkg` must be of length 1.",
-      i = '`map_pkg` must be either "chromoMap" or "karyoploteR".'
+      "i" = '`map_pkg` must be either "chromoMap" or "karyoploteR".'
     ))
   } else if (map_pkg == "chromoMap") {
     plot_chromoMap(genome, probes, title, colours)
   } else if (map_pkg == "karyoploteR") {
     plot_karyoploteR(genome, probes, title, colours)
   } else {
-    abort(c(
+    cli_abort(c(
       '`map_pkg` must be either "chromoMap" or "karyoploteR".',
-      x = glue('You\'ve input "{ map_pkg }".')
+      "x" = 'You\'ve input "{ map_pkg }".'
     ))
   }
 }
@@ -109,7 +109,7 @@ plot_chromoMap <- function(genome,
   # Ensure packages installed
   if (!requireNamespace("chromoMap", quietly = TRUE) |
     !requireNamespace("withr", quietly = TRUE)) {
-    abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
+    cli_abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
   }
 
   # Add unique id to probes
@@ -174,7 +174,7 @@ plot_karyoploteR <- function(genome,
                              ...) {
   # Ensure packages installed
   if (!requireNamespace("karyoploteR", quietly = TRUE)) {
-    abort('Package "karyoploteR" needed to create chromosome maps. Please install it.')
+    cli_abort('Package "karyoploteR" needed to create chromosome maps. Please install it.')
   }
 
   genome <- genome %>%

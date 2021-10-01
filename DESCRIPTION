@@ -16,10 +16,9 @@ BugReports: https://github.com/bailey-lab/miplicorn/issues
 Depends: 
     R (>= 2.10)
 Imports: 
-    cli,
+    cli (>= 3.0.0),
     dplyr,
     ggplot2,
-    glue,
     janitor,
     lifecycle,
     magrittr,
