@@ -1,6 +1,6 @@
 Package: miplicorn
 Title: A Framework for MIP and Amplicon Analysis
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: 
     person(given = "Aris",
            family = "Paschalidis",
