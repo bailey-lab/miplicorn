@@ -5,4 +5,7 @@ test_that("themes are stable", {
 
   vdiffr::expect_doppelganger("default_theme", plot + default_theme())
   vdiffr::expect_doppelganger("theme_miplicorn", plot + theme_miplicorn())
+
+  vdiffr::expect_doppelganger("rainbow_theme", plot + rainbow_theme())
+  vdiffr::expect_doppelganger("theme_rainbow", plot + theme_rainbow())
 })

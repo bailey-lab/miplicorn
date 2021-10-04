@@ -2,10 +2,18 @@
 % Please edit documentation in R/utils.R
 \name{theme_miplicorn}
 \alias{theme_miplicorn}
-\title{Custom ggplot2 theme}
+\alias{theme_rainbow}
+\title{Custom ggplot2 themes}
 \usage{
 theme_miplicorn(
   base_size = 10,
+  base_family = "",
+  base_line_size = base_size/22,
+  base_rect_size = base_size/22
+)
+
+theme_rainbow(
+  base_size = 12,
   base_family = "",
   base_line_size = base_size/22,
   base_rect_size = base_size/22
@@ -21,14 +29,14 @@ theme_miplicorn(
 \item{base_rect_size}{base size for rect elements}
 }
 \description{
-Custom \code{ggplot2} theme that builds off of \code{ggplot2::theme_classic()}.
+Custom ggplot2 themes
 }
 \examples{
 library("ggplot2")
 p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point() +
   facet_wrap(~am) +
-  geom_smooth(method = "lm", se = FALSE) +
-  theme_miplicorn()
-p
+  geom_smooth(method = "lm", se = FALSE)
+p + theme_miplicorn()
+p + theme_rainbow()
 }

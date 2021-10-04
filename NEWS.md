@@ -1,5 +1,7 @@
 # miplicorn (development version)
 
+* New `theme_rainbow()` creates a custom theme. 
+
 # miplicorn 0.1.0
 
 * `chromosome_map()` can now create an additional type of map (@arisp99, #12).
