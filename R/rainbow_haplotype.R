@@ -1,3 +1,23 @@
+#------------------------------------------------
+#' Prepare data for rainbow haplotype plot
+#'
+#' Prepare data for a rainbow haplotype plot. Creates several additional
+#' columns, adding them to the dataset.
+#'
+#' @param data The data to be plotted.
+#' @param sample The column name representing the samples.
+#' @param probe The column name representing the probes.
+#' @param haplotype The column name representing the haplotypes.
+#' @param rel_freq The column name representing relative abundance or frequency
+#'   of each haplotype.
+#' @param minPopSize The minimum number of haplotypes required per probe. If
+#'   there are less haplotypes, the probe will be ignored.
+#' @param n_colours An integer indicating the number of colors to be used.
+#' @param barHeight The height of the bar used for plotting.
+#' @param ... These dots are for future extensions and must be empty.
+#'
+#' @seealso [plot_haplotypes()] for creating the rainbow haplotype plot.
+#'
 #' @export
 prep_haplotypes <- function(data,
                             sample = s_Sample,
@@ -5,8 +25,9 @@ prep_haplotypes <- function(data,
                             haplotype = h_popUID,
                             rel_freq = c_AveragedFrac,
                             minPopSize = 3,
-                            colorOuput = 11,
-                            barHeight = 0.80) {
+                            n_colours = 11,
+                            barHeight = 0.80,
+                            ...) {
   # For each sample, mip, and haplotype, sum over all the data points
   # Gives us one relative freq value for each haplotype
   data_sum <- data %>%
@@ -64,7 +85,7 @@ prep_haplotypes <- function(data,
 
   # From here on, we deal with determining the colors of each haplotype
   # The shading code looks different here... L153 in original code
-  colorsOutput <- colorOuput
+  colorsOutput <- n_colours
   targetNumber <- 0
   targetToHue <- tibble::tibble(
     "{{probe}}" := character(),
@@ -111,13 +132,26 @@ prep_haplotypes <- function(data,
   )
 }
 
+#------------------------------------------------
+#' Create rainbow haplotype plot
+#'
+#' Create a rainbow haplotype plot. Each row represents a sample and each column
+#' represents a unique probe. The colors in each bar represent the haplotypes
+#' identified for each probe. The height of the bar illustrates the relative
+#' abundance of each haplotype.
+#'
+#' @inheritParams prep_haplotypes
+#'
+#' @seealso [prep_haplotypes()] for generating the data used for plotting.
+#'
 #' @export
 plot_haplotypes <- function(data,
                             sample = s_Sample,
                             probe = p_name,
                             haplotype = h_popUID,
                             rel_freq = c_AveragedFrac,
-                            colors = RColorBrewer::brewer.pal(11, "Spectral")) {
+                            n_colours = 11,
+                            ...) {
   # Prepare the data
   # data <- prep_haplotypes(data)
 
@@ -128,6 +162,12 @@ plot_haplotypes <- function(data,
     unique() %>%
     dplyr::arrange({{ sample }}) %>%
     dplyr::pull()
+
+  # Set up colors
+  if (!requireNamespace("RColorBrewer", quietly = TRUE)) {
+    cli_abort('Package "RColorBrewer" needed to create a colour palette. Please install it.')
+  }
+  colours <- RColorBrewer::brewer.pal(n_colours, "Spectral")
 
   # Plot
   ggplot2::ggplot(data) +
@@ -141,7 +181,7 @@ plot_haplotypes <- function(data,
       ),
       color = "black"
     ) +
-    ggplot2::scale_fill_gradientn(colours = colors) +
+    ggplot2::scale_fill_gradientn(colours = colours) +
     # Used for shading
     # ggplot2::scale_fill_identity() +
     ggplot2::scale_y_continuous(
