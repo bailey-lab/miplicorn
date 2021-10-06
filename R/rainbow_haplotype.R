@@ -1,91 +1,114 @@
 #' @export
-prepForRainbow <-function(inputData, sampleCol = s_Sample, targetCol= p_name, popUIDCol = h_popUID, relAbundCol = c_AveragedFrac, minPopSize = 3, colorOuput = 11, barHeight = 0.80){
-  inputData_filt = inputData %>%
-    group_by({{sampleCol}})  %>%
-    mutate(targetNumber = length(unique({{targetCol}}))) %>%
-    group_by() %>%
-    mutate("{{sampleCol}}" := as.character({{sampleCol}})) %>%
-    group_by({{sampleCol}}) %>%
-    group_by() %>%
-    mutate("{{sampleCol}}" := factor({{sampleCol}})) %>%
-    group_by({{sampleCol}}) %>%
-    arrange({{popUIDCol}}) %>%
-    group_by({{sampleCol}}, {{targetCol}}, {{popUIDCol}}) %>%
-    summarise("{{relAbundCol}}" := sum({{relAbundCol}})) %>%
-    group_by({{sampleCol}}, {{targetCol}})
-  inputData_filt = inputData_filt%>%
-    group_by({{sampleCol}}, {{targetCol}}) %>%
-    mutate(totalAbund = sum({{relAbundCol}})) %>%
-    mutate("{{relAbundCol}}" :={{relAbundCol}}/totalAbund)
+prep_haplotypes <- function(data,
+                            sample = s_Sample,
+                            probe = p_name,
+                            haplotype = h_popUID,
+                            rel_freq = c_AveragedFrac,
+                            minPopSize = 3,
+                            colorOuput = 11,
+                            barHeight = 0.80) {
+  # For each sample, mip, and haplotype, sum over all the data points
+  # Gives us one relative freq value for each haplotype
+  data_sum <- data %>%
+    dplyr::mutate("{{sample}}" := factor({{ sample }})) %>%
+    dplyr::group_by({{ sample }}, {{ probe }}, {{ haplotype }}) %>%
+    dplyr::summarise("{{rel_freq}}" := sum({{ rel_freq }}))
 
-  inputData_filt = inputData_filt %>%
-    group_by({{sampleCol}}, {{targetCol}}, {{popUIDCol}}) %>%
-    mutate(s_COI = length(unique({{popUIDCol}})))
+  # Ensure relative column is a frequency. Divide abundance by total abundance
+  data_rel <- data_sum %>%
+    dplyr::group_by({{ sample }}, {{ probe }}) %>%
+    dplyr::mutate(
+      totalAbund = sum({{ rel_freq }}),
+      "{{rel_freq}}" := {{ rel_freq }} / totalAbund
+    )
 
+  # Find the number of haplotypes
+  data_n_hap <- data_rel %>%
+    dplyr::group_by({{ sample }}, {{ probe }}, {{ haplotype }}) %>%
+    dplyr::mutate(s_COI = dplyr::n_distinct({{ haplotype }}))
 
-  inputData_filt = inputData_filt %>%
-    group_by() %>%
-    group_by({{sampleCol}}, {{targetCol}}) %>%
-    mutate(relAbundCol_mod = {{relAbundCol}} * barHeight) %>%
-    mutate(fracCumSum = cumsum({{relAbundCol}}) - {{relAbundCol}}) %>%
-    mutate(fracModCumSum = cumsum(relAbundCol_mod) - relAbundCol_mod) %>%
-    mutate(fakeFrac = 1/unique(s_COI))  %>%
-    mutate(fakeFracMod = fakeFrac * barHeight)  %>%
-    mutate(fakeFracCumSum = cumsum(fakeFrac) - fakeFrac) %>%
-    mutate(fakeFracModCumSum = cumsum(fakeFracMod) - fakeFracMod)
+  # Plotting info
+  data_plot <- data_n_hap %>%
+    dplyr::group_by({{ sample }}, {{ probe }}) %>%
+    dplyr::mutate(
+      relAbundCol_mod = {{ rel_freq }} * barHeight,
+      fracCumSum = cumsum({{ rel_freq }}) - {{ rel_freq }},
+      fracModCumSum = cumsum(relAbundCol_mod) - relAbundCol_mod,
+      fakeFrac = 1 / unique(s_COI),
+      fakeFracMod = fakeFrac * barHeight,
+      fakeFracCumSum = cumsum(fakeFrac) - fakeFrac,
+      fakeFracModCumSum = cumsum(fakeFracMod) - fakeFracMod
+    ) %>%
+    dplyr::ungroup()
 
-  inputData_filt_popName = inputData_filt %>%
-    select({{sampleCol}}, {{targetCol}}, {{popUIDCol}}) %>%
-    unique() %>%
-    group_by({{targetCol}}, {{popUIDCol}}) %>%
-    summarise(samp_n = n()) %>%
-    arrange({{targetCol}}, desc(samp_n)) %>%
-    group_by({{targetCol}}) %>%
-    mutate(popid = row_number())  %>%
-    group_by({{targetCol}}) %>%
-    mutate(maxPopid = max(popid))
+  # Determine how many samples have a haplotype
+  # Determine number of haplotypes per probe
+  data_counts <- data_plot %>%
+    dplyr::group_by({{ probe }}, {{ haplotype }}) %>%
+    dplyr::summarise(samp_n = dplyr::n()) %>%
+    dplyr::arrange({{ probe }}, desc(samp_n)) %>%
+    dplyr::group_by({{ probe }}) %>%
+    dplyr::mutate(
+      popid = dplyr::row_number(),
+      maxPopid = max(popid)
+    )
 
+  data_join <- data_plot %>%
+    dplyr::left_join(data_counts)
 
+  # Filter based on minimum population size
+  # (number of probes with the haplotype)
+  data_filter <- data_join %>%
+    dplyr::filter(maxPopid >= minPopSize) %>%
+    dplyr::mutate("{{probe}}" := factor({{ probe }}))
 
-  inputData_filt = inputData_filt %>%
-    left_join(inputData_filt_popName)
+  # From here on, we deal with determining the colors of each haplotype
+  # The shading code looks different here... L153 in original code
+  colorsOutput <- colorOuput
+  targetNumber <- 0
+  targetToHue <- tibble::tibble(
+    "{{probe}}" := character(),
+    hueMod = double()
+  )
+  tempTarCol <- dplyr::pull(data_filter, {{ probe }})
 
-
-  inputData_filt_tarFilt = inputData_filt %>%
-    filter(maxPopid >= minPopSize) %>%
-    group_by()
-
-  inputData_filt_tarFilt = inputData_filt_tarFilt%>%
-    group_by() %>%
-    mutate("{{targetCol}}" := factor({{targetCol}}))
-
-
-  colorsOutput = colorOuput;
-  #colorsOutput =  length(unique(inputData_filt_tarFilt${{targetCol}}))
-  targetNumber = 0
-  targetToHue = tibble()
-  tempTarCol = inputData_filt_tarFilt %>% select({{targetCol}})
-
-  for(tarname in levels(tempTarCol[[1]] ) ) {
-    targetToHueForTarget = tibble("{{targetCol}}" := tarname, hueMod = (targetNumber%% colorsOutput) + 1)
-    targetToHue = targetToHue %>%
-      bind_rows(targetToHueForTarget)
-    targetNumber = targetNumber + 1;
+  for (tarname in levels(tempTarCol)) {
+    targetToHue <- targetToHue %>%
+      tibble::add_row(
+        "{{probe}}" := tarname,
+        hueMod = (targetNumber %% colorsOutput) + 1
+      )
+    targetNumber <- targetNumber + 1
   }
-  inputData_filt_tarFilt = inputData_filt_tarFilt %>%
-    group_by({{targetCol}}) %>%
-    mutate(popidFrac = (popid-1)/(maxPopid))
-  tempTarCol = inputData_filt_tarFilt %>% select({{targetCol}})
 
-  targetToHue = targetToHue %>%
-    mutate("{{targetCol}}" := factor({{targetCol}}, levels = levels(tempTarCol[[1]])))
-  inputData_filt_tarFilt = inputData_filt_tarFilt %>%
-    left_join(targetToHue) %>%
-    mutate(popidPerc = 100 * popidFrac) %>%
-    mutate(popidFracRegColor = round(abs((popidPerc + (hueMod/colorsOutput) *100) %% 200 -0.0001 ) %% 100) ) %>%
-    mutate(popidPercLog = log((popidFrac * 99) + 1 , base = 100) * 100 ) %>%
-    mutate(popidFracLogColor = round(abs((popidPercLog + (hueMod/colorsOutput) *100) %% 200 -0.0001 ) %% 100) )
-  return(inputData_filt_tarFilt)
+  data_filter <- data_filter %>%
+    dplyr::group_by({{ probe }}) %>%
+    dplyr::mutate(popidFrac = (popid - 1) / (maxPopid))
+
+  tempTarCol <- dplyr::pull(data_filter, {{ probe }})
+
+  targetToHue <- targetToHue %>%
+    dplyr::mutate("{{probe}}" := factor({{ probe }}, levels = levels(tempTarCol)))
+
+  data_final <- data_filter %>%
+    dplyr::left_join(targetToHue) %>%
+    dplyr::mutate(
+      popidPerc = 100 * popidFrac,
+      popidFracRegColor = round(abs((popidPerc + (hueMod / colorsOutput) * 100) %% 200 - 0.0001) %% 100),
+      popidPercLog = log((popidFrac * 99) + 1, base = 100) * 100,
+      popidFracLogColor = round(abs((popidPercLog + (hueMod / colorsOutput) * 100) %% 200 - 0.0001) %% 100)
+    )
+
+  # Only keep needed columns to not confuse the user
+  dplyr::select(
+    data_final,
+    {{ sample }},
+    {{ probe }},
+    {{ haplotype }},
+    fracModCumSum,
+    relAbundCol_mod,
+    popidFracLogColor
+  )
 }
 
 #' @export
