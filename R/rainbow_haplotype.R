@@ -88,41 +88,51 @@ prepForRainbow <-function(inputData, sampleCol = s_Sample, targetCol= p_name, po
   return(inputData_filt_tarFilt)
 }
 
-genRainbowHapPlotObjActualFracLogColor <-function(prepData, sampleCol = s_Sample, targetCol= p_name, popUIDCol = h_popUID, relAbundCol = c_AveragedFrac, colors = RColorBrewer::brewer.pal(11, "Spectral")){
-  sofonias_theme = theme_bw() +
-    theme(panel.grid.major = element_blank(),panel.grid.minor = element_blank() )+
-    theme(axis.line.x = element_line(color="black", size = 0.3),axis.line.y =
-            element_line(color="black", size = 0.3))+
-    theme(text=element_text(size=12, family="Helvetica"))+
-    theme(axis.text.y = element_text(size=12))+
-    theme(axis.text.x = element_text(size=12)) +
-    theme(legend.position = "bottom") +
-    theme(plot.title = element_text(hjust = 0.5))
-  sampleNamesDf = prepData %>%
-    group_by() %>%
-    select({{sampleCol}}) %>%
+#' @export
+plot_haplotypes <- function(data,
+                            sample = s_Sample,
+                            probe = p_name,
+                            haplotype = h_popUID,
+                            rel_freq = c_AveragedFrac,
+                            colors = RColorBrewer::brewer.pal(11, "Spectral")) {
+  # Prepare the data
+  # data <- prep_haplotypes(data)
+
+  # Find unique samples to label the y-axis
+  unique_samples <- data %>%
+    dplyr::ungroup() %>%
+    dplyr::select({{ sample }}) %>%
     unique() %>%
-    arrange({{sampleCol}})
-  return (ggplot(prepData) +
-            geom_rect(aes(xmin = as.numeric({{targetCol}}) -0.5,
-                          xmax = as.numeric({{targetCol}}) +0.5,
-                          ymin = as.numeric({{sampleCol}}) + fracModCumSum - 0.5,
-                          ymax = as.numeric({{sampleCol}}) + fracModCumSum + relAbundCol_mod - 0.5,
-                          fill = popidFracLogColor,
-                          "{{sampleCol}}" = {{sampleCol}},
-                          "{{popUIDCol}}" = {{popUIDCol}},
-                          "{{targetCol}}"= {{targetCol}},
-                          "{{relAbundCol}}" = {{relAbundCol}}
-            ),
-            color = "black") +
-            scale_fill_gradientn(colours = colors) +
-            scale_y_continuous(breaks = 1:length(sampleNamesDf[[1]]), labels = sampleNamesDf[[1]] ) +
-            sofonias_theme +
-            theme(axis.text.x = element_blank()) +
-            guides(fill = F))
+    dplyr::arrange({{ sample }}) %>%
+    dplyr::pull()
+
+  # Plot
+  ggplot2::ggplot(data) +
+    ggplot2::geom_rect(
+      ggplot2::aes(
+        xmin = as.numeric({{ probe }}) - 0.5,
+        xmax = as.numeric({{ probe }}) + 0.5,
+        ymin = as.numeric({{ sample }}) + fracModCumSum - 0.5,
+        ymax = as.numeric({{ sample }}) + fracModCumSum + relAbundCol_mod - 0.5,
+        fill = popidFracLogColor
+      ),
+      color = "black"
+    ) +
+    ggplot2::scale_fill_gradientn(colours = colors) +
+    # Used for shading
+    # ggplot2::scale_fill_identity() +
+    ggplot2::scale_y_continuous(
+      breaks = seq_along(unique_samples),
+      labels = unique_samples
+    ) +
+    rainbow_theme() +
+    ggplot2::theme(
+      axis.text.x = ggplot2::element_blank(),
+      legend.position = "none"
+    )
 }
 
-#' @export
-genRainbowHapPlotObj <-function(prepData, sampleCol = s_Sample, targetCol= p_name, popUIDCol = h_popUID, relAbundCol = c_AveragedFrac, colors = RColorBrewer::brewer.pal(11, "Spectral")){
-  genRainbowHapPlotObjActualFracLogColor(prepData, {{sampleCol}}, {{targetCol}}, {{popUIDCol}}, {{relAbundCol}}, colors)
-}
+# plot_haplotypes <- function(data,
+#                             colors = RColorBrewer::brewer.pal(11, "Spectral"),
+#                             ...) {
+#   prep_data <- prep_haplotypes(data, ...)
