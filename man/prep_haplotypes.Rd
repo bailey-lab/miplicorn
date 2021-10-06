@@ -44,3 +44,7 @@ columns, adding them to the dataset.
 \seealso{
 \code{\link[=plot_haplotypes]{plot_haplotypes()}} for creating the rainbow haplotype plot.
 }
+\author{
+Aris Paschalidis (\href{https://github.com/arisp99}{@arisp99}), Nick J.
+Hathaway (\href{https://github.com/nickjhathaway}{@nickjhathaway})
+}

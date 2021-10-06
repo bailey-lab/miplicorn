@@ -39,3 +39,7 @@ abundance of each haplotype.
 \seealso{
 \code{\link[=prep_haplotypes]{prep_haplotypes()}} for generating the data used for plotting.
 }
+\author{
+Aris Paschalidis (\href{https://github.com/arisp99}{@arisp99}), Nick J.
+Hathaway (\href{https://github.com/nickjhathaway}{@nickjhathaway})
+}

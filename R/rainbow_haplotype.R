@@ -16,6 +16,8 @@
 #' @param barHeight The height of the bar used for plotting.
 #' @param ... These dots are for future extensions and must be empty.
 #'
+#' @author Aris Paschalidis ([@arisp99](https://github.com/arisp99)), Nick J.
+#'   Hathaway ([@nickjhathaway](https://github.com/nickjhathaway))
 #' @seealso [plot_haplotypes()] for creating the rainbow haplotype plot.
 #'
 #' @export
@@ -142,6 +144,8 @@ prep_haplotypes <- function(data,
 #'
 #' @inheritParams prep_haplotypes
 #'
+#' @author Aris Paschalidis ([@arisp99](https://github.com/arisp99)), Nick J.
+#'   Hathaway ([@nickjhathaway](https://github.com/nickjhathaway))
 #' @seealso [prep_haplotypes()] for generating the data used for plotting.
 #'
 #' @export
