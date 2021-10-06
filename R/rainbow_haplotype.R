@@ -19,7 +19,7 @@ prep_haplotypes <- function(data,
     dplyr::group_by({{ sample }}, {{ probe }}) %>%
     dplyr::mutate(
       totalAbund = sum({{ rel_freq }}),
-      "{{rel_freq}}" := {{ rel_freq }} / totalAbund
+      "{{rel_freq}}" := {{ rel_freq }} / .data$totalAbund
     )
 
   # Find the number of haplotypes
@@ -33,11 +33,11 @@ prep_haplotypes <- function(data,
     dplyr::mutate(
       relAbundCol_mod = {{ rel_freq }} * barHeight,
       fracCumSum = cumsum({{ rel_freq }}) - {{ rel_freq }},
-      fracModCumSum = cumsum(relAbundCol_mod) - relAbundCol_mod,
-      fakeFrac = 1 / unique(s_COI),
-      fakeFracMod = fakeFrac * barHeight,
-      fakeFracCumSum = cumsum(fakeFrac) - fakeFrac,
-      fakeFracModCumSum = cumsum(fakeFracMod) - fakeFracMod
+      fracModCumSum = cumsum(.data$relAbundCol_mod) - .data$relAbundCol_mod,
+      fakeFrac = 1 / unique(.data$s_COI),
+      fakeFracMod = .data$fakeFrac * barHeight,
+      fakeFracCumSum = cumsum(.data$fakeFrac) - .data$fakeFrac,
+      fakeFracModCumSum = cumsum(.data$fakeFracMod) - .data$fakeFracMod
     ) %>%
     dplyr::ungroup()
 
@@ -46,11 +46,11 @@ prep_haplotypes <- function(data,
   data_counts <- data_plot %>%
     dplyr::group_by({{ probe }}, {{ haplotype }}) %>%
     dplyr::summarise(samp_n = dplyr::n()) %>%
-    dplyr::arrange({{ probe }}, desc(samp_n)) %>%
+    dplyr::arrange({{ probe }}, dplyr::desc(.data$samp_n)) %>%
     dplyr::group_by({{ probe }}) %>%
     dplyr::mutate(
       popid = dplyr::row_number(),
-      maxPopid = max(popid)
+      maxPopid = max(.data$popid)
     )
 
   data_join <- data_plot %>%
@@ -59,7 +59,7 @@ prep_haplotypes <- function(data,
   # Filter based on minimum population size
   # (number of probes with the haplotype)
   data_filter <- data_join %>%
-    dplyr::filter(maxPopid >= minPopSize) %>%
+    dplyr::filter(.data$maxPopid >= minPopSize) %>%
     dplyr::mutate("{{probe}}" := factor({{ probe }}))
 
   # From here on, we deal with determining the colors of each haplotype
@@ -83,7 +83,7 @@ prep_haplotypes <- function(data,
 
   data_filter <- data_filter %>%
     dplyr::group_by({{ probe }}) %>%
-    dplyr::mutate(popidFrac = (popid - 1) / (maxPopid))
+    dplyr::mutate(popidFrac = (.data$popid - 1) / (.data$maxPopid))
 
   tempTarCol <- dplyr::pull(data_filter, {{ probe }})
 
@@ -93,10 +93,10 @@ prep_haplotypes <- function(data,
   data_final <- data_filter %>%
     dplyr::left_join(targetToHue) %>%
     dplyr::mutate(
-      popidPerc = 100 * popidFrac,
-      popidFracRegColor = round(abs((popidPerc + (hueMod / colorsOutput) * 100) %% 200 - 0.0001) %% 100),
-      popidPercLog = log((popidFrac * 99) + 1, base = 100) * 100,
-      popidFracLogColor = round(abs((popidPercLog + (hueMod / colorsOutput) * 100) %% 200 - 0.0001) %% 100)
+      popidPerc = 100 * .data$popidFrac,
+      popidFracRegColor = round(abs((.data$popidPerc + (.data$hueMod / colorsOutput) * 100) %% 200 - 0.0001) %% 100),
+      popidPercLog = log((.data$popidFrac * 99) + 1, base = 100) * 100,
+      popidFracLogColor = round(abs((.data$popidPercLog + (.data$hueMod / colorsOutput) * 100) %% 200 - 0.0001) %% 100)
     )
 
   # Only keep needed columns to not confuse the user
@@ -105,9 +105,9 @@ prep_haplotypes <- function(data,
     {{ sample }},
     {{ probe }},
     {{ haplotype }},
-    fracModCumSum,
-    relAbundCol_mod,
-    popidFracLogColor
+    .data$fracModCumSum,
+    .data$relAbundCol_mod,
+    .data$popidFracLogColor
   )
 }
 
@@ -135,9 +135,9 @@ plot_haplotypes <- function(data,
       ggplot2::aes(
         xmin = as.numeric({{ probe }}) - 0.5,
         xmax = as.numeric({{ probe }}) + 0.5,
-        ymin = as.numeric({{ sample }}) + fracModCumSum - 0.5,
-        ymax = as.numeric({{ sample }}) + fracModCumSum + relAbundCol_mod - 0.5,
-        fill = popidFracLogColor
+        ymin = as.numeric({{ sample }}) + .data$fracModCumSum - 0.5,
+        ymax = as.numeric({{ sample }}) + .data$fracModCumSum + .data$relAbundCol_mod - 0.5,
+        fill = .data$popidFracLogColor
       ),
       color = "black"
     ) +
