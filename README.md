@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# miplicorn
+# miplicorn <a href='https://bailey-lab.github.io/miplicorn'><img src='man/figures/logo.png' align="right" height="138" /></a>
 
 <!-- badges: start -->
 
@@ -14,9 +14,9 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
-miplicorn provides a unified framework for analyzing molecular inversion
-probes (MIPs) and amplicons. It aims to quickly read in files several
-gigabytes large and provide the tools to filter data, manipulate data,
+miplicorn establishes a unified framework for molecular inversion probe
+(MIP) and amplicon analysis. It provides the tools to quickly parse
+files several gigabytes large, filter and manipulate data, analyze data,
 and, most informatively, visualize data.
 
 ## Installation
