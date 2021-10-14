@@ -135,7 +135,7 @@ read <- function(.ref_file,
     tables <- purrr::pmap(
       list(
         file = c(.ref_file, .alt_file, .cov_file),
-        name = c("ref_umi_count", "alt_umit_count", "coverage")
+        name = c("ref_umi_count", "alt_umi_count", "coverage")
       ),
       deprec_read_file,
       chrom = chrom,
@@ -145,7 +145,7 @@ read <- function(.ref_file,
     tables <- purrr::pmap(
       list(
         .file = c(.ref_file, .alt_file, .cov_file),
-        .name = c("ref_umi_count", "alt_umit_count", "coverage")
+        .name = c("ref_umi_count", "alt_umi_count", "coverage")
       ),
       read_file,
       ...
