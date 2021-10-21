@@ -8,3 +8,4 @@ internal
 docs
 
 tests/testthat/Rplots.pdf
+.pre-commit-config.yaml
