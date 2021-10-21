@@ -272,3 +272,26 @@ test_that("can manipulate plot_karyoploteR() chrom label size", {
     plot_karyoploteR(genome_Pf3D7, probes, cex = 0.2)
   )
 })
+
+test_that("plot_karyoploteR() works for arbitrary column names (#14)", {
+  arbitrary_genome <- genome_Pf3D7
+  colnames(arbitrary_genome) <- c("name", "begin", "end")
+
+  arbitrary_probes <- tibble::tribble(
+    ~col1, ~col2, ~col3, ~col4,
+    "chr14", 2342135L, 2342284L, "IBC",
+    "chr3", 830503L, 830769L, "DR2",
+    "chr5", 482233L, 482391L, "IBC",
+    "chr9", 375274L, 375417L, "IBC",
+    "chr12", 532032L, 532281L, "DR2",
+    "chr7", 383447L, 383653L, "HAP",
+    "chr14", 1401991L, 1402160L, "IBC",
+    "chr4", 734737L, 734936L, "HAP",
+    "chr10", 93054L, 93223L, "IBC",
+    "chr7", 162127L, 162277L, "IBC"
+  )
+  vdiffr::expect_doppelganger(
+    "karyoploteR arbitrary column names",
+    plot_karyoploteR(arbitrary_genome, arbitrary_probes)
+  )
+})

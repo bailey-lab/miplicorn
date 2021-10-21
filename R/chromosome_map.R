@@ -238,7 +238,7 @@ plot_karyoploteR <- function(genome,
     purrr::as_vector(probe_sets),
     function(x) {
       probes %>%
-        dplyr::filter(.data$probe_set == {{ x }}) %>%
+        dplyr::filter(probes[, 4] == {{ x }}) %>%
         data.frame() %>%
         regioneR::toGRanges()
     }
