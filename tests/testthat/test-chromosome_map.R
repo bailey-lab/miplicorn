@@ -135,6 +135,7 @@ test_that("plot_chromoMap() draws correctly for multiple probes", {
   # NB tests require webshot2, which is not on cran yet...
   # skip_on_cran()
   skip_on_ci()
+  skip_on_covr()
   skip_if_not_installed("webshot2")
 
   default <- plot_chromoMap(genome_Pf3D7, probes)
@@ -164,6 +165,7 @@ test_that("plot_chromoMap() overrides defaults with user input", {
   # NB tests require webshot2, which is not on cran yet...
   # skip_on_cran()
   skip_on_ci()
+  skip_on_covr()
   skip_if_not_installed("webshot2")
 
   no_colour <- plot_chromoMap(genome_Pf3D7, probes, data_based_color_map = F)
