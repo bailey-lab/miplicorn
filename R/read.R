@@ -208,7 +208,8 @@ read_file <- function(.file, ..., .name = "value") {
     file = .file,
     col_names = FALSE,
     col_select = c(1, col_select),
-    show_col_types = FALSE
+    show_col_types = FALSE,
+    .name_repair = "universal"
   )
 
   # Take the transpose of our matrix, making rows columns and columns rows
@@ -221,7 +222,8 @@ read_file <- function(.file, ..., .name = "value") {
     ) %>%
     # Assign the column names of our tibble and clean them up
     dplyr::select(-.data$name) %>%
-    janitor::row_to_names(1)
+    janitor::row_to_names(1) %>%
+    janitor::clean_names()
 
   # Convert our data to a long format
   t_data %>%
@@ -230,7 +232,6 @@ read_file <- function(.file, ..., .name = "value") {
       names_to = "sample",
       values_to = "value"
     ) %>%
-    janitor::clean_names() %>%
     dplyr::relocate(sample) %>%
     dplyr::mutate(value = as.numeric(.data$value)) %>%
     dplyr::rename({{ .name }} := .data$value)
