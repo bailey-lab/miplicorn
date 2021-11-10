@@ -246,7 +246,7 @@ check_named <- function(dots) {
     # only allow unnamed logical vectors, anything else is suspicious
     expr <- rlang::quo_get_expr(quo)
     if (!rlang::is_logical(expr)) {
-      name = names(dots)[i]
+      name <- names(dots)[i]
       cli_abort(c(
         "Problem with `read()` input `..{i}`.",
         "x" = "Input `..{i}` is named",

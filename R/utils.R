@@ -24,7 +24,7 @@ quiet <- function(x) {
 #'   geom_point() +
 #'   facet_wrap(~am) +
 #'   geom_smooth(method = "lm", se = FALSE)
-#
+#'
 #' p + theme_miplicorn()
 #' p + theme_rainbow()
 theme_miplicorn <- function(base_size = 10,
@@ -58,8 +58,8 @@ theme_rainbow <- function(base_size = 12,
   ) %+replace%
     ggplot2::theme(
       plot.title = ggplot2::element_text(hjust = 0.5),
-      axis.line.x = ggplot2::element_line(color="black", size = 0.3),
-      axis.line.y = ggplot2::element_line(color="black", size = 0.3),
+      axis.line.x = ggplot2::element_line(color = "black", size = 0.3),
+      axis.line.y = ggplot2::element_line(color = "black", size = 0.3),
       panel.grid.major = ggplot2::element_blank(),
       panel.grid.minor = ggplot2::element_blank(),
       legend.position = "bottom",
@@ -70,7 +70,7 @@ theme_rainbow <- function(base_size = 12,
 # Need to have a function that returns the default theme which will be used in
 # figures. This is according to the best practices for using ggplot2 in a
 # package. Link:
-# <https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html#creating-a-new-theme-1>
+# <https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html>
 default_theme <- function() {
   theme_miplicorn()
 }
