@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # miplicorn <a href='https://bailey-lab.github.io/miplicorn'><img src='man/figures/logo.png' align="right" height="138" /></a>
@@ -12,6 +11,7 @@ coverage](https://codecov.io/gh/bailey-lab/miplicorn/branch/master/graph/badge.s
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 <!-- badges: end -->
 
 miplicorn establishes a unified framework for molecular inversion probe
@@ -24,7 +24,7 @@ and, most informatively, visualize data.
 You may install the package from
 [Github](https://github.com/bailey-lab/miplicorn) using `devtools`.
 
-``` r
+```r
 # install.packages("devtools")
 devtools::install_github(repo = "https://github.com/bailey-lab/miplicorn")
 ```
@@ -34,13 +34,13 @@ devtools::install_github(repo = "https://github.com/bailey-lab/miplicorn")
 See `vignette("miplicorn")` for a more extensive introduction and a
 demonstration of several features of the package.
 
-``` r
+```r
 library(miplicorn)
 
 file <- miplicorn_example("reference_AA_table.csv")
 
 data <- read_file(file, gene == "atp6")
-data  
+data
 #> # A tibble: 260 × 8
 #>   sample     gene_id   gene  mutation_name exonic_func  aa_change targeted value
 #>   <chr>      <chr>     <chr> <chr>         <chr>        <chr>     <chr>    <dbl>

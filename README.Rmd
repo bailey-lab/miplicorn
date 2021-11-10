@@ -46,8 +46,7 @@ library(miplicorn)
 file <- miplicorn_example("reference_AA_table.csv")
 
 data <- read_file(file, gene == "atp6")
-data  
+data
 
 arrange_natural(data, sample, targeted)
 ```
-

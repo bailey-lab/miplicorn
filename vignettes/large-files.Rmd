@@ -49,4 +49,3 @@ read_file(cov_file, gene == "atp6")
 
 read_file(cov_file, gene == "atp6", targeted == "Yes")
 ```
-
