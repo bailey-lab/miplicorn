@@ -43,11 +43,6 @@
 <polyline points='35.45,258.92 38.44,258.92 ' style='stroke-width: 1.16; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='35.45,148.83 38.44,148.83 ' style='stroke-width: 1.16; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='35.45,38.74 38.44,38.74 ' style='stroke-width: 1.16; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='69.15,504.10 69.15,501.11 ' style='stroke-width: 1.16; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='222.69,504.10 222.69,501.11 ' style='stroke-width: 1.16; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='376.23,504.10 376.23,501.11 ' style='stroke-width: 1.16; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='529.77,504.10 529.77,501.11 ' style='stroke-width: 1.16; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='683.31,504.10 683.31,501.11 ' style='stroke-width: 1.16; stroke: #333333; stroke-linecap: butt;' />
 <text x='69.15' y='513.10' text-anchor='middle' style='font-size: 9.60px; fill: #4D4D4D; font-family: sans;' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>1.0</text>
 <text x='222.69' y='513.10' text-anchor='middle' style='font-size: 9.60px; fill: #4D4D4D; font-family: sans;' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>1.5</text>
 <text x='376.23' y='513.10' text-anchor='middle' style='font-size: 9.60px; fill: #4D4D4D; font-family: sans;' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>2.0</text>
