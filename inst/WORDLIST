@@ -18,9 +18,11 @@ amplicon
 args
 bootswatch
 cderv
+codecov
 colour
 colours
 config
+covr
 csv
 dbplyr
 desc
