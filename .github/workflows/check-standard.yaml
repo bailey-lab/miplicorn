@@ -31,29 +31,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: r-lib/actions/setup-pandoc@v1
+
       - uses: r-lib/actions/setup-r@v1
         with:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-
-        # There is an issue with setting up pandoc on windows
-        # https://github.com/r-lib/actions/issues/276
-        # When this has been fixed, can just use the setup-pandoc action
-      - name: "Set up pandoc"
-        uses: r-lib/actions/setup-pandoc@v1
-        if: runner.os != 'Windows'
-        with:
-          pandoc-version: "2.11"
-
-      - name: "Change windows temp dir"
-        if: runner.os == 'Windows'
-        run: echo "TMPDIR=${{ runner.temp }}" >> $GITHUB_ENV
-        shell: bash
-
-      - name: "Setup devel pandoc windows"
-        uses: cderv/actions/setup-pandoc-nightly@nightly-pandoc
-        if: runner.os == 'Windows'
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
