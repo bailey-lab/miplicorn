@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   large-files: large-files.html
   miplicorn: miplicorn.html
-last_built: 2021-11-10T18:22Z
+last_built: 2021-11-10T21:26Z
 urls:
   reference: https://bailey-lab.github.io/miplicorn//reference
   article: https://bailey-lab.github.io/miplicorn//articles
