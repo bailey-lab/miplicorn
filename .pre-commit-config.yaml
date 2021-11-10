@@ -26,6 +26,7 @@ repos:
           \.Rprofile|
           data/.*|
           data-raw/.*|
+          DESCRIPTION|
           NAMESPACE|
           WORDLIST
           )$

@@ -15,6 +15,7 @@ colour
 colours
 csv
 dbplyr
+dplyr
 dtplyr
 eval
 extdata
@@ -25,5 +26,8 @@ magrittr
 pts
 rect
 repo
+rlang
 tibble
+tunnelled
+tunnelling
 umi
