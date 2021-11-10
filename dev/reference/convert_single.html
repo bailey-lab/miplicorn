@@ -173,14 +173,18 @@ abbreviation and <code>convert_three()</code> does the opposite.</p>
 abbreviation and 3-letter abbreviation in title-case.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Convert 1-letter abbreviation</span>
-<span class='fu'>convert_single</span><span class='op'>(</span><span class='st'>"G235L"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Gly235Leu"</div><div class='input'><span class='fu'>convert_single</span><span class='op'>(</span><span class='st'>"s545p"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Ser545Pro"</div><div class='input'>
-<span class='co'># Convert 3-letter abbreviation</span>
-<span class='fu'>convert_three</span><span class='op'>(</span><span class='st'>"Gly235Leu"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "G235L"</div><div class='input'><span class='fu'>convert_three</span><span class='op'>(</span><span class='st'>"SER545LEU"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "S545L"</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Convert 1-letter abbreviation</span></span>
+<span class='r-in'><span class='fu'>convert_single</span><span class='op'>(</span><span class='st'>"G235L"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Gly235Leu"</span>
+<span class='r-in'><span class='fu'>convert_single</span><span class='op'>(</span><span class='st'>"s545p"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Ser545Pro"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Convert 3-letter abbreviation</span></span>
+<span class='r-in'><span class='fu'>convert_three</span><span class='op'>(</span><span class='st'>"Gly235Leu"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "G235L"</span>
+<span class='r-in'><span class='fu'>convert_three</span><span class='op'>(</span><span class='st'>"SER545LEU"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "S545L"</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

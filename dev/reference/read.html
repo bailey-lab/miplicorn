@@ -260,202 +260,215 @@ expressions used to filter the data:</p><ul>
     <div class='dont-index'><p><code><a href='https://vroom.r-lib.org/reference/vroom.html'>vroom::vroom()</a></code> <code><a href='https://dplyr.tidyverse.org/reference/filter.html'>dplyr::filter()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Get path to example file</span>
-<span class='va'>ref_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='miplicorn_example.html'>miplicorn_example</a></span><span class='op'>(</span><span class='st'>"reference_AA_table.csv"</span><span class='op'>)</span>
-<span class='va'>alt_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='miplicorn_example.html'>miplicorn_example</a></span><span class='op'>(</span><span class='st'>"alternate_AA_table.csv"</span><span class='op'>)</span>
-<span class='va'>cov_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='miplicorn_example.html'>miplicorn_example</a></span><span class='op'>(</span><span class='st'>"coverage_AA_table.csv"</span><span class='op'>)</span>
-<span class='va'>ref_file</span>
-</div><div class='output co'>#&gt; [1] "/Users/runner/work/_temp/Library/miplicorn/extdata/reference_AA_table.csv"</div><div class='input'>
-<span class='co'># Input sources -------------------------------------------------------------</span>
-<span class='co'># Read from a path</span>
-<span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,344 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
-#&gt; <span style='color: #949494;'># … with 6,334 more rows</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,344 × 10</span>
-#&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #949494;'># … with 6,334 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
-<span class='co'># You can also use paths directly</span>
-<span class='co'># read_file("reference_AA_table.csv")</span>
-<span class='co'># read("reference_AA_table.csv", "alternate_AA_table.csv", "coverage_AA_table.csv")</span>
-
-<span class='co'># Read entire file ----------------------------------------------------------</span>
-<span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,344 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
-#&gt; <span style='color: #949494;'># … with 6,334 more rows</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,344 × 10</span>
-#&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #949494;'># … with 6,334 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
-<span class='co'># Data filtering ------------------------------------------------------------</span>
-<span class='co'># Filtering by one criterion</span>
-<span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 260 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
-#&gt; <span style='color: #949494;'># … with 250 more rows</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 260 × 10</span>
-#&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #949494;'># … with 250 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
-<span class='co'># Filtering by multiple criteria within a single logical expression</span>
-<span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>&amp;</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 156 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
-#&gt; <span style='color: #949494;'># … with 146 more rows</span></div><div class='input'><span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>|</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2,496 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
-#&gt; <span style='color: #949494;'># … with 2,486 more rows</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>&amp;</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 156 × 10</span>
-#&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #949494;'># … with 146 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>|</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2,496 × 10</span>
-#&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #949494;'># … with 2,486 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div><div class='input'>
-<span class='co'># When multiple expressions are used, they are combined using &amp;</span>
-<span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span>, <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 156 × 8</span>
-#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175
-#&gt; <span style='color: #949494;'># … with 146 more rows</span></div><div class='input'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span>, <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 156 × 10</span>
-#&gt;    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
-#&gt; <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     
-#&gt; <span style='color: #949494;'># … with 146 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Get path to example file</span></span>
+<span class='r-in'><span class='va'>ref_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='miplicorn_example.html'>miplicorn_example</a></span><span class='op'>(</span><span class='st'>"reference_AA_table.csv"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>alt_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='miplicorn_example.html'>miplicorn_example</a></span><span class='op'>(</span><span class='st'>"alternate_AA_table.csv"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>cov_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='miplicorn_example.html'>miplicorn_example</a></span><span class='op'>(</span><span class='st'>"coverage_AA_table.csv"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>ref_file</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "/Users/runner/work/_temp/Library/miplicorn/extdata/reference_AA_table.csv"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Input sources -------------------------------------------------------------</span></span>
+<span class='r-in'><span class='co'># Read from a path</span></span>
+<span class='r-in'><span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6,344 × 8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 6,334 more rows</span></span>
+<span class='r-in'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6,344 × 10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 6,334 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># You can also use paths directly</span></span>
+<span class='r-in'><span class='co'># read_file("reference_AA_table.csv")</span></span>
+<span class='r-in'><span class='co'># read("reference_AA_table.csv", "alternate_AA_table.csv", "coverage_AA_table.csv")</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Read entire file ----------------------------------------------------------</span></span>
+<span class='r-in'><span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6,344 × 8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 6,334 more rows</span></span>
+<span class='r-in'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6,344 × 10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 6,334 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Data filtering ------------------------------------------------------------</span></span>
+<span class='r-in'><span class='co'># Filtering by one criterion</span></span>
+<span class='r-in'><span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 260 × 8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 250 more rows</span></span>
+<span class='r-in'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 260 × 10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 250 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Filtering by multiple criteria within a single logical expression</span></span>
+<span class='r-in'><span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>&amp;</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 156 × 8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 146 more rows</span></span>
+<span class='r-in'><span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>|</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2,496 × 8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 2,486 more rows</span></span>
+<span class='r-in'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>&amp;</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 156 × 10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 146 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></span>
+<span class='r-in'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span> <span class='op'>|</span> <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2,496 × 10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 2,486 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># When multiple expressions are used, they are combined using &amp;</span></span>
+<span class='r-in'><span class='fu'>read_file</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span>, <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span>, .name <span class='op'>=</span> <span class='st'>"umi"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 156 × 8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted   umi</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 146 more rows</span></span>
+<span class='r-in'><span class='fu'>read</span><span class='op'>(</span><span class='va'>ref_file</span>, <span class='va'>alt_file</span>, <span class='va'>cov_file</span>, <span class='va'>gene</span> <span class='op'>==</span> <span class='st'>"atp6"</span>, <span class='va'>targeted</span> <span class='op'>==</span> <span class='st'>"Yes"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 156 × 10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> d10_jjj_55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> d10_jjj_5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> d10_jjj_47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> d10_jjj_15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> d10_jjj_27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> d10_jjj_10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> d10_jjj_28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> d10_jjj_52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 146 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

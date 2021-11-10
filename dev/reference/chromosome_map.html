@@ -215,41 +215,217 @@ internal plotting functions.</p></td>
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/chromoMap/man/chromoMap.html'>chromoMap::chromoMap()</a></code> <code><a href='https://rdrr.io/pkg/karyoploteR/man/plotKaryotype.html'>karyoploteR::plotKaryotype()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>probes</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
-  <span class='op'>~</span><span class='va'>chrom</span>, <span class='op'>~</span><span class='va'>start</span>, <span class='op'>~</span><span class='va'>end</span>, <span class='op'>~</span><span class='va'>probe_set</span>,
-  <span class='st'>"chr14"</span>, <span class='fl'>2342135L</span>, <span class='fl'>2342284L</span>, <span class='st'>"IBC"</span>,
-  <span class='st'>"chr3"</span>, <span class='fl'>830503L</span>, <span class='fl'>830769L</span>, <span class='st'>"DR2"</span>,
-  <span class='st'>"chr5"</span>, <span class='fl'>482233L</span>, <span class='fl'>482391L</span>, <span class='st'>"IBC"</span>,
-  <span class='st'>"chr9"</span>, <span class='fl'>375274L</span>, <span class='fl'>375417L</span>, <span class='st'>"IBC"</span>,
-  <span class='st'>"chr12"</span>, <span class='fl'>532032L</span>, <span class='fl'>532281L</span>, <span class='st'>"DR2"</span>,
-  <span class='st'>"chr7"</span>, <span class='fl'>383447L</span>, <span class='fl'>383653L</span>, <span class='st'>"HAP"</span>,
-  <span class='st'>"chr14"</span>, <span class='fl'>1401991L</span>, <span class='fl'>1402160L</span>, <span class='st'>"IBC"</span>,
-  <span class='st'>"chr4"</span>, <span class='fl'>734737L</span>, <span class='fl'>734936L</span>, <span class='st'>"HAP"</span>,
-  <span class='st'>"chr10"</span>, <span class='fl'>93054L</span>, <span class='fl'>93223L</span>, <span class='st'>"IBC"</span>,
-  <span class='st'>"chr7"</span>, <span class='fl'>162127L</span>, <span class='fl'>162277L</span>, <span class='st'>"IBC"</span>
-<span class='op'>)</span>
-<span class='va'>single_probe</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
-  <span class='op'>~</span><span class='va'>chrom</span>, <span class='op'>~</span><span class='va'>start</span>, <span class='op'>~</span><span class='va'>end</span>, <span class='op'>~</span><span class='va'>probe_set</span>,
-  <span class='st'>"chr14"</span>, <span class='fl'>2342135L</span>, <span class='fl'>2342284L</span>, <span class='st'>"IBC"</span>,
-  <span class='st'>"chr5"</span>, <span class='fl'>482233L</span>, <span class='fl'>482391L</span>, <span class='st'>"IBC"</span>,
-  <span class='st'>"chr9"</span>, <span class='fl'>375274L</span>, <span class='fl'>375417L</span>, <span class='st'>"IBC"</span>,
-  <span class='st'>"chr14"</span>, <span class='fl'>1401991L</span>, <span class='fl'>1402160L</span>, <span class='st'>"IBC"</span>,
-  <span class='st'>"chr10"</span>, <span class='fl'>93054L</span>, <span class='fl'>93223L</span>, <span class='st'>"IBC"</span>,
-  <span class='st'>"chr7"</span>, <span class='fl'>162127L</span>, <span class='fl'>162277L</span>, <span class='st'>"IBC"</span>
-<span class='op'>)</span>
-
-<span class='fu'>chromosome_map</span><span class='op'>(</span><span class='va'>genome_Pf3D7</span>, <span class='va'>single_probe</span>, <span class='st'>"karyoploteR"</span><span class='op'>)</span>
-</div><div class='img'><img src='chromosome_map-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>chromosome_map</span><span class='op'>(</span><span class='va'>genome_Pf3D7</span>, <span class='va'>probes</span>, <span class='st'>"chromoMap"</span><span class='op'>)</span>
-
-<span class='fu'>chromosome_map</span><span class='op'>(</span><span class='va'>genome_Pf3D7</span>, <span class='va'>single_probe</span>, <span class='st'>"chromoMap"</span>, colours <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
-<span class='fu'>chromosome_map</span><span class='op'>(</span>
-  <span class='va'>genome_Pf3D7</span>,
-  <span class='va'>probes</span>,
-  <span class='st'>"karyoploteR"</span>,
-  title <span class='op'>=</span> <span class='st'>"Example Chromosome Map"</span>,
-  colours <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#006A8EFF"</span>, <span class='st'>"#A8A6A7FF"</span>, <span class='st'>"#B1283AFF"</span><span class='op'>)</span>
-<span class='op'>)</span>
-</div><div class='img'><img src='chromosome_map-2.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>probes</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span></span>
+<span class='r-in'>  <span class='op'>~</span><span class='va'>chrom</span>, <span class='op'>~</span><span class='va'>start</span>, <span class='op'>~</span><span class='va'>end</span>, <span class='op'>~</span><span class='va'>probe_set</span>,</span>
+<span class='r-in'>  <span class='st'>"chr14"</span>, <span class='fl'>2342135L</span>, <span class='fl'>2342284L</span>, <span class='st'>"IBC"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr3"</span>, <span class='fl'>830503L</span>, <span class='fl'>830769L</span>, <span class='st'>"DR2"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr5"</span>, <span class='fl'>482233L</span>, <span class='fl'>482391L</span>, <span class='st'>"IBC"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr9"</span>, <span class='fl'>375274L</span>, <span class='fl'>375417L</span>, <span class='st'>"IBC"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr12"</span>, <span class='fl'>532032L</span>, <span class='fl'>532281L</span>, <span class='st'>"DR2"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr7"</span>, <span class='fl'>383447L</span>, <span class='fl'>383653L</span>, <span class='st'>"HAP"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr14"</span>, <span class='fl'>1401991L</span>, <span class='fl'>1402160L</span>, <span class='st'>"IBC"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr4"</span>, <span class='fl'>734737L</span>, <span class='fl'>734936L</span>, <span class='st'>"HAP"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr10"</span>, <span class='fl'>93054L</span>, <span class='fl'>93223L</span>, <span class='st'>"IBC"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr7"</span>, <span class='fl'>162127L</span>, <span class='fl'>162277L</span>, <span class='st'>"IBC"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>single_probe</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span></span>
+<span class='r-in'>  <span class='op'>~</span><span class='va'>chrom</span>, <span class='op'>~</span><span class='va'>start</span>, <span class='op'>~</span><span class='va'>end</span>, <span class='op'>~</span><span class='va'>probe_set</span>,</span>
+<span class='r-in'>  <span class='st'>"chr14"</span>, <span class='fl'>2342135L</span>, <span class='fl'>2342284L</span>, <span class='st'>"IBC"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr5"</span>, <span class='fl'>482233L</span>, <span class='fl'>482391L</span>, <span class='st'>"IBC"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr9"</span>, <span class='fl'>375274L</span>, <span class='fl'>375417L</span>, <span class='st'>"IBC"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr14"</span>, <span class='fl'>1401991L</span>, <span class='fl'>1402160L</span>, <span class='st'>"IBC"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr10"</span>, <span class='fl'>93054L</span>, <span class='fl'>93223L</span>, <span class='st'>"IBC"</span>,</span>
+<span class='r-in'>  <span class='st'>"chr7"</span>, <span class='fl'>162127L</span>, <span class='fl'>162277L</span>, <span class='st'>"IBC"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>chromosome_map</span><span class='op'>(</span><span class='va'>genome_Pf3D7</span>, <span class='va'>single_probe</span>, <span class='st'>"karyoploteR"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-plt img'><img src='chromosome_map-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='fu'>chromosome_map</span><span class='op'>(</span><span class='va'>genome_Pf3D7</span>, <span class='va'>probes</span>, <span class='st'>"chromoMap"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>chromosome_map</span><span class='op'>(</span><span class='va'>genome_Pf3D7</span>, <span class='va'>single_probe</span>, <span class='st'>"chromoMap"</span>, colours <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>chromosome_map</span><span class='op'>(</span></span>
+<span class='r-in'>  <span class='va'>genome_Pf3D7</span>,</span>
+<span class='r-in'>  <span class='va'>probes</span>,</span>
+<span class='r-in'>  <span class='st'>"karyoploteR"</span>,</span>
+<span class='r-in'>  title <span class='op'>=</span> <span class='st'>"Example Chromosome Map"</span>,</span>
+<span class='r-in'>  colours <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#006A8EFF"</span>, <span class='st'>"#A8A6A7FF"</span>, <span class='st'>"#B1283AFF"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> units: auto</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-plt img'><img src='chromosome_map-2.png' alt='' width='700' height='433' /></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
