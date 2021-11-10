@@ -1,13 +1,14 @@
 ---
 name: Feature Request
 about: Suggest an idea for this package
-title: ''
+title: ""
 labels: feature
-assignees: ''
+assignees: ""
 ---
 
 ### Related Problem
-<!-- 
+
+<!--
 **Is your feature request related to a problem?**
 If so, please briefly describe the problem.
 
@@ -21,7 +22,8 @@ reading <https://www.tidyverse.org/help/#reprex>.
 -->
 
 ### Solution Requested
-<!-- 
+
+<!--
 **Describe the solution you'd like**
 Provide a description of what you want to happen.
 -->
