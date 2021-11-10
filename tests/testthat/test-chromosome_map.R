@@ -93,9 +93,9 @@ test_that("error if wrong mapping package specified", {
   )
 })
 
-test_that("chromosome_map works silently", {
-  expect_silent(chromosome_map(genome_Pf3D7, probes, "chromoMap"))
-  expect_silent(chromosome_map(genome_Pf3D7, probes, "karyoploteR"))
+test_that("chromosome_map works invisibly", {
+  expect_invisible(chromosome_map(genome_Pf3D7, probes, "chromoMap"))
+  expect_invisible(chromosome_map(genome_Pf3D7, probes, "karyoploteR"))
 })
 
 # test_that("chromosome_map() leaves directory unchanged", {
