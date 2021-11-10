@@ -1,11 +1,9 @@
-.Rproj.user
-.Rhistory
-.Rdata
-.httr-oauth
 .DS_Store
+.httr-oauth
+.Rdata
+.Rhistory
+.Rproj.user
+docs
 inst/doc
 internal
-docs
-
 tests/testthat/Rplots.pdf
-.pre-commit-config.yaml
