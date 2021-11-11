@@ -114,19 +114,19 @@ read <- function(.ref_file,
 
   # Error message if multiple criteria selected
   if (lifecycle::is_present(chrom) && lifecycle::is_present(gene)) {
-    cli_abort(c(
+    abort(c(
       "Multiple filtering criteria selected.",
-      "x" = "Cannot filter on both `chrom` and `gene`.",
-      "i" = "Select only one piece of information to filter on."
+      x = "Cannot filter on both `chrom` and `gene`.",
+      i = "Select only one piece of information to filter on."
     ))
   }
 
   # Error if any file is empty
   if (purrr::some(list(.ref_file, .alt_file, .cov_file), empty_file)) {
     empty <- purrr::detect(list(.ref_file, .alt_file, .cov_file), empty_file)
-    cli_abort(c(
+    abort(c(
       "Unable to read files.",
-      "x" = '"{empty}" is an empty file.'
+      x = glue('"{empty}" is an empty file.')
     ))
   }
 
@@ -191,9 +191,9 @@ read_file <- function(.file, ..., .name = "value") {
         stringr::str_replace("object", "Object") %>%
         stringr::str_c(".")
       objects <- stringr::str_c("'", colnames(header)[-1], "'")
-      cli_abort(c(
+      abort(c(
         msg,
-        "i" = "Available objects are {objects}."
+        i = cli::pluralize("Available objects are {objects}.")
       ))
     }
   )
@@ -247,11 +247,11 @@ check_named <- function(dots) {
     expr <- rlang::quo_get_expr(quo)
     if (!rlang::is_logical(expr)) {
       name <- names(dots)[i]
-      cli_abort(c(
-        "Problem with `read()` input `..{i}`.",
-        "x" = "Input `..{i}` is named",
-        "i" = "This usually means that you've used `=` instead of `==`.",
-        "i" = "Did you mean `{name} == {as_label(expr)}`?"
+      abort(c(
+        glue("Problem with `read()` input `..{i}`."),
+        x = glue("Input `..{i}` is named"),
+        i = "This usually means that you've used `=` instead of `==`.",
+        i = glue("Did you mean `{name} == {as_label(expr)}`?")
       ))
     }
   }

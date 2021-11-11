@@ -19,6 +19,7 @@ Depends:
 Imports:
     cli (>= 3.0.0),
     dplyr,
+    glue,
     ggplot2,
     janitor,
     lifecycle,
