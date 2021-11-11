@@ -161,6 +161,20 @@ read <- function(.ref_file,
 
 #' @rdname read
 #' @export
+read_tbl_reference <- function(.file, ...) {
+  read_file(.file, ..., .name = "ref_umi_count")
+}
+
+#' @export
+read_tbl_alternate <- function(.file, ...) {
+  read_file(.file, ..., .name = "alt_umi_count")
+}
+
+#' @export
+read_tbl_coverage <- function(.file, ...) {
+  read_file(.file, ..., .name = "coverage")
+}
+
 read_file <- function(.file, ..., .name = "value") {
   dots <- enquos(..., .ignore_empty = "all")
   check_named(dots)
