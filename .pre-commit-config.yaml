@@ -71,4 +71,8 @@ repos:
         types_or: [yaml, markdown]
 
 # Global exclude
-exclude: ^tests/testthat/_snaps/
+exclude: >
+  (?x)^(
+  tests/testthat/_snaps/|
+  .*\.svg
+  )$
