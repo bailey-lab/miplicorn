@@ -73,6 +73,6 @@ repos:
 # Global exclude
 exclude: >
   (?x)^(
-  tests/testthat/_snaps/|
+  tests/testthat/_snaps/.*|
   .*\.svg
   )$

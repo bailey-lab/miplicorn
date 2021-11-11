@@ -1,5 +1,7 @@
 # miplicorn (development version)
 
+- `label_mutations()` labels a mutation as `"ref"`, `"alt"`, `"ins"`, or `"del"`
+  (#3).
 - `plot_karyoploteR()` now works for arbitrary column names (#14).
 - New `theme_rainbow()` creates a custom theme.
 
