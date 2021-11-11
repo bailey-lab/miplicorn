@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • miplicorn</title>
+<title>Custom themes — custom_themes • miplicorn</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Custom themes — custom_themes" />
+<meta property="og:description" content="These are custom ggplot2 themes which control all non-data display. You
+may further tweak components of these themes using ggplot2::theme()." />
 <meta property="og:image" content="https://bailey-lab.github.io/miplicorn/logo.png" />
 
 
@@ -66,7 +68,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -140,136 +142,69 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Custom themes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/bailey-lab/miplicorn/blob/master/R/themes.R'><code>R/themes.R</code></a></small>
+    <div class="hidden name"><code>custom_themes.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>These are custom <code>ggplot2</code> themes which control all non-data display. You
+may further tweak components of these themes using <code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme()</a></code>.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>theme_miplicorn</span><span class='op'>(</span>
+  base_size <span class='op'>=</span> <span class='fl'>10</span>,
+  base_family <span class='op'>=</span> <span class='st'>""</span>,
+  base_line_size <span class='op'>=</span> <span class='va'>base_size</span><span class='op'>/</span><span class='fl'>22</span>,
+  base_rect_size <span class='op'>=</span> <span class='va'>base_size</span><span class='op'>/</span><span class='fl'>22</span>
+<span class='op'>)</span>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-parse" class="hasAnchor"><a href="#section-parse" class="anchor"></a>Parse</h2>
-          <p class="section-desc"><p>These functions parse files obtained from <a href="https://github.com/bailey-lab/MIPTools">MIPTools</a> into tibbles.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="read.html">read()</a></code> <code><a href="read.html">read_file()</a></code> </p>
-        </td>
-        <td><p>Read data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="label_mutations.html">label_mutations()</a></code> </p>
-        </td>
-        <td><p>Label mutations</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-manipulate" class="hasAnchor"><a href="#section-manipulate" class="anchor"></a>Manipulate</h2>
-          <p class="section-desc"><p>These functions are used to manipulate data objects.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="arrange_natural.html">arrange_natural()</a></code> </p>
-        </td>
-        <td><p>Arrange rows by column values naturally</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="convert_single.html">convert_single()</a></code> <code><a href="convert_single.html">convert_three()</a></code> </p>
-        </td>
-        <td><p>Convert amino acid abbreviations</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-visualize" class="hasAnchor"><a href="#section-visualize" class="anchor"></a>Visualize</h2>
-          <p class="section-desc"><p>These functions are used to visualize data.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="chromosome_map.html">chromosome_map()</a></code> <code><a href="chromosome_map.html">plot_chromoMap()</a></code> <code><a href="chromosome_map.html">plot_karyoploteR()</a></code> </p>
-        </td>
-        <td><p>Create annotated chromosome map</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="custom_themes.html">theme_miplicorn()</a></code> <code><a href="custom_themes.html">theme_rainbow()</a></code> </p>
-        </td>
-        <td><p>Custom themes</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-miscellaneous" class="hasAnchor"><a href="#section-miscellaneous" class="anchor"></a>Miscellaneous</h2>
-          <p class="section-desc"><p>These functions are used to inspect objects.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="miplicorn_example.html">miplicorn_example()</a></code> </p>
-        </td>
-        <td><p>Get path to miplicorn examples</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-data" class="hasAnchor"><a href="#section-data" class="anchor"></a>Data</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="genome_Pf3D7.html">genome_Pf3D7</a></code> </p>
-        </td>
-        <td><p>Plasmodium falciparum 3D7 genome</p></td>
-      </tr>
-    </tbody>
+<span class='fu'>theme_rainbow</span><span class='op'>(</span>
+  base_size <span class='op'>=</span> <span class='fl'>12</span>,
+  base_family <span class='op'>=</span> <span class='st'>""</span>,
+  base_line_size <span class='op'>=</span> <span class='va'>base_size</span><span class='op'>/</span><span class='fl'>22</span>,
+  base_rect_size <span class='op'>=</span> <span class='va'>base_size</span><span class='op'>/</span><span class='fl'>22</span>
+<span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>base_size</th>
+      <td><p>Base font size, given in pts.</p></td>
+    </tr>
+    <tr>
+      <th>base_family</th>
+      <td><p>Base font family.</p></td>
+    </tr>
+    <tr>
+      <th>base_line_size</th>
+      <td><p>Base size for line elements.</p></td>
+    </tr>
+    <tr>
+      <th>base_rect_size</th>
+      <td><p>Base size for rect elements.</p></td>
+    </tr>
     </table>
-  </div>
 
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>wt</span>, y <span class='op'>=</span> <span class='va'>mpg</span>, colour <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>gear</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>am</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>p</span> <span class='op'>+</span> <span class='fu'>theme_miplicorn</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> `geom_smooth()` using formula 'y ~ x'</span>
+<span class='r-plt img'><img src='custom_themes-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='va'>p</span> <span class='op'>+</span> <span class='fu'>theme_rainbow</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> `geom_smooth()` using formula 'y ~ x'</span>
+<span class='r-plt img'><img src='custom_themes-2.png' alt='' width='700' height='433' /></span>
+</pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
