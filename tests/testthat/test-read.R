@@ -14,25 +14,6 @@ test_that("read returns error if a file is empty", {
   expect_snapshot(error = TRUE, read("small.csv", "empty-file", "empty-file"))
 })
 
-test_that("chrom and gene are deprecated", {
-  expect_warning(suppressMessages(
-    read("small.csv", "small.csv", "small.csv", chrom = "13")
-  ))
-  expect_warning(suppressMessages(
-    read("small.csv", "small.csv", "small.csv", gene = "atp")
-  ))
-
-  expect_error(suppressMessages(suppressWarnings(
-    read("small.csv", "small.csv", "small.csv", chrom = "13", gene = "atp")
-  )))
-  expect_snapshot(
-    error = TRUE,
-    suppressMessages(
-      read("small.csv", "small.csv", "small.csv", chrom = "13", gene = "10")
-    )
-  )
-})
-
 test_that("named filter inputs returns error", {
   expect_error(read_file("small.csv", gene = "mdr1", .name = value))
 
