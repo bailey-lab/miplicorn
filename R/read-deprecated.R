@@ -8,10 +8,16 @@
 #' `read_tbl_alternate()`, and `read_tbl_coverage()` to provide more specific
 #' functionality.
 #'
+#' `read()` has been renamed to `read_tbl_ref_alt_cov()`
+#'
+#' @details
 #' Read files containing
 #' \href{https://github.com/bailey-lab/MIPTools}{MIPtools'} data tables.
-#' `read_file()` reads a single file. Data files include the reference table,
-#' the alternate table, and the coverage table. Data is read lazily using the
+#' `read_file()` reads a single file. `read()` is a convenience function that
+#' reads all files output by
+#' \href{https://github.com/bailey-lab/MIPTools}{MIPtools} and combines them.
+#' Data files include the reference table, the alternate table, and the coverage
+#' table. Data is read lazily using the
 #' \href{https://vroom.r-lib.org/index.html}{`vroom`} package. Data can be
 #' filtered, retaining all rows that satisfy the conditions. To be retained, the
 #' row in question must produce a value of `TRUE` for all conditions. Note that
@@ -37,11 +43,17 @@
 #' * [is.na()]
 #' * [between()], [near()]
 #'
-#' @param .file File path to a file.
+#' @param .ref_file File path to the reference table.
+#' @param .alt_file File path to the alternate table.
+#' @param .cov_file File path to the coverage table.
 #' @param ... <[`data-masking`][dplyr_data_masking]> Expressions that return a
 #'   logical value and are used to filter the data. If multiple expressions are
 #'   included, they are combined with the `&` operator. Only rows for which all
 #'   conditions evaluate to `TRUE` are kept.
+#' @param chrom `r lifecycle::badge("deprecated")`: The chromosome(s) to filter
+#'   to.
+#' @param gene `r lifecycle::badge("deprecated")`: The gene(s) to filter to.
+#' @param .file File path to a file.
 #' @param .name The information contained in the specific file. For example
 #'   `"coverage"` or `"ref_umi_count"`.
 #'
@@ -52,32 +64,69 @@
 #'
 #' @seealso [vroom::vroom()] [dplyr::filter()]
 #' @keywords internal
-#' @export
 #' @examples
 #' # Get path to example file
 #' ref_file <- miplicorn_example("reference_AA_table.csv")
+#' alt_file <- miplicorn_example("alternate_AA_table.csv")
+#' cov_file <- miplicorn_example("coverage_AA_table.csv")
 #' ref_file
 #'
 #' # Input sources -------------------------------------------------------------
 #' # Read from a path
 #' read_file(ref_file, .name = "umi")
+#' read(ref_file, alt_file, cov_file)
 #'
 #' # You can also use paths directly
 #' # read_file("reference_AA_table.csv")
+#' # read("reference_AA_table.csv", "alternate_AA_table.csv", "coverage_AA_table.csv")
 #'
 #' # Read entire file ----------------------------------------------------------
 #' read_file(ref_file, .name = "umi")
+#' read(ref_file, alt_file, cov_file)
 #'
 #' # Data filtering ------------------------------------------------------------
 #' # Filtering by one criterion
 #' read_file(ref_file, gene == "atp6", .name = "umi")
+#' read(ref_file, alt_file, cov_file, gene == "atp6")
 #'
 #' # Filtering by multiple criteria within a single logical expression
 #' read_file(ref_file, gene == "atp6" & targeted == "Yes", .name = "umi")
 #' read_file(ref_file, gene == "atp6" | targeted == "Yes", .name = "umi")
+#' read(ref_file, alt_file, cov_file, gene == "atp6" & targeted == "Yes")
+#' read(ref_file, alt_file, cov_file, gene == "atp6" | targeted == "Yes")
 #'
 #' # When multiple expressions are used, they are combined using &
 #' read_file(ref_file, gene == "atp6", targeted == "Yes", .name = "umi")
+#' read(ref_file, alt_file, cov_file, gene == "atp6", targeted == "Yes")
+#' @name read-deprecated
+NULL
+
+#' @rdname read-deprecated
+#' @export
+read <- function(.ref_file,
+                 .alt_file,
+                 .cov_file,
+                 ...,
+                 chrom = deprecated(),
+                 gene = deprecated()) {
+  lifecycle::deprecate_warn(
+    when = "0.2.0",
+    what = "read()",
+    with = "read_tbl_ref_alt_cov()"
+  )
+
+  read_tbl_ref_alt_cov(
+    .tbl_ref = .ref_file,
+    .tbl_alt = .alt_file,
+    .tbl_cov = .cov_file,
+    ...,
+    chrom = chrom,
+    gene = gene
+  )
+}
+
+#' @rdname read-deprecated
+#' @export
 read_file <- function(.file, ..., .name = "value") {
   msg <- paste(
     "The function has been replaced by three more specific functions:\n",
