@@ -61,7 +61,7 @@
 #' read_tbl_reference(ref_file)
 #'
 #' # You can also use paths directly
-#' read_tbl_alternate("alternate_AA_table.csv")
+#' # read_tbl_alternate("alternate_AA_table.csv")
 #'
 #' # Read entire file ----------------------------------------------------------
 #' read_tbl_coverage(cov_file)
@@ -110,7 +110,7 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
   # Deprecated chrom
   if (lifecycle::is_present(chrom)) {
     lifecycle::deprecate_warn(
-      when = "0.0.0.9001",
+      when = "0.1.0",
       what = "read(chrom)",
       details = "Please use the `...` argument instead to filter data."
     )
@@ -119,7 +119,7 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
   # Deprecated gene
   if (lifecycle::is_present(gene)) {
     lifecycle::deprecate_warn(
-      when = "0.0.0.9001",
+      when = "0.1.0",
       what = "read(gene)",
       details = "Please use the `...` argument instead to filter data."
     )
@@ -199,8 +199,10 @@ read_tbl_helper <- function(.tbl, ..., .name = "value") {
     error = function(e) {
       e <- rlang::catch_cnd(dplyr::filter(header, ...))
       msg <- e$message %>%
-        stringr::str_replace("filter", "read") %>%
-        stringr::str_replace("object", "Object") %>%
+        stringr::str_replace_all(c(
+          "filter" = "read_tbl_*()",
+          "comparison" = "Comparison"
+        )) %>%
         stringr::str_c(".")
       objects <- stringr::str_c("'", colnames(header)[-1], "'")
       abort(c(
@@ -249,19 +251,20 @@ read_tbl_helper <- function(.tbl, ..., .name = "value") {
     dplyr::rename({{ .name }} := .data$value)
 }
 
+# Check named arguments for filtering step
 check_named <- function(dots) {
   named <- rlang::have_name(dots)
 
   for (i in which(named)) {
     quo <- dots[[i]]
 
-    # only allow unnamed logical vectors, anything else is suspicious
+    # Only allow unnamed logical vectors, anything else is suspicious
     expr <- rlang::quo_get_expr(quo)
     if (!rlang::is_logical(expr)) {
       name <- names(dots)[i]
       abort(c(
-        glue("Problem with `read()` input `..{i}`."),
-        x = glue("Input `..{i}` is named"),
+        glue("Problem with `read_tbl_*()` input `..{i}`."),
+        x = glue("Input `..{i}` is named."),
         i = "This usually means that you've used `=` instead of `==`.",
         i = glue("Did you mean `{name} == {as_label(expr)}`?")
       ))

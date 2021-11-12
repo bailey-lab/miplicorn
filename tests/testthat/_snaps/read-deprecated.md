@@ -1,9 +1,48 @@
 # chrom and gene are deprecated
 
     Code
-      suppressMessages(read("small.csv", "small.csv", "small.csv", chrom = "13",
-        gene = "10"))
+      read("small.csv", "small.csv", "small.csv", chrom = "13")
     Warning <lifecycle_warning_deprecated>
+      `read()` was deprecated in miplicorn 0.2.0.
+      Please use `read_tbl_ref_alt_cov()` instead.
+      The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
+      Please use the `...` argument instead to filter data.
+    Message <message>
+      Joining, by = "gene_id"
+      Joining, by = "gene_id"
+      Joining, by = "gene_id"
+    Output
+      # A tibble: 0 x 10
+      # ... with 10 variables: sample <chr>, gene_id <chr>, gene <chr>,
+      #   mutation <chr>, func <chr>, aa_chng <chr>, target <chr>,
+      #   ref_umi_count <dbl>, alt_umi_count <dbl>, coverage <dbl>
+
+---
+
+    Code
+      read("small.csv", "small.csv", "small.csv", chrom = "atp")
+    Warning <lifecycle_warning_deprecated>
+      `read()` was deprecated in miplicorn 0.2.0.
+      Please use `read_tbl_ref_alt_cov()` instead.
+      The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
+      Please use the `...` argument instead to filter data.
+    Message <message>
+      Joining, by = "gene_id"
+      Joining, by = "gene_id"
+      Joining, by = "gene_id"
+    Output
+      # A tibble: 0 x 10
+      # ... with 10 variables: sample <chr>, gene_id <chr>, gene <chr>,
+      #   mutation <chr>, func <chr>, aa_chng <chr>, target <chr>,
+      #   ref_umi_count <dbl>, alt_umi_count <dbl>, coverage <dbl>
+
+---
+
+    Code
+      read("small.csv", "small.csv", "small.csv", chrom = "13", gene = "atp")
+    Warning <lifecycle_warning_deprecated>
+      `read()` was deprecated in miplicorn 0.2.0.
+      Please use `read_tbl_ref_alt_cov()` instead.
       The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
       The `gene` argument of `read()` is deprecated as of miplicorn 0.1.0.
@@ -25,15 +64,14 @@
       Input detected as the reference table.
     Output
       # A tibble: 4 x 8
-        sample     gene_id       gene  mutation_name  exonic_func   aa_change targeted
-        <chr>      <chr>         <chr> <chr>          <chr>         <chr>     <chr>   
-      1 d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var~ Ala623Glu Yes     
-      2 d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var~ Ala623Glu Yes     
-      3 d10_jjj_23 PF3D7_0523000 mdr1  mdr1-Asn86Tyr  missense_var~ Asn86Tyr  Yes     
-      4 d10_jjj_43 PF3D7_0523000 mdr1  mdr1-Asn86Tyr  missense_var~ Asn86Tyr  Yes     
-      # ... with 1 more variable: ref_umi_count <dbl>
+        sample gene_id gene  mutation   func     aa_chng target ref_umi_count
+        <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>          <dbl>
+      1 s1     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      2 s2     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      3 s1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes               13
+      4 s2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes                0
 
-# deprecated read_file() detects correct inputs
+# deprecated read_file() detects reference tables
 
     Code
       read_file("small.csv", .name = "ref_umi_count")
@@ -45,15 +83,14 @@
       Input detected as the reference table.
     Output
       # A tibble: 4 x 8
-        sample     gene_id       gene  mutation_name  exonic_func   aa_change targeted
-        <chr>      <chr>         <chr> <chr>          <chr>         <chr>     <chr>   
-      1 d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var~ Ala623Glu Yes     
-      2 d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var~ Ala623Glu Yes     
-      3 d10_jjj_23 PF3D7_0523000 mdr1  mdr1-Asn86Tyr  missense_var~ Asn86Tyr  Yes     
-      4 d10_jjj_43 PF3D7_0523000 mdr1  mdr1-Asn86Tyr  missense_var~ Asn86Tyr  Yes     
-      # ... with 1 more variable: ref_umi_count <dbl>
+        sample gene_id gene  mutation   func     aa_chng target ref_umi_count
+        <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>          <dbl>
+      1 s1     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      2 s2     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      3 s1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes               13
+      4 s2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes                0
 
----
+# deprecated read_file() detects alternate tables
 
     Code
       read_file("small.csv", .name = "alt_umi_count")
@@ -65,15 +102,14 @@
       Input detected as the alternate table.
     Output
       # A tibble: 4 x 8
-        sample     gene_id       gene  mutation_name  exonic_func   aa_change targeted
-        <chr>      <chr>         <chr> <chr>          <chr>         <chr>     <chr>   
-      1 d10_jjj_23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var~ Ala623Glu Yes     
-      2 d10_jjj_43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var~ Ala623Glu Yes     
-      3 d10_jjj_23 PF3D7_0523000 mdr1  mdr1-Asn86Tyr  missense_var~ Asn86Tyr  Yes     
-      4 d10_jjj_43 PF3D7_0523000 mdr1  mdr1-Asn86Tyr  missense_var~ Asn86Tyr  Yes     
-      # ... with 1 more variable: alt_umi_count <dbl>
+        sample gene_id gene  mutation   func     aa_chng target alt_umi_count
+        <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>          <dbl>
+      1 s1     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      2 s2     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      3 s1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes               13
+      4 s2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes                0
 
----
+# deprecated read_file() detects coverage tables
 
     Code
       read_file("small.csv", .name = "coverage")
@@ -85,14 +121,21 @@
       Input detected as the coverage table.
     Output
       # A tibble: 4 x 8
-        sample     gene_id gene  mutation_name exonic_func aa_change targeted coverage
-        <chr>      <chr>   <chr> <chr>         <chr>       <chr>     <chr>       <dbl>
-      1 d10_jjj_23 PF3D7_~ atp6  atp6-Ala623G~ missense_v~ Ala623Glu Yes             0
-      2 d10_jjj_43 PF3D7_~ atp6  atp6-Ala623G~ missense_v~ Ala623Glu Yes             0
-      3 d10_jjj_23 PF3D7_~ mdr1  mdr1-Asn86Tyr missense_v~ Asn86Tyr  Yes            13
-      4 d10_jjj_43 PF3D7_~ mdr1  mdr1-Asn86Tyr missense_v~ Asn86Tyr  Yes             0
+        sample gene_id gene  mutation   func     aa_chng target coverage
+        <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>     <dbl>
+      1 s1     Site1   atp6  atp6-A623E missense A623E   Yes           0
+      2 s2     Site1   atp6  atp6-A623E missense A623E   Yes           0
+      3 s1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes          13
+      4 s2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes           0
 
 # deprecated read_file() fails if can't detect input
 
-    Unable to detect the type of table input.
+    Code
+      read_file("small.csv")
+    Warning <lifecycle_warning_deprecated>
+      `read_file()` was deprecated in miplicorn 0.2.0.
+      The function has been replaced by three more specific functions:
+       `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
+    Error <rlang_error>
+      Unable to detect the type of table input.
 

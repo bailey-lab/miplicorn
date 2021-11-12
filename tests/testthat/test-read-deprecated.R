@@ -1,19 +1,9 @@
 test_that("chrom and gene are deprecated", {
-  expect_warning(suppressMessages(
-    read("small.csv", "small.csv", "small.csv", chrom = "13")
-  ))
-  expect_warning(suppressMessages(
-    read("small.csv", "small.csv", "small.csv", gene = "atp")
-  ))
-
-  expect_error(suppressMessages(suppressWarnings(
-    read("small.csv", "small.csv", "small.csv", chrom = "13", gene = "atp")
-  )))
+  expect_snapshot(read("small.csv", "small.csv", "small.csv", chrom = "13"))
+  expect_snapshot(read("small.csv", "small.csv", "small.csv", chrom = "atp"))
   expect_snapshot(
     error = TRUE,
-    suppressMessages(
-      read("small.csv", "small.csv", "small.csv", chrom = "13", gene = "10")
-    )
+    read("small.csv", "small.csv", "small.csv", chrom = "13", gene = "atp")
   )
 })
 
@@ -22,18 +12,50 @@ test_that("read_file() is deprecated", {
   expect_snapshot(read_file("small.csv", .name = "ref_umi_count"))
 })
 
-test_that("deprecated read_file() detects correct inputs", {
-  expect_message(read_file("small.csv", .name = "ref_umi_count"))
+res <- tibble::tribble(
+  ~sample, ~gene_id, ~gene, ~mutation, ~func, ~aa_chng, ~target, ~value,
+  "s1", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
+  "s2", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
+  "s1", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 13,
+  "s2", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 0
+)
+
+test_that("deprecated read_file() detects reference tables", {
   expect_snapshot(read_file("small.csv", .name = "ref_umi_count"))
+  expect_equal(
+    suppressWarnings(suppressMessages(read_file(
+      .file = "small.csv",
+      .name = "ref_umi_count"
+    ))),
+    dplyr::rename(res, ref_umi_count = value)
+  )
+})
 
-  expect_message(read_file("small.csv", .name = "alt_umi_count"))
+test_that("deprecated read_file() detects alternate tables", {
   expect_snapshot(read_file("small.csv", .name = "alt_umi_count"))
+  expect_equal(
+    suppressWarnings(suppressMessages(read_file(
+      .file = "small.csv",
+      .name = "alt_umi_count"
+    ))),
+    dplyr::rename(res, alt_umi_count = value)
+  )
+})
 
-  expect_message(read_file("small.csv", .name = "coverage"))
+test_that("deprecated read_file() detects coverage tables", {
   expect_snapshot(read_file("small.csv", .name = "coverage"))
+  expect_equal(
+    suppressWarnings(suppressMessages(read_file(
+      .file = "small.csv",
+      .name = "coverage"
+    ))),
+    dplyr::rename(res, coverage = value)
+  )
 })
 
 test_that("deprecated read_file() fails if can't detect input", {
-  expect_error(read_file("small.csv"))
-  expect_snapshot_error(read_file("small.csv"))
+  expect_snapshot(
+    error = TRUE,
+    read_file("small.csv")
+  )
 })
