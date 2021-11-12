@@ -35,17 +35,17 @@ three at a time.
 <!-- ``` -->
 
 ## Filters
-Both `read_file()` and `read()` provide the ability to filter data so that data
-may load and run faster. This works by filtering even before objects are loaded
-into R. Data can be filtered using any of the information present in the
-metadata, and you may even filter on multiple conditions.
+The entire `read_tbl_*()` family of functions provide the ability to filter data
+so that data may load and run faster. This works by filtering even before
+objects are loaded into R. Data can be filtered using any of the information
+present in the metadata, and you may even filter on multiple conditions.
 
 ```{r filter}
 cov_file <- miplicorn_example("coverage_AA_table.csv")
 
-read_file(cov_file)
+read_tbl_coverage(cov_file)
 
-read_file(cov_file, gene == "atp6")
+read_tbl_coverage(cov_file, gene == "atp6")
 
-read_file(cov_file, gene == "atp6", targeted == "Yes")
+read_tbl_coverage(cov_file, gene == "atp6", targeted == "Yes")
 ```
