@@ -88,6 +88,24 @@
 #' # When multiple expressions are used, they are combined using &
 #' read_file(ref_file, gene == "atp6", targeted == "Yes", .name = "umi")
 #' read(ref_file, alt_file, cov_file, gene == "atp6", targeted == "Yes")
+#' @rdname read-tbl
+#' @export
+read_tbl_reference <- function(.tbl, ...) {
+  read_tbl_helper(.tbl, ..., .name = "ref_umi_count")
+}
+
+#' @rdname read-tbl
+#' @export
+read_tbl_alternate <- function(.tbl, ...) {
+  read_tbl_helper(.tbl, ..., .name = "alt_umi_count")
+}
+
+#' @rdname read-tbl
+#' @export
+read_tbl_coverage <- function(.tbl, ...) {
+  read_tbl_helper(.tbl, ..., .name = "coverage")
+}
+
 read <- function(.ref_file,
                  .alt_file,
                  .cov_file,
@@ -144,7 +162,7 @@ read <- function(.ref_file,
   } else {
     tables <- purrr::pmap(
       list(
-        .file = c(.ref_file, .alt_file, .cov_file),
+        .tbl = c(.ref_file, .alt_file, .cov_file),
         .name = c("ref_umi_count", "alt_umi_count", "coverage")
       ),
       read_file,
@@ -159,32 +177,17 @@ read <- function(.ref_file,
   purrr::reduce(tables, dplyr::full_join, by = by)
 }
 
-#' @rdname read
-#' @export
-read_tbl_reference <- function(.file, ...) {
-  read_file(.file, ..., .name = "ref_umi_count")
-}
-
-#' @export
-read_tbl_alternate <- function(.file, ...) {
-  read_file(.file, ..., .name = "alt_umi_count")
-}
-
-#' @export
-read_tbl_coverage <- function(.file, ...) {
-  read_file(.file, ..., .name = "coverage")
-}
-
-read_file <- function(.file, ..., .name = "value") {
+# Helper function used to read reference, alternate, and coverage tables
+read_tbl_helper <- function(.tbl, ..., .name = "value") {
   dots <- enquos(..., .ignore_empty = "all")
   check_named(dots)
 
-  if (empty_file(.file)) {
+  if (empty_file(.tbl)) {
     return(tibble::tibble())
   }
 
   # Read in complete header
-  header <- .file %>%
+  header <- .tbl %>%
     vroom::vroom(col_names = FALSE, show_col_types = FALSE, n_max = 6) %>%
     tibble::rownames_to_column() %>%
     tidyr::pivot_longer(-.data$rowname) %>%
@@ -219,7 +222,7 @@ read_file <- function(.file, ..., .name = "value") {
 
   # Read in entire data set but select only columns we are interested in
   data <- vroom::vroom(
-    file = .file,
+    file = .tbl,
     col_names = FALSE,
     col_select = c(1, col_select),
     show_col_types = FALSE,
