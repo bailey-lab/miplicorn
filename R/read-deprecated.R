@@ -8,7 +8,7 @@
 #' `read_tbl_alternate()`, and `read_tbl_coverage()` to provide more specific
 #' functionality.
 #'
-#' `read()` has been renamed to `read_tbl_ref_alt_cov()`
+#' `read()` has been renamed to `read_tbl_ref_alt_cov()`.
 #'
 #' @details
 #' Read files containing
@@ -69,11 +69,11 @@
 #' ref_file <- miplicorn_example("reference_AA_table.csv")
 #' alt_file <- miplicorn_example("alternate_AA_table.csv")
 #' cov_file <- miplicorn_example("coverage_AA_table.csv")
-#' ref_file
+#' cov_file
 #'
 #' # Input sources -------------------------------------------------------------
 #' # Read from a path
-#' read_file(ref_file, .name = "umi")
+#' read_file(cov_file, .name = "coverage")
 #' read(ref_file, alt_file, cov_file)
 #'
 #' # You can also use paths directly
@@ -81,22 +81,22 @@
 #' # read("reference_AA_table.csv", "alternate_AA_table.csv", "coverage_AA_table.csv")
 #'
 #' # Read entire file ----------------------------------------------------------
-#' read_file(ref_file, .name = "umi")
+#' read_file(cov_file, .name = "coverage")
 #' read(ref_file, alt_file, cov_file)
 #'
 #' # Data filtering ------------------------------------------------------------
 #' # Filtering by one criterion
-#' read_file(ref_file, gene == "atp6", .name = "umi")
+#' read_file(cov_file, gene == "atp6", .name = "coverage")
 #' read(ref_file, alt_file, cov_file, gene == "atp6")
 #'
 #' # Filtering by multiple criteria within a single logical expression
-#' read_file(ref_file, gene == "atp6" & targeted == "Yes", .name = "umi")
-#' read_file(ref_file, gene == "atp6" | targeted == "Yes", .name = "umi")
+#' read_file(cov_file, gene == "atp6" & targeted == "Yes", .name = "coverage")
+#' read_file(cov_file, gene == "atp6" | targeted == "Yes", .name = "coverage")
 #' read(ref_file, alt_file, cov_file, gene == "atp6" & targeted == "Yes")
 #' read(ref_file, alt_file, cov_file, gene == "atp6" | targeted == "Yes")
 #'
 #' # When multiple expressions are used, they are combined using &
-#' read_file(ref_file, gene == "atp6", targeted == "Yes", .name = "umi")
+#' read_file(cov_file, gene == "atp6", targeted == "Yes", .name = "coverage")
 #' read(ref_file, alt_file, cov_file, gene == "atp6", targeted == "Yes")
 #' @name read-deprecated
 NULL

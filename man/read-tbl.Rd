@@ -94,7 +94,7 @@ ref_file
 read_tbl_reference(ref_file)
 
 # You can also use paths directly
-read_tbl_alternate("alternate_AA_table.csv")
+# read_tbl_alternate("alternate_AA_table.csv")
 
 # Read entire file ----------------------------------------------------------
 read_tbl_coverage(cov_file)
