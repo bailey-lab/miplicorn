@@ -86,7 +86,7 @@ rows should be retained.
 There are many functions and operators that are useful when constructing the
 expressions used to filter the data:
 \itemize{
-\item \code{\link{==}}, \code{\link{>}}, \code{\link{>=}} etc
+\item \code{\link{==}}, \code{\link{>}}, \code{\link{>=}}, etc.
 \item \code{\link{&}}, \code{\link{|}}, \code{\link{!}}, \code{\link[=xor]{xor()}}
 \item \code{\link[=is.na]{is.na()}}
 \item \code{\link[dplyr:between]{between()}}, \code{\link[dplyr:near]{near()}}

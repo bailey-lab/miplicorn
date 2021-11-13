@@ -14,8 +14,7 @@
 #' Input data must contain six rows of metadata. The metadata can vary depending
 #' on what type of file is read, but typically contains information about the
 #' location of a mutation. The remaining rows represent the data for each sample
-#' sequenced. Together, the alternate, reference, and coverage tables can
-#' provide information about mutations observed and the coverage at each site.
+#' sequenced.
 #'
 #' @section Useful filter functions:
 #' The [dplyr::filter()] function is employed to subset the rows of the data
@@ -25,7 +24,7 @@
 #' There are many functions and operators that are useful when constructing the
 #' expressions used to filter the data:
 #'
-#' * [`==`], [`>`], [`>=`] etc
+#' * [`==`], [`>`], [`>=`], etc.
 #' * [`&`], [`|`], [`!`], [xor()]
 #' * [is.na()]
 #' * [`between()`][dplyr::between()], [`near()`][dplyr::near()]

@@ -63,8 +63,7 @@ when a condition evaluates to NA, the row will be dropped.
 Input data must contain six rows of metadata. The metadata can vary depending
 on what type of file is read, but typically contains information about the
 location of a mutation. The remaining rows represent the data for each sample
-sequenced. Together, the alternate, reference, and coverage tables can
-provide information about mutations observed and the coverage at each site.
+sequenced.
 }
 
 \section{Useful filter functions}{
@@ -76,7 +75,7 @@ rows should be retained.
 There are many functions and operators that are useful when constructing the
 expressions used to filter the data:
 \itemize{
-\item \code{\link{==}}, \code{\link{>}}, \code{\link{>=}} etc
+\item \code{\link{==}}, \code{\link{>}}, \code{\link{>=}}, etc.
 \item \code{\link{&}}, \code{\link{|}}, \code{\link{!}}, \code{\link[=xor]{xor()}}
 \item \code{\link[=is.na]{is.na()}}
 \item \code{\link[dplyr:between]{between()}}, \code{\link[dplyr:near]{near()}}

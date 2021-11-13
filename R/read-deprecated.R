@@ -38,7 +38,7 @@
 #' There are many functions and operators that are useful when constructing the
 #' expressions used to filter the data:
 #'
-#' * [`==`], [`>`], [`>=`] etc
+#' * [`==`], [`>`], [`>=`], etc.
 #' * [`&`], [`|`], [`!`], [xor()]
 #' * [is.na()]
 #' * [`between()`][dplyr::between()], [`near()`][dplyr::near()]
@@ -165,7 +165,11 @@ deprec_read_file <- function(file,
                              name = c("ref_umi_count", "alt_umi_count", "coverage")) {
   # If the user does not want to filter out any data
   if (!is_present(chrom) & !is_present(gene)) {
-    combined <- vroom::vroom(file, col_names = FALSE, show_col_types = FALSE) %>%
+    combined <- vroom::vroom(
+      file,
+      col_names = FALSE,
+      show_col_types = FALSE
+    ) %>%
       # Take the transpose of our matrix, making rows columns and columns rows.
       # This will allows us to keep all the data in our .csv file.
       tibble::rownames_to_column() %>%
@@ -203,7 +207,8 @@ deprec_read_file <- function(file,
       vroom::vroom(
         file,
         col_select = (1 | dplyr::contains(chrom)),
-        n_max = 5, show_col_types = FALSE
+        n_max = 5,
+        show_col_types = FALSE
       )
     )
 
@@ -222,7 +227,9 @@ deprec_read_file <- function(file,
       vroom::vroom(
         file,
         col_select = (1 | dplyr::contains(gene)),
-        n_max = 4, skip = 1, show_col_types = FALSE
+        n_max = 4,
+        skip = 1,
+        show_col_types = FALSE
       )
     )
 
@@ -230,7 +237,8 @@ deprec_read_file <- function(file,
       vroom::vroom(
         file,
         col_select = (1 | dplyr::contains(gene)),
-        skip = 1, show_col_types = FALSE
+        skip = 1,
+        show_col_types = FALSE
       )
     ) %>%
       dplyr::slice(5:dplyr::n())
