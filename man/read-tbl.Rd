@@ -26,10 +26,10 @@ read_tbl_ref_alt_cov(
 \arguments{
 \item{.tbl}{File path to the table.}
 
-\item{...}{<\code{\link[=dplyr_data_masking]{data-masking}}> Expressions that return a
-logical value and are used to filter the data. If multiple expressions are
-included, they are combined with the \code{&} operator. Only rows for which all
-conditions evaluate to \code{TRUE} are kept.}
+\item{...}{<\href{https://dplyr.tidyverse.org/reference/dplyr_data_masking.html}{\code{data-masking}}>
+Expressions that return a logical value and are used to filter the data. If
+multiple expressions are included, they are combined with the \code{&} operator.
+Only rows for which all conditions evaluate to \code{TRUE} are kept.}
 
 \item{.tbl_ref}{File path to the reference table.}
 
@@ -43,10 +43,11 @@ to.}
 \item{gene}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} The gene(s) to filter to.}
 }
 \value{
-A \code{\link[=tibble]{tibble()}}. The first six columns contain the metadata associated
-with each sample and mutation. The last column contains the information
-parsed from the table. In some cases, this may be the umi_count and in other
-cases it may be the coverage of the associated data point.
+A \code{\link[tibble:tibble]{tibble()}}. The first six columns contain the
+metadata associated with each sample and mutation. The last column contains
+the information parsed from the table. In some cases, this may be the
+umi_count and in other cases it may be the coverage of the associated data
+point.
 }
 \description{
 The \verb{read_tbl_*()} family of functions is designed to read data tables
@@ -68,17 +69,17 @@ provide information about mutations observed and the coverage at each site.
 
 \section{Useful filter functions}{
 
-The \code{dplyr::filter()} function is employed to subset the rows of the data
+The \code{\link[dplyr:filter]{dplyr::filter()}} function is employed to subset the rows of the data
 applying the expressions in \code{...} to the column values to determine which
 rows should be retained.
 
 There are many functions and operators that are useful when constructing the
 expressions used to filter the data:
 \itemize{
-\item \code{\link{==}}, \code{\link{>}}, \code{\link{>=}}, etc.
+\item \code{\link{==}}, \code{\link{>}}, \code{\link{>=}} etc
 \item \code{\link{&}}, \code{\link{|}}, \code{\link{!}}, \code{\link[=xor]{xor()}}
 \item \code{\link[=is.na]{is.na()}}
-\item \code{\link[=between]{between()}}, \code{\link[=near]{near()}}
+\item \code{\link[dplyr:between]{between()}}, \code{\link[dplyr:near]{near()}}
 }
 }
 

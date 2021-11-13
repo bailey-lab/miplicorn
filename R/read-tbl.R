@@ -18,23 +18,24 @@
 #' provide information about mutations observed and the coverage at each site.
 #'
 #' @section Useful filter functions:
-#' The `dplyr::filter()` function is employed to subset the rows of the data
+#' The [dplyr::filter()] function is employed to subset the rows of the data
 #' applying the expressions in `...` to the column values to determine which
 #' rows should be retained.
 #'
 #' There are many functions and operators that are useful when constructing the
 #' expressions used to filter the data:
 #'
-#' * [`==`], [`>`], [`>=`], etc.
+#' * [`==`], [`>`], [`>=`] etc
 #' * [`&`], [`|`], [`!`], [xor()]
 #' * [is.na()]
-#' * [between()], [near()]
+#' * [`between()`][dplyr::between()], [`near()`][dplyr::near()]
 #'
 #' @param .tbl File path to the table.
-#' @param ... <[`data-masking`][dplyr_data_masking]> Expressions that return a
-#'   logical value and are used to filter the data. If multiple expressions are
-#'   included, they are combined with the `&` operator. Only rows for which all
-#'   conditions evaluate to `TRUE` are kept.
+#' @param ...
+#'   <[`data-masking`](https://dplyr.tidyverse.org/reference/dplyr_data_masking.html)>
+#'   Expressions that return a logical value and are used to filter the data. If
+#'   multiple expressions are included, they are combined with the `&` operator.
+#'   Only rows for which all conditions evaluate to `TRUE` are kept.
 #' @param .tbl_ref File path to the reference table.
 #' @param .tbl_alt File path to the alternate table.
 #' @param .tbl_cov File path to the coverage table.
@@ -42,10 +43,11 @@
 #'   to.
 #' @param gene `r lifecycle::badge("deprecated")` The gene(s) to filter to.
 #'
-#' @return A [tibble()]. The first six columns contain the metadata associated
-#' with each sample and mutation. The last column contains the information
-#' parsed from the table. In some cases, this may be the umi_count and in other
-#' cases it may be the coverage of the associated data point.
+#' @return A [`tibble()`][tibble::tibble()]. The first six columns contain the
+#'   metadata associated with each sample and mutation. The last column contains
+#'   the information parsed from the table. In some cases, this may be the
+#'   umi_count and in other cases it may be the coverage of the associated data
+#'   point.
 #'
 #' @seealso [vroom::vroom()] [dplyr::filter()]
 #' @name read-tbl

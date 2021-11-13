@@ -31,25 +31,26 @@
 #' provide information about mutations observed and the coverage at each site.
 #'
 #' @section Useful filter functions:
-#' The `dplyr::filter()` function is employed to subset the rows of the data
+#' The [dplyr::filter()] function is employed to subset the rows of the data
 #' applying the expressions in `...` to the column values to determine which
 #' rows should be retained.
 #'
 #' There are many functions and operators that are useful when constructing the
 #' expressions used to filter the data:
 #'
-#' * [`==`], [`>`], [`>=`], etc.
+#' * [`==`], [`>`], [`>=`] etc
 #' * [`&`], [`|`], [`!`], [xor()]
 #' * [is.na()]
-#' * [between()], [near()]
+#' * [`between()`][dplyr::between()], [`near()`][dplyr::near()]
 #'
 #' @param .ref_file File path to the reference table.
 #' @param .alt_file File path to the alternate table.
 #' @param .cov_file File path to the coverage table.
-#' @param ... <[`data-masking`][dplyr_data_masking]> Expressions that return a
-#'   logical value and are used to filter the data. If multiple expressions are
-#'   included, they are combined with the `&` operator. Only rows for which all
-#'   conditions evaluate to `TRUE` are kept.
+#' @param ...
+#'   <[`data-masking`](https://dplyr.tidyverse.org/reference/dplyr_data_masking.html)>
+#'   Expressions that return a logical value and are used to filter the data. If
+#'   multiple expressions are included, they are combined with the `&` operator.
+#'   Only rows for which all conditions evaluate to `TRUE` are kept.
 #' @param chrom `r lifecycle::badge("deprecated")`: The chromosome(s) to filter
 #'   to.
 #' @param gene `r lifecycle::badge("deprecated")`: The gene(s) to filter to.
@@ -57,10 +58,11 @@
 #' @param .name The information contained in the specific file. For example
 #'   `"coverage"` or `"ref_umi_count"`.
 #'
-#' @return A [tibble()]. The first six columns contain the metadata associated
-#' with each sample and mutation. Columns `ref_umi_count` and `alt_umi_count`
-#' contain the umi count of the reference and alternate allele, respectively.
-#' Column `coverage` contains the coverage for each data point.
+#' @return A [`tibble()`][tibble::tibble()]. The first six columns contain the
+#'   metadata associated with each sample and mutation. Columns `ref_umi_count`
+#'   and `alt_umi_count` contain the umi count of the reference and alternate
+#'   allele, respectively. Column `coverage` contains the coverage for each data
+#'   point.
 #'
 #' @seealso [vroom::vroom()] [dplyr::filter()]
 #' @keywords internal

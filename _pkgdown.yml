@@ -5,7 +5,7 @@ template:
     bootswatch: flatly
 
 development:
-  mode: auto
+  mode: devel
 
 reference:
   - title: Parse
@@ -13,7 +13,7 @@ reference:
       These functions parse files obtained from
       [MIPTools](https://github.com/bailey-lab/MIPTools) into tibbles.
     contents:
-      - read
+      - read-tbl
       - label_mutations
 
   - title: Manipulate
