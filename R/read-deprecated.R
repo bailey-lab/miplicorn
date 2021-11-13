@@ -1,6 +1,16 @@
 #------------------------------------------------
 #' Read data
 #'
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' `read_file()` has been replaced by `read_tbl_reference()`,
+#' `read_tbl_alternate()`, and `read_tbl_coverage()` to provide more specific
+#' functionality.
+#'
+#' `read()` has been renamed to `read_tbl_ref_alt_cov()`.
+#'
+#' @details
 #' Read files containing
 #' \href{https://github.com/bailey-lab/MIPTools}{MIPtools'} data tables.
 #' `read_file()` reads a single file. `read()` is a convenience function that
@@ -21,7 +31,7 @@
 #' provide information about mutations observed and the coverage at each site.
 #'
 #' @section Useful filter functions:
-#' The `dplyr::filter()` function is employed to subset the rows of the data
+#' The [dplyr::filter()] function is employed to subset the rows of the data
 #' applying the expressions in `...` to the column values to determine which
 #' rows should be retained.
 #'
@@ -31,15 +41,16 @@
 #' * [`==`], [`>`], [`>=`], etc.
 #' * [`&`], [`|`], [`!`], [xor()]
 #' * [is.na()]
-#' * [between()], [near()]
+#' * [`between()`][dplyr::between()], [`near()`][dplyr::near()]
 #'
 #' @param .ref_file File path to the reference table.
 #' @param .alt_file File path to the alternate table.
 #' @param .cov_file File path to the coverage table.
-#' @param ... <[`data-masking`][dplyr_data_masking]> Expressions that return a
-#'   logical value and are used to filter the data. If multiple expressions are
-#'   included, they are combined with the `&` operator. Only rows for which all
-#'   conditions evaluate to `TRUE` are kept.
+#' @param ...
+#'   <[`data-masking`](https://dplyr.tidyverse.org/reference/dplyr_data_masking.html)>
+#'   Expressions that return a logical value and are used to filter the data. If
+#'   multiple expressions are included, they are combined with the `&` operator.
+#'   Only rows for which all conditions evaluate to `TRUE` are kept.
 #' @param chrom `r lifecycle::badge("deprecated")`: The chromosome(s) to filter
 #'   to.
 #' @param gene `r lifecycle::badge("deprecated")`: The gene(s) to filter to.
@@ -47,23 +58,24 @@
 #' @param .name The information contained in the specific file. For example
 #'   `"coverage"` or `"ref_umi_count"`.
 #'
-#' @return A [tibble()]. The first six columns contain the metadata associated
-#' with each sample and mutation. Columns `ref_umi_count` and `alt_umi_count`
-#' contain the umi count of the reference and alternate allele, respectively.
-#' Column `coverage` contains the coverage for each data point.
+#' @return A [`tibble()`][tibble::tibble()]. The first six columns contain the
+#'   metadata associated with each sample and mutation. Columns `ref_umi_count`
+#'   and `alt_umi_count` contain the umi count of the reference and alternate
+#'   allele, respectively. Column `coverage` contains the coverage for each data
+#'   point.
 #'
 #' @seealso [vroom::vroom()] [dplyr::filter()]
-#' @export
+#' @keywords internal
 #' @examples
 #' # Get path to example file
 #' ref_file <- miplicorn_example("reference_AA_table.csv")
 #' alt_file <- miplicorn_example("alternate_AA_table.csv")
 #' cov_file <- miplicorn_example("coverage_AA_table.csv")
-#' ref_file
+#' cov_file
 #'
 #' # Input sources -------------------------------------------------------------
 #' # Read from a path
-#' read_file(ref_file, .name = "umi")
+#' read_file(cov_file, .name = "coverage")
 #' read(ref_file, alt_file, cov_file)
 #'
 #' # You can also use paths directly
@@ -71,200 +83,93 @@
 #' # read("reference_AA_table.csv", "alternate_AA_table.csv", "coverage_AA_table.csv")
 #'
 #' # Read entire file ----------------------------------------------------------
-#' read_file(ref_file, .name = "umi")
+#' read_file(cov_file, .name = "coverage")
 #' read(ref_file, alt_file, cov_file)
 #'
 #' # Data filtering ------------------------------------------------------------
 #' # Filtering by one criterion
-#' read_file(ref_file, gene == "atp6", .name = "umi")
+#' read_file(cov_file, gene == "atp6", .name = "coverage")
 #' read(ref_file, alt_file, cov_file, gene == "atp6")
 #'
 #' # Filtering by multiple criteria within a single logical expression
-#' read_file(ref_file, gene == "atp6" & targeted == "Yes", .name = "umi")
-#' read_file(ref_file, gene == "atp6" | targeted == "Yes", .name = "umi")
+#' read_file(cov_file, gene == "atp6" & targeted == "Yes", .name = "coverage")
+#' read_file(cov_file, gene == "atp6" | targeted == "Yes", .name = "coverage")
 #' read(ref_file, alt_file, cov_file, gene == "atp6" & targeted == "Yes")
 #' read(ref_file, alt_file, cov_file, gene == "atp6" | targeted == "Yes")
 #'
 #' # When multiple expressions are used, they are combined using &
-#' read_file(ref_file, gene == "atp6", targeted == "Yes", .name = "umi")
+#' read_file(cov_file, gene == "atp6", targeted == "Yes", .name = "coverage")
 #' read(ref_file, alt_file, cov_file, gene == "atp6", targeted == "Yes")
+#' @name read-deprecated
+NULL
+
+#' @rdname read-deprecated
+#' @export
 read <- function(.ref_file,
                  .alt_file,
                  .cov_file,
                  ...,
                  chrom = deprecated(),
                  gene = deprecated()) {
-  # Deprecated chrom
-  if (lifecycle::is_present(chrom)) {
-    lifecycle::deprecate_warn(
-      when = "0.0.0.9001",
-      what = "read(chrom)",
-      details = "Please use the `...` argument instead to filter data."
-    )
-  }
+  lifecycle::deprecate_warn(
+    when = "0.2.0",
+    what = "read()",
+    with = "read_tbl_ref_alt_cov()"
+  )
 
-  # Deprecated gene
-  if (lifecycle::is_present(gene)) {
-    lifecycle::deprecate_warn(
-      when = "0.0.0.9001",
-      what = "read(gene)",
-      details = "Please use the `...` argument instead to filter data."
-    )
-  }
-
-  # Error message if multiple criteria selected
-  if (lifecycle::is_present(chrom) && lifecycle::is_present(gene)) {
-    abort(c(
-      "Multiple filtering criteria selected.",
-      x = "Cannot filter on both `chrom` and `gene`.",
-      i = "Select only one piece of information to filter on."
-    ))
-  }
-
-  # Error if any file is empty
-  if (purrr::some(list(.ref_file, .alt_file, .cov_file), empty_file)) {
-    empty <- purrr::detect(list(.ref_file, .alt_file, .cov_file), empty_file)
-    abort(c(
-      "Unable to read files.",
-      x = glue('"{empty}" is an empty file.')
-    ))
-  }
-
-  # Read in the three files
-  if (lifecycle::is_present(chrom) || lifecycle::is_present(gene)) {
-    tables <- purrr::pmap(
-      list(
-        file = c(.ref_file, .alt_file, .cov_file),
-        name = c("ref_umi_count", "alt_umi_count", "coverage")
-      ),
-      deprec_read_file,
-      chrom = chrom,
-      gene = gene
-    )
-  } else {
-    tables <- purrr::pmap(
-      list(
-        .file = c(.ref_file, .alt_file, .cov_file),
-        .name = c("ref_umi_count", "alt_umi_count", "coverage")
-      ),
-      read_file,
-      ...
-    )
-  }
-
-  # Determine overlapping columns
-  by <- purrr::reduce(purrr::map(tables, colnames), intersect)
-
-  # Combine three tibbles together
-  purrr::reduce(tables, dplyr::full_join, by = by)
+  read_tbl_ref_alt_cov(
+    .tbl_ref = .ref_file,
+    .tbl_alt = .alt_file,
+    .tbl_cov = .cov_file,
+    ...,
+    chrom = chrom,
+    gene = gene
+  )
 }
 
-#' @rdname read
+#' @rdname read-deprecated
 #' @export
 read_file <- function(.file, ..., .name = "value") {
-  dots <- enquos(..., .ignore_empty = "all")
-  check_named(dots)
-
-  if (empty_file(.file)) {
-    return(tibble::tibble())
-  }
-
-  # Read in complete header
-  header <- .file %>%
-    vroom::vroom(col_names = FALSE, show_col_types = FALSE, n_max = 6) %>%
-    tibble::rownames_to_column() %>%
-    tidyr::pivot_longer(-.data$rowname) %>%
-    tidyr::pivot_wider(
-      names_from = .data$rowname,
-      values_from = .data$value
-    ) %>%
-    janitor::row_to_names(1) %>%
-    janitor::clean_names()
-
-  # Filter the header based on conditions specified
-  tryCatch(
-    filter_header <- dplyr::filter(header, ...),
-    error = function(e) {
-      e <- rlang::catch_cnd(dplyr::filter(header, ...))
-      msg <- e$message %>%
-        stringr::str_replace("filter", "read") %>%
-        stringr::str_replace("object", "Object") %>%
-        stringr::str_c(".")
-      objects <- stringr::str_c("'", colnames(header)[-1], "'")
-      abort(c(
-        msg,
-        i = cli::pluralize("Available objects are {objects}.")
-      ))
-    }
+  msg <- paste(
+    "The function has been replaced by three more specific functions:\n",
+    "`read_tbl_reference()`, `read_tbl_alternate()`, and",
+    "`read_tbl_coverage()`."
   )
 
-  # Extract which columns of data we are interested in
-  col_select <- filter_header[[1]] %>%
-    stringr::str_extract("\\d+") %>%
-    as.numeric()
-
-  # Read in entire data set but select only columns we are interested in
-  data <- vroom::vroom(
-    file = .file,
-    col_names = FALSE,
-    col_select = c(1, col_select),
-    show_col_types = FALSE,
-    .name_repair = "universal"
+  lifecycle::deprecate_warn(
+    when = "0.2.0",
+    what = "read_file()",
+    details = msg
   )
 
-  # Take the transpose of our matrix, making rows columns and columns rows
-  t_data <- data %>%
-    tibble::rownames_to_column() %>%
-    tidyr::pivot_longer(-.data$rowname) %>%
-    tidyr::pivot_wider(
-      names_from = .data$rowname,
-      values_from = .data$value
-    ) %>%
-    # Assign the column names of our tibble and clean them up
-    dplyr::select(-.data$name) %>%
-    janitor::row_to_names(1) %>%
-    janitor::clean_names()
-
-  # Convert our data to a long format
-  t_data %>%
-    tidyr::pivot_longer(
-      cols = -c(1:6),
-      names_to = "sample",
-      values_to = "value"
-    ) %>%
-    dplyr::relocate(sample) %>%
-    dplyr::mutate(value = as.numeric(.data$value)) %>%
-    dplyr::rename({{ .name }} := .data$value)
-}
-
-check_named <- function(dots) {
-  named <- rlang::have_name(dots)
-
-  for (i in which(named)) {
-    quo <- dots[[i]]
-
-    # only allow unnamed logical vectors, anything else is suspicious
-    expr <- rlang::quo_get_expr(quo)
-    if (!rlang::is_logical(expr)) {
-      name <- names(dots)[i]
-      abort(c(
-        glue("Problem with `read()` input `..{i}`."),
-        x = glue("Input `..{i}` is named"),
-        i = "This usually means that you've used `=` instead of `==`.",
-        i = glue("Did you mean `{name} == {as_label(expr)}`?")
-      ))
-    }
+  # Detect input table and pass on to functions
+  if (.name == "ref_umi_count") {
+    inform("Input detected as the reference table.")
+    read_tbl_reference(.file, ...)
+  } else if (.name == "alt_umi_count") {
+    inform("Input detected as the alternate table.")
+    read_tbl_alternate(.file, ...)
+  } else if (.name == "coverage") {
+    inform("Input detected as the coverage table.")
+    read_tbl_coverage(.file, ...)
+  } else {
+    abort("Unable to detect the type of table input.")
   }
 }
 
-# Deprecated version of read_file
+# Deprecated version of read_file. Used to read ref, alt, and cov tables
+# together while specifying `chrom` or `gene`.
 deprec_read_file <- function(file,
                              chrom,
                              gene,
                              name = c("ref_umi_count", "alt_umi_count", "coverage")) {
   # If the user does not want to filter out any data
   if (!is_present(chrom) & !is_present(gene)) {
-    combined <- vroom::vroom(file, col_names = FALSE, show_col_types = FALSE) %>%
+    combined <- vroom::vroom(
+      file,
+      col_names = FALSE,
+      show_col_types = FALSE
+    ) %>%
       # Take the transpose of our matrix, making rows columns and columns rows.
       # This will allows us to keep all the data in our .csv file.
       tibble::rownames_to_column() %>%
@@ -299,15 +204,18 @@ deprec_read_file <- function(file,
     # In this case, we want to filter by chromosome.
     # Get the header
     header <- suppressMessages(
-      vroom::vroom(file,
+      vroom::vroom(
+        file,
         col_select = (1 | dplyr::contains(chrom)),
-        n_max = 5, show_col_types = FALSE
+        n_max = 5,
+        show_col_types = FALSE
       )
     )
 
     # Get the filtered data
     filtered <- suppressMessages(
-      vroom::vroom(file,
+      vroom::vroom(
+        file,
         col_select = (1 | dplyr::contains(chrom)),
         show_col_types = FALSE
       )
@@ -316,16 +224,21 @@ deprec_read_file <- function(file,
   } else if (!is_present(chrom) & is_present(gene)) {
     # In this case, we want to filter by gene
     header <- suppressMessages(
-      vroom::vroom(file,
+      vroom::vroom(
+        file,
         col_select = (1 | dplyr::contains(gene)),
-        n_max = 4, skip = 1, show_col_types = FALSE
+        n_max = 4,
+        skip = 1,
+        show_col_types = FALSE
       )
     )
 
     filtered <- suppressMessages(
-      vroom::vroom(file,
+      vroom::vroom(
+        file,
         col_select = (1 | dplyr::contains(gene)),
-        skip = 1, show_col_types = FALSE
+        skip = 1,
+        show_col_types = FALSE
       )
     ) %>%
       dplyr::slice(5:dplyr::n())
@@ -345,7 +258,8 @@ deprec_read_file <- function(file,
   # Transpose the filtered data
   filtered_t <- filtered %>%
     tibble::rownames_to_column() %>%
-    tidyr::pivot_longer(-.data$rowname,
+    tidyr::pivot_longer(
+      -.data$rowname,
       values_transform = list(value = as.character)
     ) %>%
     tidyr::pivot_wider(

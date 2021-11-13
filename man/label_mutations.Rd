@@ -15,7 +15,7 @@ should appear (the default is to add to the right hand side). See
 \code{\link[=relocate]{relocate()}} for more details.}
 }
 \description{
-For each data point, label a mutation as \code{"ref"}, \code{"alt"}, or an \code{"ins"} or a
+For each data point, label a mutation as \code{"ref"}, \code{"alt"}, \code{"ins"}, or
 \code{"del"}.
 \itemize{
 \item Data points that have more reference (REF) than alternate (ALT) calls will
@@ -30,12 +30,12 @@ than ALT calls will be labeled as \code{"del"}.
 }
 \examples{
 data <- tibble::tribble(
-~sample,      ~pos, ~ref, ~alt, ~ref_umi_count, ~alt_umi_count, ~coverage,
-   "S1", "1049838",  "A",  "G",             54,             10,        64,
-   "S2",  "801498",  "G",  "A",             15,              0,        15,
-   "S3",  "625403",  "T",  "C",              0,             15,        15,
-   "S4",  "748165", "GA",  "G",              2,             18,        20,
-   "S5",  "487199",  "G",  "ATC",            0,             10,        10
+  ~sample, ~pos, ~ref, ~alt, ~ref_umi_count, ~alt_umi_count, ~coverage,
+  "S1", "1049838", "A", "G", 54, 10, 64,
+  "S2", "801498", "G", "A", 15, 0, 15,
+  "S3", "625403", "T", "C", 0, 15, 15,
+  "S4", "748165", "GA", "G", 2, 18, 20,
+  "S5", "487199", "G", "ATC", 0, 10, 10
 )
 
 label_mutations(data)

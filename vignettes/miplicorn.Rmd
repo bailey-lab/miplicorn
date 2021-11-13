@@ -21,8 +21,8 @@ library(ggplot2)
 
 ## Parse
 
-While MIPTools provides several .csv files that can be analyzed, parsing such
-files is difficult because of their non-rectangular structure. As such,
+While `{MIPTools}` provides several `.csv` files that can be analyzed, parsing
+such files is difficult because of their non-rectangular structure. As such,
 attempting to read these files with default parameters fails.
 
 ```{r MIPTools output, message = FALSE, echo = FALSE}
@@ -37,7 +37,7 @@ positions we are interested in. The difficult part of reading in these files is
 that the metadata must be extracted and treated differently from the data
 itself.
 
-miplicorn, therefore, provides two functions: `read_file()` and `read()` which
+`{miplicorn}`, therefore, provides a family of functions: `read_tbl_*()` which
 quickly read in such non-rectangular files. The functions generate a tibble
 where each row represents a sample and a position. Thus, there will be multiple
 entries for each unique sample.
@@ -45,7 +45,7 @@ entries for each unique sample.
 ```{r miplicorn parsing}
 cov_file <- miplicorn::miplicorn_example("coverage_AA_table.csv")
 
-data <- miplicorn::read_file(cov_file)
+data <- miplicorn::read_tbl_coverage(cov_file)
 data
 ```
 
@@ -77,8 +77,8 @@ arrange_natural(data, sample, gene)
 ## Visualize
 
 There are an almost limitless different ways to visualize a single set of data.
-While `miplicorn` cannot address every method, it aims to simplify the creation
-of key figures.
+While `{miplicorn}` cannot address every method, it aims to simplify the
+creation of key figures.
 
 ### Chromosome map
 ```{r example probes, echo = FALSE}
@@ -256,8 +256,9 @@ chromosome_map(genome_Pf3D7, probes, "karyoploteR", colours = colours)
 ```
 
 ### Average coverage
-**N.B. the remaining figures have not yet been incorporated into miplicorn, **
-**but as time goes on, more and more visualization methods will be added.**
+**N.B. the remaining figures have not yet been incorporated into **
+**`{miplicorn}`, but as time goes on, more and more visualization methods **
+**will be added.**
 
 ```{r visualize, echo = F, messsage = F}
 # For the purposes of visualization, we select a small subset of genes
@@ -270,11 +271,11 @@ relevant_mutations <- c(
 data <- data %>%
   dplyr::filter(gene %in% relevant_mutations) %>%
   dplyr::group_by(gene, mutation_name, aa_change) %>%
-  dplyr::summarise(value = mean(as.numeric(value)), .groups = "keep") %>%
+  dplyr::summarise(coverage = mean(as.numeric(coverage)), .groups = "keep") %>%
   arrange_natural(gene, mutation_name, aa_change)
 
 # Plot
-ggplot(data, aes(x = aa_change, y = value, fill = gene)) +
+ggplot(data, aes(x = aa_change, y = coverage, fill = gene)) +
   geom_col() +
   labs(
     x = "Amino Acid Change",
@@ -309,8 +310,8 @@ validated <- data %>%
 ```{r mutation validation plot, echo = F, warning = F}
 validated %>%
   dplyr::group_by(mutation_name, aa_change, gene, validated) %>%
-  dplyr::summarise(value = mean(value), .groups = "keep") %>%
-  ggplot(aes(x = aa_change, y = value, fill = gene, alpha = validated)) +
+  dplyr::summarise(coverage = mean(coverage), .groups = "keep") %>%
+  ggplot(aes(x = aa_change, y = coverage, fill = gene, alpha = validated)) +
   geom_col() +
   labs(
     y = "Average Coverage",
@@ -323,8 +324,8 @@ validated %>%
 
 validated %>%
   dplyr::group_by(mutation_name, aa_change, gene, validated) %>%
-  dplyr::summarise(value = mean(value), .groups = "keep") %>%
-  ggplot(aes(x = aa_change, y = value, fill = gene)) +
+  dplyr::summarise(coverage = mean(coverage), .groups = "keep") %>%
+  ggplot(aes(x = aa_change, y = coverage, fill = gene)) +
   geom_col() +
   facet_grid(validated ~ .) +
   labs(
