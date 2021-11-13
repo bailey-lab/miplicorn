@@ -170,6 +170,8 @@ when a condition evaluates to NA, the row will be dropped.</p>
 
 <span class='fu'>read_tbl_coverage</span><span class='op'>(</span><span class='va'>.tbl</span>, <span class='va'>...</span><span class='op'>)</span>
 
+<span class='fu'>read_tbl_haplotype</span><span class='op'>(</span><span class='va'>.tbl</span>, <span class='va'>...</span>, .col_select <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+
 <span class='fu'>read_tbl_ref_alt_cov</span><span class='op'>(</span>
   <span class='va'>.tbl_ref</span>,
   <span class='va'>.tbl_alt</span>,
@@ -192,6 +194,13 @@ when a condition evaluates to NA, the row will be dropped.</p>
 Expressions that return a logical value and are used to filter the data. If
 multiple expressions are included, they are combined with the <code>&amp;</code> operator.
 Only rows for which all conditions evaluate to <code>TRUE</code> are kept.</p></td>
+    </tr>
+    <tr>
+      <th>.col_select</th>
+      <td><p>One or more selection expressions, like in
+<code><a href='https://dplyr.tidyverse.org/reference/select.html'>dplyr::select()</a></code>. Use <code><a href='https://rdrr.io/r/base/c.html'>c()</a></code> or <code><a href='https://rdrr.io/r/base/list.html'>list()</a></code> to use more
+than one expression. See <code><a href='https://dplyr.tidyverse.org/reference/select.html'>?dplyr::select</a></code> for details on
+available selection options.</p></td>
     </tr>
     <tr>
       <th>.tbl_ref</th>
