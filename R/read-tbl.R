@@ -195,23 +195,7 @@ read_tbl_helper <- function(.tbl, ..., .name = "value") {
     janitor::clean_names()
 
   # Filter the header based on conditions specified
-  tryCatch(
-    filter_header <- dplyr::filter(header, ...),
-    error = function(e) {
-      e <- rlang::catch_cnd(dplyr::filter(header, ...))
-      msg <- e$message %>%
-        stringr::str_replace_all(c(
-          "filter" = "read_tbl_*()",
-          "comparison" = "Comparison"
-        )) %>%
-        stringr::str_c(".")
-      objects <- stringr::str_c("'", colnames(header)[-1], "'")
-      abort(c(
-        msg,
-        i = cli::pluralize("Available objects are {objects}.")
-      ))
-    }
-  )
+  filter_header <- filter_tbl(header, ...)
 
   # Extract which columns of data we are interested in
   col_select <- filter_header[[1]] %>%
@@ -271,4 +255,25 @@ check_named <- function(dots) {
       ))
     }
   }
+}
+
+# Filter the table based on conditions specified
+filter_tbl <- function(.tbl, ...) {
+  tryCatch(
+    dplyr::filter(.tbl, ...),
+    error = function(e) {
+      e <- rlang::catch_cnd(dplyr::filter(.tbl, ...))
+      msg <- e$message %>%
+        stringr::str_replace_all(c(
+          "filter" = "read_tbl_*()",
+          "comparison" = "Comparison"
+        )) %>%
+        stringr::str_c(".")
+      objects <- stringr::str_c("'", colnames(.tbl)[-1], "'")
+      abort(c(
+        msg,
+        i = cli::pluralize("Available objects are {objects}.")
+      ))
+    }
+  )
 }
