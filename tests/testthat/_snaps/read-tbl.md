@@ -12,12 +12,12 @@
     i This usually means that you've used `=` instead of `==`.
     i Did you mean `chrom == "8"`?
 
-# fails if filter variable is non-existent
+# filter variable must exist
 
-    Problem with `read_tbl_*()()` input `..1`.
+    Problem with `read_tbl_*()` input `..1`.
     i Input `..1` is `var == 5`.
     x Comparison (1) is possible only for atomic and list types.
-    i Available objects are 'gene_id', 'gene', 'mutation', 'func', 'aa_chng', and 'target'.
+    i Available objects are 'gene'.
 
 # chrom and gene are deprecated
 
