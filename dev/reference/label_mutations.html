@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Label mutations — label_mutations" />
-<meta property="og:description" content="For each data point, label a mutation as &quot;ref&quot;, &quot;alt&quot;, or an &quot;ins&quot; or a
+<meta property="og:description" content="For each data point, label a mutation as &quot;ref&quot;, &quot;alt&quot;, &quot;ins&quot;, or
 &quot;del&quot;.
 Data points that have more reference (REF) than alternate (ALT) calls will
 be labeled as &quot;ref&quot;.
@@ -160,7 +160,7 @@ than ALT calls will be labeled as &quot;del&quot;.
     </div>
 
     <div class="ref-description">
-    <p>For each data point, label a mutation as <code>"ref"</code>, <code>"alt"</code>, or an <code>"ins"</code> or a
+    <p>For each data point, label a mutation as <code>"ref"</code>, <code>"alt"</code>, <code>"ins"</code>, or
 <code>"del"</code>.</p><ul>
 <li><p>Data points that have more reference (REF) than alternate (ALT) calls will
 be labeled as <code>"ref"</code>.</p></li>
@@ -195,12 +195,12 @@ should appear (the default is to add to the right hand side). See
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='r-in'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span></span>
-<span class='r-in'><span class='op'>~</span><span class='va'>sample</span>,      <span class='op'>~</span><span class='va'>pos</span>, <span class='op'>~</span><span class='va'>ref</span>, <span class='op'>~</span><span class='va'>alt</span>, <span class='op'>~</span><span class='va'>ref_umi_count</span>, <span class='op'>~</span><span class='va'>alt_umi_count</span>, <span class='op'>~</span><span class='va'>coverage</span>,</span>
-<span class='r-in'>   <span class='st'>"S1"</span>, <span class='st'>"1049838"</span>,  <span class='st'>"A"</span>,  <span class='st'>"G"</span>,             <span class='fl'>54</span>,             <span class='fl'>10</span>,        <span class='fl'>64</span>,</span>
-<span class='r-in'>   <span class='st'>"S2"</span>,  <span class='st'>"801498"</span>,  <span class='st'>"G"</span>,  <span class='st'>"A"</span>,             <span class='fl'>15</span>,              <span class='fl'>0</span>,        <span class='fl'>15</span>,</span>
-<span class='r-in'>   <span class='st'>"S3"</span>,  <span class='st'>"625403"</span>,  <span class='st'>"T"</span>,  <span class='st'>"C"</span>,              <span class='fl'>0</span>,             <span class='fl'>15</span>,        <span class='fl'>15</span>,</span>
-<span class='r-in'>   <span class='st'>"S4"</span>,  <span class='st'>"748165"</span>, <span class='st'>"GA"</span>,  <span class='st'>"G"</span>,              <span class='fl'>2</span>,             <span class='fl'>18</span>,        <span class='fl'>20</span>,</span>
-<span class='r-in'>   <span class='st'>"S5"</span>,  <span class='st'>"487199"</span>,  <span class='st'>"G"</span>,  <span class='st'>"ATC"</span>,            <span class='fl'>0</span>,             <span class='fl'>10</span>,        <span class='fl'>10</span></span>
+<span class='r-in'>  <span class='op'>~</span><span class='va'>sample</span>, <span class='op'>~</span><span class='va'>pos</span>, <span class='op'>~</span><span class='va'>ref</span>, <span class='op'>~</span><span class='va'>alt</span>, <span class='op'>~</span><span class='va'>ref_umi_count</span>, <span class='op'>~</span><span class='va'>alt_umi_count</span>, <span class='op'>~</span><span class='va'>coverage</span>,</span>
+<span class='r-in'>  <span class='st'>"S1"</span>, <span class='st'>"1049838"</span>, <span class='st'>"A"</span>, <span class='st'>"G"</span>, <span class='fl'>54</span>, <span class='fl'>10</span>, <span class='fl'>64</span>,</span>
+<span class='r-in'>  <span class='st'>"S2"</span>, <span class='st'>"801498"</span>, <span class='st'>"G"</span>, <span class='st'>"A"</span>, <span class='fl'>15</span>, <span class='fl'>0</span>, <span class='fl'>15</span>,</span>
+<span class='r-in'>  <span class='st'>"S3"</span>, <span class='st'>"625403"</span>, <span class='st'>"T"</span>, <span class='st'>"C"</span>, <span class='fl'>0</span>, <span class='fl'>15</span>, <span class='fl'>15</span>,</span>
+<span class='r-in'>  <span class='st'>"S4"</span>, <span class='st'>"748165"</span>, <span class='st'>"GA"</span>, <span class='st'>"G"</span>, <span class='fl'>2</span>, <span class='fl'>18</span>, <span class='fl'>20</span>,</span>
+<span class='r-in'>  <span class='st'>"S5"</span>, <span class='st'>"487199"</span>, <span class='st'>"G"</span>, <span class='st'>"ATC"</span>, <span class='fl'>0</span>, <span class='fl'>10</span>, <span class='fl'>10</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='fu'>label_mutations</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></span>

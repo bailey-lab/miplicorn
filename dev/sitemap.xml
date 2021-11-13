@@ -31,7 +31,10 @@
     <loc>https://bailey-lab.github.io/miplicorn//reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/read.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn//reference/read-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn//reference/read-tbl.html</loc>
   </url>
   <url>
     <loc>https://bailey-lab.github.io/miplicorn//reference/tidyeval.html</loc>

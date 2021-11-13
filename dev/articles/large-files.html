@@ -127,56 +127,56 @@
 <div id="filters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filters" class="anchor"></a>Filters</h2>
-<p>Both <code><a href="../reference/read.html">read_file()</a></code> and <code><a href="../reference/read.html">read()</a></code> provide the ability to filter data so that data may load and run faster. This works by filtering even before objects are loaded into R. Data can be filtered using any of the information present in the metadata, and you may even filter on multiple conditions.</p>
+<p>The entire <code>read_tbl_*()</code> family of functions provide the ability to filter data so that data may load and run faster. This works by filtering even before objects are loaded into R. Data can be filtered using any of the information present in the metadata, and you may even filter on multiple conditions.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cov_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"coverage_AA_table.csv"</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/read.html">read_file</a></span><span class="op">(</span><span class="va">cov_file</span><span class="op">)</span>
+<span class="fu"><a href="../reference/read-tbl.html">read_tbl_coverage</a></span><span class="op">(</span><span class="va">cov_file</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6,344 × 8</span>
-<span class="co">#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted value</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608</span>
-<span class="co">#&gt;  2 d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20</span>
-<span class="co">#&gt;  3 d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158</span>
-<span class="co">#&gt;  4 d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2</span>
-<span class="co">#&gt;  5 d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1</span>
-<span class="co">#&gt;  6 d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129</span>
-<span class="co">#&gt;  7 d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
-<span class="co">#&gt;  8 d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
-<span class="co">#&gt;  9 d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90</span>
-<span class="co">#&gt; 10 d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175</span>
+<span class="co">#&gt;    sample  gene_id   gene  mutation_name exonic_func aa_change targeted coverage</span>
+<span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span>
+<span class="co">#&gt;  2 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            20</span>
+<span class="co">#&gt;  3 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           158</span>
+<span class="co">#&gt;  4 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             2</span>
+<span class="co">#&gt;  5 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             1</span>
+<span class="co">#&gt;  6 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           129</span>
+<span class="co">#&gt;  7 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
+<span class="co">#&gt;  8 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
+<span class="co">#&gt;  9 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span>
+<span class="co">#&gt; 10 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span>
 <span class="co">#&gt; # … with 6,334 more rows</span>
 
-<span class="fu"><a href="../reference/read.html">read_file</a></span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/read-tbl.html">read_tbl_coverage</a></span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 260 × 8</span>
-<span class="co">#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted value</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608</span>
-<span class="co">#&gt;  2 d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20</span>
-<span class="co">#&gt;  3 d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158</span>
-<span class="co">#&gt;  4 d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2</span>
-<span class="co">#&gt;  5 d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1</span>
-<span class="co">#&gt;  6 d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129</span>
-<span class="co">#&gt;  7 d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
-<span class="co">#&gt;  8 d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
-<span class="co">#&gt;  9 d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90</span>
-<span class="co">#&gt; 10 d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175</span>
+<span class="co">#&gt;    sample  gene_id   gene  mutation_name exonic_func aa_change targeted coverage</span>
+<span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span>
+<span class="co">#&gt;  2 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            20</span>
+<span class="co">#&gt;  3 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           158</span>
+<span class="co">#&gt;  4 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             2</span>
+<span class="co">#&gt;  5 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             1</span>
+<span class="co">#&gt;  6 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           129</span>
+<span class="co">#&gt;  7 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
+<span class="co">#&gt;  8 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
+<span class="co">#&gt;  9 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span>
+<span class="co">#&gt; 10 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span>
 <span class="co">#&gt; # … with 250 more rows</span>
 
-<span class="fu"><a href="../reference/read.html">read_file</a></span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span>, <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/read-tbl.html">read_tbl_coverage</a></span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span>, <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 156 × 8</span>
-<span class="co">#&gt;    sample     gene_id  gene  mutation_name  exonic_func aa_change targeted value</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 d10_jjj_23 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        608</span>
-<span class="co">#&gt;  2 d10_jjj_43 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         20</span>
-<span class="co">#&gt;  3 d10_jjj_55 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        158</span>
-<span class="co">#&gt;  4 d10_jjj_5  PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          2</span>
-<span class="co">#&gt;  5 d10_jjj_47 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          1</span>
-<span class="co">#&gt;  6 d10_jjj_15 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        129</span>
-<span class="co">#&gt;  7 d10_jjj_27 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
-<span class="co">#&gt;  8 d10_jjj_10 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes          0</span>
-<span class="co">#&gt;  9 d10_jjj_28 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes         90</span>
-<span class="co">#&gt; 10 d10_jjj_52 PF3D7_0… atp6  atp6-Ala623Glu missense_v… Ala623Glu Yes        175</span>
+<span class="co">#&gt;    sample  gene_id   gene  mutation_name exonic_func aa_change targeted coverage</span>
+<span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span>
+<span class="co">#&gt;  2 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            20</span>
+<span class="co">#&gt;  3 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           158</span>
+<span class="co">#&gt;  4 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             2</span>
+<span class="co">#&gt;  5 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             1</span>
+<span class="co">#&gt;  6 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           129</span>
+<span class="co">#&gt;  7 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
+<span class="co">#&gt;  8 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
+<span class="co">#&gt;  9 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span>
+<span class="co">#&gt; 10 d10_jj… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span>
 <span class="co">#&gt; # … with 146 more rows</span></code></pre></div>
 </div>
   </div>
