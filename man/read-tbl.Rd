@@ -5,6 +5,7 @@
 \alias{read_tbl_reference}
 \alias{read_tbl_alternate}
 \alias{read_tbl_coverage}
+\alias{read_tbl_haplotype}
 \alias{read_tbl_ref_alt_cov}
 \title{Read MIPTools tables}
 \usage{
@@ -13,6 +14,8 @@ read_tbl_reference(.tbl, ...)
 read_tbl_alternate(.tbl, ...)
 
 read_tbl_coverage(.tbl, ...)
+
+read_tbl_haplotype(.tbl, ..., .col_select = NULL)
 
 read_tbl_ref_alt_cov(
   .tbl_ref,
@@ -30,6 +33,11 @@ read_tbl_ref_alt_cov(
 Expressions that return a logical value and are used to filter the data. If
 multiple expressions are included, they are combined with the \code{&} operator.
 Only rows for which all conditions evaluate to \code{TRUE} are kept.}
+
+\item{.col_select}{One or more selection expressions, like in
+\code{\link[dplyr:select]{dplyr::select()}}. Use \code{c()} or \code{list()} to use more
+than one expression. See \code{\link[dplyr:select]{?dplyr::select}} for details on
+available selection options.}
 
 \item{.tbl_ref}{File path to the reference table.}
 

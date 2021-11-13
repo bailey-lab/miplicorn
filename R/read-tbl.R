@@ -35,6 +35,10 @@
 #'   Expressions that return a logical value and are used to filter the data. If
 #'   multiple expressions are included, they are combined with the `&` operator.
 #'   Only rows for which all conditions evaluate to `TRUE` are kept.
+#' @param .col_select One or more selection expressions, like in
+#'   [`dplyr::select()`][dplyr::select()]. Use `c()` or `list()` to use more
+#'   than one expression. See [`?dplyr::select`][dplyr::select()] for details on
+#'   available selection options.
 #' @param .tbl_ref File path to the reference table.
 #' @param .tbl_alt File path to the alternate table.
 #' @param .tbl_cov File path to the coverage table.
@@ -98,6 +102,34 @@ read_tbl_alternate <- function(.tbl, ...) {
 #' @export
 read_tbl_coverage <- function(.tbl, ...) {
   read_tbl_helper(.tbl, ..., .name = "coverage")
+}
+
+#' @rdname read-tbl
+#' @export
+read_tbl_haplotype <- function(.tbl, ..., .col_select = NULL) {
+  dots <- enquos(..., .ignore_empty = "all")
+  check_named(dots)
+  col_select <- enquo(.col_select)
+
+  if (empty_file(.tbl)) {
+    return(tibble::tibble())
+  }
+
+  # Read table
+  data <- .tbl %>%
+    vroom::vroom(show_col_types = FALSE, col_select = !!col_select) %>%
+    janitor::clean_names() %>%
+    dplyr::relocate(sample = .data$sample_id)
+
+  # In some cases, the `chrom` column appears twice in the dataset, so we remove
+  # the last occurrence.
+  chrom_cols <- colnames(dplyr::select(data, dplyr::starts_with("chrom")))
+  if (length(chrom_cols) == 2) {
+    data <- dplyr::select(data, !chrom_cols[-1])
+  }
+
+  # Filter the data based on conditions specified
+  filter_tbl(data, ...)
 }
 
 #' @rdname read-tbl
@@ -195,23 +227,7 @@ read_tbl_helper <- function(.tbl, ..., .name = "value") {
     janitor::clean_names()
 
   # Filter the header based on conditions specified
-  tryCatch(
-    filter_header <- dplyr::filter(header, ...),
-    error = function(e) {
-      e <- rlang::catch_cnd(dplyr::filter(header, ...))
-      msg <- e$message %>%
-        stringr::str_replace_all(c(
-          "filter" = "read_tbl_*()",
-          "comparison" = "Comparison"
-        )) %>%
-        stringr::str_c(".")
-      objects <- stringr::str_c("'", colnames(header)[-1], "'")
-      abort(c(
-        msg,
-        i = cli::pluralize("Available objects are {objects}.")
-      ))
-    }
-  )
+  filter_header <- filter_tbl(header, ...)
 
   # Extract which columns of data we are interested in
   col_select <- filter_header[[1]] %>%
@@ -271,4 +287,25 @@ check_named <- function(dots) {
       ))
     }
   }
+}
+
+# Filter the table based on conditions specified
+filter_tbl <- function(.tbl, ...) {
+  tryCatch(
+    dplyr::filter(.tbl, ...),
+    error = function(e) {
+      e <- rlang::catch_cnd(dplyr::filter(.tbl, ...))
+      msg <- e$message %>%
+        stringr::str_replace_all(c(
+          "filter" = "read_tbl_*",
+          "comparison" = "Comparison"
+        )) %>%
+        stringr::str_c(".")
+      objects <- stringr::str_c("'", colnames(.tbl)[-1], "'")
+      abort(c(
+        msg,
+        i = cli::pluralize("Available objects are {objects}.")
+      ))
+    }
+  )
 }
