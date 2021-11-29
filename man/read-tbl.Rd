@@ -2,6 +2,7 @@
 % Please edit documentation in R/read-tbl.R
 \name{read-tbl}
 \alias{read-tbl}
+\alias{read_tbl}
 \alias{read_tbl_reference}
 \alias{read_tbl_alternate}
 \alias{read_tbl_coverage}

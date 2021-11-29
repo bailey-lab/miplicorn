@@ -54,6 +54,7 @@
 #'
 #' @seealso [vroom::vroom()] [dplyr::filter()]
 #' @name read-tbl
+#' @aliases read_tbl
 #' @examples
 #' # Get path to example file
 #' ref_file <- miplicorn_example("reference_AA_table.csv")
