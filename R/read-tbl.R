@@ -254,8 +254,11 @@ read_tbl_helper <- function(.tbl, ..., .name = "value") {
     ) %>%
     # Assign the column names of our tibble and clean them up
     dplyr::select(-.data$name) %>%
-    janitor::row_to_names(1) %>%
-    janitor::clean_names()
+    janitor::row_to_names(1)
+
+  # We only want to clean the names of the metadata. We want to leave the
+  # sample IDs unchanged.
+  colnames(t_data)[1:6] <- janitor::make_clean_names(colnames(t_data)[1:6])
 
   # Convert our data to a long format
   t_data %>%

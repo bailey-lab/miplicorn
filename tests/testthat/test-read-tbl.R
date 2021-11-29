@@ -49,10 +49,10 @@ test_that("returns an empty tibble on an empty file", {
 test_that("selection works properly", {
   res <- tibble::tribble(
     ~sample, ~gene_id, ~gene, ~mutation, ~func, ~aa_chng, ~target, ~value,
-    "s1", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
-    "s2", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
-    "s1", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 13,
-    "s2", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 0
+    "S1", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
+    "S2", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
+    "S1", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 13,
+    "S2", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 0
   )
 
   expect_equal(
@@ -76,7 +76,19 @@ test_that("selection works properly", {
   )
 })
 
-# Test read_tbl_haplotypes()
+test_that("sample IDs remain unchanged (#20)", {
+  res <- tibble::tribble(
+    ~sample, ~gene_id, ~gene, ~mutation, ~func, ~aa_chng, ~target, ~value,
+    "S1-55", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
+    "s_2-73", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
+    "S1-55", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 13,
+    "s_2-73", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 0
+  )
+
+  expect_equal(read_tbl_helper("preserve-sample-id.csv"), res)
+})
+
+# Test read_tbl_haplotypes() ---------------------------------------------------
 test_that("returns an empty tibble on an empty file", {
   expect_equal(read_tbl_haplotype("empty-file"), tibble::tibble())
 })
@@ -120,7 +132,7 @@ test_that("can filter rows", {
   )
 })
 
-# Test read_tbl_ref_alt_cov()
+# Test read_tbl_ref_alt_cov() --------------------------------------------------
 test_that("chrom and gene are deprecated", {
   expect_snapshot(read_tbl_ref_alt_cov(
     .tbl_ref = "small.csv",

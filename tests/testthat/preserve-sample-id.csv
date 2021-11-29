@@ -1,0 +1,8 @@
+Gene ID,Site1,Site2
+Gene,atp6,mdr1
+Mutation,atp6-A623E,mdr1-N86Y
+Func,missense,sense
+AA Chng,A623E,N86Y
+Target,Yes,Yes
+S1-55,0,13
+s_2-73,0,0

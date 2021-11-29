@@ -14,10 +14,10 @@ test_that("read_file() is deprecated", {
 
 res <- tibble::tribble(
   ~sample, ~gene_id, ~gene, ~mutation, ~func, ~aa_chng, ~target, ~value,
-  "s1", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
-  "s2", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
-  "s1", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 13,
-  "s2", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 0
+  "S1", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
+  "S2", "Site1", "atp6", "atp6-A623E", "missense", "A623E", "Yes", 0,
+  "S1", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 13,
+  "S2", "Site2", "mdr1", "mdr1-N86Y", "sense", "N86Y", "Yes", 0
 )
 
 test_that("deprecated read_file() detects reference tables", {

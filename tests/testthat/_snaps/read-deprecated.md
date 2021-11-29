@@ -66,10 +66,10 @@
       # A tibble: 4 x 8
         sample gene_id gene  mutation   func     aa_chng target ref_umi_count
         <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>          <dbl>
-      1 s1     Site1   atp6  atp6-A623E missense A623E   Yes                0
-      2 s2     Site1   atp6  atp6-A623E missense A623E   Yes                0
-      3 s1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes               13
-      4 s2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes                0
+      1 S1     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      2 S2     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      3 S1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes               13
+      4 S2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes                0
 
 # deprecated read_file() detects reference tables
 
@@ -85,10 +85,10 @@
       # A tibble: 4 x 8
         sample gene_id gene  mutation   func     aa_chng target ref_umi_count
         <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>          <dbl>
-      1 s1     Site1   atp6  atp6-A623E missense A623E   Yes                0
-      2 s2     Site1   atp6  atp6-A623E missense A623E   Yes                0
-      3 s1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes               13
-      4 s2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes                0
+      1 S1     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      2 S2     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      3 S1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes               13
+      4 S2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes                0
 
 # deprecated read_file() detects alternate tables
 
@@ -104,10 +104,10 @@
       # A tibble: 4 x 8
         sample gene_id gene  mutation   func     aa_chng target alt_umi_count
         <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>          <dbl>
-      1 s1     Site1   atp6  atp6-A623E missense A623E   Yes                0
-      2 s2     Site1   atp6  atp6-A623E missense A623E   Yes                0
-      3 s1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes               13
-      4 s2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes                0
+      1 S1     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      2 S2     Site1   atp6  atp6-A623E missense A623E   Yes                0
+      3 S1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes               13
+      4 S2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes                0
 
 # deprecated read_file() detects coverage tables
 
@@ -123,10 +123,10 @@
       # A tibble: 4 x 8
         sample gene_id gene  mutation   func     aa_chng target coverage
         <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>     <dbl>
-      1 s1     Site1   atp6  atp6-A623E missense A623E   Yes           0
-      2 s2     Site1   atp6  atp6-A623E missense A623E   Yes           0
-      3 s1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes          13
-      4 s2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes           0
+      1 S1     Site1   atp6  atp6-A623E missense A623E   Yes           0
+      2 S2     Site1   atp6  atp6-A623E missense A623E   Yes           0
+      3 S1     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes          13
+      4 S2     Site2   mdr1  mdr1-N86Y  sense    N86Y    Yes           0
 
 # deprecated read_file() fails if can't detect input
 
