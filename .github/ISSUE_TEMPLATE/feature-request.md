@@ -2,7 +2,7 @@
 name: Feature Request
 about: Suggest an idea for this package
 title: ""
-labels: feature
+labels: "feature :sparkles:"
 assignees: ""
 ---
 
