@@ -30,72 +30,23 @@ test_that("error if packages not intalled", {
   mockery::stub(plot_chromoMap, "requireNamespace", FALSE)
   mockery::stub(plot_karyoploteR, "requireNamespace", FALSE)
 
-  # Expect errors
-  expect_error(plot_chromoMap(genome_Pf3D7, probes))
-  expect_error(plot_karyoploteR(genome_Pf3D7, probes))
-
-  # Snapshots
-  expect_snapshot(
-    error = TRUE,
-    plot_chromoMap(genome_Pf3D7, probes)
-  )
-  expect_snapshot(
-    error = TRUE,
-    plot_karyoploteR(genome_Pf3D7, probes)
-  )
+  expect_snapshot(error = TRUE, plot_chromoMap(genome_Pf3D7, probes))
+  expect_snapshot(error = TRUE, plot_karyoploteR(genome_Pf3D7, probes))
 })
 
 test_that("error if genome is misformatted", {
-  # Expect errors
-  expect_error(chromosome_map(genome_Pf3D7[, -1], probes, "chromoMap"))
-  expect_error(chromosome_map(genome_Pf3D7[, -1], probes, "karyoploteR"))
-
-  # Snapshots
-  expect_snapshot(
-    error = TRUE,
-    chromosome_map(genome_Pf3D7[, -1], probes, "chromoMap")
-  )
-  expect_snapshot(
-    error = TRUE,
-    chromosome_map(genome_Pf3D7[, -1], probes, "karyoploteR")
-  )
+  expect_snapshot(error = TRUE, plot_chromoMap(genome_Pf3D7[, -1], probes))
+  expect_snapshot(error = TRUE, plot_karyoploteR(genome_Pf3D7[, -1], probes))
 })
 
 test_that("error if probes is misformatted", {
-  # Expect errors
-  expect_error(chromosome_map(genome_Pf3D7, probes[, -4], "chromoMap"))
-  expect_error(chromosome_map(genome_Pf3D7, probes[, -4], "karyoploteR"))
-
-  # Snapshots
-  expect_snapshot(
-    error = TRUE,
-    chromosome_map(genome_Pf3D7, probes[, -4], "chromoMap")
-  )
-  expect_snapshot(
-    error = TRUE,
-    chromosome_map(genome_Pf3D7, probes[, -4], "karyoploteR")
-  )
-})
-
-test_that("error if wrong mapping package specified", {
-  # Expect errors
-  expect_error(chromosome_map(genome_Pf3D7, probes))
-  expect_error(chromosome_map(genome_Pf3D7, probes, "ggplot2"))
-
-  # Snapshots
-  expect_snapshot(
-    error = TRUE,
-    chromosome_map(genome_Pf3D7, probes)
-  )
-  expect_snapshot(
-    error = TRUE,
-    chromosome_map(genome_Pf3D7, probes, "ggplot2")
-  )
+  expect_snapshot(error = TRUE, plot_chromoMap(genome_Pf3D7, probes[, -4]))
+  expect_snapshot(error = TRUE, plot_karyoploteR(genome_Pf3D7, probes[, -4]))
 })
 
 test_that("chromosome_map works invisibly", {
-  expect_invisible(chromosome_map(genome_Pf3D7, probes, "chromoMap"))
-  expect_invisible(chromosome_map(genome_Pf3D7, probes, "karyoploteR"))
+  expect_invisible(plot_chromoMap(genome_Pf3D7, probes))
+  expect_invisible(plot_karyoploteR(genome_Pf3D7, probes))
 })
 
 # test_that("chromosome_map() leaves directory unchanged", {
