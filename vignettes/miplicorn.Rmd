@@ -243,7 +243,7 @@ detailed karyoplot.
 
 ```{r chromoMap}
 colours <- c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
-map <- chromosome_map(genome_Pf3D7, probes, "chromoMap", colours = colours)
+map <- plot_chromoMap(genome_Pf3D7, probes, colours = colours)
 
 # Used to embed into html
 widgetframe::frameableWidget(map)
@@ -252,7 +252,7 @@ widgetframe::frameableWidget(map)
 <br>
 
 ```{r karyoploteR}
-chromosome_map(genome_Pf3D7, probes, "karyoploteR", colours = colours)
+plot_karyoploteR(genome_Pf3D7, probes, colours = colours)
 ```
 
 ### Average coverage
