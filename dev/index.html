@@ -4,7 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="A unified framework for molecular inversion probe and amplicon
+    analysis. Provides the tools to parse, manipulate, analyze, and visualize
+    data.">
 <title>A Framework for MIP and Amplicon Analysis • miplicorn</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -12,12 +15,12 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="deps/_Lato-0.4.0/font.css" rel="stylesheet">
+<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="A Framework for MIP and Amplicon Analysis">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="A Framework for MIP and Amplicon Analysis">
 <meta property="og:description" content="A unified framework for molecular inversion probe and amplicon
     analysis. Provides the tools to parse, manipulate, analyze, and visualize
     data.">
@@ -28,182 +31,179 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">miplicorn</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.0.9000</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
+    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-primary"><div class="container">
+    
+    <a class="navbar-brand me-2" href="index.html">miplicorn</a>
+
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.0.9000</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-2">
+      <ul class="navbar-nav me-auto">
+<li class="active nav-item">
+  <a class="nav-link" href="index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
-<li>
-  <a href="articles/miplicorn.html">Get started</a>
+<li class="nav-item">
+  <a class="nav-link" href="articles/miplicorn.html">Get started</a>
 </li>
-<li>
-  <a href="reference/index.html">Reference</a>
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/large-files.html">Large data sets</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    News
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="news/index.html">Change log</a>
-    </li>
-  </ul>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/bailey-lab/miplicorn/">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/large-files.html">Large data sets</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-news">News</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-news">
+    <a class="dropdown-item" href="news/index.html">Change log</a>
+  </div>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/bailey-lab/miplicorn/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-<div id="miplicorn-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#miplicorn-" class="anchor"></a>miplicorn <a href="https://bailey-lab.github.io/miplicorn"><img src="reference/figures/logo.png" align="right" height="138"></a>
-</h1></div>
+    
+  </div>
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="miplicorn-">miplicorn 
+<a class="anchor" aria-label="anchor" href="#miplicorn-"></a>
+</h1>
+</div>
 <!-- badges: start -->
 
 <!-- badges: end -->
 <p>miplicorn establishes a unified framework for molecular inversion probe (MIP) and amplicon analysis. It provides the tools to quickly parse files several gigabytes large, filter and manipulate data, analyze data, and, most informatively, visualize data.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You may install the package from <a href="https://github.com/bailey-lab/miplicorn">Github</a> using <code>devtools</code>.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You may install the package from <a href="https://github.com/bailey-lab/miplicorn" class="external-link">Github</a> using <code>devtools</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"https://github.com/bailey-lab/miplicorn"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>See <code><a href="articles/miplicorn.html">vignette("miplicorn")</a></code> for a more extensive introduction and a demonstration of several features of the package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://bailey-lab.github.io/miplicorn/">miplicorn</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bailey-lab.github.io/miplicorn/">miplicorn</a></span><span class="op">)</span>
 
 <span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"reference_AA_table.csv"</span><span class="op">)</span>
 
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read-deprecated.html">read_file</a></span><span class="op">(</span><span class="va">file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span><span class="op">)</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read-tbl.html">read_tbl_reference</a></span><span class="op">(</span><span class="va">file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span><span class="op">)</span>
 <span class="va">data</span>
 <span class="co">#&gt; # A tibble: 260 × 8</span>
-<span class="co">#&gt;   sample     gene_id   gene  mutation_name exonic_func  aa_change targeted value</span>
-<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 d10_jjj_23 PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes        608</span>
-<span class="co">#&gt; 2 d10_jjj_43 PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes         20</span>
-<span class="co">#&gt; 3 d10_jjj_55 PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes        158</span>
-<span class="co">#&gt; 4 d10_jjj_5  PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes          2</span>
-<span class="co">#&gt; 5 d10_jjj_47 PF3D7_01… atp6  atp6-Ala623G… missense_va… Ala623Glu Yes          1</span>
-<span class="co">#&gt; # … with 255 more rows</span>
+<span class="co">#&gt;   sample     gene_id       gene  mutation_name  exonic_func   aa_change targeted</span>
+<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;</span>
+<span class="co">#&gt; 1 D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 2 D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 3 D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 4 D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 5 D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; # … with 255 more rows, and 1 more variable: ref_umi_count &lt;dbl&gt;</span>
 
 <span class="fu"><a href="reference/arrange_natural.html">arrange_natural</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">sample</span>, <span class="va">targeted</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 260 × 8</span>
-<span class="co">#&gt;   sample    gene_id   gene  mutation_name  exonic_func  aa_change targeted value</span>
-<span class="co">#&gt;   &lt;fct&gt;     &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;     &lt;fct&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 d10_jjj_1 PF3D7_01… atp6  atp6-Gly639Asp missense_va… Gly639Asp No          10</span>
-<span class="co">#&gt; 2 d10_jjj_1 PF3D7_01… atp6  atp6-Ser466Asn missense_va… Ser466Asn No           2</span>
-<span class="co">#&gt; 3 d10_jjj_1 PF3D7_01… atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes         10</span>
-<span class="co">#&gt; 4 d10_jjj_1 PF3D7_01… atp6  atp6-Glu431Lys missense_va… Glu431Lys Yes          5</span>
-<span class="co">#&gt; 5 d10_jjj_1 PF3D7_01… atp6  atp6-Ser769Asn missense_va… Ser769Asn Yes          1</span>
-<span class="co">#&gt; # … with 255 more rows</span></code></pre></div>
+<span class="co">#&gt;   sample    gene_id       gene  mutation_name  exonic_func    aa_change targeted</span>
+<span class="co">#&gt;   &lt;fct&gt;     &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;     &lt;fct&gt;</span>
+<span class="co">#&gt; 1 D10-JJJ-1 PF3D7_0106300 atp6  atp6-Gly639Asp missense_vari… Gly639Asp No</span>
+<span class="co">#&gt; 2 D10-JJJ-1 PF3D7_0106300 atp6  atp6-Ser466Asn missense_vari… Ser466Asn No</span>
+<span class="co">#&gt; 3 D10-JJJ-1 PF3D7_0106300 atp6  atp6-Ala623Glu missense_vari… Ala623Glu Yes</span>
+<span class="co">#&gt; 4 D10-JJJ-1 PF3D7_0106300 atp6  atp6-Glu431Lys missense_vari… Glu431Lys Yes</span>
+<span class="co">#&gt; 5 D10-JJJ-1 PF3D7_0106300 atp6  atp6-Ser769Asn missense_vari… Ser769Asn Yes</span>
+<span class="co">#&gt; # … with 255 more rows, and 1 more variable: ref_umi_count &lt;dbl&gt;</span></code></pre></div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
-<h2>Links</h2>
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/bailey-lab/miplicorn/">https://​github.com/​bailey-lab/​miplicorn/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/bailey-lab/miplicorn/issues">https://​github.com/​bailey-lab/​miplicorn/​issues</a>
-</li>
+<li><a href="https://github.com/bailey-lab/miplicorn/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/bailey-lab/miplicorn/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing miplicorn</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Aris Paschalidis <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-2247-1885" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://www.arispas.com/" class="external-link">Aris Paschalidis</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-2247-1885" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/bailey-lab/miplicorn/actions"><img src="https://github.com/bailey-lab/miplicorn/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/bailey-lab/miplicorn?branch=main"><img src="https://codecov.io/gh/bailey-lab/miplicorn/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
+<li><a href="https://github.com/bailey-lab/miplicorn/actions" class="external-link"><img src="https://github.com/bailey-lab/miplicorn/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/gh/bailey-lab/miplicorn?branch=main" class="external-link"><img src="https://codecov.io/gh/bailey-lab/miplicorn/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
 </ul>
 </div>
-</div>
-</div>
 
-
-      <footer><div class="copyright">
-  <p>Developed by Aris Paschalidis.</p>
+  </aside>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by <a href="https://www.arispas.com/" class="external-link">Aris Paschalidis</a>.</p>
 </div>
 
-      </footer>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+</div>
+
+    </footer>
 </div>
 
   
 
+  
 
   </body>
 </html>
