@@ -37,6 +37,7 @@
 #'
 #' @seealso [chromoMap::chromoMap()] [karyoploteR::plotKaryotype()]
 #' @keywords internal
+#' @export
 #' @examples
 #' probes <- tibble::tribble(
 #'   ~chrom, ~start, ~end, ~probe_set,
