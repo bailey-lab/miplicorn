@@ -1,8 +1,12 @@
 url: https://bailey-lab.github.io/miplicorn/
 
 template:
-  params:
-    bootswatch: flatly
+  bootstrap: 5
+  bootswatch: flatly
+  bslib:
+    base_font: { google: "Lato" }
+    font-size-base: 1rem
+    pkgdown-nav-height: 75px
 
 development:
   mode: auto

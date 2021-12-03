@@ -4,6 +4,7 @@ CMD
 Codecov
 ENV
 Github
+Lato
 Lifecycle
 MIP
 MIPTools
@@ -20,6 +21,7 @@ amplicon
 args
 arispas
 bootswatch
+bslib
 cderv
 codecov
 colour
@@ -46,6 +48,7 @@ karyoplot
 macOS
 magrittr
 miplicorn
+nav
 navbar
 noreply
 oldrel
@@ -54,6 +57,7 @@ pandoc
 params
 pkgdown
 pts
+px
 rcmdcheck
 rect
 repo
