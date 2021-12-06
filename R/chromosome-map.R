@@ -19,8 +19,6 @@
 #'     \item The ending position of the probe
 #'     \item An identifier indicating the probe set the probe belongs to.
 #'   }
-#' @param map_pkg The package used for the underlying implementation of the
-#'   chromosome map.
 #' @param title The title of the plot.
 #' @param colours A vector of colours indicating the annotation colour for each
 #'   probe set.
@@ -28,7 +26,7 @@
 #'   internal plotting functions.
 #'
 #' @seealso [chromoMap::chromoMap()] [karyoploteR::plotKaryotype()]
-#' @export
+#' @name chromosome-map
 #' @examples
 #' probes <- tibble::tribble(
 #'   ~chrom, ~start, ~end, ~probe_set,
@@ -53,53 +51,19 @@
 #'   "chr7", 162127L, 162277L, "IBC"
 #' )
 #'
-#' chromosome_map(genome_Pf3D7, single_probe, "karyoploteR")
-#' chromosome_map(genome_Pf3D7, probes, "chromoMap")
+#' plot_chromoMap(genome_Pf3D7, probes)
+#' plot_chromoMap(genome_Pf3D7, single_probe, colours = "red")
 #'
-#' chromosome_map(genome_Pf3D7, single_probe, "chromoMap", colours = "red")
-#' chromosome_map(
+#' plot_karyoploteR(genome_Pf3D7, single_probe)
+#' plot_karyoploteR(
 #'   genome_Pf3D7,
 #'   probes,
-#'   "karyoploteR",
 #'   title = "Example Chromosome Map",
 #'   colours = c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
 #' )
-chromosome_map <- function(genome,
-                           probes,
-                           map_pkg = c("chromoMap", "karyoploteR"),
-                           title = "",
-                           colours = list(),
-                           ...) {
-  # Check formatting of inputs
-  if (ncol(genome) != 3) {
-    abort("Genomic information is misformatted.")
-  }
-  if (ncol(probes) != 4) {
-    abort(c(
-      "Annotation information is misformatted.",
-      "i" = "Did you forget to indicate the probe sets?"
-    ))
-  }
+NULL
 
-  # Call underlying implementation
-  if (length(map_pkg) > 1) {
-    abort(c(
-      "`map_pkg` must be of length 1.",
-      i = '`map_pkg` must be either "chromoMap" or "karyoploteR".'
-    ))
-  } else if (map_pkg == "chromoMap") {
-    plot_chromoMap(genome, probes, title, colours)
-  } else if (map_pkg == "karyoploteR") {
-    plot_karyoploteR(genome, probes, title, colours)
-  } else {
-    abort(c(
-      '`map_pkg` must be either "chromoMap" or "karyoploteR".',
-      x = glue('You\'ve input "{ map_pkg }".')
-    ))
-  }
-}
-
-#' @rdname chromosome_map
+#' @rdname chromosome-map
 #' @export
 plot_chromoMap <- function(genome,
                            probes,
@@ -111,6 +75,9 @@ plot_chromoMap <- function(genome,
     !requireNamespace("withr", quietly = TRUE)) {
     abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
   }
+
+  # Check inputs
+  check_inputs(genome, probes)
 
   # Add unique id to probes
   probes <- tibble::rowid_to_column(probes)
@@ -165,7 +132,7 @@ plot_chromoMap <- function(genome,
   print(quiet(rlang::exec(rlang::expr(chromoMap::chromoMap), !!!arguments)))
 }
 
-#' @rdname chromosome_map
+#' @rdname chromosome-map
 #' @export
 plot_karyoploteR <- function(genome,
                              probes,
@@ -176,6 +143,9 @@ plot_karyoploteR <- function(genome,
   if (!requireNamespace("karyoploteR", quietly = TRUE)) {
     abort('Package "karyoploteR" needed to create chromosome maps. Please install it.')
   }
+
+  # Check inputs
+  check_inputs(genome, probes)
 
   genome <- genome %>%
     data.frame() %>%
@@ -305,3 +275,16 @@ add_data_layer <- function(karyoplot, data, r0, r1, col) {
 
 # To silence the R CMD Check
 globalVariables(".")
+
+# Check formatting of inputs
+check_inputs <- function(genome, probes) {
+  if (ncol(genome) != 3) {
+    abort("Genomic information is misformatted.")
+  }
+  if (ncol(probes) != 4) {
+    abort(c(
+      "Annotation information is misformatted.",
+      "i" = "Did you forget to indicate the probe sets?"
+    ))
+  }
+}
