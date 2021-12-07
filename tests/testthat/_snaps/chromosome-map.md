@@ -1,17 +1,3 @@
-# error if packages not intalled
-
-    Code
-      plot_chromoMap(genome_Pf3D7, probes)
-    Error <rlang_error>
-      Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.
-
----
-
-    Code
-      plot_karyoploteR(genome_Pf3D7, probes)
-    Error <rlang_error>
-      Package "karyoploteR" needed to create chromosome maps. Please install it.
-
 # error if genome is misformatted
 
     Code

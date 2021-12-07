@@ -49,7 +49,7 @@ arrange_natural <- function(.data, ...) {
   # Store variables to arrange by
   dots <- enquos(..., .named = TRUE)
 
-  if (requireNamespace("stringi", quietly = TRUE)) {
+  if (rlang::is_installed("stringi")) {
     # Manipulate dots to get arrange variables
     arrange_vars <- purrr::map(dots, function(var) {
       expr(stringi::stri_rank(as.character(!!var), numeric = TRUE))
@@ -60,7 +60,10 @@ arrange_natural <- function(.data, ...) {
       expr(forcats::as_factor(as.character(!!var)))
     })
   } else {
-    warn('Package "stringi" needed for natural sorting. Please install it.')
+    warn(c(
+      "The `stringi` package is required for natural sorting. Please install it.",
+      i = "Alphabetical sorting has been applied instead."
+    ))
     return(dplyr::arrange(.data, !!!dots))
   }
 

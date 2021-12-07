@@ -81,6 +81,6 @@ test_that("arranges numerics", {
 
 test_that("warning if packages not intalled", {
   # Trick R to think packages not installed
-  mockery::stub(arrange_natural, "requireNamespace", FALSE)
+  mockery::stub(arrange_natural, "rlang::is_installed", FALSE)
   expect_snapshot(arrange_natural(df, gene))
 })

@@ -71,10 +71,10 @@ plot_chromoMap <- function(genome,
                            colours = list(),
                            ...) {
   # Ensure packages installed
-  if (!requireNamespace("chromoMap", quietly = TRUE) |
-    !requireNamespace("withr", quietly = TRUE)) {
-    abort('Packages "chromoMap" and "withr" needed to create chromosome maps. Please install them.')
-  }
+  rlang::check_installed(
+    pkg = c("chromoMap", "withr"),
+    reason = "to create chromosome maps."
+  )
 
   # Check inputs
   check_inputs(genome, probes)
@@ -139,10 +139,11 @@ plot_karyoploteR <- function(genome,
                              title = "",
                              colours = list(),
                              ...) {
-  # Ensure packages installed
-  if (!requireNamespace("karyoploteR", quietly = TRUE)) {
-    abort('Package "karyoploteR" needed to create chromosome maps. Please install it.')
-  }
+  # Ensure package installed
+  rlang::check_installed(
+    pkg = "karyoploteR",
+    reason = "to create chromosome maps."
+  )
 
   # Check inputs
   check_inputs(genome, probes)

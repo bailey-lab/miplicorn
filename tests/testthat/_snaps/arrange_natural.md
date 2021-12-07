@@ -3,7 +3,8 @@
     Code
       arrange_natural(df, gene)
     Warning <warning>
-      Package "stringi" needed for natural sorting. Please install it.
+      The `stringi` package is required for natural sorting. Please install it.
+      i Alphabetical sorting has been applied instead.
     Output
       # A tibble: 4 x 2
         sample gene 
