@@ -15,8 +15,8 @@ genotype call. Data with a UMI count of less than the threshold will be
 filtered out from the analysis.}
 }
 \value{
-A \code{tibble} with the extra class \code{mutation_prev}. The output has the following
-columns:
+A \link[tibble:tibble]{tibble} with the extra class \code{mutation_prev}. The output
+has the following columns:
 \itemize{
 \item \code{mutation_name}: The unique mutation sequenced.
 \item \code{n_total}: The number of samples for which a mutation site was sequenced.
@@ -25,5 +25,23 @@ columns:
 }
 }
 \description{
-Compute prevalence of mutations
+Generate a table representing the prevalence of unique mutations. In order to
+ensure confidence in the results, a threshold is provided indicating
+confidence in genotype calls. All data that do not meet this threshold will
+be removed from the computation.
+}
+\examples{
+ref_file <- miplicorn_example("reference_AA_table.csv")
+alt_file <- miplicorn_example("alternate_AA_table.csv")
+cov_file <- miplicorn_example("coverage_AA_table.csv")
+data <- read_tbl_ref_alt_cov(
+  ref_file,
+  alt_file,
+  cov_file,
+  gene == "atp6" | gene == "crt"
+)
+mutation_prevalence(data, 5)
+}
+\seealso{
+\code{\link[=plot_mutation_prevalence]{plot_mutation_prevalence()}} for plotting the table.
 }
