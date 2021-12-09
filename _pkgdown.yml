@@ -28,6 +28,7 @@ reference:
     desc: >
       These functions are used to manipulate data objects.
     contents:
+      - mutation_prevalence
       - arrange_natural
       - convert_single
 
@@ -36,6 +37,7 @@ reference:
       These functions are used to visualize data.
     contents:
       - chromosome-map
+      - plot_mutation_prevalence
       - theme_miplicorn
 
   - title: Miscellaneous

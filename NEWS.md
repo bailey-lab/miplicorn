@@ -1,5 +1,7 @@
 # miplicorn (development version)
 
+- New `mutation_prevalence()` and `plot_mutation_prevalence()` functions can be
+  used to determine the prevalence of mutations (#23).
 - Deprecate `chromosome_map()` in favor of `plot_chromoMap()` and
   `plot_karyoploteR()` (#25).
 - `read_tbl_*()` functions no longer change sample IDs (#20).
