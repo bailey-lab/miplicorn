@@ -33,10 +33,11 @@ mutation_prevalence <- function(data, threshold) {
   # Use threshold to filter data
   total <- dplyr::filter(
     data,
-    coverage > threshold & (alt_umi_count > threshold | ref_umi_count > threshold)
+    .data$coverage > threshold &
+      (.data$alt_umi_count > threshold | .data$ref_umi_count > threshold)
   )
 
-  mutant_data <- dplyr::filter(total, alt_umi_count > threshold)
+  mutant_data <- dplyr::filter(total, .data$alt_umi_count > threshold)
 
   # Need column mutation name
   if (!"mutation_name" %in% colnames(data)) {
@@ -45,17 +46,17 @@ mutation_prevalence <- function(data, threshold) {
 
   # Get counts of mutations
   total_count <- total %>%
-    dplyr::count(mutation_name) %>%
-    dplyr::rename(n_total = n)
+    dplyr::count(.data$mutation_name) %>%
+    dplyr::rename(n_total = .data$n)
 
   mutant_count <- mutant_data %>%
-    dplyr::count(mutation_name) %>%
-    dplyr::rename(n_mutant = n)
+    dplyr::count(.data$mutation_name) %>%
+    dplyr::rename(n_mutant = .data$n)
 
   # Compute prevalence
   prevalence <- total_count %>%
     dplyr::full_join(mutant_count, by = "mutation_name") %>%
-    dplyr::mutate(prevalence = n_mutant / n_total)
+    dplyr::mutate(prevalence = .data$n_mutant / .data$n_total)
 
   # Assign a subclass "mutation_prev"
   class(prevalence) <- c("mutation_prev", class(prevalence))
