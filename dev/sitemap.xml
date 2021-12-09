@@ -55,7 +55,13 @@
     <loc>https://bailey-lab.github.io/miplicorn/dev/reference/miplicorn_example.html</loc>
   </url>
   <url>
+    <loc>https://bailey-lab.github.io/miplicorn/dev/reference/mutation_prevalence.html</loc>
+  </url>
+  <url>
     <loc>https://bailey-lab.github.io/miplicorn/dev/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/dev/reference/plot_mutation_prevalence.html</loc>
   </url>
   <url>
     <loc>https://bailey-lab.github.io/miplicorn/dev/reference/read-deprecated.html</loc>
