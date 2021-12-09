@@ -60,3 +60,10 @@ test_that("creates a nice plot", {
     plot_mutation_prevalence(plot)
   )
 })
+
+test_that("can manipulate data and then plot", {
+  vdiffr::expect_doppelganger(
+    "can plot manipulated data",
+    plot_mutation_prevalence(dplyr::filter(plot, prevalence > 0.7))
+  )
+})
