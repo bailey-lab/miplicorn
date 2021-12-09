@@ -139,7 +139,7 @@ plot_mutation_prevalence <- function(data) {
       title = "Prevalence of Mutations"
     ) +
     ggplot2::scale_fill_viridis_d(name = "Gene") +
-    theme_miplicorn() +
+    default_theme() +
     ggplot2::theme(
       axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1)
     )
