@@ -1,8 +1,8 @@
 ---
-title: "Dealing With Large Data Sets"
+title: "Dealing with large data sets"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Dealing With Large Data Sets}
+  %\VignetteIndexEntry{Dealing with large data sets}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -4,9 +4,21 @@ template:
   bootstrap: 5
   bootswatch: flatly
   bslib:
-    base_font: { google: "Lato" }
-    font-size-base: 1rem
+    base_font: { google: "Lato" } # usually serif fonts
+    heading_font: { google: "Fira Sans" } # usually sans-serif fonts
+    code_font: { google: "Fira Code" } # usually monospace fonts
     pkgdown-nav-height: 75px
+
+navbar:
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    news:
+      text: News
+      menu:
+        - text: "Change log"
+          href: news/index.html
 
 development:
   mode: auto
@@ -50,21 +62,7 @@ reference:
     contents:
       - genome_Pf3D7
 
-navbar:
-  title: miplicorn
-  type: default
-  left:
-    - icon: fa-home fa-lg
-      href: index.html
-    - text: Get started
-      href: articles/miplicorn.html
-    - text: Reference
-      href: reference/index.html
-    - text: Articles
-      menu:
-        - text: Large data sets
-          href: articles/large-files.html
-    - text: News
-      menu:
-        - text: "Change log"
-          href: news/index.html
+articles:
+  - title: Dealing with large data sets
+    navbar: ~
+    contents: large-files
