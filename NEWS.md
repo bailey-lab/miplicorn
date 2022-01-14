@@ -1,5 +1,7 @@
 # miplicorn (development version)
 
+- Minimum R version has been bumped up to 3.4. This reflects the minimum version
+  defined by package imports.
 - New `mutation_prevalence()` and `plot_mutation_prevalence()` functions can be
   used to determine the prevalence of mutations (#23).
 - Deprecate `chromosome_map()` in favor of `plot_chromoMap()` and
