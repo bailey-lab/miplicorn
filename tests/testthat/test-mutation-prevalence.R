@@ -107,9 +107,7 @@ test_that("creates a nice plot", {
   )
 })
 
-test_that("can manipulate data and then plot", {
-  vdiffr::expect_doppelganger(
-    "can plot manipulated data",
-    plot_mutation_prevalence(dplyr::filter(plot, prevalence > 0.7))
-  )
+test_that("plot and autoplot methods work", {
+  vdiffr::expect_doppelganger("autoplot method works", autoplot(plot))
+  vdiffr::expect_doppelganger("plot method works", plot(plot))
 })

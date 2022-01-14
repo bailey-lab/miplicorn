@@ -106,8 +106,9 @@ mutation_prevalence <- function(data, threshold) {
 #' on the x-axis. Data are grouped by the gene on which the mutation took place
 #' and coloured according to their groupings.
 #'
-#' @param data An object of class `mutation_prev`. Derived from the output of
-#' [mutation_prevalence()].
+#' @param data,object,x An object of class `mutation_prev`. Derived from the
+#'   output of [mutation_prevalence()].
+#' @param ...	Other arguments passed to specific methods.
 #'
 #' @export
 #' @seealso [mutation_prevalence()] for generating the data for plotting.
@@ -122,7 +123,7 @@ mutation_prevalence <- function(data, threshold) {
 #'   gene == "atp6" | gene == "crt"
 #' )
 #' prevalence <- mutation_prevalence(data, 5)
-#' plot_mutation_prevalence(prevalence)
+#' plot(prevalence)
 plot_mutation_prevalence <- function(data) {
   if (!inherits(data, "mut_prev")) {
     abort(c(
@@ -132,7 +133,14 @@ plot_mutation_prevalence <- function(data) {
     ))
   }
 
-  plot_data <- data %>%
+  plot(data)
+}
+
+#' @importFrom ggplot2 autoplot
+#' @rdname plot_mutation_prevalence
+#' @export
+autoplot.mut_prev <- function(object, ...) {
+  plot_data <- object %>%
     tidyr::drop_na() %>%
     tidyr::extract(
       col = .data$mutation_name,
@@ -160,4 +168,11 @@ plot_mutation_prevalence <- function(data) {
     ggplot2::theme(
       axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1)
     )
+}
+
+#' @importFrom graphics plot
+#' @rdname plot_mutation_prevalence
+#' @export
+plot.mut_prev <- function(x, ...) {
+  print(autoplot(x, ...))
 }
