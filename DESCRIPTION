@@ -2,14 +2,11 @@ Package: miplicorn
 Title: A Framework for MIP and Amplicon Analysis
 Version: 0.1.0.9000
 Authors@R:
-    person(given = "Aris",
-           family = "Paschalidis",
-           role = c("aut", "cre"),
-           email = "aris.paschalidis@gmail.com",
+    person("Aris", "Paschalidis", , "aris.paschalidis@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-2247-1885"))
-Description: A unified framework for molecular inversion probe and amplicon
-    analysis. Provides the tools to parse, manipulate, analyze, and visualize
-    data.
+Description: A unified framework for molecular inversion probe and
+    amplicon analysis. Provides the tools to parse, manipulate, analyze,
+    and visualize data.
 License: MIT + file LICENSE
 URL: https://bailey-lab.github.io/miplicorn/,
     https://github.com/bailey-lab/miplicorn
@@ -19,8 +16,8 @@ Depends:
 Imports:
     cli (>= 3.0.0),
     dplyr,
-    glue,
     ggplot2,
+    glue,
     janitor,
     lifecycle,
     magrittr,
@@ -28,6 +25,7 @@ Imports:
     rlang (>= 0.4.11),
     tibble,
     tidyr,
+    vctrs (>= 0.3.0),
     vroom (>= 1.5.6)
 Suggests:
     chromoMap,

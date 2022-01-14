@@ -1,3 +1,22 @@
+new_mut_prev <- function(x) {
+  tibble::new_tibble(x, class = "mut_prev")
+}
+
+#' @export
+`[.mut_prev` <- function(x, i, j, drop = FALSE) {
+  mut_prev_reconstruct(NextMethod())
+}
+
+#' @export
+`names<-.mut_prev` <- function(x, value) {
+  mut_prev_reconstruct(NextMethod())
+}
+
+#' @export
+`$<-.mut_prev` <- function(x, name, value) {
+  mut_prev_reconstruct(NextMethod())
+}
+
 #------------------------------------------------
 #' Compute prevalence of mutations
 #'
@@ -75,10 +94,8 @@ mutation_prevalence <- function(data, threshold) {
     dplyr::full_join(mutant_count, by = "mutation_name") %>%
     dplyr::mutate(prevalence = .data$n_mutant / .data$n_total)
 
-  # Assign a subclass "mutation_prev"
-  class(prevalence) <- c("mutation_prev", class(prevalence))
-
-  prevalence
+  # Assign a subclass "mut_prev"
+  new_mut_prev(prevalence)
 }
 
 #------------------------------------------------
@@ -89,8 +106,9 @@ mutation_prevalence <- function(data, threshold) {
 #' on the x-axis. Data are grouped by the gene on which the mutation took place
 #' and coloured according to their groupings.
 #'
-#' @param data An object of class `mutation_prev`. Derived from the output of
-#' [mutation_prevalence()].
+#' @param data,object,x An object of class `mutation_prev`. Derived from the
+#'   output of [mutation_prevalence()].
+#' @param ...	Other arguments passed to specific methods.
 #'
 #' @export
 #' @seealso [mutation_prevalence()] for generating the data for plotting.
@@ -105,17 +123,24 @@ mutation_prevalence <- function(data, threshold) {
 #'   gene == "atp6" | gene == "crt"
 #' )
 #' prevalence <- mutation_prevalence(data, 5)
-#' plot_mutation_prevalence(prevalence)
+#' plot(prevalence)
 plot_mutation_prevalence <- function(data) {
-  if (!inherits(data, "mutation_prev")) {
+  if (!inherits(data, "mut_prev")) {
     abort(c(
-      "Data object must be of class `mutation_prev`.",
+      "Data object must be of class `mut_prev`.",
       x = cli::pluralize("Its classes are {glue::backtick(class(data))}."),
       i = "Did you forget to run `mutation_prevalence()` first?"
     ))
   }
 
-  plot_data <- data %>%
+  plot(data)
+}
+
+#' @importFrom ggplot2 autoplot
+#' @rdname plot_mutation_prevalence
+#' @export
+autoplot.mut_prev <- function(object, ...) {
+  plot_data <- object %>%
     tidyr::drop_na() %>%
     tidyr::extract(
       col = .data$mutation_name,
@@ -143,4 +168,11 @@ plot_mutation_prevalence <- function(data) {
     ggplot2::theme(
       axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1)
     )
+}
+
+#' @importFrom graphics plot
+#' @rdname plot_mutation_prevalence
+#' @export
+plot.mut_prev <- function(x, ...) {
+  print(autoplot(x, ...))
 }
