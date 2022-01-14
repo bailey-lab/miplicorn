@@ -62,6 +62,16 @@ test_that("can reassign object", {
   expect_s3_class(simple, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 })
 
+test_that("class is dplyr compatible", {
+  expect_s3_class(
+    dplyr::select(simple, 1, 2),
+    c("tbl_df", "tbl", "data.frame"),
+    exact = TRUE
+  )
+  expect_s3_class(dplyr::select(simple, 1, 4), "mut_prev")
+  expect_s3_class(dplyr::filter(simple, prevalence > 0.4), "mut_prev")
+})
+
 # mutation_prevalence() Test Cases ---------------------------------------------
 test_that("error if lack ref, alt, coverage columns", {
   expect_snapshot_error(mutation_prevalence(data[, 1:5], 3))
