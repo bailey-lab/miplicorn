@@ -5,7 +5,7 @@ data <- read_tbl_ref_alt_cov(
   gene == "atp6" | gene == "crt"
 )
 
-plot <- tibble::tribble(
+plot <- new_mut_prev(tibble::tribble(
   ~mutation_name, ~n_total, ~n_mutant, ~prevalence,
   "atp6-Ala623Glu", 36L, NA, NA,
   "atp6-Glu431Lys", 39L, NA, NA,
@@ -23,8 +23,44 @@ plot <- tibble::tribble(
   "crt-Ile356Thr", 41L, 18L, 0.439024390243902,
   "crt-Lys76Thr", 29L, 25L, 0.862068965517241,
   "crt-Met74Ile", 29L, 24L, 0.827586206896552
-)
-class(plot) <- c("mutation_prev", class(plot))
+))
+
+# mut_prev class Test Cases ----------------------------------------------------
+simple <- new_mut_prev(tibble::tribble(
+  ~mutation_name, ~n_total, ~n_mutant, ~prevalence,
+  "atp6-Ala623Glu", 30L, 15, .50,
+  "atp6-Glu431Lys", 40L, 20, .50
+))
+
+test_that("subclass correctely assigned", {
+  df <- tibble::tibble(a = 1, b = 2)
+  expect_s3_class(
+    new_mut_prev(df),
+    c("mut_prev", "tbl_df", "tbl", "data.frame"),
+    exact = TRUE
+  )
+})
+
+test_that("can subset object", {
+  expect_s3_class(simple[1, ], "mut_prev")
+  expect_s3_class(simple[, 1], c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+})
+
+test_that("can rename object", {
+  names(simple) <- c("mutation_name", "a", "b", "prevalence")
+  expect_s3_class(simple, "mut_prev")
+
+  names(simple) <- c("a", "b", "c", "d")
+  expect_s3_class(simple, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+})
+
+test_that("can reassign object", {
+  simple$n_total <- c(50, 60)
+  expect_s3_class(simple, "mut_prev")
+
+  simple$prevalence <- NULL
+  expect_s3_class(simple, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+})
 
 # mutation_prevalence() Test Cases ---------------------------------------------
 test_that("error if lack ref, alt, coverage columns", {

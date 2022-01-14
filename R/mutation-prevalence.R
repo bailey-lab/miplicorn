@@ -2,6 +2,21 @@ new_mut_prev <- function(x) {
   tibble::new_tibble(x, class = "mut_prev")
 }
 
+#' @export
+`[.mut_prev` <- function(x, i, j, drop = FALSE) {
+  mut_prev_reconstruct(NextMethod())
+}
+
+#' @export
+`names<-.mut_prev` <- function(x, value) {
+  mut_prev_reconstruct(NextMethod())
+}
+
+#' @export
+`$<-.mut_prev` <- function(x, name, value) {
+  mut_prev_reconstruct(NextMethod())
+}
+
 #------------------------------------------------
 #' Compute prevalence of mutations
 #'
