@@ -1,3 +1,7 @@
+new_mut_prev <- function(x) {
+  tibble::new_tibble(x, class = "mut_prev")
+}
+
 #------------------------------------------------
 #' Compute prevalence of mutations
 #'
@@ -75,10 +79,8 @@ mutation_prevalence <- function(data, threshold) {
     dplyr::full_join(mutant_count, by = "mutation_name") %>%
     dplyr::mutate(prevalence = .data$n_mutant / .data$n_total)
 
-  # Assign a subclass "mutation_prev"
-  class(prevalence) <- c("mutation_prev", class(prevalence))
-
-  prevalence
+  # Assign a subclass "mut_prev"
+  new_mut_prev(prevalence)
 }
 
 #------------------------------------------------
@@ -107,9 +109,9 @@ mutation_prevalence <- function(data, threshold) {
 #' prevalence <- mutation_prevalence(data, 5)
 #' plot_mutation_prevalence(prevalence)
 plot_mutation_prevalence <- function(data) {
-  if (!inherits(data, "mutation_prev")) {
+  if (!inherits(data, "mut_prev")) {
     abort(c(
-      "Data object must be of class `mutation_prev`.",
+      "Data object must be of class `mut_prev`.",
       x = cli::pluralize("Its classes are {glue::backtick(class(data))}."),
       i = "Did you forget to run `mutation_prevalence()` first?"
     ))

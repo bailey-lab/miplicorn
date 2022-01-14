@@ -9,9 +9,9 @@
 
     Data needs the column `mutation_name`.
 
-# data must have mutation_prev class
+# data must have mut_prev class
 
-    Data object must be of class `mutation_prev`.
+    Data object must be of class `mut_prev`.
     x Its classes are `tbl_df`, `tbl`, and `data.frame`.
     i Did you forget to run `mutation_prevalence()` first?
 

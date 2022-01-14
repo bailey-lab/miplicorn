@@ -41,7 +41,7 @@ test_that("output has unique mutation names", {
 })
 
 test_that("result inherits new class", {
-  expect_s3_class(mutation_prevalence(data, 3), "mutation_prev")
+  expect_s3_class(mutation_prevalence(data, 3), "mut_prev")
 })
 
 test_that("results computed correctly", {
@@ -49,7 +49,7 @@ test_that("results computed correctly", {
 })
 
 # plot_mutation_prevalence() Test Cases ----------------------------------------
-test_that("data must have mutation_prev class", {
+test_that("data must have mut_prev class", {
   df <- tibble::tibble(a = 1, b = 2)
   expect_snapshot_error(plot_mutation_prevalence(df))
 })
