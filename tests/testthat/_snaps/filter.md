@@ -5,7 +5,7 @@
 # filter_*() functions advise user to use dplyr::filter()
 
     Code
-      filter_coverage(df, 2)
+      filter_coverage(tibble::tibble(coverage = c(2, 3)), 2)
     Output
       # A tibble: 2 x 1
         coverage

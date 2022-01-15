@@ -72,7 +72,8 @@ test_that("error if column does not exist", {
 })
 
 test_that("filter_*() functions advise user to use dplyr::filter()", {
-  withr::local_options(rlib_warning_verbosity = "verbose")
-  df <- tibble::tibble(coverage = c(2, 3))
-  expect_snapshot(filter_coverage(df, 2))
+  withr::with_options(
+    list(rlib_warning_verbosity = "verbose"),
+    expect_snapshot(filter_coverage(tibble::tibble(coverage = c(2, 3)), 2))
+  )
 })

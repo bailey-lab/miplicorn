@@ -40,9 +40,10 @@ reference:
     desc: >
       These functions are used to manipulate data objects.
     contents:
+      - filter
       - mutation_prevalence
-      - arrange_natural
       - convert_single
+      - arrange_natural
 
   - title: Visualize
     desc: >
