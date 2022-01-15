@@ -238,7 +238,7 @@ read_tbl_helper <- function(.tbl, ..., .name = "value") {
   data <- vroom::vroom(
     file = .tbl,
     col_names = FALSE,
-    col_select = c(1, col_select),
+    col_select = c(1, dplyr::all_of(col_select)),
     show_col_types = FALSE,
     .name_repair = "universal"
   )
