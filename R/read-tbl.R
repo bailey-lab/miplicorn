@@ -110,7 +110,6 @@ read_tbl_coverage <- function(.tbl, ...) {
 read_tbl_haplotype <- function(.tbl, ..., .col_select = NULL) {
   dots <- enquos(..., .ignore_empty = "all")
   check_named(dots)
-  col_select <- enquo(.col_select)
 
   if (empty_file(.tbl)) {
     return(tibble::tibble())
@@ -118,7 +117,7 @@ read_tbl_haplotype <- function(.tbl, ..., .col_select = NULL) {
 
   # Read table
   data <- .tbl %>%
-    vroom::vroom(show_col_types = FALSE, col_select = !!col_select) %>%
+    vroom::vroom(show_col_types = FALSE, col_select = {{ .col_select }}) %>%
     janitor::clean_names() %>%
     dplyr::relocate(sample = .data$sample_id)
 

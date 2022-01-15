@@ -35,9 +35,6 @@
 #' label_mutations(data, .after = alt)
 #' label_mutations(data, .before = pos)
 label_mutations <- function(.data, .before = NULL, .after = NULL) {
-  .before <- enquo(.before)
-  .after <- enquo(.after)
-
   dplyr::mutate(.data,
     ans_der_indel = dplyr::case_when(
       ref_umi_count > alt_umi_count ~ "ref",
@@ -46,7 +43,7 @@ label_mutations <- function(.data, .before = NULL, .after = NULL) {
       stringr::str_length(ref) > stringr::str_length(alt) & alt_umi_count > ref_umi_count ~ "del",
       TRUE ~ NA_character_
     ),
-    .before = !!.before,
-    .after = !!.after
+    .before = {{ .before }},
+    .after = {{ .after }}
   )
 }
