@@ -244,6 +244,8 @@ plot_karyoploteR <- function(genome,
     fill = colours,
     legend = purrr::as_vector(probe_sets)
   )
+
+  invisible(plot_data)
 }
 
 # Extract arguments of a function from a list

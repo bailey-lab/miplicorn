@@ -70,6 +70,10 @@ test_that("chromosome_map works invisibly", {
 # })
 
 # plot_chromoMap() Test Cases --------------------------------------------------
+test_that("plot_chromoMap() returns output invisibly", {
+  expect_invisible(plot_chromoMap(genome_Pf3D7, single_probe))
+})
+
 save_widget <- function(widget) {
   html <- tempfile(fileext = ".html")
   png <- tempfile(fileext = ".png")
@@ -139,6 +143,10 @@ test_that("plot_chromoMap() overrides defaults with user input", {
 })
 
 # plot_karyoploteR() Test Cases ------------------------------------------------
+test_that("plot_karyoploteR() returns output invisibly", {
+  expect_invisible(plot_karyoploteR(genome_Pf3D7, single_probe))
+})
+
 test_that("plot_karyoploteR() draws correctly", {
   vdiffr::expect_doppelganger(
     "karyoploteR default plot one probe",
