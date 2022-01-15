@@ -8,7 +8,6 @@ test_that("chrom and gene are deprecated", {
 })
 
 test_that("read_file() is deprecated", {
-  expect_warning(read_file("small.csv", .name = "ref_umi_count"))
   expect_snapshot(read_file("small.csv", .name = "ref_umi_count"))
 })
 
