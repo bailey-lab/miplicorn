@@ -254,11 +254,11 @@ extract_args <- function(list, fn) {
 
 # Add a base layer to the karyoplot
 add_base_layer <- function(karyoplot, fn, arguments) {
-  rlang::exec(
+  suppressMessages(rlang::exec(
     rlang::expr(fn),
     karyoplot = karyoplot,
     !!!extract_args(arguments, fn)
-  )
+  ))
 }
 
 # Add a data layer to the karyoplot
