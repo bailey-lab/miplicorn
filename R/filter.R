@@ -8,6 +8,7 @@
 #'
 #' @seealso [Advanced R](<https://adv-r.hadley.nz/function-factories.html>) for
 #'   more information on function factories.
+#' @keywords internal
 #' @examples
 #' \dontrun{
 #'
