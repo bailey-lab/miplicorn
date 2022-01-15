@@ -1,5 +1,6 @@
 # miplicorn (development version)
 
+- `plot_karyoploteR()` no longer prints plot noisily.
 - Minimum R version has been bumped up to 3.4. This reflects the minimum version
   defined by package imports.
 - New `mutation_prevalence()` and `plot_mutation_prevalence()` functions can be
