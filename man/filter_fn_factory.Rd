@@ -12,8 +12,8 @@ filter_fn_factory(.col, .type = c("numeric", "character"))
 \item{.type}{The type of the column.}
 }
 \description{
-Define a function factory to create filtering functions that filter the
-data based on a single column.
+Define a function factory to create filtering functions that filter data
+based on a single column.
 }
 \examples{
 \dontrun{
@@ -26,3 +26,4 @@ filter_gene <- filter_fn_factory("gene", "character")
 \href{https://adv-r.hadley.nz/function-factories.html}{Advanced R} for
 more information on function factories.
 }
+\keyword{internal}

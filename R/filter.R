@@ -1,7 +1,7 @@
 #' Filter function factory
 #'
-#' Define a function factory to create filtering functions that filter the
-#' data based on a single column.
+#' Define a function factory to create filtering functions that filter data
+#' based on a single column.
 #'
 #' @param .col The name of the column used to filter the data.
 #' @param .type The type of the column.
