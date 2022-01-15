@@ -103,7 +103,7 @@
 <p>You may install the package from <a href="https://github.com/bailey-lab/miplicorn" class="external-link">Github</a> using <code>devtools</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"https://github.com/bailey-lab/miplicorn"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"bailey-lab/miplicorn"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -112,11 +112,13 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bailey-lab.github.io/miplicorn/">miplicorn</a></span><span class="op">)</span>
 
-<span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"reference_AA_table.csv"</span><span class="op">)</span>
+<span class="va">ref_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"reference_AA_table.csv"</span><span class="op">)</span>
+<span class="va">alt_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"reference_AA_table.csv"</span><span class="op">)</span>
+<span class="va">cov_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"reference_AA_table.csv"</span><span class="op">)</span>
 
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read-tbl.html">read_tbl_reference</a></span><span class="op">(</span><span class="va">file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span><span class="op">)</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read-tbl.html">read_tbl_ref_alt_cov</a></span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">alt_file</span>, <span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">|</span> <span class="va">gene</span> <span class="op">==</span> <span class="st">"crt"</span><span class="op">)</span>
 <span class="va">data</span>
-<span class="co">#&gt; # A tibble: 260 × 8</span>
+<span class="co">#&gt; # A tibble: 832 × 10</span>
 <span class="co">#&gt;   sample     gene_id       gene  mutation_name  exonic_func   aa_change targeted</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;</span>
 <span class="co">#&gt; 1 D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
@@ -124,18 +126,46 @@
 <span class="co">#&gt; 3 D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
 <span class="co">#&gt; 4 D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
 <span class="co">#&gt; 5 D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
-<span class="co">#&gt; # … with 255 more rows, and 1 more variable: ref_umi_count &lt;dbl&gt;</span>
+<span class="co">#&gt; # … with 827 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span>
 
-<span class="fu"><a href="reference/arrange_natural.html">arrange_natural</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">sample</span>, <span class="va">targeted</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 260 × 8</span>
-<span class="co">#&gt;   sample    gene_id       gene  mutation_name  exonic_func    aa_change targeted</span>
-<span class="co">#&gt;   &lt;fct&gt;     &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;     &lt;fct&gt;</span>
-<span class="co">#&gt; 1 D10-JJJ-1 PF3D7_0106300 atp6  atp6-Gly639Asp missense_vari… Gly639Asp No</span>
-<span class="co">#&gt; 2 D10-JJJ-1 PF3D7_0106300 atp6  atp6-Ser466Asn missense_vari… Ser466Asn No</span>
-<span class="co">#&gt; 3 D10-JJJ-1 PF3D7_0106300 atp6  atp6-Ala623Glu missense_vari… Ala623Glu Yes</span>
-<span class="co">#&gt; 4 D10-JJJ-1 PF3D7_0106300 atp6  atp6-Glu431Lys missense_vari… Glu431Lys Yes</span>
-<span class="co">#&gt; 5 D10-JJJ-1 PF3D7_0106300 atp6  atp6-Ser769Asn missense_vari… Ser769Asn Yes</span>
-<span class="co">#&gt; # … with 255 more rows, and 1 more variable: ref_umi_count &lt;dbl&gt;</span></code></pre></div>
+<span class="fu"><a href="reference/filter.html">filter_coverage</a></span><span class="op">(</span><span class="va">data</span>, <span class="fl">100</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 236 × 10</span>
+<span class="co">#&gt;   sample     gene_id       gene  mutation_name  exonic_func   aa_change targeted</span>
+<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;</span>
+<span class="co">#&gt; 1 D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 2 D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 3 D10-JJJ-15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 4 D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 5 D10-JJJ-38 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; # … with 231 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span>
+<span class="fu"><a href="reference/filter.html">filter_targeted</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"Yes"</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 624 × 10</span>
+<span class="co">#&gt;   sample     gene_id       gene  mutation_name  exonic_func   aa_change targeted</span>
+<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;</span>
+<span class="co">#&gt; 1 D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 2 D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 3 D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 4 D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; 5 D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes</span>
+<span class="co">#&gt; # … with 619 more rows, and 3 more variables: ref_umi_count &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;</span>
+
+<span class="va">prev</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mutation_prevalence.html">mutation_prevalence</a></span><span class="op">(</span><span class="va">data</span>, <span class="fl">5</span><span class="op">)</span>
+<span class="va">prev</span>
+<span class="co">#&gt; # A tibble: 16 × 4</span>
+<span class="co">#&gt;   mutation_name  n_total n_mutant prevalence</span>
+<span class="co">#&gt;   &lt;chr&gt;            &lt;int&gt;    &lt;int&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 atp6-Ala623Glu      36       36          1</span>
+<span class="co">#&gt; 2 atp6-Glu431Lys      39       39          1</span>
+<span class="co">#&gt; 3 atp6-Gly639Asp      26       26          1</span>
+<span class="co">#&gt; 4 atp6-Ser466Asn      15       15          1</span>
+<span class="co">#&gt; 5 atp6-Ser769Asn      17       17          1</span>
+<span class="co">#&gt; # … with 11 more rows</span>
+
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">prev</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-usage-1.png" width="100%"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
