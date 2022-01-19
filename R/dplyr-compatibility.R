@@ -1,3 +1,4 @@
+# mut-prev class
 mut_prev_reconstruct <- function(data, template) {
   if (mut_prev_reconstructable(data)) {
     new_mut_prev(data)
@@ -21,6 +22,34 @@ has_mut_prev_coltypes <- function(x) {
   coltypes <- c(
     mutation_name = rlang::is_character(x$mutation_name),
     prevalence = rlang::is_double(x$prevalence)
+  )
+  all(coltypes)
+}
+
+# mut-freq class
+mut_freq_reconstruct <- function(data, template) {
+  if (mut_freq_reconstructable(data)) {
+    new_mut_freq(data)
+  } else {
+    tibble::new_tibble(data)
+  }
+}
+
+mut_freq_reconstructable <- function(data) {
+  rlang::is_list(data) &&
+    has_mut_freq_cols(data) &&
+    has_mut_freq_coltypes(data)
+}
+
+has_mut_freq_cols <- function(x) {
+  mut_freq_cols <- c("mutation_name", "frequency")
+  all(mut_freq_cols %in% colnames(x))
+}
+
+has_mut_freq_coltypes <- function(x) {
+  coltypes <- c(
+    mutation_name = rlang::is_character(x$mutation_name),
+    frequency = rlang::is_double(x$frequency)
   )
   all(coltypes)
 }

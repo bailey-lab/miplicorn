@@ -10,6 +10,11 @@
       "mut_prev",
       method = mut_prev_reconstruct
     )
+    vctrs::s3_register(
+      "dplyr::dplyr_reconstruct",
+      "mut_freq",
+      method = mut_freq_reconstruct
+    )
   }
   invisible()
 }
