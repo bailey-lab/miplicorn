@@ -42,6 +42,7 @@ reference:
     contents:
       - filter
       - mutation_prevalence
+      - mutation_frequency
       - convert_single
       - arrange_natural
 
@@ -51,6 +52,7 @@ reference:
     contents:
       - chromosome-map
       - plot_mutation_prevalence
+      - plot_mutation_frequency
       - theme_miplicorn
 
   - title: Miscellaneous
