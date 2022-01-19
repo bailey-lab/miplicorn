@@ -1,5 +1,7 @@
 # miplicorn (development version)
 
+- New `mutation_frequency()` and `plot_mutation_frequency()` functions can be
+  used to determine the frequency of mutations (#29).
 - `plot_karyoploteR()` no longer prints plot noisily.
 - Minimum R version has been bumped up to 3.4. This reflects the minimum version
   defined by package imports.
