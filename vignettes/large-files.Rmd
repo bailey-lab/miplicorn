@@ -1,5 +1,6 @@
 ---
 title: "Dealing with large data sets"
+description: "Learn how to read large data sets to prevent memory issues."
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Dealing with large data sets}
