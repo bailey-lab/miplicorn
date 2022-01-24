@@ -1,5 +1,6 @@
 # miplicorn (development version)
 
+- New `vignette("faq")` answers some frequently asked questions (#32).
 - New `mutation_frequency()` and `plot_mutation_frequency()` functions can be
   used to determine the frequency of mutations (#29).
 - `plot_karyoploteR()` no longer prints plot noisily.

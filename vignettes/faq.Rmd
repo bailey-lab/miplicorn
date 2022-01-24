@@ -1,0 +1,179 @@
+---
+title: "FAQ"
+description: "A compilation of frequently asked questions."
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FAQ}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(miplicorn)
+```
+
+```{r example data, include = FALSE}
+data <- tibble::tribble(
+  ~sample, ~gene_id, ~gene, ~mutation_name, ~exonic_func, ~aa_change, ~targeted, ~coverage,
+  "LA-05-37", "PF3D7_0709000", "crt", "crt-Cys72Ser", "missense_variant", "Cys72Ser", "Yes", 1716,
+  "KO-05-62", "PF3D7_1133400", "PF3D7_1133400", "PF3D7_1133400-Glu187Lys", "missense_variant", "Glu187Lys", "No", 246,
+  "HO-05-13", "PF3D7_1451200", "PF3D7-1451200", "PF3D7-1451200-Asn71Asn", "synonymous_variant", "Asn71Asn", "Yes", 1,
+  "TO-05-43", "PF3D7_1133400", "PF3D7_1133400", "PF3D7_1133400-Glu121Lys", "missense_variant", "Glu121Lys", "No", 40,
+  "KO-05-45", "PF3D7_1133400", "PF3D7_1133400", "PF3D7_1133400-Glu405Lys", "missense_variant", "Glu405Lys", "No", 0,
+  "KS-05-95", "PF3D7_0709000", "crt", "crt-Ala220Ser", "missense_variant", "Ala220Ser", "Yes", 1,
+  "AR-05-25", "PF3D7_0810800", "dhps", "dhps-Ile431Val", "missense_variant", "Ile431Val", "Yes", 274,
+  "HO-05-52", "PF3D7_1133400", "PF3D7_1133400", "PF3D7_1133400-Ser283Leu", "missense_variant", "Ser283Leu", "No", 736,
+  "KN-05-54", "PF3D7_1012700", "pph", "pph-Asn1189_Asn1194del", "disruptive_inframe_deletion", "Asn1189_Asn1194del", "No", 0,
+  "LA-05-100", "PF3D7_0417200", "dhfr-ts", "dhfr-ts-Cys59Arg", "missense_variant", "Cys59Arg", "Yes", 17
+)
+```
+
+
+## How can I add metadata to my data?
+
+To add metadata to your metadata, you must read the metadata file as an R object
+and then combine the result with your data.
+
+Metadata is often saved as a delimited file—most commonly a CSV (comma separated
+values) or a TSV (tab separated values)—or an excel file. There are several
+packages that can be used to read in such files, but we recommend the use of
+[`{vroom}`](https://vroom.r-lib.org/index.html) for delimited files and
+[`{readxl}`](https://readxl.tidyverse.org/) for excel files.
+
+```{r read metadata, eval = FALSE}
+metadata <- vroom::vroom("path/to/file")
+# OR
+metadata <- readxl::read_excel("path/to/file")
+```
+
+```{r example metadata, include = FALSE}
+metadata <- tibble::tribble(
+  ~ID, ~District, ~Facility,
+  "LA-05-37", "Lamwo", "Padibe",
+  "KO-05-62", "Kole", "Aboke",
+  "HO-05-13", "Hoima", "Kigorobya",
+  "TO-05-43", "Tororo", "Nagongera",
+  "KO-05-45", "Kole", "Aboke",
+  "KS-05-95", "Kasese", "Karambi",
+  "AR-05-25", "Arua", "Opia",
+  "HO-05-52", "Hoima", "Kigorobya",
+  "KN-05-54", "Kanungu", "Kihihi",
+  "LA-05-100", "Lamwo", "Padibe"
+)
+```
+
+After reading in your metadata, you can add the metadata to your data frame
+using one of [`{dplyr}`'s mutating
+joins](https://dplyr.tidyverse.org/reference/mutate-joins.html).
+
+```{r combine data & metadata}
+dplyr::left_join(data, metadata, by = c("sample" = "ID"))
+```
+
+Note that you may need to change the `by` argument to reflect the proper column
+name of the metadata.
+
+### My sample names do not match
+
+In the case where your sample names do not match, first make sure that you are
+reading in the correct files! In some cases, your data and metadata sample names
+may be slightly different. For example, consider a dataset with the following
+sample names:
+
+```{r misformatted sample names, echo = FALSE}
+data_misformatted <- tibble::tribble(
+  ~sample, ~gene_id, ~gene, ~mutation_name, ~exonic_func, ~aa_change, ~targeted, ~coverage,
+  "LA-05-37-ug-sur-2020-1", "PF3D7_0709000", "crt", "crt-Cys72Ser", "missense_variant", "Cys72Ser", "Yes", 1716,
+  "KO-05-62-ug-sur-2020-1", "PF3D7_1133400", "PF3D7_1133400", "PF3D7_1133400-Glu187Lys", "missense_variant", "Glu187Lys", "No", 246,
+  "HO-05-13-ug-sur-2020-1", "PF3D7_1451200", "PF3D7-1451200", "PF3D7-1451200-Asn71Asn", "synonymous_variant", "Asn71Asn", "Yes", 1,
+  "TO-05-43-ug-sur-2020-1", "PF3D7_1133400", "PF3D7_1133400", "PF3D7_1133400-Glu121Lys", "missense_variant", "Glu121Lys", "No", 40,
+  "KO-05-45-ug-sur-2020-1", "PF3D7_1133400", "PF3D7_1133400", "PF3D7_1133400-Glu405Lys", "missense_variant", "Glu405Lys", "No", 0,
+  "KS-05-95-ug-sur-2020-1", "PF3D7_0709000", "crt", "crt-Ala220Ser", "missense_variant", "Ala220Ser", "Yes", 1,
+  "AR-05-25-ug-sur-2020-1", "PF3D7_0810800", "dhps", "dhps-Ile431Val", "missense_variant", "Ile431Val", "Yes", 274,
+  "HO-05-52-ug-sur-2020-1", "PF3D7_1133400", "PF3D7_1133400", "PF3D7_1133400-Ser283Leu", "missense_variant", "Ser283Leu", "No", 736,
+  "KN-05-54-ug-sur-2020-1", "PF3D7_1012700", "pph", "pph-Asn1189_Asn1194del", "disruptive_inframe_deletion", "Asn1189_Asn1194del", "No", 0,
+  "LA-05-100-ug-sur-2020-1", "PF3D7_0417200", "dhfr-ts", "dhfr-ts-Cys59Arg", "missense_variant", "Cys59Arg", "Yes", 17
+)
+data_misformatted$sample
+```
+
+In order to add your metadata to this dataset, you must first perform some
+string manipulation so that the sample names in the dataset and metadata align.
+To do so, you can leverage the [`{stringr}`](https://stringr.tidyverse.org/)
+package.
+
+```{r parse sample names}
+data_formatted <- data_misformatted %>%
+  dplyr::mutate(sample = stringr::str_remove(sample, "-ug.*"))
+```
+
+You can then use
+[`{dplyr}`](https://dplyr.tidyverse.org/reference/mutate-joins.html) as before:
+
+```{r merge formatted data with metadata}
+dplyr::left_join(data_formatted, metadata, by = c("sample" = "ID"))
+```
+
+## How can I combine multiple probe sets?
+
+In order to combine multiple probe sets, it is first important to ensure that
+you plan to conduct the same analysis for each probe set. If you are not, you
+may want to reconsider combining multiple probe sets. Assuming you want to
+combine the same type of data for each probe set, you can simply bind the rows
+using [`{dplyr}`](https://dplyr.tidyverse.org/reference/bind.html?q=bind).
+
+```{r probes, include = FALSE}
+probe_1 <- tibble::tribble(
+  ~sample, ~chrom, ~pos, ~ref, ~alt, ~mutation_name, ~targeted, ~coverage,
+  "AR-05-54", "chr13", "1629329", "AATAAATATATATAT", "A", "chr13:1629329:AATAAATATATATAT:A", "No", 0,
+  "AR-05-73", "chr13", "1719135", "A", "T", "chr13:1719135:A:T", "No", 23,
+  "KS-05-35", "chr8", "495991", "C", "T", "chr8:495991:C:T", "No", 0,
+  "KN-05-43", "chr13", "1701344", "TAT", "A", "chr13:1701344:TAT:A", "No", 10,
+  "MU-05-69", "chr13", "1713479", "C", "T", "chr13:1713479:C:T", "No", 3,
+  "JI-05-82", "chr13", "1706967", "C", "A", "chr13:1706967:C:A", "No", 0,
+  "JI-05-28", "chr13", "1706000", "A", "G", "chr13:1706000:A:G", "No", 10,
+  "AG-05-28", "chr13", "1706978", "GATTAGATAAAAG", "TATTATAAAAAAAA", "chr13:1706978:GATTAGATAAAAG:TATTATAAAAAAAA", "No", 0,
+  "AG-05-82", "chr4", "848676", "T", "A", "chr4:848676:T:A", "No", 0,
+  "KS-05-63", "chr4", "736960", "C", "T", "chr4:736960:C:T", "No", 0
+)
+
+probe_2 <- tibble::tribble(
+  ~sample, ~chrom, ~pos, ~ref, ~alt, ~mutation_name, ~targeted, ~coverage,
+  "AR-05-54", "chr13", "958382", "T", "C", "chr13:958382:T:C", "No", 241,
+  "AR-05-73", "chr13", "1726643", "A", "G", "chr13:1726643:A:G", "No", 185,
+  "KS-05-35", "chr13", "1649722", "T", "C", "chr13:1649722:T:C", "No", 14,
+  "KN-05-43", "chr13", "958465", "A", "G", "chr13:958465:A:G", "No", 517,
+  "MU-05-69", "chr13", "958389", "C", "T", "chr13:958389:C:T", "No", 0,
+  "JI-05-82", "chr13", "748341", "CATATAT", "C", "chr13:748341:CATATAT:C", "No", 0,
+  "JI-05-28", "chr13", "1649445", "C", "A", "chr13:1649445:C:A", "No", 78,
+  "AG-05-28", "chr8", "550212", "G", "A", "chr8:550212:G:A", "No", 150,
+  "AG-05-82", "chr13", "1649307", "T", "A", "chr13:1649307:T:A", "No", 3,
+  "KS-05-63", "chr13", "958443", "T", "C", "chr13:958443:T:C", "No", 2
+)
+
+probe_3 <- tibble::tribble(
+  ~sample, ~chrom, ~pos, ~ref, ~alt, ~mutation_name, ~targeted, ~coverage,
+  "AR-05-54", "chr4", "1121437", "G", "A", "chr4:1121437:G:A", "No", 3,
+  "AR-05-73", "chr8", "714194", "T", "TATATATATATATATATAG", "chr8:714194:T:TATATATATATATATATAG", "No", 0,
+  "KS-05-35", "chr13", "1868715", "A", "C", "chr13:1868715:A:C", "No", 3,
+  "KN-05-43", "chr4", "516691", "A", "G", "chr4:516691:A:G", "No", 60,
+  "MU-05-69", "chr13", "2512415", "C", "T", "chr13:2512415:C:T", "No", 87,
+  "JI-05-82", "chr4", "835402", "T", "C", "chr4:835402:T:C", "No", 1,
+  "JI-05-28", "chr8", "554378", "TA", "T", "chr8:554378:TA:T", "No", 43,
+  "AG-05-28", "chr8", "501607", "AAAAATATATATAT", "A", "chr8:501607:AAAAATATATATAT:A", "No", 0,
+  "AG-05-82", "chr4", "1089817", "T", "C", "chr4:1089817:T:C", "No", 83,
+  "KS-05-63", "chr4", "390103", "TTAATAATAATAATAATAA", "T", "chr4:390103:TTAATAATAATAATAATAA:T", "No", 67
+)
+```
+
+```{r bind rows}
+dplyr::bind_rows(
+  list(probe_1 = probe_1, probe_2 = probe_2, probe_3 = probe_3),
+  .id = "probe_set"
+)
+```

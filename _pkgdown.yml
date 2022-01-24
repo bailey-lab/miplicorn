@@ -66,6 +66,10 @@ reference:
       - genome_Pf3D7
 
 articles:
-  - title: Dealing with large data sets
+  - title: Using miplicorn
+    desc:
     navbar: ~
-    contents: large-files
+    contents:
+      - miplicorn
+      - large-files
+      - faq
