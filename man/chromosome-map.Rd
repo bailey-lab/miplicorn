@@ -41,6 +41,7 @@ Render a graphics visualization of entire chromosomes or chromosomal regions.
 Annotate multiple targeted regions to visualize probe targets.
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 probes <- tibble::tribble(
   ~chrom, ~start, ~end, ~probe_set,
   "chr14", 2342135L, 2342284L, "IBC",
@@ -74,6 +75,7 @@ plot_karyoploteR(
   title = "Example Chromosome Map",
   colours = c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
 )
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[chromoMap:chromoMap]{chromoMap::chromoMap()}} \code{\link[karyoploteR:plotKaryotype]{karyoploteR::plotKaryotype()}}

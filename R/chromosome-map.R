@@ -27,7 +27,7 @@
 #'
 #' @seealso [chromoMap::chromoMap()] [karyoploteR::plotKaryotype()]
 #' @name chromosome-map
-#' @examples
+#' @examplesIf interactive()
 #' probes <- tibble::tribble(
 #'   ~chrom, ~start, ~end, ~probe_set,
 #'   "chr14", 2342135L, 2342284L, "IBC",
