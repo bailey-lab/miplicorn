@@ -1,42 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//index.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/404.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/arrange_natural.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/chromosome_map.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/convert_single.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/articles/faq.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/genome_Pf3D7.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/miplicorn-package.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/articles/large-files.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/miplicorn_example.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/articles/miplicorn.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/pipe.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/authors.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/read.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/index.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/theme_miplicorn.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/news/index.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//reference/tidyeval.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/arrange_natural.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//articles/large-files.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/chromosome-map.html</loc>
   </url>
   <url>
-    <loc>https://bailey-lab.github.io/miplicorn//articles/miplicorn.html</loc>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/chromosome_map.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/convert_single.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/custom_themes.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/filter.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/filter_fn_factory.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/genome_Pf3D7.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/label_mutations.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/miplicorn-package.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/miplicorn_example.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/mutation_frequency.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/mutation_prevalence.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/plot_mutation_frequency.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/plot_mutation_prevalence.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/read-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/read-tbl.html</loc>
+  </url>
+  <url>
+    <loc>https://bailey-lab.github.io/miplicorn/reference/tidyeval.html</loc>
   </url>
 </urlset>
