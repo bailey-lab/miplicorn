@@ -15,7 +15,7 @@
 #' \href{https://en.wikipedia.org/wiki/Natural_sort_order}{natural sorting}
 #' (sorting of strings with both letters and numerals). The underlying
 #' implementation for natural sorting is based on the
-#' \href{https://stringi.gagolewski.com/}{`stringi`} library.
+#' [stringi][stringi::about_stringi] library.
 #'
 #' @param .data A data frame, data frame extension (e.g. a tibble), or a lazy
 #'   data frame (e.g. from dbplyr or dtplyr).

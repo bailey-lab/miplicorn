@@ -32,8 +32,8 @@ new_mut_prev <- function(x) {
 #'   filtered out from the analysis.
 #'
 #' @return
-#' A [tibble][tibble::tibble()] with the extra class `mutation_prev`. The output
-#' has the following columns:
+#' A [tibble][tibble::tibble-package] with the extra class `mutation_prev`. The
+#' output has the following columns:
 #'
 #' * `mutation_name`: The unique mutation sequenced.
 #' * `n_total`: The number of samples for which a mutation site was sequenced.

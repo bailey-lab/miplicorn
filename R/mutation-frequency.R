@@ -32,8 +32,8 @@ new_mut_freq <- function(x) {
 #'   filtered out from the analysis.
 #'
 #' @return
-#' A [tibble][tibble::tibble()] with the extra class `mut_freq`. The output has
-#' the following columns:
+#' A [tibble][tibble::tibble-package] with the extra class `mut_freq`. The
+#' output has the following columns:
 #'
 #' * `mutation_name`: The unique mutation sequenced.
 #' * `frequency`: The frequency of the mutation.

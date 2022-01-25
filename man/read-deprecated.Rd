@@ -24,10 +24,10 @@ read_file(.file, ..., .name = "value")
 
 \item{.cov_file}{File path to the coverage table.}
 
-\item{...}{<\href{https://dplyr.tidyverse.org/reference/dplyr_data_masking.html}{\code{data-masking}}>
-Expressions that return a logical value and are used to filter the data. If
-multiple expressions are included, they are combined with the \code{&} operator.
-Only rows for which all conditions evaluate to \code{TRUE} are kept.}
+\item{...}{\code{\link[dplyr:dplyr_data_masking]{data-masking}} Expressions that
+return a logical value and are used to filter the data. If multiple
+expressions are included, they are combined with the \code{&} operator. Only
+rows for which all conditions evaluate to \code{TRUE} are kept.}
 
 \item{chrom}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}: The chromosome(s) to filter
 to.}
@@ -40,7 +40,7 @@ to.}
 \code{"coverage"} or \code{"ref_umi_count"}.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble()}}. The first six columns contain the
+A \code{\link[tibble:tibble-package]{tibble()}}. The first six columns contain the
 metadata associated with each sample and mutation. Columns \code{ref_umi_count}
 and \code{alt_umi_count} contain the umi count of the reference and alternate
 allele, respectively. Column \code{coverage} contains the coverage for each data

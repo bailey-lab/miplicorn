@@ -37,7 +37,7 @@ Grouping is ignored.
 \href{https://en.wikipedia.org/wiki/Natural_sort_order}{natural sorting}
 (sorting of strings with both letters and numerals). The underlying
 implementation for natural sorting is based on the
-\href{https://stringi.gagolewski.com/}{\code{stringi}} library.
+\link[stringi:about_stringi]{stringi} library.
 }
 }
 \examples{

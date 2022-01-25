@@ -30,11 +30,10 @@
 #' * [`between()`][dplyr::between()], [`near()`][dplyr::near()]
 #'
 #' @param .tbl File path to the table.
-#' @param ...
-#'   <[`data-masking`](https://dplyr.tidyverse.org/reference/dplyr_data_masking.html)>
-#'   Expressions that return a logical value and are used to filter the data. If
-#'   multiple expressions are included, they are combined with the `&` operator.
-#'   Only rows for which all conditions evaluate to `TRUE` are kept.
+#' @param ... [`data-masking`][dplyr::dplyr_data_masking] Expressions that
+#'   return a logical value and are used to filter the data. If multiple
+#'   expressions are included, they are combined with the `&` operator. Only
+#'   rows for which all conditions evaluate to `TRUE` are kept.
 #' @param .col_select One or more selection expressions, like in
 #'   [`dplyr::select()`][dplyr::select()]. Use `c()` or `list()` to use more
 #'   than one expression. See [`?dplyr::select`][dplyr::select()] for details on
@@ -46,11 +45,12 @@
 #'   to.
 #' @param gene `r lifecycle::badge("deprecated")` The gene(s) to filter to.
 #'
-#' @return A [`tibble()`][tibble::tibble()]. The first six columns contain the
-#'   metadata associated with each sample and mutation. The last column contains
-#'   the information parsed from the table. In some cases, this may be the
-#'   umi_count and in other cases it may be the coverage of the associated data
-#'   point.
+#' @return
+#' A [`tibble()`][tibble::tibble-package]. The first six columns contain the
+#' metadata associated with each sample and mutation. The last column contains
+#' the information parsed from the table. In some cases, this may be the
+#' umi_count and in other cases it may be the coverage of the associated data
+#' point.
 #'
 #' @seealso [vroom::vroom()] [dplyr::filter()]
 #' @name read-tbl

@@ -30,10 +30,10 @@ read_tbl_ref_alt_cov(
 \arguments{
 \item{.tbl}{File path to the table.}
 
-\item{...}{<\href{https://dplyr.tidyverse.org/reference/dplyr_data_masking.html}{\code{data-masking}}>
-Expressions that return a logical value and are used to filter the data. If
-multiple expressions are included, they are combined with the \code{&} operator.
-Only rows for which all conditions evaluate to \code{TRUE} are kept.}
+\item{...}{\code{\link[dplyr:dplyr_data_masking]{data-masking}} Expressions that
+return a logical value and are used to filter the data. If multiple
+expressions are included, they are combined with the \code{&} operator. Only
+rows for which all conditions evaluate to \code{TRUE} are kept.}
 
 \item{.col_select}{One or more selection expressions, like in
 \code{\link[dplyr:select]{dplyr::select()}}. Use \code{c()} or \code{list()} to use more
@@ -52,7 +52,7 @@ to.}
 \item{gene}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} The gene(s) to filter to.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble()}}. The first six columns contain the
+A \code{\link[tibble:tibble-package]{tibble()}}. The first six columns contain the
 metadata associated with each sample and mutation. The last column contains
 the information parsed from the table. In some cases, this may be the
 umi_count and in other cases it may be the coverage of the associated data
