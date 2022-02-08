@@ -32,7 +32,7 @@ new_mut_prev <- function(x) {
 #'   filtered out from the analysis.
 #'
 #' @return
-#' A [tibble][tibble::tibble-package] with the extra class `mutation_prev`. The
+#' A [tibble][tibble::tibble-package] with the extra class `mut_prev`. The
 #' output has the following columns:
 #'
 #' * `mutation_name`: The unique mutation sequenced.
@@ -106,8 +106,8 @@ mutation_prevalence <- function(data, threshold) {
 #' on the x-axis. Data are grouped by the gene on which the mutation took place
 #' and coloured according to their groupings.
 #'
-#' @param data,object,x An object of class `mutation_prev`. Derived from the
-#'   output of [mutation_prevalence()].
+#' @param data,object,x An object of class `mut_prev`. Derived from the output
+#'   of [mutation_prevalence()].
 #' @param ...	Other arguments passed to specific methods.
 #'
 #' @export

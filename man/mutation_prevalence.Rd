@@ -15,7 +15,7 @@ genotype call. Data with a UMI count of less than the threshold will be
 filtered out from the analysis.}
 }
 \value{
-A \link[tibble:tibble-package]{tibble} with the extra class \code{mutation_prev}. The
+A \link[tibble:tibble-package]{tibble} with the extra class \code{mut_prev}. The
 output has the following columns:
 \itemize{
 \item \code{mutation_name}: The unique mutation sequenced.

@@ -13,8 +13,8 @@ plot_mutation_prevalence(data)
 \method{plot}{mut_prev}(x, ...)
 }
 \arguments{
-\item{data, object, x}{An object of class \code{mutation_prev}. Derived from the
-output of \code{\link[=mutation_prevalence]{mutation_prevalence()}}.}
+\item{data, object, x}{An object of class \code{mut_prev}. Derived from the output
+of \code{\link[=mutation_prevalence]{mutation_prevalence()}}.}
 
 \item{...}{Other arguments passed to specific methods.}
 }
