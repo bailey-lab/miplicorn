@@ -27,7 +27,7 @@
     Warning <lifecycle_warning_deprecated>
       The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
-    Message <message>
+    Message <rlang_message>
       Joining, by = "gene_id"
       Joining, by = "gene_id"
       Joining, by = "gene_id"
@@ -45,7 +45,7 @@
     Warning <lifecycle_warning_deprecated>
       The `gene` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
-    Message <message>
+    Message <rlang_message>
       Joining, by = "gene"
       Joining, by = "gene"
       Joining, by = "gene"

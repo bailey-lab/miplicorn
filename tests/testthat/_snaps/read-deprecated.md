@@ -7,7 +7,7 @@
       Please use `read_tbl_ref_alt_cov()` instead.
       The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
-    Message <message>
+    Message <rlang_message>
       Joining, by = "gene_id"
       Joining, by = "gene_id"
       Joining, by = "gene_id"
@@ -26,7 +26,7 @@
       Please use `read_tbl_ref_alt_cov()` instead.
       The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
-    Message <message>
+    Message <rlang_message>
       Joining, by = "gene_id"
       Joining, by = "gene_id"
       Joining, by = "gene_id"
@@ -60,7 +60,7 @@
       `read_file()` was deprecated in miplicorn 0.2.0.
       The function has been replaced by three more specific functions:
        `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
-    Message <message>
+    Message <rlang_message>
       Input detected as the reference table.
     Output
       # A tibble: 4 x 8
@@ -79,7 +79,7 @@
       `read_file()` was deprecated in miplicorn 0.2.0.
       The function has been replaced by three more specific functions:
        `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
-    Message <message>
+    Message <rlang_message>
       Input detected as the reference table.
     Output
       # A tibble: 4 x 8
@@ -98,7 +98,7 @@
       `read_file()` was deprecated in miplicorn 0.2.0.
       The function has been replaced by three more specific functions:
        `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
-    Message <message>
+    Message <rlang_message>
       Input detected as the alternate table.
     Output
       # A tibble: 4 x 8
@@ -117,7 +117,7 @@
       `read_file()` was deprecated in miplicorn 0.2.0.
       The function has been replaced by three more specific functions:
        `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
-    Message <message>
+    Message <rlang_message>
       Input detected as the coverage table.
     Output
       # A tibble: 4 x 8
