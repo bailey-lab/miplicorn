@@ -25,23 +25,6 @@ test_that("filter variable must exist", {
 })
 
 # Test read_tbl_helper() -------------------------------------------------------
-test_that("handles named logical vectors", {
-  skip_on_cran()
-
-  filters_tb <- tibble::tibble(keep = c(TRUE, FALSE))
-  filters_df <- data.frame(keep = c(TRUE, FALSE))
-
-  expect_identical(
-    read_tbl_helper("small.csv", !!filters_df),
-    read_tbl_helper("small.csv", !!filters_tb)
-  )
-
-  expect_identical(
-    read_tbl_helper("small.csv", !!filters_df),
-    read_tbl_helper("small.csv", !!unname(filters_df))
-  )
-})
-
 test_that("returns an empty tibble on an empty file", {
   expect_equal(read_tbl_helper("empty-file"), tibble::tibble())
 })
@@ -67,12 +50,12 @@ test_that("selection works properly", {
 
   expect_equal(
     read_tbl_helper("small.csv", gene == "mdr1" & func == "missense"),
-    dplyr::slice_sample(res, n = 0)
+    dplyr::filter(res, gene == "mdr1" & func == "missense")
   )
 
   expect_equal(
     read_tbl_helper("small.csv", gene == "mdr1", func == "missense"),
-    dplyr::slice_sample(res, n = 0)
+    dplyr::filter(res, gene == "mdr1", func == "missense")
   )
 })
 

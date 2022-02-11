@@ -14,10 +14,12 @@
 
 # filter variable must exist
 
-    Problem with `read_tbl_*()` input `..1`.
-    i Input `..1` is `var == 5`.
-    x Comparison (1) is possible only for atomic and list types.
+    Problem while computing `..1 = var == 5`..
     i Available objects are 'gene'.
+    Caused by error in `dplyr::filter()`:
+    ! Problem while computing `..1 = var == 5`.
+    Caused by error in `var == 5`:
+    ! comparison (1) is possible only for atomic and list types
 
 # chrom and gene are deprecated
 
