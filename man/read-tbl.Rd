@@ -6,6 +6,7 @@
 \alias{read_tbl_reference}
 \alias{read_tbl_alternate}
 \alias{read_tbl_coverage}
+\alias{read_tbl_genotype}
 \alias{read_tbl_haplotype}
 \alias{read_tbl_ref_alt_cov}
 \title{Read MIPTools tables}
@@ -15,6 +16,8 @@ read_tbl_reference(.tbl, ...)
 read_tbl_alternate(.tbl, ...)
 
 read_tbl_coverage(.tbl, ...)
+
+read_tbl_genotype(.tbl, ...)
 
 read_tbl_haplotype(.tbl, ..., .col_select = NULL)
 

@@ -107,6 +107,12 @@ read_tbl_coverage <- function(.tbl, ...) {
 
 #' @rdname read-tbl
 #' @export
+read_tbl_genotype <- function(.tbl, ...) {
+  read_tbl_helper(.tbl, ..., .name = "genotype")
+}
+
+#' @rdname read-tbl
+#' @export
 read_tbl_haplotype <- function(.tbl, ..., .col_select = NULL) {
   dots <- enquos(..., .ignore_empty = "all")
   check_named(dots)
