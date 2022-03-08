@@ -54,20 +54,20 @@ plot <- new_mut_freq(tibble::tribble(
   ~mutation_name, ~frequency,
   "atp6-Ala623Glu", 0,
   "atp6-Glu431Lys", 0,
-  "atp6-Gly639Asp", 0.184029185245237,
-  "atp6-Ser466Asn", 0.135245901639344,
+  "atp6-Gly639Asp", 0.18321848398865,
+  "atp6-Ser466Asn", 0.128688524590164,
   "atp6-Ser769Asn", 0,
-  "crt-Ala220Ser", 0.202290076335878,
-  "crt-Asn326Asp", 0.127799736495389,
-  "crt-Asn326Ser", 0.0337078651685393,
-  "crt-Asn75Glu", 0.0533790401567091,
-  "crt-Cys72Ser", 0.146189905156437,
+  "crt-Ala220Ser", 0.127659574468085,
+  "crt-Asn326Asp", 0.100929614873838,
+  "crt-Asn326Ser", 0,
+  "crt-Asn75Glu", 0.0533246272717379,
+  "crt-Cys72Ser", 0.145971873977979,
   "crt-His97Leu", 0,
   "crt-His97Tyr", 0,
-  "crt-Ile356Leu", 0.13093220338983,
-  "crt-Ile356Thr", 0.0553715097018457,
-  "crt-Lys76Thr", 0.200511481118729,
-  "crt-Met74Ile", 0.0533790401567091
+  "crt-Ile356Leu", 0.129661016949153,
+  "crt-Ile356Thr", 0.0506868782567504,
+  "crt-Lys76Thr", 0.200348242463815,
+  "crt-Met74Ile", 0.0533246272717379
 ))
 
 # mutation_frequency() Test Cases ---------------------------------------------
@@ -90,6 +90,19 @@ test_that("result inherits new class", {
 
 test_that("results computed correctly", {
   expect_equal(mutation_frequency(data, 5), plot)
+})
+
+test_that("properly account for threshold (#35)", {
+  data <- tibble::tribble(
+    ~sample, ~mutation_name, ~ref_umi_count, ~alt_umi_count, ~coverage,
+    "D10-JJJ-30", "crt-Met74Ile", 0, 1, 1,
+    "D10-JJJ-15", "crt-Ala220Ser", 9, 3, 12,
+  )
+
+  expect_equal(
+    mutation_frequency(data, 5),
+    new_mut_freq(tibble::tibble(mutation_name = "crt-Ala220Ser", frequency = 0))
+  )
 })
 
 # plot_mutation_frequency() Test Cases ----------------------------------------

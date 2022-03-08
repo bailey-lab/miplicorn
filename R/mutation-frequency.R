@@ -63,10 +63,23 @@ mutation_frequency <- function(data, threshold) {
     ))
   }
 
+  # Filter data to threshold
+  filtered <- dplyr::filter(
+    data,
+    .data$coverage > threshold,
+    .data$alt_umi_count > threshold | .data$ref_umi_count > threshold
+  )
+
   # Compute weighted average of the alt umi count
-  wt_average <- data %>%
-    dplyr::filter(.data$coverage > threshold) %>%
-    dplyr::mutate(alt_freq = .data$alt_umi_count / .data$coverage) %>%
+  wt_average <- filtered %>%
+    dplyr::mutate(
+      alt_umi_count = ifelse(
+        .data$alt_umi_count < threshold,
+        0,
+        .data$alt_umi_count
+      ),
+      alt_freq = .data$alt_umi_count / .data$coverage
+    ) %>%
     dplyr::group_by(.data$mutation_name) %>%
     dplyr::summarise(
       frequency = sum(.data$alt_freq * .data$coverage) / sum(.data$coverage)
