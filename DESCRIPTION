@@ -1,6 +1,6 @@
 Package: miplicorn
 Title: A Framework for MIP and Amplicon Analysis
-Version: 0.2.0.9000
+Version: 0.2.1
 Authors@R:
     person("Aris", "Paschalidis", , "aris.paschalidis@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-2247-1885"))
