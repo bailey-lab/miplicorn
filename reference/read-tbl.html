@@ -22,7 +22,7 @@ when a condition evaluates to NA, the row will be dropped."><meta property="og:i
     
     <a class="navbar-brand me-2" href="../index.html">miplicorn</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,6 +88,8 @@ when a condition evaluates to NA, the row will be dropped.</p>
 
 <span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span><span class="op">)</span>
 
+<span class="fu">read_tbl_genotype</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span><span class="op">)</span>
+
 <span class="fu">read_tbl_haplotype</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span>, .col_select <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 
 <span class="fu">read_tbl_ref_alt_cov</span><span class="op">(</span>
@@ -105,10 +107,10 @@ when a condition evaluates to NA, the row will be dropped.</p>
     <dl><dt>.tbl</dt>
 <dd><p>File path to the table.</p></dd>
 <dt>...</dt>
-<dd><p>&lt;<a href="https://dplyr.tidyverse.org/reference/dplyr_data_masking.html" class="external-link"><code>data-masking</code></a>&gt;
-Expressions that return a logical value and are used to filter the data. If
-multiple expressions are included, they are combined with the <code>&amp;</code> operator.
-Only rows for which all conditions evaluate to <code>TRUE</code> are kept.</p></dd>
+<dd><p><code><a href="https://dplyr.tidyverse.org/reference/dplyr_data_masking.html" class="external-link">data-masking</a></code> Expressions that
+return a logical value and are used to filter the data. If multiple
+expressions are included, they are combined with the <code>&amp;</code> operator. Only
+rows for which all conditions evaluate to <code>TRUE</code> are kept.</p></dd>
 <dt>.col_select</dt>
 <dd><p>One or more selection expressions, like in
 <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code>. Use <code><a href="https://rdrr.io/r/base/c.html" class="external-link">c()</a></code> or <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> to use more
@@ -128,7 +130,7 @@ to.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble()</a></code>. The first six columns contain the
+    <p>A <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble()</a></code>. The first six columns contain the
 metadata associated with each sample and mutation. The last column contains
 the information parsed from the table. In some cases, this may be the
 umi_count and in other cases it may be the coverage of the associated data
@@ -194,18 +196,18 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-in"><span class="co"># Read entire file ----------------------------------------------------------</span></span>
 <span class="r-in"><span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">cov_file</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6,344 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    sample  gene_id   gene  mutation_name exonic_func aa_change targeted coverage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           158</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           129</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    sample    gene_id gene  mutation_name exonic_func aa_change targeted coverage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           158</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5 PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           129</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 6,334 more rows</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Data filtering ------------------------------------------------------------</span></span>
@@ -244,18 +246,18 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 146 more rows, and 1 more variable: alt_umi_count &lt;dbl&gt;</span></span>
 <span class="r-in"><span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">|</span> <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,496 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    sample  gene_id   gene  mutation_name exonic_func aa_change targeted coverage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           158</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           129</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJ… PF3D7_01… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    sample    gene_id gene  mutation_name exonic_func aa_change targeted coverage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           158</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5 PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           129</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 2,486 more rows</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># When multiple expressions are used, they are combined using &amp;</span></span>
