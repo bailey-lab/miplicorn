@@ -1,3 +1,5 @@
+# miplicorn (development version)
+
 # miplicorn 0.2.1
 
 - We now account for the UMI threshold when computing the frequency of
