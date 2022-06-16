@@ -106,10 +106,19 @@ test_that("plot_chromoMap() draws correctly for multiple probes", {
   skip_on_ci()
   skip_if_not_installed("webshot2")
 
-  default <- plot_chromoMap(genome_Pf3D7, probes)
+  # We set some colors for testing purposes. The chromoMap function
+  # automatically uses some random colors when creating the maps.
+  test_colors <- c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
+
+  default <- plot_chromoMap(genome_Pf3D7, probes, colours = test_colors)
   expect_snapshot_file(save_widget(default), "chromoMap-default.png")
 
-  title <- plot_chromoMap(genome_Pf3D7, probes, title = "Example Chromosome Map")
+  title <- plot_chromoMap(
+    genome_Pf3D7,
+    probes,
+    title = "Example Chromosome Map",
+    colours = test_colors
+  )
   expect_snapshot_file(save_widget(title), "chromoMap-title.png")
 
   colours_vec <- plot_chromoMap(
@@ -135,10 +144,24 @@ test_that("plot_chromoMap() overrides defaults with user input", {
   skip_on_ci()
   skip_if_not_installed("webshot2")
 
-  no_colour <- plot_chromoMap(genome_Pf3D7, probes, data_based_color_map = F)
+  # We set some colors for testing purposes. The chromoMap function
+  # automatically uses some random colors when creating the maps.
+  test_colors <- c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
+
+  no_colour <- plot_chromoMap(
+    genome_Pf3D7,
+    probes,
+    colours = test_colors,
+    data_based_color_map = F
+  )
   expect_snapshot_file(save_widget(no_colour), "chromoMap-no-colour.png")
 
-  no_legend <- plot_chromoMap(genome_Pf3D7, probes, legend = F)
+  no_legend <- plot_chromoMap(
+    genome_Pf3D7,
+    probes,
+    colours = test_colors,
+    legend = F
+  )
   expect_snapshot_file(save_widget(no_legend), "chromoMap-no-legend.png")
 })
 

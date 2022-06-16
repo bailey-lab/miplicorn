@@ -121,9 +121,10 @@ plot_chromoMap <- function(genome,
     segment_annotation = T,
     canvas_width = 650,
     chr_length = 5,
+    cat.legend.label = "Probe Set",
     legend = T,
     lg_x = 100,
-    lg_y = 250,
+    lg_y = 600,
     ...,
     .homonyms = "last"
   )
