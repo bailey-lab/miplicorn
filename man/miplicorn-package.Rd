@@ -6,7 +6,7 @@
 \alias{miplicorn-package}
 \title{miplicorn: A Framework for MIP and Amplicon Analysis}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
 A unified framework for molecular inversion probe and amplicon analysis. Provides the tools to parse, manipulate, analyze, and visualize data.
 }
