@@ -22,7 +22,7 @@ Imports:
     lifecycle,
     magrittr,
     purrr,
-    rlang (>= 0.4.11),
+    rlang (>= 1.0.0),
     tibble,
     tidyr,
     vctrs (>= 0.3.0),

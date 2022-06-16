@@ -2,7 +2,8 @@
 
     Code
       arrange_natural(df, gene)
-    Warning <rlang_warning>
+    Condition
+      Warning:
       The `stringi` package is required for natural sorting. Please install it.
       i Alphabetical sorting has been applied instead.
     Output

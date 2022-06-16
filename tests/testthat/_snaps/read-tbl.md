@@ -26,10 +26,11 @@
     Code
       read_tbl_ref_alt_cov(.tbl_ref = "small.csv", .tbl_alt = "small.csv", .tbl_cov = "small.csv",
         chrom = "13")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
-    Message <rlang_message>
+    Message
       Joining, by = "gene_id"
       Joining, by = "gene_id"
       Joining, by = "gene_id"
@@ -44,10 +45,11 @@
     Code
       read_tbl_ref_alt_cov(.tbl_ref = "small.csv", .tbl_alt = "small.csv", .tbl_cov = "small.csv",
         gene = "atp")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       The `gene` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
-    Message <rlang_message>
+    Message
       Joining, by = "gene"
       Joining, by = "gene"
       Joining, by = "gene"
@@ -64,13 +66,15 @@
     Code
       read_tbl_ref_alt_cov(.tbl_ref = "small.csv", .tbl_alt = "small.csv", .tbl_cov = "small.csv",
         chrom = "13", gene = "atp")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
+      Warning:
       The `gene` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
-    Error <rlang_error>
-      Multiple filtering criteria selected.
+      Error in `read_tbl_ref_alt_cov()`:
+      ! Multiple filtering criteria selected.
       x Cannot filter on both `chrom` and `gene`.
       i Select only one piece of information to filter on.
 

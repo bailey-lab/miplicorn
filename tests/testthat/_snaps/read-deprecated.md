@@ -2,12 +2,14 @@
 
     Code
       read("small.csv", "small.csv", "small.csv", chrom = "13")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       `read()` was deprecated in miplicorn 0.2.0.
       Please use `read_tbl_ref_alt_cov()` instead.
+      Warning:
       The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
-    Message <rlang_message>
+    Message
       Joining, by = "gene_id"
       Joining, by = "gene_id"
       Joining, by = "gene_id"
@@ -21,12 +23,14 @@
 
     Code
       read("small.csv", "small.csv", "small.csv", chrom = "atp")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       `read()` was deprecated in miplicorn 0.2.0.
       Please use `read_tbl_ref_alt_cov()` instead.
+      Warning:
       The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
-    Message <rlang_message>
+    Message
       Joining, by = "gene_id"
       Joining, by = "gene_id"
       Joining, by = "gene_id"
@@ -40,15 +44,18 @@
 
     Code
       read("small.csv", "small.csv", "small.csv", chrom = "13", gene = "atp")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       `read()` was deprecated in miplicorn 0.2.0.
       Please use `read_tbl_ref_alt_cov()` instead.
+      Warning:
       The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
+      Warning:
       The `gene` argument of `read()` is deprecated as of miplicorn 0.1.0.
       Please use the `...` argument instead to filter data.
-    Error <rlang_error>
-      Multiple filtering criteria selected.
+      Error in `read_tbl_ref_alt_cov()`:
+      ! Multiple filtering criteria selected.
       x Cannot filter on both `chrom` and `gene`.
       i Select only one piece of information to filter on.
 
@@ -56,11 +63,12 @@
 
     Code
       read_file("small.csv", .name = "ref_umi_count")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       `read_file()` was deprecated in miplicorn 0.2.0.
       The function has been replaced by three more specific functions:
        `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
-    Message <rlang_message>
+    Message
       Input detected as the reference table.
     Output
       # A tibble: 4 x 8
@@ -75,11 +83,12 @@
 
     Code
       read_file("small.csv", .name = "ref_umi_count")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       `read_file()` was deprecated in miplicorn 0.2.0.
       The function has been replaced by three more specific functions:
        `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
-    Message <rlang_message>
+    Message
       Input detected as the reference table.
     Output
       # A tibble: 4 x 8
@@ -94,11 +103,12 @@
 
     Code
       read_file("small.csv", .name = "alt_umi_count")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       `read_file()` was deprecated in miplicorn 0.2.0.
       The function has been replaced by three more specific functions:
        `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
-    Message <rlang_message>
+    Message
       Input detected as the alternate table.
     Output
       # A tibble: 4 x 8
@@ -113,11 +123,12 @@
 
     Code
       read_file("small.csv", .name = "coverage")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       `read_file()` was deprecated in miplicorn 0.2.0.
       The function has been replaced by three more specific functions:
        `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
-    Message <rlang_message>
+    Message
       Input detected as the coverage table.
     Output
       # A tibble: 4 x 8
@@ -132,10 +143,11 @@
 
     Code
       read_file("small.csv")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       `read_file()` was deprecated in miplicorn 0.2.0.
       The function has been replaced by three more specific functions:
        `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
-    Error <rlang_error>
-      Unable to detect the type of table input.
+      Error in `read_file()`:
+      ! Unable to detect the type of table input.
 
