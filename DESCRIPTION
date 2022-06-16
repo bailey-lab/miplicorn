@@ -43,13 +43,11 @@ Suggests:
     stringr,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.0),
-    webshot2 (>= 0.0.0.9000),
+    webshot2 (>= 0.1.0),
     widgetframe,
     withr
 VignetteBuilder:
     knitr
-Remotes:
-    rstudio/webshot2
 BiocViews:
 Config/testthat/edition: 3
 Encoding: UTF-8
