@@ -82,6 +82,8 @@ save_widget <- function(widget) {
 }
 
 test_that("plot_chromoMap() draws correctly for one probe", {
+  skip_on_ci()
+
   single <- plot_chromoMap(genome_Pf3D7, single_probe)
   expect_snapshot_file(save_widget(single), "chromoMap-single-default.png")
 
@@ -96,6 +98,8 @@ test_that("plot_chromoMap() draws correctly for one probe", {
 })
 
 test_that("plot_chromoMap() draws correctly for multiple probes", {
+  skip_on_ci()
+
   # We set some colors for testing purposes. The chromoMap function
   # automatically uses some random colors when creating the maps.
   test_colors <- c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
@@ -129,6 +133,8 @@ test_that("plot_chromoMap() draws correctly for multiple probes", {
 })
 
 test_that("plot_chromoMap() overrides defaults with user input", {
+  skip_on_ci()
+
   # We set some colors for testing purposes. The chromoMap function
   # automatically uses some random colors when creating the maps.
   test_colors <- c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
