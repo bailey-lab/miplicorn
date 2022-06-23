@@ -92,7 +92,10 @@ mutation_prevalence <- function(data, threshold) {
   # Compute prevalence
   prevalence <- total_count %>%
     dplyr::full_join(mutant_count, by = "mutation_name") %>%
-    dplyr::mutate(prevalence = .data$n_mutant / .data$n_total)
+    dplyr::mutate(
+      n_mutant = tidyr::replace_na(.data$n_mutant, 0),
+      prevalence = .data$n_mutant / .data$n_total
+    )
 
   # Assign a subclass "mut_prev"
   new_mut_prev(prevalence)
