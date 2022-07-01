@@ -1,4 +1,12 @@
 # mut-prev class
+rlang::on_load(
+  vctrs::s3_register(
+    "dplyr::dplyr_reconstruct",
+    "mut_prev",
+    method = mut_prev_reconstruct
+  )
+)
+
 mut_prev_reconstruct <- function(data, template) {
   if (mut_prev_reconstructable(data)) {
     new_mut_prev(data)
@@ -27,6 +35,14 @@ has_mut_prev_coltypes <- function(x) {
 }
 
 # mut-freq class
+rlang::on_load(
+  vctrs::s3_register(
+    "dplyr::dplyr_reconstruct",
+    "mut_freq",
+    method = mut_freq_reconstruct
+  )
+)
+
 mut_freq_reconstruct <- function(data, template) {
   if (mut_freq_reconstructable(data)) {
     new_mut_freq(data)
