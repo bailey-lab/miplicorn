@@ -4,9 +4,9 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/bailey-lab/miplicorn/workflows/R-CMD-check/badge.svg)](https://github.com/bailey-lab/miplicorn/actions)
+[![R-CMD-check](https://github.com/bailey-lab/miplicorn/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/bailey-lab/miplicorn/actions/workflows/check-standard.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/bailey-lab/miplicorn/branch/master/graph/badge.svg)](https://app.codecov.io/gh/bailey-lab/miplicorn?branch=main)
+coverage](https://codecov.io/gh/bailey-lab/miplicorn/branch/main/graph/badge.svg)](https://app.codecov.io/gh/bailey-lab/miplicorn?branch=main)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
@@ -24,10 +24,23 @@ and, most informatively, visualize data.
 You may install the package from
 [Github](https://github.com/bailey-lab/miplicorn) using `devtools`.
 
+<div class=".pkgdown-release">
+
 ```r
-# install.packages("devtools")
+# Install most recent released version
+devtools::install_github("bailey-lab/miplicorn@v0.2.1")
+```
+
+</div>
+
+<div class=".pkgdown-devel">
+
+```r
+# Install development version
 devtools::install_github("bailey-lab/miplicorn")
 ```
+
+</div>
 
 ## Usage
 
