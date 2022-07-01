@@ -1,5 +1,8 @@
 # miplicorn (development version)
 
+- Replace NA or NaN results with zero when computing the prevalence of
+  mutations.
+
 # miplicorn 0.2.1
 
 - We now account for the UMI threshold when computing the frequency of
