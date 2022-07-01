@@ -73,7 +73,8 @@ plot_chromoMap <- function(genome,
   # Ensure packages installed
   rlang::check_installed(
     pkg = c("chromoMap", "withr"),
-    reason = "to create chromosome maps."
+    reason = "to create chromosome maps.",
+    version = c("0.4.1", NA)
   )
 
   # Check inputs

@@ -1,5 +1,6 @@
 # miplicorn (development version)
 
+- Add an internal check on the version of `{chromoMap}`.
 - Replace NA or NaN results with zero when computing the prevalence of
   mutations.
 
