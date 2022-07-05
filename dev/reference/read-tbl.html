@@ -82,24 +82,24 @@ when a condition evaluates to NA, the row will be dropped.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">read_tbl_alternate</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">read_tbl_genotype</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">read_tbl_haplotype</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span>, .col_select <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">read_tbl_ref_alt_cov</span><span class="op">(</span>
-  <span class="va">.tbl_ref</span>,
-  <span class="va">.tbl_alt</span>,
-  <span class="va">.tbl_cov</span>,
-  <span class="va">...</span>,
-  chrom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,
-  gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">read_tbl_alternate</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">read_tbl_genotype</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">read_tbl_haplotype</span><span class="op">(</span><span class="va">.tbl</span>, <span class="va">...</span>, .col_select <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">read_tbl_ref_alt_cov</span><span class="op">(</span></span>
+<span>  <span class="va">.tbl_ref</span>,</span>
+<span>  <span class="va">.tbl_alt</span>,</span>
+<span>  <span class="va">.tbl_cov</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  chrom <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  gene <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -182,16 +182,16 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Get path to example file</span></span>
-<span class="r-in"><span class="va">ref_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"reference_AA_table.csv"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">alt_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"alternate_AA_table.csv"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">cov_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"coverage_AA_table.csv"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">ref_file</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get path to example file</span></span></span>
+<span class="r-in"><span><span class="va">ref_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"reference_AA_table.csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">alt_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"alternate_AA_table.csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cov_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"coverage_AA_table.csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ref_file</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/home/runner/work/_temp/Library/miplicorn/extdata/reference_AA_table.csv"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Input sources -------------------------------------------------------------</span></span>
-<span class="r-in"><span class="co"># Read from a path</span></span>
-<span class="r-in"><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">ref_file</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Input sources -------------------------------------------------------------</span></span></span>
+<span class="r-in"><span><span class="co"># Read from a path</span></span></span>
+<span class="r-in"><span><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">ref_file</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6,344 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
@@ -206,12 +206,12 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 6,334 more rows, and 1 more variable: ref_umi_count &lt;dbl&gt;</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># You can also use paths directly</span></span>
-<span class="r-in"><span class="co"># read_tbl_alternate("alternate_AA_table.csv")</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Read entire file ----------------------------------------------------------</span></span>
-<span class="r-in"><span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">cov_file</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># You can also use paths directly</span></span></span>
+<span class="r-in"><span><span class="co"># read_tbl_alternate("alternate_AA_table.csv")</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Read entire file ----------------------------------------------------------</span></span></span>
+<span class="r-in"><span><span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">cov_file</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6,344 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample    gene_id gene  mutation_name exonic_func aa_change targeted coverage</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -226,10 +226,10 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 6,334 more rows</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Data filtering ------------------------------------------------------------</span></span>
-<span class="r-in"><span class="co"># Filtering by one criterion</span></span>
-<span class="r-in"><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Data filtering ------------------------------------------------------------</span></span></span>
+<span class="r-in"><span><span class="co"># Filtering by one criterion</span></span></span>
+<span class="r-in"><span><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 260 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
@@ -244,9 +244,9 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 250 more rows, and 1 more variable: ref_umi_count &lt;dbl&gt;</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Filtering by multiple criteria within a single logical expression</span></span>
-<span class="r-in"><span class="fu">read_tbl_alternate</span><span class="op">(</span><span class="va">alt_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">&amp;</span> <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Filtering by multiple criteria within a single logical expression</span></span></span>
+<span class="r-in"><span><span class="fu">read_tbl_alternate</span><span class="op">(</span><span class="va">alt_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">&amp;</span> <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 156 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
@@ -261,7 +261,7 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 146 more rows, and 1 more variable: alt_umi_count &lt;dbl&gt;</span></span>
-<span class="r-in"><span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">|</span> <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">|</span> <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,496 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample    gene_id gene  mutation_name exonic_func aa_change targeted coverage</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -276,9 +276,9 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 2,486 more rows</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># When multiple expressions are used, they are combined using &amp;</span></span>
-<span class="r-in"><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span>, <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># When multiple expressions are used, they are combined using &amp;</span></span></span>
+<span class="r-in"><span><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span>, <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 156 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
@@ -293,9 +293,9 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 146 more rows, and 1 more variable: ref_umi_count &lt;dbl&gt;</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Read multiple files together ----------------------------------------------</span></span>
-<span class="r-in"><span class="fu">read_tbl_ref_alt_cov</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">alt_file</span>, <span class="va">cov_file</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Read multiple files together ----------------------------------------------</span></span></span>
+<span class="r-in"><span><span class="fu">read_tbl_ref_alt_cov</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">alt_file</span>, <span class="va">cov_file</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6,344 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
@@ -322,7 +322,7 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

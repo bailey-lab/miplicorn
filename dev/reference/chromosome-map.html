@@ -67,9 +67,9 @@ Annotate multiple targeted regions to visualize probe targets.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_chromoMap</span><span class="op">(</span><span class="va">genome</span>, <span class="va">probes</span>, title <span class="op">=</span> <span class="st">""</span>, colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">plot_karyoploteR</span><span class="op">(</span><span class="va">genome</span>, <span class="va">probes</span>, title <span class="op">=</span> <span class="st">""</span>, colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_chromoMap</span><span class="op">(</span><span class="va">genome</span>, <span class="va">probes</span>, title <span class="op">=</span> <span class="st">""</span>, colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">plot_karyoploteR</span><span class="op">(</span><span class="va">genome</span>, <span class="va">probes</span>, title <span class="op">=</span> <span class="st">""</span>, colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -112,41 +112,41 @@ internal plotting functions.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span>
-<span class="r-in"><span class="va">probes</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="op">~</span><span class="va">chrom</span>, <span class="op">~</span><span class="va">start</span>, <span class="op">~</span><span class="va">end</span>, <span class="op">~</span><span class="va">probe_set</span>,</span>
-<span class="r-in">  <span class="st">"chr14"</span>, <span class="fl">2342135L</span>, <span class="fl">2342284L</span>, <span class="st">"IBC"</span>,</span>
-<span class="r-in">  <span class="st">"chr3"</span>, <span class="fl">830503L</span>, <span class="fl">830769L</span>, <span class="st">"DR2"</span>,</span>
-<span class="r-in">  <span class="st">"chr5"</span>, <span class="fl">482233L</span>, <span class="fl">482391L</span>, <span class="st">"IBC"</span>,</span>
-<span class="r-in">  <span class="st">"chr9"</span>, <span class="fl">375274L</span>, <span class="fl">375417L</span>, <span class="st">"IBC"</span>,</span>
-<span class="r-in">  <span class="st">"chr12"</span>, <span class="fl">532032L</span>, <span class="fl">532281L</span>, <span class="st">"DR2"</span>,</span>
-<span class="r-in">  <span class="st">"chr7"</span>, <span class="fl">383447L</span>, <span class="fl">383653L</span>, <span class="st">"HAP"</span>,</span>
-<span class="r-in">  <span class="st">"chr14"</span>, <span class="fl">1401991L</span>, <span class="fl">1402160L</span>, <span class="st">"IBC"</span>,</span>
-<span class="r-in">  <span class="st">"chr4"</span>, <span class="fl">734737L</span>, <span class="fl">734936L</span>, <span class="st">"HAP"</span>,</span>
-<span class="r-in">  <span class="st">"chr10"</span>, <span class="fl">93054L</span>, <span class="fl">93223L</span>, <span class="st">"IBC"</span>,</span>
-<span class="r-in">  <span class="st">"chr7"</span>, <span class="fl">162127L</span>, <span class="fl">162277L</span>, <span class="st">"IBC"</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="va">single_probe</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="op">~</span><span class="va">chrom</span>, <span class="op">~</span><span class="va">start</span>, <span class="op">~</span><span class="va">end</span>, <span class="op">~</span><span class="va">probe_set</span>,</span>
-<span class="r-in">  <span class="st">"chr14"</span>, <span class="fl">2342135L</span>, <span class="fl">2342284L</span>, <span class="st">"IBC"</span>,</span>
-<span class="r-in">  <span class="st">"chr5"</span>, <span class="fl">482233L</span>, <span class="fl">482391L</span>, <span class="st">"IBC"</span>,</span>
-<span class="r-in">  <span class="st">"chr9"</span>, <span class="fl">375274L</span>, <span class="fl">375417L</span>, <span class="st">"IBC"</span>,</span>
-<span class="r-in">  <span class="st">"chr14"</span>, <span class="fl">1401991L</span>, <span class="fl">1402160L</span>, <span class="st">"IBC"</span>,</span>
-<span class="r-in">  <span class="st">"chr10"</span>, <span class="fl">93054L</span>, <span class="fl">93223L</span>, <span class="st">"IBC"</span>,</span>
-<span class="r-in">  <span class="st">"chr7"</span>, <span class="fl">162127L</span>, <span class="fl">162277L</span>, <span class="st">"IBC"</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">plot_chromoMap</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">probes</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">plot_chromoMap</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">single_probe</span>, colours <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">plot_karyoploteR</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">single_probe</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">plot_karyoploteR</span><span class="op">(</span></span>
-<span class="r-in">  <span class="va">genome_Pf3D7</span>,</span>
-<span class="r-in">  <span class="va">probes</span>,</span>
-<span class="r-in">  title <span class="op">=</span> <span class="st">"Example Chromosome Map"</span>,</span>
-<span class="r-in">  colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#006A8EFF"</span>, <span class="st">"#A8A6A7FF"</span>, <span class="st">"#B1283AFF"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
+<span class="r-in"><span><span class="va">probes</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="op">~</span><span class="va">chrom</span>, <span class="op">~</span><span class="va">start</span>, <span class="op">~</span><span class="va">end</span>, <span class="op">~</span><span class="va">probe_set</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr14"</span>, <span class="fl">2342135L</span>, <span class="fl">2342284L</span>, <span class="st">"IBC"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr3"</span>, <span class="fl">830503L</span>, <span class="fl">830769L</span>, <span class="st">"DR2"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr5"</span>, <span class="fl">482233L</span>, <span class="fl">482391L</span>, <span class="st">"IBC"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr9"</span>, <span class="fl">375274L</span>, <span class="fl">375417L</span>, <span class="st">"IBC"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr12"</span>, <span class="fl">532032L</span>, <span class="fl">532281L</span>, <span class="st">"DR2"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr7"</span>, <span class="fl">383447L</span>, <span class="fl">383653L</span>, <span class="st">"HAP"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr14"</span>, <span class="fl">1401991L</span>, <span class="fl">1402160L</span>, <span class="st">"IBC"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr4"</span>, <span class="fl">734737L</span>, <span class="fl">734936L</span>, <span class="st">"HAP"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr10"</span>, <span class="fl">93054L</span>, <span class="fl">93223L</span>, <span class="st">"IBC"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr7"</span>, <span class="fl">162127L</span>, <span class="fl">162277L</span>, <span class="st">"IBC"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">single_probe</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="op">~</span><span class="va">chrom</span>, <span class="op">~</span><span class="va">start</span>, <span class="op">~</span><span class="va">end</span>, <span class="op">~</span><span class="va">probe_set</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr14"</span>, <span class="fl">2342135L</span>, <span class="fl">2342284L</span>, <span class="st">"IBC"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr5"</span>, <span class="fl">482233L</span>, <span class="fl">482391L</span>, <span class="st">"IBC"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr9"</span>, <span class="fl">375274L</span>, <span class="fl">375417L</span>, <span class="st">"IBC"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr14"</span>, <span class="fl">1401991L</span>, <span class="fl">1402160L</span>, <span class="st">"IBC"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr10"</span>, <span class="fl">93054L</span>, <span class="fl">93223L</span>, <span class="st">"IBC"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"chr7"</span>, <span class="fl">162127L</span>, <span class="fl">162277L</span>, <span class="st">"IBC"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">plot_chromoMap</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">probes</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plot_chromoMap</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">single_probe</span>, colours <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">plot_karyoploteR</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">single_probe</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plot_karyoploteR</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">genome_Pf3D7</span>,</span></span>
+<span class="r-in"><span>  <span class="va">probes</span>,</span></span>
+<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"Example Chromosome Map"</span>,</span></span>
+<span class="r-in"><span>  colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#006A8EFF"</span>, <span class="st">"#A8A6A7FF"</span>, <span class="st">"#B1283AFF"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -158,7 +158,7 @@ internal plotting functions.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>
