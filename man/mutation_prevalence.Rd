@@ -3,11 +3,14 @@
 \name{mutation_prevalence}
 \alias{mutation_prevalence}
 \alias{mutation_prevalence.ref_alt_cov_tbl}
+\alias{mutation_prevalence.geno_tbl}
 \title{Compute prevalence of mutations}
 \usage{
 mutation_prevalence(data, ...)
 
 \method{mutation_prevalence}{ref_alt_cov_tbl}(data, ..., threshold)
+
+\method{mutation_prevalence}{geno_tbl}(data, ...)
 }
 \arguments{
 \item{data}{A data frame, data frame extension (e.g. a tibble), or a lazy
