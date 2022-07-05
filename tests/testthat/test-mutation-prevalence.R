@@ -66,25 +66,25 @@ test_that("class is dplyr compatible", {
 })
 
 # mutation_prevalence() Test Cases ---------------------------------------------
-test_that("error if lack ref, alt, coverage columns", {
-  expect_snapshot_error(mutation_prevalence(data[, 1:5], 3))
+test_that("error if incorrect class", {
+  expect_snapshot_error(mutation_prevalence(data[, 1:5], threshold = 3))
 })
 
 test_that("error if lack mutation_name column", {
-  expect_snapshot_error(mutation_prevalence(data[, 6:10], 3))
+  expect_snapshot_error(mutation_prevalence(data[, c(1, 6:10)], threshold = 3))
 })
 
 test_that("output has unique mutation names", {
-  out <- mutation_prevalence(data, 3)
+  out <- mutation_prevalence(data, threshold = 3)
   expect_setequal(out$mutation_name, unique(out$mutation_name))
 })
 
 test_that("result inherits new class", {
-  expect_s3_class(mutation_prevalence(data, 3), "mut_prev")
+  expect_s3_class(mutation_prevalence(data, threshold = 3), "mut_prev")
 })
 
 test_that("results computed correctly", {
-  expect_equal(mutation_prevalence(data, 5), plot)
+  expect_equal(mutation_prevalence(data, threshold = 5), plot)
 })
 
 # plot_mutation_prevalence() Test Cases ----------------------------------------

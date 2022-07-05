@@ -2,13 +2,18 @@
 % Please edit documentation in R/mutation-prevalence.R
 \name{mutation_prevalence}
 \alias{mutation_prevalence}
+\alias{mutation_prevalence.ref_alt_cov_tbl}
 \title{Compute prevalence of mutations}
 \usage{
-mutation_prevalence(data, threshold)
+mutation_prevalence(data, ...)
+
+\method{mutation_prevalence}{ref_alt_cov_tbl}(data, ..., threshold)
 }
 \arguments{
 \item{data}{A data frame, data frame extension (e.g. a tibble), or a lazy
 data frame (e.g. from dbplyr or dtplyr).}
+
+\item{...}{Other arguments passed to specific methods.}
 
 \item{threshold}{A minimum UMI count which reflects the confidence in the
 genotype call. Data with a UMI count of less than the threshold will be
@@ -40,7 +45,7 @@ data <- read_tbl_ref_alt_cov(
   cov_file,
   gene == "atp6" | gene == "crt"
 )
-mutation_prevalence(data, 5)
+mutation_prevalence(data, threshold = 5)
 }
 \seealso{
 \code{\link[=plot_mutation_prevalence]{plot_mutation_prevalence()}} for plotting the table.

@@ -90,7 +90,7 @@ filter_targeted(data, "Yes")
 #> # … with 619 more rows, and 3 more variables: ref_umi_count <dbl>,
 #> #   alt_umi_count <dbl>, coverage <dbl>
 
-prev <- mutation_prevalence(data, 5)
+prev <- mutation_prevalence(data, threshold = 5)
 prev
 #> # A tibble: 16 × 4
 #>   mutation_name  n_total n_mutant prevalence

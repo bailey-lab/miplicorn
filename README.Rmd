@@ -63,7 +63,7 @@ data
 filter_coverage(data, 100)
 filter_targeted(data, "Yes")
 
-prev <- mutation_prevalence(data, 5)
+prev <- mutation_prevalence(data, threshold = 5)
 prev
 
 plot(prev)

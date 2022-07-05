@@ -34,7 +34,7 @@ data <- read_tbl_ref_alt_cov(
   cov_file,
   gene == "atp6" | gene == "crt"
 )
-prevalence <- mutation_prevalence(data, 5)
+prevalence <- mutation_prevalence(data, threshold = 5)
 plot(prevalence)
 }
 \seealso{

@@ -27,6 +27,7 @@ new_mut_prev <- function(x) {
 #'
 #' @param data A data frame, data frame extension (e.g. a tibble), or a lazy
 #'   data frame (e.g. from dbplyr or dtplyr).
+#' @param ...	Other arguments passed to specific methods.
 #' @param threshold A minimum UMI count which reflects the confidence in the
 #'   genotype call. Data with a UMI count of less than the threshold will be
 #'   filtered out from the analysis.
@@ -52,20 +53,14 @@ new_mut_prev <- function(x) {
 #'   cov_file,
 #'   gene == "atp6" | gene == "crt"
 #' )
-#' mutation_prevalence(data, 5)
-mutation_prevalence <- function(data, threshold) {
-  # Ensure have a table with reference umi counts, alternate umi counts, and
-  # coverage
-  cols <- c("ref_umi_count", "alt_umi_count", "coverage")
-  if (!all(cols %in% colnames(data))) {
-    abort(c(
-      "Data is mising required columns.",
-      x = "Need a column for the reference UMI counts.",
-      x = "Need a column for the alternate UMI counts.",
-      x = "Need a column for the coverage."
-    ))
-  }
+#' mutation_prevalence(data, threshold = 5)
+mutation_prevalence <- function(data, ...) {
+  UseMethod("mutation_prevalence")
+}
 
+#' @rdname mutation_prevalence
+#' @export
+mutation_prevalence.ref_alt_cov_tbl <- function(data, ..., threshold) {
   # Use threshold to filter data
   total <- dplyr::filter(
     data,
@@ -125,7 +120,7 @@ mutation_prevalence <- function(data, threshold) {
 #'   cov_file,
 #'   gene == "atp6" | gene == "crt"
 #' )
-#' prevalence <- mutation_prevalence(data, 5)
+#' prevalence <- mutation_prevalence(data, threshold = 5)
 #' plot(prevalence)
 plot_mutation_prevalence <- function(data) {
   if (!inherits(data, "mut_prev")) {
