@@ -1,28 +1,21 @@
-data <- read_tbl_ref_alt_cov(
-  miplicorn_example("reference_AA_table.csv"),
-  miplicorn_example("alternate_AA_table.csv"),
-  miplicorn_example("coverage_AA_table.csv"),
-  gene == "atp6" | gene == "crt"
-)
+data <- new_ref_alt_cov_tbl(tibble::tribble(
+  ~sample, ~gene_id, ~gene, ~mutation_name, ~exonic_func, ~aa_change, ~targeted, ~ref_umi_count, ~alt_umi_count, ~coverage,
+  "D10-JJJ-53", "PF3D7_0106300", "atp6", "atp6-Glu431Lys", "missense_variant", "Glu431Lys", "Yes", 0, 77, 77,
+  "D10-JJJ-21", "PF3D7_0106300", "atp6", "atp6-Glu431Lys", "missense_variant", "Glu431Lys", "Yes", 0, 619, 619,
+  "D10-JJJ-28", "PF3D7_0106300", "atp6", "atp6-Glu431Lys", "missense_variant", "Glu431Lys", "Yes", 0, 145, 145,
+  "D10-JJJ-7", "PF3D7_0106300", "atp6", "atp6-Ser466Asn", "missense_variant", "Ser466Asn", "No", 10, 0, 10,
+  "D10-JJJ-53", "PF3D7_0106300", "atp6", "atp6-Ser466Asn", "missense_variant", "Ser466Asn", "No", 9, 0, 9,
+  "D10-JJJ-6", "PF3D7_0709000", "crt", "crt-Asn326Ser", "missense_variant", "Asn326Ser", "Yes", 100, 0, 100,
+  "D10-JJJ-18", "PF3D7_0709000", "crt", "crt-Asn326Ser", "missense_variant", "Asn326Ser", "Yes", 554, 0, 554,
+  "D10-JJJ-7", "PF3D7_0709000", "crt", "crt-Asn326Ser", "missense_variant", "Asn326Ser", "Yes", 50, 50, 100,
+  "D10-JJJ-51", "PF3D7_0709000", "crt", "crt-Asn326Ser", "missense_variant", "Asn326Ser", "Yes", 60, 12, 72,
+))
 
 plot <- new_mut_prev(tibble::tribble(
   ~mutation_name, ~n_total, ~n_mutant, ~prevalence,
-  "atp6-Ala623Glu", 36L, 0, 0,
-  "atp6-Glu431Lys", 39L, 0, 0,
-  "atp6-Gly639Asp", 26L, 19L, 0.730769230769231,
-  "atp6-Ser466Asn", 15L, 9L, 0.6,
-  "atp6-Ser769Asn", 17L, 0, 0,
-  "crt-Ala220Ser", 11L, 4L, 0.363636363636364,
-  "crt-Asn326Asp", 21L, 8L, 0.380952380952381,
-  "crt-Asn326Ser", 26L, 0, 0,
-  "crt-Asn75Glu", 29L, 24L, 0.827586206896552,
-  "crt-Cys72Ser", 31L, 23L, 0.741935483870968,
-  "crt-His97Leu", 47L, 0, 0,
-  "crt-His97Tyr", 47L, 0, 0,
-  "crt-Ile356Leu", 22L, 15L, 0.681818181818182,
-  "crt-Ile356Thr", 41L, 18L, 0.439024390243902,
-  "crt-Lys76Thr", 29L, 25L, 0.862068965517241,
-  "crt-Met74Ile", 29L, 24L, 0.827586206896552
+  "atp6-Glu431Lys", 3L, 3L, 1,
+  "atp6-Ser466Asn", 2L, 0, 0,
+  "crt-Asn326Ser", 4L, 2L, 0.5,
 ))
 
 # mut_prev class Test Cases ----------------------------------------------------
