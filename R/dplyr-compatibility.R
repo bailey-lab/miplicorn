@@ -19,7 +19,7 @@ geno_tbl_reconstructable <- function(data) {
   rlang::is_list(data) &&
     has_geno_tbl_cols(data) &&
     has_geno_tbl_coltypes(data) &&
-    has_geno_tbl_vals(data)
+    has_genotype_vals(data$genotype)
 }
 
 has_geno_tbl_cols <- function(x) {
@@ -35,9 +35,8 @@ has_geno_tbl_coltypes <- function(x) {
   all(coltypes)
 }
 
-has_geno_tbl_vals <- function(x) {
-  unique <- unique(x$genotype)
-  all(unique %in% c(NA, -1, 0, 1, 2))
+has_genotype_vals <- function(x) {
+  all(unique(x) %in% c(NA, -1, 0, 1, 2))
 }
 
 # ref_alt_cov_tbl class --------------------------------------------------------
