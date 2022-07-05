@@ -1,5 +1,10 @@
 # miplicorn (development version)
 
+- Define classes for the combined reference, alternate, and coverage table and
+  the genotype table. These classes allow developers to control which inputs
+  work with which functions (#38).
+- Add the capability to compute the prevalence of mutations using genotype
+  tables instead of the combined reference, alternate, and coverage table (#37).
 - Set minimum `{dplyr}` version to 1.0.0.
 - Add an internal check on the version of `{chromoMap}`.
 - Replace NA or NaN results with zero when computing the prevalence of
