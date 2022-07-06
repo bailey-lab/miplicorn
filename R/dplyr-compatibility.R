@@ -70,6 +70,42 @@ has_alt_tbl_coltypes <- function(x) {
   all(coltypes)
 }
 
+# cov_tbl class ----------------------------------------------------------------
+rlang::on_load(
+  vctrs::s3_register(
+    "dplyr::dplyr_reconstruct",
+    "cov_tbl",
+    method = cov_tbl_reconstruct
+  )
+)
+
+cov_tbl_reconstruct <- function(data, template) {
+  if (cov_tbl_reconstructable(data)) {
+    new_cov_tbl(data)
+  } else {
+    tibble::new_tibble(data)
+  }
+}
+
+cov_tbl_reconstructable <- function(data) {
+  rlang::is_list(data) &&
+    has_cov_tbl_cols(data) &&
+    has_cov_tbl_coltypes(data)
+}
+
+has_cov_tbl_cols <- function(x) {
+  cols <- c("sample", "coverage")
+  all(cols %in% colnames(x))
+}
+
+has_cov_tbl_coltypes <- function(x) {
+  coltypes <- c(
+    sample = rlang::is_character(x$sample),
+    coverage = rlang::is_double(x$coverage)
+  )
+  all(coltypes)
+}
+
 # geno-tbl class ---------------------------------------------------------------
 rlang::on_load(
   vctrs::s3_register(

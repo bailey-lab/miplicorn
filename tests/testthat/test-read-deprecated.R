@@ -50,7 +50,8 @@ test_that("deprecated read_file() detects coverage tables", {
       .file = "small.csv",
       .name = "coverage"
     ))),
-    dplyr::rename(res, coverage = value)
+    dplyr::rename(res, coverage = value),
+    ignore_attr = "class"
   )
 })
 

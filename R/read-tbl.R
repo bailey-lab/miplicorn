@@ -104,7 +104,8 @@ read_tbl_alternate <- function(.tbl, ...) {
 #' @rdname read-tbl
 #' @export
 read_tbl_coverage <- function(.tbl, ...) {
-  read_tbl_helper(.tbl, ..., .name = "coverage")
+  tbl <- read_tbl_helper(.tbl, ..., .name = "coverage")
+  new_cov_tbl(tbl)
 }
 
 #' @rdname read-tbl

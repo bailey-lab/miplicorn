@@ -38,6 +38,26 @@ new_alt_tbl <- function(x) {
   alt_tbl_reconstruct(NextMethod())
 }
 
+# Coverage table ---------------------------------------------------------------
+new_cov_tbl <- function(x) {
+  tibble::new_tibble(x, class = "cov_tbl")
+}
+
+#' @export
+`[.cov_tbl` <- function(x, i, j, drop = FALSE) {
+  cov_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+`names<-.cov_tbl` <- function(x, value) {
+  cov_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+`$<-.cov_tbl` <- function(x, name, value) {
+  cov_tbl_reconstruct(NextMethod())
+}
+
 # Genotype table ---------------------------------------------------------------
 new_geno_tbl <- function(x) {
   tibble::new_tibble(x, class = "geno_tbl")
