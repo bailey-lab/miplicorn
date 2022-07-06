@@ -18,6 +18,12 @@ new_ref_tbl <- function(x) {
   ref_tbl_reconstruct(NextMethod())
 }
 
+#' @importFrom tibble tbl_sum
+#' @export
+tbl_sum.ref_tbl <- function(x) {
+  c("A reference table" = pillar::dim_desc(x))
+}
+
 # Alternate table --------------------------------------------------------------
 new_alt_tbl <- function(x) {
   tibble::new_tibble(x, class = "alt_tbl")
@@ -36,6 +42,11 @@ new_alt_tbl <- function(x) {
 #' @export
 `$<-.alt_tbl` <- function(x, name, value) {
   alt_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+tbl_sum.alt_tbl <- function(x) {
+  c("An alternate table" = pillar::dim_desc(x))
 }
 
 # Coverage table ---------------------------------------------------------------
@@ -58,6 +69,11 @@ new_cov_tbl <- function(x) {
   cov_tbl_reconstruct(NextMethod())
 }
 
+#' @export
+tbl_sum.cov_tbl <- function(x) {
+  c("A coverage table" = pillar::dim_desc(x))
+}
+
 # Genotype table ---------------------------------------------------------------
 new_geno_tbl <- function(x) {
   tibble::new_tibble(x, class = "geno_tbl")
@@ -76,6 +92,11 @@ new_geno_tbl <- function(x) {
 #' @export
 `$<-.geno_tbl` <- function(x, name, value) {
   geno_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+tbl_sum.geno_tbl <- function(x) {
+  c("A genotype table" = pillar::dim_desc(x))
 }
 
 # Haplotype table --------------------------------------------------------------
@@ -98,6 +119,11 @@ new_hap_tbl <- function(x) {
   hap_tbl_reconstruct(NextMethod())
 }
 
+#' @export
+tbl_sum.hap_tbl <- function(x) {
+  c("A haplotype table" = pillar::dim_desc(x))
+}
+
 # Reference, alternate, coverage table -----------------------------------------
 new_ref_alt_cov_tbl <- function(x) {
   tibble::new_tibble(x, class = "ref_alt_cov_tbl")
@@ -116,4 +142,9 @@ new_ref_alt_cov_tbl <- function(x) {
 #' @export
 `$<-.ref_alt_cov_tbl` <- function(x, name, value) {
   ref_alt_cov_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+tbl_sum.ref_alt_cov_tbl <- function(x) {
+  c("A ref alt cov table" = pillar::dim_desc(x))
 }

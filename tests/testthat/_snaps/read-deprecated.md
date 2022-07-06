@@ -14,7 +14,7 @@
       Joining, by = "gene_id"
       Joining, by = "gene_id"
     Output
-      # A tibble: 0 x 10
+      # A ref alt cov table: 0 x 10
       # ... with 10 variables: sample <chr>, gene_id <chr>, gene <chr>,
       #   mutation <chr>, func <chr>, aa_chng <chr>, target <chr>,
       #   ref_umi_count <dbl>, alt_umi_count <dbl>, coverage <dbl>
@@ -35,7 +35,7 @@
       Joining, by = "gene_id"
       Joining, by = "gene_id"
     Output
-      # A tibble: 0 x 10
+      # A ref alt cov table: 0 x 10
       # ... with 10 variables: sample <chr>, gene_id <chr>, gene <chr>,
       #   mutation <chr>, func <chr>, aa_chng <chr>, target <chr>,
       #   ref_umi_count <dbl>, alt_umi_count <dbl>, coverage <dbl>
@@ -71,7 +71,7 @@
     Message
       Input detected as the reference table.
     Output
-      # A tibble: 4 x 8
+      # A reference table: 4 x 8
         sample gene_id gene  mutation   func     aa_chng target ref_umi_count
         <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>          <dbl>
       1 S1     Site1   atp6  atp6-A623E missense A623E   Yes                0
@@ -91,7 +91,7 @@
     Message
       Input detected as the reference table.
     Output
-      # A tibble: 4 x 8
+      # A reference table: 4 x 8
         sample gene_id gene  mutation   func     aa_chng target ref_umi_count
         <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>          <dbl>
       1 S1     Site1   atp6  atp6-A623E missense A623E   Yes                0
@@ -111,7 +111,7 @@
     Message
       Input detected as the alternate table.
     Output
-      # A tibble: 4 x 8
+      # An alternate table: 4 x 8
         sample gene_id gene  mutation   func     aa_chng target alt_umi_count
         <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>          <dbl>
       1 S1     Site1   atp6  atp6-A623E missense A623E   Yes                0
@@ -131,7 +131,7 @@
     Message
       Input detected as the coverage table.
     Output
-      # A tibble: 4 x 8
+      # A coverage table: 4 x 8
         sample gene_id gene  mutation   func     aa_chng target coverage
         <chr>  <chr>   <chr> <chr>      <chr>    <chr>   <chr>     <dbl>
       1 S1     Site1   atp6  atp6-A623E missense A623E   Yes           0

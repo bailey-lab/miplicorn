@@ -17,7 +17,7 @@ cov <- new_cov_tbl(tibble::tribble(
   "sample2", 100,
 ))
 
-genotype <- new_geno_tbl(tibble::tribble(
+geno <- new_geno_tbl(tibble::tribble(
   ~sample, ~targeted, ~genotype,
   "sample1", "No", 1,
   "sample2", "Yes", 0,
@@ -83,12 +83,11 @@ test_that("subclass correctely assigned", {
 })
 
 test_that("genotype column only contains NA, -1, 0, 1, 2", {
-  # Genotype table
-  genotype$genotype <- c(NA, -1)
-  expect_s3_class(genotype, "geno_tbl")
+  geno$genotype <- c(NA, -1)
+  expect_s3_class(geno, "geno_tbl")
 
-  genotype$genotype <- c(10, 0)
-  expect_s3_class(genotype, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+  geno$genotype <- c(10, 0)
+  expect_s3_class(geno, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 })
 
 test_that("can subset object", {
@@ -105,8 +104,8 @@ test_that("can subset object", {
   expect_s3_class(cov[, 1], c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
   # Genotype table
-  expect_s3_class(genotype[1, ], "geno_tbl")
-  expect_s3_class(genotype[, 1], c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+  expect_s3_class(geno[1, ], "geno_tbl")
+  expect_s3_class(geno[, 1], c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
   # Haplotype table
   expect_s3_class(hap[1, ], "hap_tbl")
@@ -135,11 +134,11 @@ test_that("can rename columns", {
   expect_s3_class(cov, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
   # Genotype table
-  names(genotype) <- c("sample", "t", "genotype")
-  expect_s3_class(genotype, "geno_tbl")
+  names(geno) <- c("sample", "t", "genotype")
+  expect_s3_class(geno, "geno_tbl")
 
-  names(genotype) <- c("a", "b", "c")
-  expect_s3_class(genotype, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+  names(geno) <- c("a", "b", "c")
+  expect_s3_class(geno, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
   # Haplotype table
   names(hap) <- c("a", "b", "c")
@@ -164,11 +163,11 @@ test_that("can reassign object", {
   expect_s3_class(cov, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
   # Genotype table
-  genotype$targeted <- c("No", "No")
-  expect_s3_class(genotype, "geno_tbl")
+  geno$targeted <- c("No", "No")
+  expect_s3_class(geno, "geno_tbl")
 
-  genotype$genotype <- NULL
-  expect_s3_class(genotype, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+  geno$genotype <- NULL
+  expect_s3_class(geno, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
   # Haplotype table
   hap$sample <- NULL
@@ -206,12 +205,12 @@ test_that("class is dplyr compatible", {
 
   # Genotype table
   expect_s3_class(
-    dplyr::select(genotype, 1, 2),
+    dplyr::select(geno, 1, 2),
     c("tbl_df", "tbl", "data.frame"),
     exact = TRUE
   )
-  expect_s3_class(dplyr::select(genotype, 1, 3), "geno_tbl")
-  expect_s3_class(dplyr::filter(genotype, targeted == "Yes"), "geno_tbl")
+  expect_s3_class(dplyr::select(geno, 1, 3), "geno_tbl")
+  expect_s3_class(dplyr::filter(geno, targeted == "Yes"), "geno_tbl")
 
   # Haplotype table
   expect_s3_class(
@@ -228,4 +227,14 @@ test_that("class is dplyr compatible", {
     exact = TRUE
   )
   expect_s3_class(dplyr::filter(ref_alt_cov, coverage > 5), "ref_alt_cov_tbl")
+})
+
+# Test tbl_sum methods
+test_that("tbl_sum methods work", {
+  expect_snapshot(print(ref))
+  expect_snapshot(print(alt))
+  expect_snapshot(print(cov))
+  expect_snapshot(print(geno))
+  expect_snapshot(print(hap))
+  expect_snapshot(print(ref_alt_cov))
 })

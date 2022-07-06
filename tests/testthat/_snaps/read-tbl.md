@@ -35,7 +35,7 @@
       Joining, by = "gene_id"
       Joining, by = "gene_id"
     Output
-      # A tibble: 0 x 10
+      # A ref alt cov table: 0 x 10
       # ... with 10 variables: sample <chr>, gene_id <chr>, gene <chr>,
       #   mutation <chr>, func <chr>, aa_chng <chr>, target <chr>,
       #   ref_umi_count <dbl>, alt_umi_count <dbl>, coverage <dbl>
@@ -54,7 +54,7 @@
       Joining, by = "gene"
       Joining, by = "gene"
     Output
-      # A tibble: 2 x 9
+      # A ref alt cov table: 2 x 9
         sample gene  mutation   func     aa_chng target ref_umi_count alt_umi_count
         <chr>  <chr> <chr>      <chr>    <chr>   <chr>          <dbl>         <dbl>
       1 S1     atp6  atp6-A623E missense A623E   Yes                0             0

@@ -21,6 +21,7 @@ Imports:
     janitor,
     lifecycle,
     magrittr,
+    pillar,
     purrr,
     rlang (>= 1.0.0),
     tibble,
