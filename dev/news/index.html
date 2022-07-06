@@ -59,7 +59,9 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="miplicorn-development-version">miplicorn (development version)<a class="anchor" aria-label="anchor" href="#miplicorn-development-version"></a></h2>
-<ul><li>Set minimum <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> version to 1.0.0.</li>
+<ul><li>Define classes for the combined reference, alternate, and coverage table and the genotype table. These classes allow developers to control which inputs work with which functions (<a href="https://github.com/bailey-lab/miplicorn/issues/38" class="external-link">#38</a>).</li>
+<li>Add the capability to compute the prevalence of mutations using genotype tables instead of the combined reference, alternate, and coverage table (<a href="https://github.com/bailey-lab/miplicorn/issues/37" class="external-link">#37</a>).</li>
+<li>Set minimum <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> version to 1.0.0.</li>
 <li>Add an internal check on the version of <code>{chromoMap}</code>.</li>
 <li>Replace NA or NaN results with zero when computing the prevalence of mutations.</li>
 </ul></div>
