@@ -14,12 +14,12 @@ convert_three(str)
 \item{str}{String containing amino acids to convert.}
 }
 \description{
-\code{convert_single()} converts the 1-letter abbreviation to the 3-letter
-abbreviation and \code{convert_three()} does the opposite.
+\code{convert_single()} converts the 1-letter amino acid abbreviation to the
+3-letter amino acid abbreviation and \code{convert_three()} does the opposite.
 }
 \details{
-Conversion is case-insensitive, but always returns capitalized 1-letter
-abbreviation and 3-letter abbreviation in title-case.
+Conversion is case-insensitive, but always returns capitalized 1-letter and
+3-letter abbreviations in title-case.
 }
 \examples{
 # Convert 1-letter abbreviation

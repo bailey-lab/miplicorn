@@ -46,7 +46,7 @@
 #' @param .ref_file File path to the reference table.
 #' @param .alt_file File path to the alternate table.
 #' @param .cov_file File path to the coverage table.
-#' @param ... [`data-masking`][dplyr::dplyr_data_masking] Expressions that
+#' @param ... <[`data-masking`][dplyr::dplyr_data_masking]> Expressions that
 #'   return a logical value and are used to filter the data. If multiple
 #'   expressions are included, they are combined with the `&` operator. Only
 #'   rows for which all conditions evaluate to `TRUE` are kept.
