@@ -25,7 +25,6 @@ Imports:
     rlang (>= 1.0.0),
     tibble,
     tidyr,
-    vctrs (>= 0.3.0),
     vroom (>= 1.5.6)
 Suggests:
     chromoMap (>= 0.4.1),
