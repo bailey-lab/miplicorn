@@ -1,3 +1,39 @@
+# ref_tbl class ----------------------------------------------------------------
+rlang::on_load(
+  vctrs::s3_register(
+    "dplyr::dplyr_reconstruct",
+    "ref_tbl",
+    method = ref_tbl_reconstruct
+  )
+)
+
+ref_tbl_reconstruct <- function(data, template) {
+  if (ref_tbl_reconstructable(data)) {
+    new_ref_tbl(data)
+  } else {
+    tibble::new_tibble(data)
+  }
+}
+
+ref_tbl_reconstructable <- function(data) {
+  rlang::is_list(data) &&
+    has_ref_tbl_cols(data) &&
+    has_ref_tbl_coltypes(data)
+}
+
+has_ref_tbl_cols <- function(x) {
+  cols <- c("sample", "ref_umi_count")
+  all(cols %in% colnames(x))
+}
+
+has_ref_tbl_coltypes <- function(x) {
+  coltypes <- c(
+    sample = rlang::is_character(x$sample),
+    ref_umi_count = rlang::is_double(x$ref_umi_count)
+  )
+  all(coltypes)
+}
+
 # geno-tbl class ---------------------------------------------------------------
 rlang::on_load(
   vctrs::s3_register(

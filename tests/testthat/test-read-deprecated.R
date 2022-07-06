@@ -26,7 +26,8 @@ test_that("deprecated read_file() detects reference tables", {
       .file = "small.csv",
       .name = "ref_umi_count"
     ))),
-    dplyr::rename(res, ref_umi_count = value)
+    dplyr::rename(res, ref_umi_count = value),
+    ignore_attr = "class"
   )
 })
 

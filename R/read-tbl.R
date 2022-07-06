@@ -90,7 +90,8 @@ NULL
 #' @rdname read-tbl
 #' @export
 read_tbl_reference <- function(.tbl, ...) {
-  read_tbl_helper(.tbl, ..., .name = "ref_umi_count")
+  tbl <- read_tbl_helper(.tbl, ..., .name = "ref_umi_count")
+  new_ref_tbl(tbl)
 }
 
 #' @rdname read-tbl

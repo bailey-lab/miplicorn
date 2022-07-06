@@ -1,3 +1,23 @@
+# Reference table --------------------------------------------------------------
+new_ref_tbl <- function(x) {
+  tibble::new_tibble(x, class = "ref_tbl")
+}
+
+#' @export
+`[.ref_tbl` <- function(x, i, j, drop = FALSE) {
+  ref_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+`names<-.ref_tbl` <- function(x, value) {
+  ref_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+`$<-.ref_tbl` <- function(x, name, value) {
+  ref_tbl_reconstruct(NextMethod())
+}
+
 # Genotype table ---------------------------------------------------------------
 new_geno_tbl <- function(x) {
   tibble::new_tibble(x, class = "geno_tbl")
