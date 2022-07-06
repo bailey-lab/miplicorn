@@ -18,6 +18,26 @@ new_ref_tbl <- function(x) {
   ref_tbl_reconstruct(NextMethod())
 }
 
+# Alternate table --------------------------------------------------------------
+new_alt_tbl <- function(x) {
+  tibble::new_tibble(x, class = "alt_tbl")
+}
+
+#' @export
+`[.alt_tbl` <- function(x, i, j, drop = FALSE) {
+  alt_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+`names<-.alt_tbl` <- function(x, value) {
+  alt_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+`$<-.alt_tbl` <- function(x, name, value) {
+  alt_tbl_reconstruct(NextMethod())
+}
+
 # Genotype table ---------------------------------------------------------------
 new_geno_tbl <- function(x) {
   tibble::new_tibble(x, class = "geno_tbl")

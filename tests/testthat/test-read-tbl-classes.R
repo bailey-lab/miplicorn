@@ -5,6 +5,12 @@ ref <- new_ref_tbl(tibble::tribble(
   "sample2", 100,
 ))
 
+alt <- new_alt_tbl(tibble::tribble(
+  ~sample, ~alt_umi_count,
+  "sample1", 11,
+  "sample2", 100,
+))
+
 genotype <- new_geno_tbl(tibble::tribble(
   ~sample, ~targeted, ~genotype,
   "sample1", "No", 1,
@@ -25,6 +31,13 @@ test_that("subclass correctely assigned", {
   expect_s3_class(
     new_ref_tbl(df),
     c("ref_tbl", "tbl_df", "tbl", "data.frame"),
+    exact = TRUE
+  )
+
+  # Alternate table
+  expect_s3_class(
+    new_alt_tbl(df),
+    c("alt_tbl", "tbl_df", "tbl", "data.frame"),
     exact = TRUE
   )
 
@@ -57,6 +70,10 @@ test_that("can subset object", {
   expect_s3_class(ref[1, ], "ref_tbl")
   expect_s3_class(ref[, 1], c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
+  # Alternate table
+  expect_s3_class(alt[1, ], "alt_tbl")
+  expect_s3_class(alt[, 1], c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+
   # Genotype table
   expect_s3_class(genotype[1, ], "geno_tbl")
   expect_s3_class(genotype[, 1], c("tbl_df", "tbl", "data.frame"), exact = TRUE)
@@ -75,6 +92,10 @@ test_that("can rename columns", {
   names(ref) <- c("a", "b")
   expect_s3_class(ref, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
+  # Alternate table
+  names(alt) <- c("a", "b")
+  expect_s3_class(alt, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+
   # Genotype table
   names(genotype) <- c("sample", "t", "genotype")
   expect_s3_class(genotype, "geno_tbl")
@@ -91,6 +112,10 @@ test_that("can reassign object", {
   # Reference table
   ref$sample <- NULL
   expect_s3_class(ref, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+
+  # Alternate table
+  alt$sample <- NULL
+  expect_s3_class(alt, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
   # Genotype table
   genotype$targeted <- c("No", "No")
@@ -112,6 +137,14 @@ test_that("class is dplyr compatible", {
     exact = TRUE
   )
   expect_s3_class(dplyr::filter(ref, ref_umi_count > 50), "ref_tbl")
+
+  # Alternate table
+  expect_s3_class(
+    dplyr::select(alt, 1),
+    c("tbl_df", "tbl", "data.frame"),
+    exact = TRUE
+  )
+  expect_s3_class(dplyr::filter(alt, alt_umi_count > 50), "alt_tbl")
 
   # Genotype table
   expect_s3_class(

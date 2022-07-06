@@ -38,7 +38,8 @@ test_that("deprecated read_file() detects alternate tables", {
       .file = "small.csv",
       .name = "alt_umi_count"
     ))),
-    dplyr::rename(res, alt_umi_count = value)
+    dplyr::rename(res, alt_umi_count = value),
+    ignore_attr = "class"
   )
 })
 

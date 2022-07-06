@@ -97,7 +97,8 @@ read_tbl_reference <- function(.tbl, ...) {
 #' @rdname read-tbl
 #' @export
 read_tbl_alternate <- function(.tbl, ...) {
-  read_tbl_helper(.tbl, ..., .name = "alt_umi_count")
+  tbl <- read_tbl_helper(.tbl, ..., .name = "alt_umi_count")
+  new_alt_tbl(tbl)
 }
 
 #' @rdname read-tbl

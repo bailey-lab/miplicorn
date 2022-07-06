@@ -34,6 +34,42 @@ has_ref_tbl_coltypes <- function(x) {
   all(coltypes)
 }
 
+# alt_tbl class ----------------------------------------------------------------
+rlang::on_load(
+  vctrs::s3_register(
+    "dplyr::dplyr_reconstruct",
+    "alt_tbl",
+    method = alt_tbl_reconstruct
+  )
+)
+
+alt_tbl_reconstruct <- function(data, template) {
+  if (alt_tbl_reconstructable(data)) {
+    new_alt_tbl(data)
+  } else {
+    tibble::new_tibble(data)
+  }
+}
+
+alt_tbl_reconstructable <- function(data) {
+  rlang::is_list(data) &&
+    has_alt_tbl_cols(data) &&
+    has_alt_tbl_coltypes(data)
+}
+
+has_alt_tbl_cols <- function(x) {
+  cols <- c("sample", "alt_umi_count")
+  all(cols %in% colnames(x))
+}
+
+has_alt_tbl_coltypes <- function(x) {
+  coltypes <- c(
+    sample = rlang::is_character(x$sample),
+    alt_umi_count = rlang::is_double(x$alt_umi_count)
+  )
+  all(coltypes)
+}
+
 # geno-tbl class ---------------------------------------------------------------
 rlang::on_load(
   vctrs::s3_register(
