@@ -23,6 +23,12 @@ genotype <- new_geno_tbl(tibble::tribble(
   "sample2", "Yes", 0,
 ))
 
+hap <- new_hap_tbl(tibble::tribble(
+  ~sample, ~haplotype_id, ~haplotype_sequence,
+  "sample1", "mip1", "CATG",
+  "sample2", "mip2", "TTGG",
+))
+
 ref_alt_cov <- new_ref_alt_cov_tbl(tibble::tribble(
   ~sample, ~ref_umi_count, ~alt_umi_count, ~coverage,
   "sample1", 5, 1, 6,
@@ -61,6 +67,13 @@ test_that("subclass correctely assigned", {
     exact = TRUE
   )
 
+  # Haplotype table
+  expect_s3_class(
+    new_hap_tbl(df),
+    c("hap_tbl", "tbl_df", "tbl", "data.frame"),
+    exact = TRUE
+  )
+
   # Ref, alt, coverage table
   expect_s3_class(
     new_ref_alt_cov_tbl(df),
@@ -95,6 +108,10 @@ test_that("can subset object", {
   expect_s3_class(genotype[1, ], "geno_tbl")
   expect_s3_class(genotype[, 1], c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
+  # Haplotype table
+  expect_s3_class(hap[1, ], "hap_tbl")
+  expect_s3_class(hap[, 1], c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+
   # Ref, alt, coverage table
   expect_s3_class(ref_alt_cov[1, ], "ref_alt_cov_tbl")
   expect_s3_class(
@@ -124,6 +141,10 @@ test_that("can rename columns", {
   names(genotype) <- c("a", "b", "c")
   expect_s3_class(genotype, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
+  # Haplotype table
+  names(hap) <- c("a", "b", "c")
+  expect_s3_class(hap, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+
   # Ref, alt, coverage table
   names(ref_alt_cov) <- c("a", "b", "c", "d")
   expect_s3_class(ref_alt_cov, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
@@ -148,6 +169,10 @@ test_that("can reassign object", {
 
   genotype$genotype <- NULL
   expect_s3_class(genotype, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
+
+  # Haplotype table
+  hap$sample <- NULL
+  expect_s3_class(hap, c("tbl_df", "tbl", "data.frame"), exact = TRUE)
 
   # Ref, alt, coverage table
   ref_alt_cov$coverage <- NULL
@@ -187,6 +212,14 @@ test_that("class is dplyr compatible", {
   )
   expect_s3_class(dplyr::select(genotype, 1, 3), "geno_tbl")
   expect_s3_class(dplyr::filter(genotype, targeted == "Yes"), "geno_tbl")
+
+  # Haplotype table
+  expect_s3_class(
+    dplyr::select(hap, 1),
+    c("tbl_df", "tbl", "data.frame"),
+    exact = TRUE
+  )
+  expect_s3_class(dplyr::filter(hap, haplotype_id == "mip1"), "hap_tbl")
 
   # Ref, alt, coverage table
   expect_s3_class(

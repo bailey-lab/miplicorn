@@ -78,6 +78,26 @@ new_geno_tbl <- function(x) {
   geno_tbl_reconstruct(NextMethod())
 }
 
+# Haplotype table --------------------------------------------------------------
+new_hap_tbl <- function(x) {
+  tibble::new_tibble(x, class = "hap_tbl")
+}
+
+#' @export
+`[.hap_tbl` <- function(x, i, j, drop = FALSE) {
+  hap_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+`names<-.hap_tbl` <- function(x, value) {
+  hap_tbl_reconstruct(NextMethod())
+}
+
+#' @export
+`$<-.hap_tbl` <- function(x, name, value) {
+  hap_tbl_reconstruct(NextMethod())
+}
+
 # Reference, alternate, coverage table -----------------------------------------
 new_ref_alt_cov_tbl <- function(x) {
   tibble::new_tibble(x, class = "ref_alt_cov_tbl")

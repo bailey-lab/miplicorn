@@ -147,6 +147,45 @@ has_genotype_vals <- function(x) {
   all(unique(x) %in% c(NA, -1, 0, 1, 2))
 }
 
+# hap_tbl class ----------------------------------------------------------------
+rlang::on_load(
+  vctrs::s3_register(
+    "dplyr::dplyr_reconstruct",
+    "hap_tbl",
+    method = hap_tbl_reconstruct
+  )
+)
+
+hap_tbl_reconstruct <- function(data, template) {
+  if (hap_tbl_reconstructable(data)) {
+    new_hap_tbl(data)
+  } else {
+    tibble::new_tibble(data)
+  }
+}
+
+hap_tbl_reconstructable <- function(data) {
+  rlang::is_list(data) &&
+    has_hap_tbl_cols(data) &&
+    has_hap_tbl_coltypes(data)
+}
+
+has_hap_tbl_cols <- function(x) {
+  # TODO: add other necessary columns
+  cols <- c("sample", "haplotype_id", "haplotype_sequence")
+  all(cols %in% colnames(x))
+}
+
+has_hap_tbl_coltypes <- function(x) {
+  # TODO: add other necessary columns
+  coltypes <- c(
+    sample = rlang::is_character(x$sample),
+    haplotype_id = rlang::is_character(x$haplotype_id),
+    haplotype_sequence = rlang::is_character(x$haplotype_id)
+  )
+  all(coltypes)
+}
+
 # ref_alt_cov_tbl class --------------------------------------------------------
 rlang::on_load(
   vctrs::s3_register(

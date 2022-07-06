@@ -150,7 +150,10 @@ read_tbl_haplotype <- function(.tbl, ..., .col_select = NULL) {
   }
 
   # Filter the data based on conditions specified
-  filter_tbl(data, ...)
+  tbl <- filter_tbl(data, ...)
+
+  # Assign class
+  new_hap_tbl(tbl)
 }
 
 #' @rdname read-tbl
