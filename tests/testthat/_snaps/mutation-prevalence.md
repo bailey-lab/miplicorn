@@ -1,9 +1,6 @@
-# error if lack ref, alt, coverage columns
+# error if incorrect class
 
-    Data is mising required columns.
-    x Need a column for the reference UMI counts.
-    x Need a column for the alternate UMI counts.
-    x Need a column for the coverage.
+    no applicable method for 'mutation_prevalence' applied to an object of class "c('tbl_df', 'tbl', 'data.frame')"
 
 # error if lack mutation_name column
 

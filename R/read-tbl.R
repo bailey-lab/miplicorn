@@ -108,7 +108,19 @@ read_tbl_coverage <- function(.tbl, ...) {
 #' @rdname read-tbl
 #' @export
 read_tbl_genotype <- function(.tbl, ...) {
-  read_tbl_helper(.tbl, ..., .name = "genotype")
+  tbl <- read_tbl_helper(.tbl, ..., .name = "genotype")
+
+  # Check genotype column has correct values
+  if (!has_genotype_vals(tbl$genotype)) {
+    abort(c(
+      "Invalid genotype values detected.",
+      i = "Please review the input file.",
+      i = "Allowed values are: -1, 0, 1, 2, or NA."
+    ))
+  }
+
+  # Assign class
+  new_geno_tbl(tbl)
 }
 
 #' @rdname read-tbl
@@ -208,7 +220,10 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
   by <- purrr::reduce(purrr::map(tables, colnames), intersect)
 
   # Combine three tibbles together
-  purrr::reduce(tables, dplyr::full_join, by = by)
+  comb_tbls <- purrr::reduce(tables, dplyr::full_join, by = by)
+
+  # Assign class
+  new_ref_alt_cov_tbl(comb_tbls)
 }
 
 # Helper function used to read reference, alternate, and coverage tables
