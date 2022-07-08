@@ -24,7 +24,7 @@ read_file(.file, ..., .name = "value")
 
 \item{.cov_file}{File path to the coverage table.}
 
-\item{...}{\code{\link[dplyr:dplyr_data_masking]{data-masking}} Expressions that
+\item{...}{<\code{\link[dplyr:dplyr_data_masking]{data-masking}}> Expressions that
 return a logical value and are used to filter the data. If multiple
 expressions are included, they are combined with the \code{&} operator. Only
 rows for which all conditions evaluate to \code{TRUE} are kept.}

@@ -1,11 +1,11 @@
 #------------------------------------------------
 #' Convert amino acid abbreviations
 #'
-#' `convert_single()` converts the 1-letter abbreviation to the 3-letter
-#' abbreviation and `convert_three()` does the opposite.
+#' `convert_single()` converts the 1-letter amino acid abbreviation to the
+#' 3-letter amino acid abbreviation and `convert_three()` does the opposite.
 #'
-#' Conversion is case-insensitive, but always returns capitalized 1-letter
-#' abbreviation and 3-letter abbreviation in title-case.
+#' Conversion is case-insensitive, but always returns capitalized 1-letter and
+#' 3-letter abbreviations in title-case.
 #'
 #' @param str String containing amino acids to convert.
 #'
@@ -24,18 +24,17 @@ convert_single <- function(str) {
   pattern <- stringr::str_c(aa_conversion$single, collapse = "|")
 
   # Function for replacing with 3-letter abbreviation
-  fun <- function(query) {
-    dplyr::filter(
-      aa_conversion,
-      stringr::str_to_lower(.data$single) == stringr::str_to_lower(query)
-    )[2]
+  convert <- function(query) {
+    query <- stringr::str_to_lower(query)
+    abbrv <- stringr::str_to_lower(aa_conversion$single)
+    aa_conversion[query == abbrv, ]$three
   }
 
   # Replace pattern with function, ignoring case
   stringr::str_replace_all(
     string = str,
     pattern = stringr::regex(pattern, ignore_case = TRUE),
-    replacement = fun
+    replacement = convert
   )
 }
 
@@ -46,17 +45,16 @@ convert_three <- function(str) {
   pattern <- stringr::str_c(aa_conversion$three, collapse = "|")
 
   # Function for replacing with 1-letter abbreviation
-  fun <- function(query) {
-    dplyr::filter(
-      aa_conversion,
-      stringr::str_to_lower(.data$three) == stringr::str_to_lower(query)
-    )[1]
+  convert <- function(query) {
+    query <- stringr::str_to_lower(query)
+    abbrv <- stringr::str_to_lower(aa_conversion$three)
+    aa_conversion[query == abbrv, ]$single
   }
 
   # Replace pattern with function, ignoring case
   stringr::str_replace_all(
     string = str,
     pattern = stringr::regex(pattern, ignore_case = TRUE),
-    replacement = fun
+    replacement = convert
   )
 }

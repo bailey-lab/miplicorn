@@ -29,7 +29,8 @@ filter_targeted(.data, .value, .preserve = FALSE)
 \item{.data}{A data frame, data frame extension (e.g. a tibble), or a lazy
 data frame (e.g. from dbplyr or dtplyr).}
 
-\item{.value}{The filtering value to be applied.}
+\item{.value}{Filtering value. Data greater than or equal to the value will
+be kept.}
 
 \item{.preserve}{Relevant when the \code{.data} input is grouped.
 If \code{.preserve = FALSE} (the default), the grouping structure

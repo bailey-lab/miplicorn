@@ -25,7 +25,9 @@
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Additional arguments passed to
 #'   internal plotting functions.
 #'
-#' @seealso [chromoMap::chromoMap()] [karyoploteR::plotKaryotype()]
+#' @seealso See the [chromoMap][chromoMap::chromoMap] and
+#'   [karyoploteR](https://bernatgel.github.io/karyoploter_tutorial/) packages
+#'   to create custom chromosome maps.
 #' @name chromosome-map
 #' @examplesIf interactive()
 #' probes <- tibble::tribble(

@@ -78,5 +78,7 @@ plot_karyoploteR(
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[chromoMap:chromoMap]{chromoMap::chromoMap()}} \code{\link[karyoploteR:plotKaryotype]{karyoploteR::plotKaryotype()}}
+See the \link[chromoMap:chromoMap]{chromoMap} and
+\href{https://bernatgel.github.io/karyoploter_tutorial/}{karyoploteR} packages
+to create custom chromosome maps.
 }

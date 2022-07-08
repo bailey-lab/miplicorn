@@ -1,5 +1,6 @@
 # miplicorn (development version)
 
+- Improve performance of amino acid conversion functions (#40).
 - Define classes for all input tables. These classes allow developers to control
   which inputs work with which functions (#38, #39).
 - Add the capability to compute the prevalence of mutations using genotype

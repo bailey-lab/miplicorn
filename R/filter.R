@@ -62,7 +62,8 @@ filter_fn_factory <- function(.col, .type = c("numeric", "character")) {
 #'
 #' @param .data A data frame, data frame extension (e.g. a tibble), or a lazy
 #'   data frame (e.g. from dbplyr or dtplyr).
-#' @param .value The filtering value to be applied.
+#' @param .value Filtering value. Data greater than or equal to the value will
+#'   be kept.
 #' @inheritParams dplyr::filter
 #'
 #' @name filter

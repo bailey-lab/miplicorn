@@ -12,7 +12,7 @@ label_mutations(.data, .before = NULL, .after = NULL)
 \item{.before, .after}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 <\code{\link[=dplyr_tidy_select]{tidy-select}}> Optionally, control where new columns
 should appear (the default is to add to the right hand side). See
-\code{\link[=relocate]{relocate()}} for more details.}
+\code{\link[dplyr:relocate]{dplyr::relocate()}} for more details.}
 }
 \description{
 For each data point, label a mutation as \code{"ref"}, \code{"alt"}, \code{"ins"}, or

@@ -18,7 +18,7 @@
 #' @param .before,.after `r lifecycle::badge("experimental")`
 #'   <[`tidy-select`][dplyr_tidy_select]> Optionally, control where new columns
 #'   should appear (the default is to add to the right hand side). See
-#'   [relocate()] for more details.
+#'   [`dplyr::relocate()`][dplyr::relocate()] for more details.
 #'
 #' @export
 #' @examples
