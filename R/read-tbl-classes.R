@@ -21,7 +21,8 @@ new_ref_tbl <- function(x) {
 #' @importFrom tibble tbl_sum
 #' @export
 tbl_sum.ref_tbl <- function(x) {
-  c("A reference table" = pillar::dim_desc(x))
+  orig <- NextMethod()
+  c("A reference table" = unname(orig))
 }
 
 # Alternate table --------------------------------------------------------------
@@ -46,7 +47,8 @@ new_alt_tbl <- function(x) {
 
 #' @export
 tbl_sum.alt_tbl <- function(x) {
-  c("An alternate table" = pillar::dim_desc(x))
+  orig <- NextMethod()
+  c("An alternate table" = unname(orig))
 }
 
 # Coverage table ---------------------------------------------------------------
@@ -71,7 +73,8 @@ new_cov_tbl <- function(x) {
 
 #' @export
 tbl_sum.cov_tbl <- function(x) {
-  c("A coverage table" = pillar::dim_desc(x))
+  orig <- NextMethod()
+  c("A coverage table" = unname(orig))
 }
 
 # Genotype table ---------------------------------------------------------------
@@ -96,7 +99,8 @@ new_geno_tbl <- function(x) {
 
 #' @export
 tbl_sum.geno_tbl <- function(x) {
-  c("A genotype table" = pillar::dim_desc(x))
+  orig <- NextMethod()
+  c("A genotype table" = unname(orig))
 }
 
 # Haplotype table --------------------------------------------------------------
@@ -121,7 +125,8 @@ new_hap_tbl <- function(x) {
 
 #' @export
 tbl_sum.hap_tbl <- function(x) {
-  c("A haplotype table" = pillar::dim_desc(x))
+  orig <- NextMethod()
+  c("A haplotype table" = unname(orig))
 }
 
 # Reference, alternate, coverage table -----------------------------------------
@@ -146,5 +151,6 @@ new_ref_alt_cov_tbl <- function(x) {
 
 #' @export
 tbl_sum.ref_alt_cov_tbl <- function(x) {
-  c("A ref alt cov table" = pillar::dim_desc(x))
+  orig <- NextMethod()
+  c("A ref alt cov table" = unname(orig))
 }
