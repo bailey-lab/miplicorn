@@ -286,10 +286,10 @@ globalVariables(".")
 # Check formatting of inputs
 check_inputs <- function(genome, probes) {
   if (ncol(genome) != 3) {
-    abort("Genomic information is misformatted.")
+    cli_abort("Genomic information is misformatted.")
   }
   if (ncol(probes) != 4) {
-    abort(c(
+    cli_abort(c(
       "Annotation information is misformatted.",
       "i" = "Did you forget to indicate the probe sets?"
     ))

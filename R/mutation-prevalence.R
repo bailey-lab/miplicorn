@@ -72,7 +72,7 @@ mutation_prevalence.ref_alt_cov_tbl <- function(data, ..., threshold) {
 
   # Need column mutation name
   if (!"mutation_name" %in% colnames(data)) {
-    abort("Data needs the column `mutation_name`.")
+    cli_abort("Data needs the column `mutation_name`.")
   }
 
   # Get counts of mutations
@@ -151,7 +151,7 @@ mutation_prevalence.geno_tbl <- function(data, ...) {
 #' plot(prevalence)
 plot_mutation_prevalence <- function(data) {
   if (!inherits(data, "mut_prev")) {
-    abort(c(
+    cli_abort(c(
       "Data object must be of class `mut_prev`.",
       x = cli::pluralize("Its classes are {glue::backtick(class(data))}."),
       i = "Did you forget to run `mutation_prevalence()` first?"

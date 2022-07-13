@@ -22,7 +22,7 @@ filter_fn_factory <- function(.col, .type = c("numeric", "character")) {
   function(.data, .value, .preserve = FALSE) {
     # Check column existence
     if (!.col %in% colnames(.data)) {
-      abort(glue("Data needs the column `{.col}`."))
+      cli_abort("Data needs the column `{.col}`.")
     }
 
     # Urge users to use dplyr::filter() for more complex cases

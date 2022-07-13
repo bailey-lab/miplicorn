@@ -153,7 +153,7 @@ read_file <- function(.file, ..., .name = "value") {
     inform("Input detected as the coverage table.")
     read_tbl_coverage(.file, ...)
   } else {
-    abort("Unable to detect the type of table input.")
+    cli_abort("Unable to detect the type of table input.")
   }
 }
 
