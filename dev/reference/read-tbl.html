@@ -193,7 +193,7 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-in"><span><span class="co"># Input sources -------------------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="co"># Read from a path</span></span></span>
 <span class="r-in"><span><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">ref_file</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6,344 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A reference table: 6,344 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
@@ -213,7 +213,7 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Read entire file ----------------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">cov_file</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6,344 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A coverage table: 6,344 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample    gene_id gene  mutation_name exonic_func aa_change targeted coverage</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span>
@@ -231,7 +231,7 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-in"><span><span class="co"># Data filtering ------------------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="co"># Filtering by one criterion</span></span></span>
 <span class="r-in"><span><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 260 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A reference table: 260 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
@@ -248,7 +248,7 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Filtering by multiple criteria within a single logical expression</span></span></span>
 <span class="r-in"><span><span class="fu">read_tbl_alternate</span><span class="op">(</span><span class="va">alt_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">&amp;</span> <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 156 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># An alternate table: 156 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
@@ -263,7 +263,7 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 146 more rows, and 1 more variable: alt_umi_count &lt;dbl&gt;</span></span>
 <span class="r-in"><span><span class="fu">read_tbl_coverage</span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">|</span> <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,496 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A coverage table: 2,496 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample    gene_id gene  mutation_name exonic_func aa_change targeted coverage</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span>
@@ -280,7 +280,7 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># When multiple expressions are used, they are combined using &amp;</span></span></span>
 <span class="r-in"><span><span class="fu">read_tbl_reference</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span>, <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 156 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A reference table: 156 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
@@ -297,7 +297,7 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Read multiple files together ----------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="fu">read_tbl_ref_alt_cov</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">alt_file</span>, <span class="va">cov_file</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6,344 × 10</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A ref alt cov table: 6,344 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
