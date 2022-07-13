@@ -24,6 +24,18 @@ test_that("filter variable must exist", {
   expect_snapshot_error(filter_tbl(df, var == 5))
 })
 
+test_that("error if filter variable doesn't exist is pluralized properly", {
+  one_object <- tibble::tibble(sample = "S1", gene = "atp6")
+
+  expect_error(filter_tbl(one_object, var == 5))
+  expect_snapshot_error(filter_tbl(one_object, var == 5))
+
+  multiple_objects <- tibble::tibble(sample = "S1", gene = "atp", target = "No")
+
+  expect_error(filter_tbl(multiple_objects, var == 5))
+  expect_snapshot_error(filter_tbl(multiple_objects, var == 5))
+})
+
 # Test read_tbl_helper() -------------------------------------------------------
 test_that("returns an empty tibble on an empty file", {
   expect_equal(read_tbl_helper("empty-file"), tibble::tibble())

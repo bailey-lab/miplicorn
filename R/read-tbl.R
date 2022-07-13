@@ -334,7 +334,7 @@ filter_tbl <- function(.tbl, ...) {
         stringr::str_c(".")
       objects <- stringr::str_c("'", colnames(.tbl)[-1], "'")
       cli_abort(
-        c(msg, i = cli::pluralize("Available objects are {objects}.")),
+        c(msg, i = "Available object{?s} {?is/are} {objects}."),
         parent = e
       )
     }

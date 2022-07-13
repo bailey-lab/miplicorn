@@ -15,7 +15,25 @@
 # filter variable must exist
 
     Problem while computing `..1 = var == 5`..
-    i Available objects are 'gene'.
+    i Available object is 'gene'.
+    Caused by error in `dplyr::filter()`:
+    ! Problem while computing `..1 = var == 5`.
+    Caused by error in `var == 5`:
+    ! comparison (1) is possible only for atomic and list types
+
+# error if filter variable doesn't exist is pluralized properly
+
+    Problem while computing `..1 = var == 5`..
+    i Available object is 'gene'.
+    Caused by error in `dplyr::filter()`:
+    ! Problem while computing `..1 = var == 5`.
+    Caused by error in `var == 5`:
+    ! comparison (1) is possible only for atomic and list types
+
+---
+
+    Problem while computing `..1 = var == 5`..
+    i Available objects are 'gene' and 'target'.
     Caused by error in `dplyr::filter()`:
     ! Problem while computing `..1 = var == 5`.
     Caused by error in `var == 5`:

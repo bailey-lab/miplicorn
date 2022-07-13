@@ -108,7 +108,19 @@ test_that("properly account for threshold (#35)", {
 # plot_mutation_frequency() Test Cases ----------------------------------------
 test_that("data must have mut_freq class", {
   df <- tibble::tibble(a = 1, b = 2)
+  expect_error(plot_mutation_frequency(df))
   expect_snapshot_error(plot_mutation_frequency(df))
+})
+
+test_that("error if not mut_freq class is pluralized properly", {
+  # One class
+  expect_error(plot_mutation_frequency("one class"))
+  expect_snapshot_error(plot_mutation_frequency("one class"))
+
+  # Multiple classes
+  multiple_classes <- tibble::tibble(a = 1)
+  expect_error(plot_mutation_frequency("one class"))
+  expect_snapshot_error(plot_mutation_frequency(multiple_classes))
 })
 
 test_that("creates a nice plot", {
