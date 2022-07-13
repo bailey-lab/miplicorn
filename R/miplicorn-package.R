@@ -6,7 +6,6 @@
 # roxygen namespace tags. Modify with care!
 ## usethis namespace: start
 #' @importFrom cli cli_abort cli_warn cli_inform
-#' @importFrom glue glue
 #' @importFrom lifecycle deprecated is_present
 ## usethis namespace: end
 NULL
