@@ -1,9 +1,8 @@
 # miplicorn (development version)
 
 - Improve performance of amino acid conversion functions (#40).
-- Define classes for the combined reference, alternate, and coverage table and
-  the genotype table. These classes allow developers to control which inputs
-  work with which functions (#38).
+- Define classes for all input tables. These classes allow developers to control
+  which inputs work with which functions (#38, #39).
 - Add the capability to compute the prevalence of mutations using genotype
   tables instead of the combined reference, alternate, and coverage table (#37).
 - Set minimum `{dplyr}` version to 1.0.0.

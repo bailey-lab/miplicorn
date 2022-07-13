@@ -91,19 +91,22 @@ NULL
 #' @rdname read-tbl
 #' @export
 read_tbl_reference <- function(.tbl, ...) {
-  read_tbl_helper(.tbl, ..., .name = "ref_umi_count")
+  tbl <- read_tbl_helper(.tbl, ..., .name = "ref_umi_count")
+  new_ref_tbl(tbl)
 }
 
 #' @rdname read-tbl
 #' @export
 read_tbl_alternate <- function(.tbl, ...) {
-  read_tbl_helper(.tbl, ..., .name = "alt_umi_count")
+  tbl <- read_tbl_helper(.tbl, ..., .name = "alt_umi_count")
+  new_alt_tbl(tbl)
 }
 
 #' @rdname read-tbl
 #' @export
 read_tbl_coverage <- function(.tbl, ...) {
-  read_tbl_helper(.tbl, ..., .name = "coverage")
+  tbl <- read_tbl_helper(.tbl, ..., .name = "coverage")
+  new_cov_tbl(tbl)
 }
 
 #' @rdname read-tbl
@@ -148,7 +151,10 @@ read_tbl_haplotype <- function(.tbl, ..., .col_select = NULL) {
   }
 
   # Filter the data based on conditions specified
-  filter_tbl(data, ...)
+  tbl <- filter_tbl(data, ...)
+
+  # Assign class
+  new_hap_tbl(tbl)
 }
 
 #' @rdname read-tbl

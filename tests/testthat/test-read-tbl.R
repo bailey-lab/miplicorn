@@ -78,40 +78,49 @@ test_that("returns an empty tibble on an empty file", {
 
 haplotype_res <- tibble::tribble(
   ~sample, ~barcode_count, ~chrom, ~gene, ~pos,
-  "sample-1", 353L, "chr6", "DHODH", 130330L,
-  "sample-2", 275L, "chr3", "pfabcI3", 823117L
+  "sample-1", 353, "chr6", "DHODH", 130330,
+  "sample-2", 275, "chr3", "pfabcI3", 823117
 )
 
 test_that("cleans column names", {
-  expect_equal(read_tbl_haplotype("haplotype_test.csv"), haplotype_res)
+  expect_equal(
+    read_tbl_haplotype("haplotype_test.csv"),
+    haplotype_res,
+    ignore_attr = c("class", "spec", "problems")
+  )
 })
 
 test_that("can select columns", {
   expect_equal(
     read_tbl_haplotype("haplotype_test.csv", .col_select = -POS),
-    dplyr::select(haplotype_res, -pos)
+    dplyr::select(haplotype_res, -pos),
+    ignore_attr = c("class", "spec", "problems")
   )
 })
 
 test_that("can filter rows", {
   expect_equal(
     read_tbl_haplotype("haplotype_test.csv", gene == "DHODH"),
-    dplyr::filter(haplotype_res, gene == "DHODH")
+    dplyr::filter(haplotype_res, gene == "DHODH"),
+    ignore_attr = c("class", "spec", "problems")
   )
 
   expect_equal(
     read_tbl_haplotype("haplotype_test.csv", gene == "DHODH" | chrom == "chr3"),
-    haplotype_res
+    haplotype_res,
+    ignore_attr = c("class", "spec", "problems")
   )
 
   expect_equal(
     read_tbl_haplotype("haplotype_test.csv", gene == "DHODH" & chrom == "chr3"),
-    dplyr::filter(haplotype_res, gene == "DHODH" & chrom == "chr3")
+    dplyr::filter(haplotype_res, gene == "DHODH" & chrom == "chr3"),
+    ignore_attr = c("class", "spec", "problems")
   )
 
   expect_equal(
     read_tbl_haplotype("haplotype_test.csv", gene == "DHODH", chrom == "chr3"),
-    dplyr::filter(haplotype_res, gene == "DHODH", chrom == "chr3")
+    dplyr::filter(haplotype_res, gene == "DHODH", chrom == "chr3"),
+    ignore_attr = c("class", "spec", "problems")
   )
 })
 
