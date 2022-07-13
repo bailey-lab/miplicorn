@@ -60,7 +60,7 @@ arrange_natural <- function(.data, ...) {
       expr(forcats::as_factor(as.character(!!var)))
     })
   } else {
-    warn(c(
+    cli_warn(c(
       "The `stringi` package is required for natural sorting. Please install it.",
       i = "Alphabetical sorting has been applied instead."
     ))

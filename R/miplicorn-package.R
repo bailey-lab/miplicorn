@@ -5,10 +5,10 @@
 # The following block is used by usethis to automatically manage
 # roxygen namespace tags. Modify with care!
 ## usethis namespace: start
-#' @importFrom cli cli_abort
+#' @importFrom cli cli_abort cli_warn
 #' @importFrom glue glue
 #' @importFrom lifecycle deprecated is_present
-#' @importFrom rlang warn inform
+#' @importFrom rlang inform
 ## usethis namespace: end
 NULL
 

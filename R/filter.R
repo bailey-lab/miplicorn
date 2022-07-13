@@ -26,7 +26,7 @@ filter_fn_factory <- function(.col, .type = c("numeric", "character")) {
     }
 
     # Urge users to use dplyr::filter() for more complex cases
-    warn(
+    cli_warn(
       message = c(
         "This function provides a simple filtering interface.",
         i = "For more complex filtering, please use `dplyr::filter()`."
