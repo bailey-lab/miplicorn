@@ -144,13 +144,13 @@ read_file <- function(.file, ..., .name = "value") {
 
   # Detect input table and pass on to functions
   if (.name == "ref_umi_count") {
-    inform("Input detected as the reference table.")
+    cli_inform("Input detected as the reference table.")
     read_tbl_reference(.file, ...)
   } else if (.name == "alt_umi_count") {
-    inform("Input detected as the alternate table.")
+    cli_inform("Input detected as the alternate table.")
     read_tbl_alternate(.file, ...)
   } else if (.name == "coverage") {
-    inform("Input detected as the coverage table.")
+    cli_inform("Input detected as the coverage table.")
     read_tbl_coverage(.file, ...)
   } else {
     cli_abort("Unable to detect the type of table input.")
