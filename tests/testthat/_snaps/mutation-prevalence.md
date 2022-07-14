@@ -1,6 +1,7 @@
 # error if incorrect class
 
-    no applicable method for 'mutation_prevalence' applied to an object of class "c('tbl_df', 'tbl', 'data.frame')"
+    Cannot compute mutation prevalence with this data object.
+    i Object must be a reference, alternate, coverage table or a genotype table.
 
 # error if lack mutation_name column
 

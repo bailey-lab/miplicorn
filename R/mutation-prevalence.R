@@ -58,6 +58,14 @@ mutation_prevalence <- function(data, ...) {
   UseMethod("mutation_prevalence")
 }
 
+#' @export
+mutation_prevalence.default <- function(data, ...) {
+  cli_abort(c(
+    "Cannot compute mutation prevalence with this data object.",
+    "i" = "Object must be a reference, alternate, coverage table or a genotype table."
+  ))
+}
+
 #' @rdname mutation_prevalence
 #' @export
 mutation_prevalence.ref_alt_cov_tbl <- function(data, ..., threshold) {
