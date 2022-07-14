@@ -44,15 +44,15 @@ new_mut_prev <- function(x) {
 #' @export
 #' @seealso [plot_mutation_prevalence()] for plotting the table.
 #' @examples
-#' ref_file <- miplicorn_example("reference_AA_table.csv")
-#' alt_file <- miplicorn_example("alternate_AA_table.csv")
-#' cov_file <- miplicorn_example("coverage_AA_table.csv")
+#' # Read example data
 #' data <- read_tbl_ref_alt_cov(
-#'   ref_file,
-#'   alt_file,
-#'   cov_file,
+#'   miplicorn_example("reference_AA_table.csv"),
+#'   miplicorn_example("alternate_AA_table.csv"),
+#'   miplicorn_example("coverage_AA_table.csv"),
 #'   gene == "atp6" | gene == "crt"
 #' )
+#'
+#' # Compute mutation prevalence
 #' mutation_prevalence(data, threshold = 5)
 mutation_prevalence <- function(data, ...) {
   UseMethod("mutation_prevalence")
@@ -146,16 +146,18 @@ mutation_prevalence.geno_tbl <- function(data, ...) {
 #' @export
 #' @seealso [mutation_prevalence()] for generating the data for plotting.
 #' @examples
-#' ref_file <- miplicorn_example("reference_AA_table.csv")
-#' alt_file <- miplicorn_example("alternate_AA_table.csv")
-#' cov_file <- miplicorn_example("coverage_AA_table.csv")
+#' # Read example data
 #' data <- read_tbl_ref_alt_cov(
-#'   ref_file,
-#'   alt_file,
-#'   cov_file,
+#'   miplicorn_example("reference_AA_table.csv"),
+#'   miplicorn_example("alternate_AA_table.csv"),
+#'   miplicorn_example("coverage_AA_table.csv"),
 #'   gene == "atp6" | gene == "crt"
 #' )
+#'
+#' # Compute mutation prevalence
 #' prevalence <- mutation_prevalence(data, threshold = 5)
+#'
+#' # Plot
 #' plot(prevalence)
 plot_mutation_prevalence <- function(data) {
   if (!inherits(data, "mut_prev")) {

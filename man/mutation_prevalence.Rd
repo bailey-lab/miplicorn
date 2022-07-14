@@ -39,15 +39,15 @@ confidence in genotype calls. All data that do not meet this threshold will
 be removed from the computation.
 }
 \examples{
-ref_file <- miplicorn_example("reference_AA_table.csv")
-alt_file <- miplicorn_example("alternate_AA_table.csv")
-cov_file <- miplicorn_example("coverage_AA_table.csv")
+# Read example data
 data <- read_tbl_ref_alt_cov(
-  ref_file,
-  alt_file,
-  cov_file,
+  miplicorn_example("reference_AA_table.csv"),
+  miplicorn_example("alternate_AA_table.csv"),
+  miplicorn_example("coverage_AA_table.csv"),
   gene == "atp6" | gene == "crt"
 )
+
+# Compute mutation prevalence
 mutation_prevalence(data, threshold = 5)
 }
 \seealso{

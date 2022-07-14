@@ -25,16 +25,18 @@ on the x-axis. Data are grouped by the gene on which the mutation took place
 and coloured according to their groupings.
 }
 \examples{
-ref_file <- miplicorn_example("reference_AA_table.csv")
-alt_file <- miplicorn_example("alternate_AA_table.csv")
-cov_file <- miplicorn_example("coverage_AA_table.csv")
+# Read example data
 data <- read_tbl_ref_alt_cov(
-  ref_file,
-  alt_file,
-  cov_file,
+  miplicorn_example("reference_AA_table.csv"),
+  miplicorn_example("alternate_AA_table.csv"),
+  miplicorn_example("coverage_AA_table.csv"),
   gene == "atp6" | gene == "crt"
 )
+
+# Compute the mutation frequency
 frequency <- mutation_frequency(data, 5)
+
+# Plot
 plot(frequency)
 }
 \seealso{
