@@ -21,7 +21,7 @@
     Condition
       Error in `plot_chromoMap()`:
       ! Annotation information is misformatted.
-      i Did you forget to indicate the probe sets?
+      i Did you forget to indicate the probe set?
 
 ---
 
@@ -30,5 +30,5 @@
     Condition
       Error in `plot_karyoploteR()`:
       ! Annotation information is misformatted.
-      i Did you forget to indicate the probe sets?
+      i Did you forget to indicate the probe set?
 
