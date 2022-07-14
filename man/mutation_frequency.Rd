@@ -2,9 +2,12 @@
 % Please edit documentation in R/mutation-frequency.R
 \name{mutation_frequency}
 \alias{mutation_frequency}
+\alias{mutation_frequency.ref_alt_cov_tbl}
 \title{Compute frequency of mutations}
 \usage{
 mutation_frequency(data, threshold)
+
+\method{mutation_frequency}{ref_alt_cov_tbl}(data, threshold)
 }
 \arguments{
 \item{data}{A data frame, data frame extension (e.g. a tibble), or a lazy

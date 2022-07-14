@@ -52,15 +52,23 @@ new_mut_freq <- function(x) {
 #' )
 #' mutation_frequency(data, 5)
 mutation_frequency <- function(data, threshold) {
-  # Ensure have a table with mutation name, alternate umi counts, and coverage
-  cols <- c("mutation_name", "alt_umi_count", "coverage")
-  if (!all(cols %in% colnames(data))) {
-    cli_abort(c(
-      "Data is mising required columns.",
-      "x" = "Need a column for the mutation name.",
-      "x" = "Need a column for the alternate UMI counts.",
-      "x" = "Need a column for the coverage."
-    ))
+  UseMethod("mutation_frequency")
+}
+
+#' @export
+mutation_frequency.default <- function(data, threshold) {
+  cli_abort(c(
+    "Cannot compute mutation frequency with this data object.",
+    "i" = "Object must be a reference, alternate, coverage table."
+  ))
+}
+
+#' @rdname mutation_frequency
+#' @export
+mutation_frequency.ref_alt_cov_tbl <- function(data, threshold) {
+  # Ensure table has the column mutation name
+  if (!"mutation_name" %in% colnames(data)) {
+    cli_abort("Data needs the column `mutation_name`.")
   }
 
   # Filter data to threshold

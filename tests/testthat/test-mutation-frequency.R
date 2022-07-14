@@ -76,7 +76,7 @@ test_that("error if lack alt, coverage columns", {
 })
 
 test_that("error if lack mutation_name column", {
-  expect_snapshot_error(mutation_frequency(data[, 6:8], 3))
+  expect_snapshot_error(mutation_frequency(data[, -4], 3))
 })
 
 test_that("output has unique mutation names", {
@@ -93,11 +93,11 @@ test_that("results computed correctly", {
 })
 
 test_that("properly account for threshold (#35)", {
-  data <- tibble::tribble(
+  data <- new_ref_alt_cov_tbl(tibble::tribble(
     ~sample, ~mutation_name, ~ref_umi_count, ~alt_umi_count, ~coverage,
     "D10-JJJ-30", "crt-Met74Ile", 0, 1, 1,
     "D10-JJJ-15", "crt-Ala220Ser", 9, 3, 12,
-  )
+  ))
 
   expect_equal(
     mutation_frequency(data, 5),

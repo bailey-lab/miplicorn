@@ -1,16 +1,11 @@
 # error if lack alt, coverage columns
 
-    Data is mising required columns.
-    x Need a column for the mutation name.
-    x Need a column for the alternate UMI counts.
-    x Need a column for the coverage.
+    Cannot compute mutation frequency with this data object.
+    i Object must be a reference, alternate, coverage table.
 
 # error if lack mutation_name column
 
-    Data is mising required columns.
-    x Need a column for the mutation name.
-    x Need a column for the alternate UMI counts.
-    x Need a column for the coverage.
+    Data needs the column `mutation_name`.
 
 # data must have mut_freq class
 
