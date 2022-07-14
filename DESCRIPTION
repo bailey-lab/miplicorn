@@ -23,6 +23,7 @@ Imports:
     magrittr,
     purrr,
     rlang (>= 1.0.0),
+    stringr,
     tibble,
     tidyr,
     vroom (>= 1.5.6)
@@ -39,7 +40,6 @@ Suggests:
     roxygen2,
     spelling,
     stringi,
-    stringr,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.0),
     webshot2 (>= 0.1.0),
