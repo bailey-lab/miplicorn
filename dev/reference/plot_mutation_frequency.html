@@ -100,16 +100,18 @@ of <code><a href="mutation_frequency.html">mutation_frequency()</a></code>.</p><
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ref_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"reference_AA_table.csv"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">alt_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"alternate_AA_table.csv"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">cov_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"coverage_AA_table.csv"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Read example data</span></span></span>
 <span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="read-tbl.html">read_tbl_ref_alt_cov</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">ref_file</span>,</span></span>
-<span class="r-in"><span>  <span class="va">alt_file</span>,</span></span>
-<span class="r-in"><span>  <span class="va">cov_file</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"reference_AA_table.csv"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"alternate_AA_table.csv"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"coverage_AA_table.csv"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">|</span> <span class="va">gene</span> <span class="op">==</span> <span class="st">"crt"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute the mutation frequency</span></span></span>
 <span class="r-in"><span><span class="va">frequency</span> <span class="op">&lt;-</span> <span class="fu"><a href="mutation_frequency.html">mutation_frequency</a></span><span class="op">(</span><span class="va">data</span>, <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Plot</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">frequency</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_mutation_frequency-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
