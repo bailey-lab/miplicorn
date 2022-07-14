@@ -219,7 +219,8 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
         .name = c("ref_umi_count", "alt_umi_count", "coverage")
       ),
       read_tbl_helper,
-      ...
+      ...,
+      call = rlang::call2("read_tbl_ref_alt_cov")
     )
   }
 
@@ -234,9 +235,9 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
 }
 
 # Helper function used to read reference, alternate, and coverage tables
-read_tbl_helper <- function(.tbl, ..., .name = "value") {
+read_tbl_helper <- function(.tbl, ..., .name = "value", call = caller_env()) {
   dots <- enquos(..., .ignore_empty = "all")
-  check_named(dots)
+  check_named(dots, call = call)
 
   if (empty_file(.tbl)) {
     return(tibble::tibble())
@@ -255,7 +256,7 @@ read_tbl_helper <- function(.tbl, ..., .name = "value") {
     janitor::clean_names()
 
   # Filter the header based on conditions specified
-  filter_header <- filter_tbl(header, ...)
+  filter_header <- filter_tbl(header, ..., call = call)
 
   # Extract which columns of data we are interested in
   col_select <- filter_header[[1]] %>%
@@ -299,8 +300,11 @@ read_tbl_helper <- function(.tbl, ..., .name = "value") {
     dplyr::rename({{ .name }} := .data$value)
 }
 
-# Check named arguments for filtering step
-check_named <- function(dots) {
+# Check named arguments for filtering step. This function is taken from the
+# {dplyr} source code. By bundling this code within our package, errors will
+# point to our functions instead of {dplyr}. The original code is here:
+# <https://github.com/tidyverse/dplyr/blob/a6df2a043449af2f70d98ba529293cbba5456a70/R/filter.R>
+check_named <- function(dots, call = caller_env()) {
   named <- rlang::have_name(dots)
 
   for (i in which(named)) {
@@ -310,18 +314,20 @@ check_named <- function(dots) {
     expr <- rlang::quo_get_expr(quo)
     if (!rlang::is_logical(expr)) {
       name <- names(dots)[i]
-      cli_abort(c(
-        "Problem with `read_tbl_*()` input `..{i}`.",
-        x = "Input `..{i}` is named.",
-        i = "This usually means that you've used `=` instead of `==`.",
-        i = "Did you mean `{name} == {as_label(expr)}`?"
-      ))
+      cli_abort(
+        c(
+          "Input `{name}` is named.",
+          i = "This usually means that you've used `=` instead of `==`.",
+          i = "Did you mean `{name} == {as_label(expr)}`?"
+        ),
+        call = call
+      )
     }
   }
 }
 
 # Filter the table based on conditions specified
-filter_tbl <- function(.tbl, ...) {
+filter_tbl <- function(.tbl, ..., call = caller_env()) {
   tryCatch(
     dplyr::filter(.tbl, ...),
     error = function(e) {
@@ -334,8 +340,9 @@ filter_tbl <- function(.tbl, ...) {
         stringr::str_c(".")
       objects <- stringr::str_c("'", colnames(.tbl)[-1], "'")
       cli_abort(
-        c(msg, i = "Available object{?s} {?is/are} {objects}."),
-        parent = e
+        c(msg, i = "Filter using the column{?s} {objects}."),
+        parent = NA,
+        call = call
       )
     }
   )

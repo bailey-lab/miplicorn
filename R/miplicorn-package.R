@@ -7,6 +7,7 @@
 ## usethis namespace: start
 #' @importFrom cli cli_abort cli_warn cli_inform
 #' @importFrom lifecycle deprecated is_present
+#' @importFrom rlang caller_env
 ## usethis namespace: end
 NULL
 
