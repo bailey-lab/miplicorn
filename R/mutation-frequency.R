@@ -119,7 +119,7 @@ plot_mutation_frequency <- function(data) {
   if (!inherits(data, "mut_freq")) {
     cli_abort(c(
       "Data object must be of class `mut_freq`.",
-      x = "Its class{?es} {?is/are} {glue::backtick(class(data))}.",
+      x = "Its class{?es} {?is/are} {backtick(class(data))}.",
       i = "Did you forget to run `mutation_frequency()` first?"
     ))
   }

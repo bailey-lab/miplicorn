@@ -153,7 +153,7 @@ plot_mutation_prevalence <- function(data) {
   if (!inherits(data, "mut_prev")) {
     cli_abort(c(
       "Data object must be of class `mut_prev`.",
-      x = "Its class{?es} {?is/are} {glue::backtick(class(data))}.",
+      x = "Its class{?es} {?is/are} {backtick(class(data))}.",
       i = "Did you forget to run `mutation_prevalence()` first?"
     ))
   }
