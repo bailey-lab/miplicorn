@@ -38,7 +38,7 @@ label_mutations <- function(.data, .before = NULL, .after = NULL) {
   .before <- enquo(.before)
   .after <- enquo(.after)
 
-  # Ensure only one .before and .after exist
+  # Ensure only one of .before and .after exist
   if (!rlang::quo_is_null(.before) && !rlang::quo_is_null(.after)) {
     cli_abort("Must supply only one of `.before` and `.after`.")
   }

@@ -292,7 +292,7 @@ check_inputs <- function(genome, probes, call = caller_env()) {
     cli_abort(
       c(
         "Annotation information is misformatted.",
-        "i" = "Did you forget to indicate the probe sets?"
+        "i" = "Did you forget to indicate the probe set?"
       ),
       call = call
     )

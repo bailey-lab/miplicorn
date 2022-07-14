@@ -118,8 +118,8 @@ read_tbl_genotype <- function(.tbl, ...) {
   if (!has_genotype_vals(tbl$genotype)) {
     cli_abort(c(
       "Invalid genotype values detected.",
-      i = "Please review the input file.",
-      i = "Allowed values are: -1, 0, 1, 2, or NA."
+      "i" = "Please review the input file.",
+      "i" = "Allowed values are: -1, 0, 1, 2, or NA."
     ))
   }
 
@@ -187,8 +187,8 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
   if (lifecycle::is_present(chrom) && lifecycle::is_present(gene)) {
     cli_abort(c(
       "Multiple filtering criteria selected.",
-      x = "Cannot filter on both `chrom` and `gene`.",
-      i = "Select only one piece of information to filter on."
+      "x" = "Cannot filter on both `chrom` and `gene`.",
+      "i" = "Select only one piece of information to filter on."
     ))
   }
 
@@ -197,7 +197,7 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
     empty <- purrr::detect(list(.tbl_ref, .tbl_alt, .tbl_cov), empty_file)
     cli_abort(c(
       "Unable to read files.",
-      x = '"{empty}" is an empty file.'
+      "x" = '"{empty}" is an empty file.'
     ))
   }
 
@@ -317,8 +317,8 @@ check_named <- function(dots, call = caller_env()) {
       cli_abort(
         c(
           "Input `{name}` is named.",
-          i = "This usually means that you've used `=` instead of `==`.",
-          i = "Did you mean `{name} == {as_label(expr)}`?"
+          "i" = "This usually means that you've used `=` instead of `==`.",
+          "i" = "Did you mean `{name} == {as_label(expr)}`?"
         ),
         call = call
       )
@@ -340,7 +340,7 @@ filter_tbl <- function(.tbl, ..., call = caller_env()) {
         stringr::str_c(".")
       objects <- stringr::str_c("'", colnames(.tbl)[-1], "'")
       cli_abort(
-        c(msg, i = "Filter using the column{?s} {objects}."),
+        c(msg, "i" = "Filter using the column{?s} {objects}."),
         parent = NA,
         call = call
       )

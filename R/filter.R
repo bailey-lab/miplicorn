@@ -29,7 +29,7 @@ filter_fn_factory <- function(.col, .type = c("numeric", "character")) {
     cli_warn(
       message = c(
         "This function provides a simple filtering interface.",
-        i = "For more complex filtering, please use `dplyr::filter()`."
+        "i" = "For more complex filtering, please use `dplyr::filter()`."
       ),
       .frequency = "regularly",
       .frequency_id = .col,

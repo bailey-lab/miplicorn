@@ -57,9 +57,9 @@ mutation_frequency <- function(data, threshold) {
   if (!all(cols %in% colnames(data))) {
     cli_abort(c(
       "Data is mising required columns.",
-      x = "Need a column for the mutation name.",
-      x = "Need a column for the alternate UMI counts.",
-      x = "Need a column for the coverage."
+      "x" = "Need a column for the mutation name.",
+      "x" = "Need a column for the alternate UMI counts.",
+      "x" = "Need a column for the coverage."
     ))
   }
 
@@ -119,8 +119,8 @@ plot_mutation_frequency <- function(data) {
   if (!inherits(data, "mut_freq")) {
     cli_abort(c(
       "Data object must be of class `mut_freq`.",
-      x = "Its class{?es} {?is/are} {backtick(class(data))}.",
-      i = "Did you forget to run `mutation_frequency()` first?"
+      "x" = "Its class{?es} {?is/are} {backtick(class(data))}.",
+      "i" = "Did you forget to run `mutation_frequency()` first?"
     ))
   }
 

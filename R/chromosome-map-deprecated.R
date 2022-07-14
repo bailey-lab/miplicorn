@@ -120,7 +120,7 @@ chromosome_map <- function(genome,
   if (length(map_pkg) > 1) {
     cli_abort(c(
       "`map_pkg` must be of length 1.",
-      i = '`map_pkg` must be either "chromoMap" or "karyoploteR".'
+      "i" = '`map_pkg` must be either "chromoMap" or "karyoploteR".'
     ))
   } else if (map_pkg == "chromoMap") {
     plot_chromoMap(genome, probes, title, colours)
@@ -129,7 +129,7 @@ chromosome_map <- function(genome,
   } else {
     cli_abort(c(
       '`map_pkg` must be either "chromoMap" or "karyoploteR".',
-      x = 'You\'ve input "{ map_pkg }".'
+      "x" = 'You\'ve input "{ map_pkg }".'
     ))
   }
 }

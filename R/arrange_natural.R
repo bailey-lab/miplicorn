@@ -62,7 +62,7 @@ arrange_natural <- function(.data, ...) {
   } else {
     cli_warn(c(
       "The `stringi` package is required for natural sorting. Please install it.",
-      i = "Alphabetical sorting has been applied instead."
+      "i" = "Alphabetical sorting has been applied instead."
     ))
     return(dplyr::arrange(.data, !!!dots))
   }
