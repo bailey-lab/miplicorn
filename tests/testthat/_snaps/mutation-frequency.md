@@ -18,3 +18,15 @@
     x Its classes are `tbl_df`, `tbl`, and `data.frame`.
     i Did you forget to run `mutation_frequency()` first?
 
+# error if not mut_freq class is pluralized properly
+
+    Data object must be of class `mut_freq`.
+    x Its class is `character`.
+    i Did you forget to run `mutation_frequency()` first?
+
+---
+
+    Data object must be of class `mut_freq`.
+    x Its classes are `tbl_df`, `tbl`, and `data.frame`.
+    i Did you forget to run `mutation_frequency()` first?
+

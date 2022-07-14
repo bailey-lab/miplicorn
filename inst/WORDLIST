@@ -21,6 +21,7 @@ dplyr
 dtplyr
 env
 ENV
+erroring
 eval
 extdata
 falciparum
@@ -70,6 +71,7 @@ Reprex
 rlang
 Rscript
 rspm
+signalling
 sublicense
 tbl
 testthat

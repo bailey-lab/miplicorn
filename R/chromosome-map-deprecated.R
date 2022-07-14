@@ -107,10 +107,10 @@ chromosome_map <- function(genome,
 
   # Check formatting of inputs
   if (ncol(genome) != 3) {
-    abort("Genomic information is misformatted.")
+    cli_abort("Genomic information is misformatted.")
   }
   if (ncol(probes) != 4) {
-    abort(c(
+    cli_abort(c(
       "Annotation information is misformatted.",
       "i" = "Did you forget to indicate the probe sets?"
     ))
@@ -118,18 +118,18 @@ chromosome_map <- function(genome,
 
   # Call underlying implementation
   if (length(map_pkg) > 1) {
-    abort(c(
+    cli_abort(c(
       "`map_pkg` must be of length 1.",
-      i = '`map_pkg` must be either "chromoMap" or "karyoploteR".'
+      "i" = '`map_pkg` must be either "chromoMap" or "karyoploteR".'
     ))
   } else if (map_pkg == "chromoMap") {
     plot_chromoMap(genome, probes, title, colours)
   } else if (map_pkg == "karyoploteR") {
     plot_karyoploteR(genome, probes, title, colours)
   } else {
-    abort(c(
+    cli_abort(c(
       '`map_pkg` must be either "chromoMap" or "karyoploteR".',
-      x = glue('You\'ve input "{ map_pkg }".')
+      "x" = 'You\'ve input "{ map_pkg }".'
     ))
   }
 }

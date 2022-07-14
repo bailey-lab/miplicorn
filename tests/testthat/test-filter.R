@@ -68,6 +68,7 @@ test_that("filter character columns", {
 
 test_that("error if column does not exist", {
   df <- tibble::tibble(a = 2, b = 3)
+  expect_error(filter_coverage(df, "atp6"))
   expect_snapshot_error(filter_gene(df, "atp6"))
 })
 

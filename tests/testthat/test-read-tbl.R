@@ -4,24 +4,33 @@ test_that("detect empty file", {
 })
 
 test_that("detects named inputs", {
-  expect_error(read_tbl_helper("small.csv", gene = "mdr1"))
-  expect_error(read_tbl_helper("small.csv", gene == "mdr1", chrom = "13"))
+  expect_error(read_tbl_reference("small.csv", gene = "mdr1"))
+  expect_error(read_tbl_alternate("small.csv", gene == "mdr1", chrom = "13"))
 
-  expect_snapshot_error(read_tbl_helper("small.csv", gene = "mdr1"))
-  expect_snapshot_error(read_tbl_helper("small.csv", gene == "g1", chrom = "8"))
+  expect_snapshot_error(read_tbl_coverage("small.csv", gene = "mdr1"))
+  expect_snapshot_error(read_tbl_haplotype("small.csv", gene = "g1"))
+  expect_snapshot_error(
+    read_tbl_ref_alt_cov("small.csv", "small.csv", "small.csv", var = "g1")
+  )
 })
 
 test_that("filter variable must exist", {
-  df <- tibble::tribble(
-    ~sample, ~gene,
-    "S1", "atp6",
-    "S2", "mdr1",
-    "S3", "atp6",
-    "S4", "atp6"
+  expect_error(read_tbl_reference("small.csv", wrong == 5))
+  expect_snapshot_error(
+    read_tbl_ref_alt_cov("small.csv", "small.csv", "small.csv", var == 5)
   )
+})
 
-  expect_error(filter_tbl(df, var == 5))
-  expect_snapshot_error(filter_tbl(df, var == 5))
+test_that("error if filter variable doesn't exist is pluralized properly", {
+  one_object <- tibble::tibble(sample = "S1", gene = "atp6")
+
+  expect_error(filter_tbl(one_object, var == 5))
+  expect_snapshot_error(filter_tbl(one_object, var == 5))
+
+  multiple_objects <- tibble::tibble(sample = "S1", gene = "atp", target = "No")
+
+  expect_error(filter_tbl(multiple_objects, var == 5))
+  expect_snapshot_error(filter_tbl(multiple_objects, var == 5))
 })
 
 # Test read_tbl_helper() -------------------------------------------------------
@@ -152,7 +161,7 @@ test_that("chrom and gene are deprecated", {
   )
 })
 
-test_that("read returns error if a file is empty", {
+test_that("read_tbl_ref_alt_cov returns error if a file is empty", {
   expect_error(read_tbl_ref_alt_cov("empty-file", "empty-file", "empty-file"))
   expect_error(read_tbl_ref_alt_cov("small.csv", "empty-file", "empty-file"))
   expect_error(read_tbl_ref_alt_cov("small.csv", "small.csv", "empty-file"))

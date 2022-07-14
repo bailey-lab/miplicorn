@@ -1,25 +1,35 @@
 # detects named inputs
 
-    Problem with `read_tbl_*()` input `..1`.
-    x Input `..1` is named.
+    Input `gene` is named.
     i This usually means that you've used `=` instead of `==`.
     i Did you mean `gene == "mdr1"`?
 
 ---
 
-    Problem with `read_tbl_*()` input `..2`.
-    x Input `..2` is named.
+    Input `gene` is named.
     i This usually means that you've used `=` instead of `==`.
-    i Did you mean `chrom == "8"`?
+    i Did you mean `gene == "g1"`?
+
+---
+
+    Input `var` is named.
+    i This usually means that you've used `=` instead of `==`.
+    i Did you mean `var == "g1"`?
 
 # filter variable must exist
 
     Problem while computing `..1 = var == 5`..
-    i Available objects are 'gene'.
-    Caused by error in `dplyr::filter()`:
-    ! Problem while computing `..1 = var == 5`.
-    Caused by error in `var == 5`:
-    ! comparison (1) is possible only for atomic and list types
+    i Filter using the columns 'gene_id', 'gene', 'mutation', 'func', 'aa_chng', and 'target'.
+
+# error if filter variable doesn't exist is pluralized properly
+
+    Problem while computing `..1 = var == 5`..
+    i Filter using the column 'gene'.
+
+---
+
+    Problem while computing `..1 = var == 5`..
+    i Filter using the columns 'gene' and 'target'.
 
 # chrom and gene are deprecated
 
@@ -78,7 +88,7 @@
       x Cannot filter on both `chrom` and `gene`.
       i Select only one piece of information to filter on.
 
-# read returns error if a file is empty
+# read_tbl_ref_alt_cov returns error if a file is empty
 
     Unable to read files.
     x "empty-file" is an empty file.

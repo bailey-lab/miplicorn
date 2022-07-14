@@ -116,7 +116,19 @@ test_that("results computed correctly", {
 # plot_mutation_prevalence() Test Cases ----------------------------------------
 test_that("data must have mut_prev class", {
   df <- tibble::tibble(a = 1, b = 2)
+  expect_error(plot_mutation_prevalence(df))
   expect_snapshot_error(plot_mutation_prevalence(df))
+})
+
+test_that("error if not mut_prev class is pluralized properly", {
+  # One class
+  expect_error(plot_mutation_prevalence("one class"))
+  expect_snapshot_error(plot_mutation_prevalence("one class"))
+
+  # Multiple classes
+  multiple_classes <- tibble::tibble(a = 1)
+  expect_error(plot_mutation_prevalence(multiple_classes))
+  expect_snapshot_error(plot_mutation_prevalence(multiple_classes))
 })
 
 test_that("creates a nice plot", {

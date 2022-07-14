@@ -284,14 +284,17 @@ add_data_layer <- function(karyoplot, data, r0, r1, col) {
 globalVariables(".")
 
 # Check formatting of inputs
-check_inputs <- function(genome, probes) {
+check_inputs <- function(genome, probes, call = caller_env()) {
   if (ncol(genome) != 3) {
-    abort("Genomic information is misformatted.")
+    cli_abort("Genomic information is misformatted.", call = call)
   }
   if (ncol(probes) != 4) {
-    abort(c(
-      "Annotation information is misformatted.",
-      "i" = "Did you forget to indicate the probe sets?"
-    ))
+    cli_abort(
+      c(
+        "Annotation information is misformatted.",
+        "i" = "Did you forget to indicate the probe set?"
+      ),
+      call = call
+    )
   }
 }

@@ -116,10 +116,10 @@ read_tbl_genotype <- function(.tbl, ...) {
 
   # Check genotype column has correct values
   if (!has_genotype_vals(tbl$genotype)) {
-    abort(c(
+    cli_abort(c(
       "Invalid genotype values detected.",
-      i = "Please review the input file.",
-      i = "Allowed values are: -1, 0, 1, 2, or NA."
+      "i" = "Please review the input file.",
+      "i" = "Allowed values are: -1, 0, 1, 2, or NA."
     ))
   }
 
@@ -185,19 +185,19 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
 
   # Error message if multiple criteria selected
   if (lifecycle::is_present(chrom) && lifecycle::is_present(gene)) {
-    abort(c(
+    cli_abort(c(
       "Multiple filtering criteria selected.",
-      x = "Cannot filter on both `chrom` and `gene`.",
-      i = "Select only one piece of information to filter on."
+      "x" = "Cannot filter on both `chrom` and `gene`.",
+      "i" = "Select only one piece of information to filter on."
     ))
   }
 
   # Error if any file is empty
   if (purrr::some(list(.tbl_ref, .tbl_alt, .tbl_cov), empty_file)) {
     empty <- purrr::detect(list(.tbl_ref, .tbl_alt, .tbl_cov), empty_file)
-    abort(c(
+    cli_abort(c(
       "Unable to read files.",
-      x = glue('"{empty}" is an empty file.')
+      "x" = '"{empty}" is an empty file.'
     ))
   }
 
@@ -219,7 +219,8 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
         .name = c("ref_umi_count", "alt_umi_count", "coverage")
       ),
       read_tbl_helper,
-      ...
+      ...,
+      call = rlang::call2("read_tbl_ref_alt_cov")
     )
   }
 
@@ -234,9 +235,9 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
 }
 
 # Helper function used to read reference, alternate, and coverage tables
-read_tbl_helper <- function(.tbl, ..., .name = "value") {
+read_tbl_helper <- function(.tbl, ..., .name = "value", call = caller_env()) {
   dots <- enquos(..., .ignore_empty = "all")
-  check_named(dots)
+  check_named(dots, call = call)
 
   if (empty_file(.tbl)) {
     return(tibble::tibble())
@@ -255,7 +256,7 @@ read_tbl_helper <- function(.tbl, ..., .name = "value") {
     janitor::clean_names()
 
   # Filter the header based on conditions specified
-  filter_header <- filter_tbl(header, ...)
+  filter_header <- filter_tbl(header, ..., call = call)
 
   # Extract which columns of data we are interested in
   col_select <- filter_header[[1]] %>%
@@ -299,8 +300,11 @@ read_tbl_helper <- function(.tbl, ..., .name = "value") {
     dplyr::rename({{ .name }} := .data$value)
 }
 
-# Check named arguments for filtering step
-check_named <- function(dots) {
+# Check named arguments for filtering step. This function is taken from the
+# {dplyr} source code. By bundling this code within our package, errors will
+# point to our functions instead of {dplyr}. The original code is here:
+# <https://github.com/tidyverse/dplyr/blob/a6df2a043449af2f70d98ba529293cbba5456a70/R/filter.R>
+check_named <- function(dots, call = caller_env()) {
   named <- rlang::have_name(dots)
 
   for (i in which(named)) {
@@ -310,18 +314,20 @@ check_named <- function(dots) {
     expr <- rlang::quo_get_expr(quo)
     if (!rlang::is_logical(expr)) {
       name <- names(dots)[i]
-      abort(c(
-        glue("Problem with `read_tbl_*()` input `..{i}`."),
-        x = glue("Input `..{i}` is named."),
-        i = "This usually means that you've used `=` instead of `==`.",
-        i = glue("Did you mean `{name} == {as_label(expr)}`?")
-      ))
+      cli_abort(
+        c(
+          "Input `{name}` is named.",
+          "i" = "This usually means that you've used `=` instead of `==`.",
+          "i" = "Did you mean `{name} == {as_label(expr)}`?"
+        ),
+        call = call
+      )
     }
   }
 }
 
 # Filter the table based on conditions specified
-filter_tbl <- function(.tbl, ...) {
+filter_tbl <- function(.tbl, ..., call = caller_env()) {
   tryCatch(
     dplyr::filter(.tbl, ...),
     error = function(e) {
@@ -333,9 +339,10 @@ filter_tbl <- function(.tbl, ...) {
         )) %>%
         stringr::str_c(".")
       objects <- stringr::str_c("'", colnames(.tbl)[-1], "'")
-      abort(
-        c(msg, i = cli::pluralize("Available objects are {objects}.")),
-        parent = e
+      cli_abort(
+        c(msg, "i" = "Filter using the column{?s} {objects}."),
+        parent = NA,
+        call = call
       )
     }
   )
