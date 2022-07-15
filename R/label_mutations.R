@@ -86,6 +86,3 @@ label_mutations.ref_alt_cov_tbl <- function(.data,
     .after = !!.after
   )
 }
-
-# To silence the R CMD Check
-globalVariables(c("ref", "alt"))
