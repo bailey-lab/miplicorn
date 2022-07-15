@@ -73,6 +73,14 @@ label_mutations.ref_alt_cov_tbl <- function(.data,
     cli_abort("Must supply only one of `.before` and `.after`.")
   }
 
+  # Ensure that ref and alt call columns exist
+  if (!all(c("ref", "alt") %in% colnames(.data))) {
+    cli_abort(c(
+      "Data object is missing reference and alternate calls.",
+      "x" = "Call columns must be named `ref` and `alt`, respectively."
+    ))
+  }
+
   # Label the mutations
   dplyr::mutate(.data,
     ans_der_indel = dplyr::case_when(

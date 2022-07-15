@@ -21,6 +21,15 @@ test_that("label mutations needs a ref alt cov table", {
   expect_snapshot_error(label_mutations(tibble::tibble(a = 1)))
 })
 
+test_that("call columns must exist", {
+  expect_error(label_mutations(new_ref_alt_cov_tbl(tibble::tibble(a = 3))))
+  expect_error(label_mutations(new_ref_alt_cov_tbl(tibble::tibble(ref = 3))))
+  expect_error(label_mutations(new_ref_alt_cov_tbl(tibble::tibble(alt = 3))))
+  expect_snapshot_error(
+    label_mutations(new_ref_alt_cov_tbl(tibble::tibble(a = 3)))
+  )
+})
+
 test_that("labels mutations correctly", {
   expect_equal(label_mutations(data), res)
 })
