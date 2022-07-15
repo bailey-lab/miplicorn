@@ -2,9 +2,12 @@
 % Please edit documentation in R/label_mutations.R
 \name{label_mutations}
 \alias{label_mutations}
+\alias{label_mutations.ref_alt_cov_tbl}
 \title{Label mutations}
 \usage{
 label_mutations(.data, .before = NULL, .after = NULL)
+
+\method{label_mutations}{ref_alt_cov_tbl}(.data, .before = NULL, .after = NULL)
 }
 \arguments{
 \item{.data}{The data set containing REF and ALT calls.}
@@ -29,16 +32,23 @@ than ALT calls will be labeled as \code{"del"}.
 }
 }
 \examples{
-data <- tibble::tribble(
-  ~sample, ~pos, ~ref, ~alt, ~ref_umi_count, ~alt_umi_count, ~coverage,
-  "S1", "1049838", "A", "G", 54, 10, 64,
-  "S2", "801498", "G", "A", 15, 0, 15,
-  "S3", "625403", "T", "C", 0, 15, 15,
-  "S4", "748165", "GA", "G", 2, 18, 20,
-  "S5", "487199", "G", "ATC", 0, 10, 10
+# Read example data
+data <- read_tbl_ref_alt_cov(
+  miplicorn_example("reference_AA_table.csv"),
+  miplicorn_example("alternate_AA_table.csv"),
+  miplicorn_example("coverage_AA_table.csv"),
+  gene == "atp6"
 )
 
+# Add ref and alt calls to data
+sequences <- c("A", "T", "C", "G", "AT", "TC", "TGC")
+data <- dplyr::mutate(
+  data,
+  ref = sample(sequences, size = nrow(data), replace = TRUE),
+  alt = sample(sequences, size = nrow(data), replace = TRUE)
+)
+
+# Label the mutations
 label_mutations(data)
 label_mutations(data, .after = alt)
-label_mutations(data, .before = pos)
 }

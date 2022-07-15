@@ -22,19 +22,44 @@
 #'
 #' @export
 #' @examples
-#' data <- tibble::tribble(
-#'   ~sample, ~pos, ~ref, ~alt, ~ref_umi_count, ~alt_umi_count, ~coverage,
-#'   "S1", "1049838", "A", "G", 54, 10, 64,
-#'   "S2", "801498", "G", "A", 15, 0, 15,
-#'   "S3", "625403", "T", "C", 0, 15, 15,
-#'   "S4", "748165", "GA", "G", 2, 18, 20,
-#'   "S5", "487199", "G", "ATC", 0, 10, 10
+#' # Read example data
+#' data <- read_tbl_ref_alt_cov(
+#'   miplicorn_example("reference_AA_table.csv"),
+#'   miplicorn_example("alternate_AA_table.csv"),
+#'   miplicorn_example("coverage_AA_table.csv"),
+#'   gene == "atp6"
 #' )
 #'
+#' # Add ref and alt calls to data
+#' sequences <- c("A", "T", "C", "G", "AT", "TC", "TGC")
+#' data <- dplyr::mutate(
+#'   data,
+#'   ref = sample(sequences, size = nrow(data), replace = TRUE),
+#'   alt = sample(sequences, size = nrow(data), replace = TRUE)
+#' )
+#'
+#' # Label the mutations
 #' label_mutations(data)
 #' label_mutations(data, .after = alt)
-#' label_mutations(data, .before = pos)
 label_mutations <- function(.data, .before = NULL, .after = NULL) {
+  UseMethod("label_mutations")
+}
+
+#' @export
+label_mutations.default <- function(.data, .before = NULL, .after = NULL) {
+  cli_abort(c(
+    "Cannot label the mutations of this data object.",
+    "i" = "Object must be a reference, alternate, coverage table.",
+    "i" = "Object must additionally contain reference and alternate calls."
+  ))
+}
+
+#' @importFrom stringr str_length
+#' @rdname label_mutations
+#' @export
+label_mutations.ref_alt_cov_tbl <- function(.data,
+                                            .before = NULL,
+                                            .after = NULL) {
   .before <- enquo(.before)
   .after <- enquo(.after)
 
@@ -47,12 +72,15 @@ label_mutations <- function(.data, .before = NULL, .after = NULL) {
   dplyr::mutate(.data,
     ans_der_indel = dplyr::case_when(
       ref_umi_count > alt_umi_count ~ "ref",
-      stringr::str_length(ref) == 1 & stringr::str_length(alt) == 1 & alt_umi_count > ref_umi_count ~ "alt",
-      stringr::str_length(ref) < stringr::str_length(alt) & alt_umi_count > ref_umi_count ~ "ins",
-      stringr::str_length(ref) > stringr::str_length(alt) & alt_umi_count > ref_umi_count ~ "del",
+      str_length(ref) == 1 & str_length(alt) == 1 & alt_umi_count > ref_umi_count ~ "alt",
+      str_length(ref) < str_length(alt) & alt_umi_count > ref_umi_count ~ "ins",
+      str_length(ref) > str_length(alt) & alt_umi_count > ref_umi_count ~ "del",
       TRUE ~ NA_character_
     ),
     .before = !!.before,
     .after = !!.after
   )
 }
+
+# To silence the R CMD Check
+globalVariables(c("ref", "alt"))
