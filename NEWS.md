@@ -1,5 +1,10 @@
 # miplicorn (development version)
 
+- The column created by `label_mutations()` has been renamed from
+  `ans_der_indel` to `mutation_label` (#44).
+- `label_mutations()` more clearly signals when the computation can not be
+  completed. This can occur because of missing variables or an incorrect input
+  table (#44).
 - Improve condition signalling by using `{cli}`. Messages are now properly
   pluralized and display the erroring function (#42).
 - Improve performance of amino acid conversion functions (#40).
