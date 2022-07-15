@@ -17,8 +17,13 @@
 #' @param .data The data set containing REF and ALT calls.
 #' @param .before,.after `r lifecycle::badge("experimental")`
 #'   <[`tidy-select`][dplyr_tidy_select]> Optionally, control where new columns
-#'   should appear (the default is to add to the right hand side). See
+#'   should appear (the default is to add to the right-hand side). See
 #'   [`dplyr::relocate()`][dplyr::relocate()] for more details.
+#'
+#' @return
+#' The object `.data` with an added column that indicates the mutation type of
+#' each row. The column is added to the right-hand side by default, but this may
+#' be controlled by the `.before` and `.after` arguments.
 #'
 #' @export
 #' @examples

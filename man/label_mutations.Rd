@@ -14,8 +14,13 @@ label_mutations(.data, .before = NULL, .after = NULL)
 
 \item{.before, .after}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 <\code{\link[=dplyr_tidy_select]{tidy-select}}> Optionally, control where new columns
-should appear (the default is to add to the right hand side). See
+should appear (the default is to add to the right-hand side). See
 \code{\link[dplyr:relocate]{dplyr::relocate()}} for more details.}
+}
+\value{
+The object \code{.data} with an added column that indicates the mutation type of
+each row. The column is added to the right-hand side by default, but this may
+be controlled by the \code{.before} and \code{.after} arguments.
 }
 \description{
 For each data point, label a mutation as \code{"ref"}, \code{"alt"}, \code{"ins"}, or
