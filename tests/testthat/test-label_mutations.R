@@ -8,7 +8,7 @@ data <- new_ref_alt_cov_tbl(tibble::tribble(
 ))
 
 res <- new_ref_alt_cov_tbl(tibble::tribble(
-  ~sample, ~ref, ~alt, ~ref_umi_count, ~alt_umi_count, ~coverage, ~ans_der_indel,
+  ~sample, ~ref, ~alt, ~ref_umi_count, ~alt_umi_count, ~coverage, ~mutation_label,
   "S1", "A", "G", 54, 10, 64, "ref",
   "S2", "G", "A", 15, 0, 15, "ref",
   "S3", "T", "C", 0, 15, 15, "alt",
@@ -37,11 +37,11 @@ test_that("labels mutations correctly", {
 test_that("can control position", {
   expect_equal(
     label_mutations(data, .before = ref),
-    dplyr::relocate(res, ans_der_indel, .before = ref)
+    dplyr::relocate(res, mutation_label, .before = ref)
   )
   expect_equal(
     label_mutations(data, .after = sample),
-    dplyr::relocate(res, ans_der_indel, .after = sample)
+    dplyr::relocate(res, mutation_label, .after = sample)
   )
 })
 

@@ -83,7 +83,7 @@ label_mutations.ref_alt_cov_tbl <- function(.data,
 
   # Label the mutations
   dplyr::mutate(.data,
-    ans_der_indel = dplyr::case_when(
+    mutation_label = dplyr::case_when(
       ref_umi_count > alt_umi_count ~ "ref",
       str_length(ref) == 1 & str_length(alt) == 1 & alt_umi_count > ref_umi_count ~ "alt",
       str_length(ref) < str_length(alt) & alt_umi_count > ref_umi_count ~ "ins",
