@@ -94,7 +94,10 @@ than ALT calls will be labeled as <code>"del"</code>.</p></li>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">label_mutations</span><span class="op">(</span><span class="va">.data</span>, .before <span class="op">=</span> <span class="cn">NULL</span>, .after <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">label_mutations</span><span class="op">(</span><span class="va">.data</span>, .before <span class="op">=</span> <span class="cn">NULL</span>, .after <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for ref_alt_cov_tbl</span></span>
+<span><span class="fu">label_mutations</span><span class="op">(</span><span class="va">.data</span>, .before <span class="op">=</span> <span class="cn">NULL</span>, .after <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -106,49 +109,72 @@ than ALT calls will be labeled as <code>"del"</code>.</p></li>
 <dt>.before, .after</dt>
 <dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
 &lt;<code>tidy-select</code>&gt; Optionally, control where new columns
-should appear (the default is to add to the right hand side). See
+should appear (the default is to add to the right-hand side). See
 <code><a href="https://dplyr.tidyverse.org/reference/relocate.html" class="external-link">dplyr::relocate()</a></code> for more details.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>The object <code>.data</code> with an added column that indicates the mutation type of
+each row. The column is added to the right-hand side by default, but this may
+be controlled by the <code>.before</code> and <code>.after</code> arguments.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="op">~</span><span class="va">sample</span>, <span class="op">~</span><span class="va">pos</span>, <span class="op">~</span><span class="va">ref</span>, <span class="op">~</span><span class="va">alt</span>, <span class="op">~</span><span class="va">ref_umi_count</span>, <span class="op">~</span><span class="va">alt_umi_count</span>, <span class="op">~</span><span class="va">coverage</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"S1"</span>, <span class="st">"1049838"</span>, <span class="st">"A"</span>, <span class="st">"G"</span>, <span class="fl">54</span>, <span class="fl">10</span>, <span class="fl">64</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"S2"</span>, <span class="st">"801498"</span>, <span class="st">"G"</span>, <span class="st">"A"</span>, <span class="fl">15</span>, <span class="fl">0</span>, <span class="fl">15</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"S3"</span>, <span class="st">"625403"</span>, <span class="st">"T"</span>, <span class="st">"C"</span>, <span class="fl">0</span>, <span class="fl">15</span>, <span class="fl">15</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"S4"</span>, <span class="st">"748165"</span>, <span class="st">"GA"</span>, <span class="st">"G"</span>, <span class="fl">2</span>, <span class="fl">18</span>, <span class="fl">20</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"S5"</span>, <span class="st">"487199"</span>, <span class="st">"G"</span>, <span class="st">"ATC"</span>, <span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">10</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Read example data</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="read-tbl.html">read_tbl_ref_alt_cov</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"reference_AA_table.csv"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"alternate_AA_table.csv"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="miplicorn_example.html">miplicorn_example</a></span><span class="op">(</span><span class="st">"coverage_AA_table.csv"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Add ref and alt calls to data</span></span></span>
+<span class="r-in"><span><span class="va">sequences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"T"</span>, <span class="st">"C"</span>, <span class="st">"G"</span>, <span class="st">"AT"</span>, <span class="st">"TC"</span>, <span class="st">"TGC"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">data</span>,</span></span>
+<span class="r-in"><span>  ref <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">sequences</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  alt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">sequences</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Label the mutations</span></span></span>
 <span class="r-in"><span><span class="fu">label_mutations</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   sample pos     ref   alt   ref_umi_count alt_umi_count coverage ans_der_indel</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S1     1049838 A     G                54            10       64 ref          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S2     801498  G     A                15             0       15 ref          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S3     625403  T     C                 0            15       15 alt          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S4     748165  GA    G                 2            18       20 del          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> S5     487199  G     ATC               0            10       10 ins          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A ref alt cov table: 260 × 13</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> D10-JJJ-15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> D10-JJJ-27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> D10-JJJ-10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 250 more rows, and 6 more variables: ref_umi_count &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;, ref &lt;chr&gt;, alt &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   mutation_label &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">label_mutations</span><span class="op">(</span><span class="va">data</span>, .after <span class="op">=</span> <span class="va">alt</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   sample pos     ref   alt   ans_der_indel ref_umi_count alt_umi_count coverage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S1     1049838 A     G     ref                      54            10       64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S2     801498  G     A     ref                      15             0       15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S3     625403  T     C     alt                       0            15       15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S4     748165  GA    G     del                       2            18       20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> S5     487199  G     ATC   ins                       0            10       10</span>
-<span class="r-in"><span><span class="fu">label_mutations</span><span class="op">(</span><span class="va">data</span>, .before <span class="op">=</span> <span class="va">pos</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   sample ans_der_indel pos     ref   alt   ref_umi_count alt_umi_count coverage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S1     ref           1049838 A     G                54            10       64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S2     ref           801498  G     A                15             0       15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S3     alt           625403  T     C                 0            15       15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S4     del           748165  GA    G                 2            18       20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> S5     ins           487199  G     ATC               0            10       10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A ref alt cov table: 260 × 13</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exonic_func  aa_change targeted</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> D10-JJJ-15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> D10-JJJ-27 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> D10-JJJ-10 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_va… Ala623Glu Yes     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 250 more rows, and 6 more variables: ref_umi_count &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   alt_umi_count &lt;dbl&gt;, coverage &lt;dbl&gt;, ref &lt;chr&gt;, alt &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   mutation_label &lt;chr&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
