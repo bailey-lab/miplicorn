@@ -18,6 +18,7 @@
       # ... with 10 variables: sample <chr>, gene_id <chr>, gene <chr>,
       #   mutation <chr>, func <chr>, aa_chng <chr>, target <chr>,
       #   ref_umi_count <dbl>, alt_umi_count <dbl>, coverage <dbl>
+      # i Use `colnames()` to see all variable names
 
 ---
 
@@ -39,6 +40,7 @@
       # ... with 10 variables: sample <chr>, gene_id <chr>, gene <chr>,
       #   mutation <chr>, func <chr>, aa_chng <chr>, target <chr>,
       #   ref_umi_count <dbl>, alt_umi_count <dbl>, coverage <dbl>
+      # i Use `colnames()` to see all variable names
 
 ---
 
