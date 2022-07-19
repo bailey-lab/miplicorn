@@ -1,11 +1,11 @@
 pandoc: 2.14.2
-pkgdown: 2.0.5
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   faq: faq.html
   large-files: large-files.html
   miplicorn: miplicorn.html
-last_built: 2022-07-18T16:45Z
+last_built: 2022-07-19T01:36Z
 urls:
   reference: https://bailey-lab.github.io/miplicorn/reference
   article: https://bailey-lab.github.io/miplicorn/articles
