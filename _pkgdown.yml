@@ -51,6 +51,7 @@ reference:
       These functions are used to visualize data.
     contents:
       - chromosome-map
+      - plot_coverage
       - plot_mutation_prevalence
       - plot_mutation_frequency
       - theme_miplicorn
