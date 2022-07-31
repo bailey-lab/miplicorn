@@ -119,51 +119,57 @@
 <span></span>
 <span><span class="fu"><a href="../reference/read-tbl.html">read_tbl_coverage</a></span><span class="op">(</span><span class="va">cov_file</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A coverage table: 6,344 × 8</span></span></span>
-<span><span class="co">#&gt;    sample    gene_id gene  mutation_name exonic_func aa_change targeted coverage</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            20</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           158</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5 PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           129</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 6,334 more rows</span></span></span>
+<span><span class="co">#&gt;    sample     gene_id       gene  mutation_name  exoni…¹ aa_ch…² targe…³ cover…⁴</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         608</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes          20</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         158</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> D10-JJJ-15 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         129</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> D10-JJJ-27 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> D10-JJJ-10 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes          90</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         175</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 6,334 more rows, and abbreviated variable names ¹​exonic_func,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ²​aa_change, ³​targeted, ⁴​coverage</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/read-tbl.html">read_tbl_coverage</a></span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A coverage table: 260 × 8</span></span></span>
-<span><span class="co">#&gt;    sample    gene_id gene  mutation_name exonic_func aa_change targeted coverage</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            20</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           158</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5 PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           129</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 250 more rows</span></span></span>
+<span><span class="co">#&gt;    sample     gene_id       gene  mutation_name  exoni…¹ aa_ch…² targe…³ cover…⁴</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         608</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes          20</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         158</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> D10-JJJ-15 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         129</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> D10-JJJ-27 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> D10-JJJ-10 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes          90</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         175</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 250 more rows, and abbreviated variable names ¹​exonic_func,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ²​aa_change, ³​targeted, ⁴​coverage</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/read-tbl.html">read_tbl_coverage</a></span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span>, <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A coverage table: 156 × 8</span></span></span>
-<span><span class="co">#&gt;    sample    gene_id gene  mutation_name exonic_func aa_change targeted coverage</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           608</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            20</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           158</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5 PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           129</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes            90</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> D10-JJJ-… PF3D7_… atp6  atp6-Ala623G… missense_v… Ala623Glu Yes           175</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 146 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt;    sample     gene_id       gene  mutation_name  exoni…¹ aa_ch…² targe…³ cover…⁴</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         608</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes          20</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         158</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> D10-JJJ-15 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         129</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> D10-JJJ-27 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> D10-JJJ-10 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes          90</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         175</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 146 more rows, and abbreviated variable names ¹​exonic_func,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ²​aa_change, ³​targeted, ⁴​coverage</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
