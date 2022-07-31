@@ -59,7 +59,8 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="miplicorn-development-version">miplicorn (development version)<a class="anchor" aria-label="anchor" href="#miplicorn-development-version"></a></h2>
-<ul><li>The column created by <code><a href="../reference/label_mutations.html">label_mutations()</a></code> has been renamed from <code>ans_der_indel</code> to <code>mutation_label</code> (<a href="https://github.com/bailey-lab/miplicorn/issues/44" class="external-link">#44</a>).</li>
+<ul><li>New <code><a href="../reference/plot_coverage.html">plot_coverage()</a></code> function can be used to plot the average coverage across a given grouping variable (<a href="https://github.com/bailey-lab/miplicorn/issues/46" class="external-link">#46</a>).</li>
+<li>The column created by <code><a href="../reference/label_mutations.html">label_mutations()</a></code> has been renamed from <code>ans_der_indel</code> to <code>mutation_label</code> (<a href="https://github.com/bailey-lab/miplicorn/issues/44" class="external-link">#44</a>).</li>
 <li>
 <code><a href="../reference/label_mutations.html">label_mutations()</a></code> more clearly signals when the computation can not be completed. This can occur because of missing variables or an incorrect input table (<a href="https://github.com/bailey-lab/miplicorn/issues/44" class="external-link">#44</a>).</li>
 <li>Improve condition signalling by using <a href="https://cli.r-lib.org" class="external-link">cli</a>. Messages are now properly pluralized and display the erroring function (<a href="https://github.com/bailey-lab/miplicorn/issues/42" class="external-link">#42</a>).</li>
