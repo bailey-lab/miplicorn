@@ -33,44 +33,13 @@
 
 # chrom and gene are deprecated
 
-    Code
-      read_tbl_ref_alt_cov(.tbl_ref = "small.csv", .tbl_alt = "small.csv", .tbl_cov = "small.csv",
-        chrom = "13")
-    Condition
-      Warning:
-      The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
-      Please use the `...` argument instead to filter data.
-    Message
-      Joining, by = "gene_id"
-      Joining, by = "gene_id"
-      Joining, by = "gene_id"
-    Output
-      # A ref alt cov table: 0 x 10
-      # ... with 10 variables: sample <chr>, gene_id <chr>, gene <chr>,
-      #   mutation <chr>, func <chr>, aa_chng <chr>, target <chr>,
-      #   ref_umi_count <dbl>, alt_umi_count <dbl>, coverage <dbl>
-      # i Use `colnames()` to see all variable names
+    The `chrom` argument of `read()` is deprecated as of miplicorn 0.1.0.
+    Please use the `...` argument instead to filter data.
 
 ---
 
-    Code
-      read_tbl_ref_alt_cov(.tbl_ref = "small.csv", .tbl_alt = "small.csv", .tbl_cov = "small.csv",
-        gene = "atp")
-    Condition
-      Warning:
-      The `gene` argument of `read()` is deprecated as of miplicorn 0.1.0.
-      Please use the `...` argument instead to filter data.
-    Message
-      Joining, by = "gene"
-      Joining, by = "gene"
-      Joining, by = "gene"
-    Output
-      # A ref alt cov table: 2 x 9
-        sample gene  mutation   func     aa_chng target ref_umi_count alt_um~1 cover~2
-        <chr>  <chr> <chr>      <chr>    <chr>   <chr>          <dbl>    <dbl>   <dbl>
-      1 S1     atp6  atp6-A623E missense A623E   Yes                0        0       0
-      2 S2     atp6  atp6-A623E missense A623E   Yes                0        0       0
-      # ... with abbreviated variable names 1: alt_umi_count, 2: coverage
+    The `gene` argument of `read()` is deprecated as of miplicorn 0.1.0.
+    Please use the `...` argument instead to filter data.
 
 ---
 

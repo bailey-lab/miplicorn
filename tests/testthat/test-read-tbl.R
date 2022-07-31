@@ -135,14 +135,14 @@ test_that("can filter rows", {
 
 # Test read_tbl_ref_alt_cov() --------------------------------------------------
 test_that("chrom and gene are deprecated", {
-  expect_snapshot(read_tbl_ref_alt_cov(
+  expect_snapshot_warning(read_tbl_ref_alt_cov(
     .tbl_ref = "small.csv",
     .tbl_alt = "small.csv",
     .tbl_cov = "small.csv",
     chrom = "13"
   ))
 
-  expect_snapshot(read_tbl_ref_alt_cov(
+  expect_snapshot_warning(read_tbl_ref_alt_cov(
     .tbl_ref = "small.csv",
     .tbl_alt = "small.csv",
     .tbl_cov = "small.csv",
