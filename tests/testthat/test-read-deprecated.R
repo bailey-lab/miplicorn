@@ -1,10 +1,5 @@
-test_that("chrom and gene are deprecated", {
-  expect_snapshot(read("small.csv", "small.csv", "small.csv", chrom = "13"))
-  expect_snapshot(read("small.csv", "small.csv", "small.csv", chrom = "atp"))
-  expect_snapshot(
-    error = TRUE,
-    read("small.csv", "small.csv", "small.csv", chrom = "13", gene = "atp")
-  )
+test_that("read() is deprecated", {
+  expect_snapshot_warning(read("small.csv", "small.csv", "small.csv"))
 })
 
 test_that("read_file() is deprecated", {
