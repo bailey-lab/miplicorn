@@ -54,14 +54,13 @@ demonstration of several features of the package.
 library(miplicorn)
 
 ref_file <- miplicorn_example("reference_AA_table.csv")
-alt_file <- miplicorn_example("reference_AA_table.csv")
-cov_file <- miplicorn_example("reference_AA_table.csv")
+alt_file <- miplicorn_example("alternate_AA_table.csv")
+cov_file <- miplicorn_example("coverage_AA_table.csv")
 
 data <- read_tbl_ref_alt_cov(ref_file, alt_file, cov_file, gene == "atp6" | gene == "crt")
 data
 
-filter_coverage(data, 100)
-filter_targeted(data, "Yes")
+plot_coverage(data, mutation_name)
 
 prev <- mutation_prevalence(data, threshold = 5)
 prev

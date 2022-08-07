@@ -51,58 +51,45 @@ demonstration of several features of the package.
 library(miplicorn)
 
 ref_file <- miplicorn_example("reference_AA_table.csv")
-alt_file <- miplicorn_example("reference_AA_table.csv")
-cov_file <- miplicorn_example("reference_AA_table.csv")
+alt_file <- miplicorn_example("alternate_AA_table.csv")
+cov_file <- miplicorn_example("coverage_AA_table.csv")
 
 data <- read_tbl_ref_alt_cov(ref_file, alt_file, cov_file, gene == "atp6" | gene == "crt")
 data
-#> # A tibble: 832 × 10
-#>   sample     gene_id       gene  mutation_name  exonic_func   aa_change targeted
-#>   <chr>      <chr>         <chr> <chr>          <chr>         <chr>     <chr>
-#> 1 D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 2 D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 3 D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 4 D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 5 D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> # … with 827 more rows, and 3 more variables: ref_umi_count <dbl>,
-#> #   alt_umi_count <dbl>, coverage <dbl>
+#> # A ref alt cov table: 832 × 10
+#>   sample   gene_id gene  mutat…¹ exoni…² aa_ch…³ targe…⁴ ref_u…⁵ alt_u…⁶ cover…⁷
+#>   <chr>    <chr>   <chr> <chr>   <chr>   <chr>   <chr>     <dbl>   <dbl>   <dbl>
+#> 1 D10-JJJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes         608       0     608
+#> 2 D10-JJJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes          20       0      20
+#> 3 D10-JJJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes         158       0     158
+#> 4 D10-JJJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes           2       0       2
+#> 5 D10-JJJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes           1       0       1
+#> # … with 827 more rows, and abbreviated variable names ¹​mutation_name,
+#> #   ²​exonic_func, ³​aa_change, ⁴​targeted, ⁵​ref_umi_count, ⁶​alt_umi_count,
+#> #   ⁷​coverage
+#> # ℹ Use `print(n = ...)` to see more rows
 
-filter_coverage(data, 100)
-#> # A tibble: 236 × 10
-#>   sample     gene_id       gene  mutation_name  exonic_func   aa_change targeted
-#>   <chr>      <chr>         <chr> <chr>          <chr>         <chr>     <chr>
-#> 1 D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 2 D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 3 D10-JJJ-15 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 4 D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 5 D10-JJJ-38 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> # … with 231 more rows, and 3 more variables: ref_umi_count <dbl>,
-#> #   alt_umi_count <dbl>, coverage <dbl>
-filter_targeted(data, "Yes")
-#> # A tibble: 624 × 10
-#>   sample     gene_id       gene  mutation_name  exonic_func   aa_change targeted
-#>   <chr>      <chr>         <chr> <chr>          <chr>         <chr>     <chr>
-#> 1 D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 2 D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 3 D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 4 D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> 5 D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missense_var… Ala623Glu Yes
-#> # … with 619 more rows, and 3 more variables: ref_umi_count <dbl>,
-#> #   alt_umi_count <dbl>, coverage <dbl>
+plot_coverage(data, mutation_name)
+```
+
+<img src="man/figures/README-usage-1.png" width="100%" />
+
+```r
 
 prev <- mutation_prevalence(data, threshold = 5)
 prev
 #> # A tibble: 16 × 4
 #>   mutation_name  n_total n_mutant prevalence
 #>   <chr>            <int>    <int>      <dbl>
-#> 1 atp6-Ala623Glu      36       36          1
-#> 2 atp6-Glu431Lys      39       39          1
-#> 3 atp6-Gly639Asp      26       26          1
-#> 4 atp6-Ser466Asn      15       15          1
-#> 5 atp6-Ser769Asn      17       17          1
+#> 1 atp6-Ala623Glu      36        0      0
+#> 2 atp6-Glu431Lys      39        0      0
+#> 3 atp6-Gly639Asp      26       19      0.731
+#> 4 atp6-Ser466Asn      15        9      0.6
+#> 5 atp6-Ser769Asn      17        0      0
 #> # … with 11 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 
 plot(prev)
 ```
 
-<img src="man/figures/README-usage-1.png" width="100%" />
+<img src="man/figures/README-usage-2.png" width="100%" />
