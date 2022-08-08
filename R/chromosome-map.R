@@ -25,6 +25,9 @@
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Additional arguments passed to
 #'   internal plotting functions.
 #'
+#' @return A [chromoMap][chromoMap::chromoMap] or
+#'   [karyoploteR](https://bernatgel.github.io/karyoploter_tutorial/) object.
+#'
 #' @seealso See the [chromoMap][chromoMap::chromoMap] and
 #'   [karyoploteR](https://bernatgel.github.io/karyoploter_tutorial/) packages
 #'   to create custom chromosome maps.

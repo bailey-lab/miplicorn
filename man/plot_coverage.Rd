@@ -19,6 +19,9 @@ data frame (e.g. from dbplyr or dtplyr).}
 \item{group_by}{The grouping variable. The average coverage is computed for
 each unique value of the variable.}
 }
+\value{
+A \link[ggplot2:ggplot2-package]{ggplot2} object.
+}
 \description{
 Create a bar chart visualizing the average coverage across a given grouping
 variable. The color of each bar represents the magnitude of the mean

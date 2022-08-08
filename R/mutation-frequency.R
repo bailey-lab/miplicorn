@@ -109,6 +109,8 @@ mutation_frequency.ref_alt_cov_tbl <- function(data, threshold) {
 #'   of [mutation_frequency()].
 #' @param ...	Other arguments passed to specific methods.
 #'
+#' @return A [ggplot2][ggplot2::ggplot2-package] object.
+#'
 #' @export
 #' @seealso [mutation_frequency()] for generating the data for plotting.
 #' @examples

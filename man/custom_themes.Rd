@@ -28,6 +28,9 @@ theme_rainbow(
 
 \item{base_rect_size}{Base size for rect elements.}
 }
+\value{
+A \link[ggplot2:theme]{ggplot2} theme.
+}
 \description{
 These are custom \code{ggplot2} themes which control all non-data display. You
 may further tweak components of these themes using \code{\link[ggplot2:theme]{ggplot2::theme()}}.

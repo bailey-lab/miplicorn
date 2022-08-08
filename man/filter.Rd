@@ -29,12 +29,22 @@ filter_targeted(.data, .value, .preserve = FALSE)
 \item{.data}{A data frame, data frame extension (e.g. a tibble), or a lazy
 data frame (e.g. from dbplyr or dtplyr).}
 
-\item{.value}{Filtering value. Data greater than or equal to the value will
-be kept.}
+\item{.value}{Filtering value. If a number, data greater than or equal to the
+value will be kept. If a string, data equal to the value will be kept.}
 
 \item{.preserve}{Relevant when the \code{.data} input is grouped.
 If \code{.preserve = FALSE} (the default), the grouping structure
 is recalculated based on the resulting data, otherwise the grouping is kept as is.}
+}
+\value{
+An object of the same type as \code{.data}. The output has the following
+properties:
+\itemize{
+\item Rows are a subset of the input, but appear in the same order.
+\item Columns are not modified.
+\item The number of groups may be reduced (if \code{.preserve} is not \code{TRUE}).
+\item Data frame attributes are preserved.
+}
 }
 \description{
 These \verb{filter_*()} functions are used to subset a data frame. Each function

@@ -9,6 +9,8 @@
 #' @param base_line_size Base size for line elements.
 #' @param base_rect_size Base size for rect elements.
 #'
+#' @return A [ggplot2][ggplot2::theme] theme.
+#'
 #' @importFrom ggplot2 %+replace%
 #' @examples
 #' library("ggplot2")

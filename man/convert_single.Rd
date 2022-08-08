@@ -11,7 +11,10 @@ convert_single(str)
 convert_three(str)
 }
 \arguments{
-\item{str}{String containing amino acids to convert.}
+\item{str}{Character vector containing amino acids to convert.}
+}
+\value{
+Character vector with converted amino acid abbreviations.
 }
 \description{
 \code{convert_single()} converts the 1-letter amino acid abbreviation to the

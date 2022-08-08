@@ -36,6 +36,10 @@ probe set.}
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Additional arguments passed to
 internal plotting functions.}
 }
+\value{
+A \link[chromoMap:chromoMap]{chromoMap} or
+\href{https://bernatgel.github.io/karyoploter_tutorial/}{karyoploteR} object.
+}
 \description{
 Render a graphics visualization of entire chromosomes or chromosomal regions.
 Annotate multiple targeted regions to visualize probe targets.

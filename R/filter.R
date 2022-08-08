@@ -62,9 +62,18 @@ filter_fn_factory <- function(.col, .type = c("numeric", "character")) {
 #'
 #' @param .data A data frame, data frame extension (e.g. a tibble), or a lazy
 #'   data frame (e.g. from dbplyr or dtplyr).
-#' @param .value Filtering value. Data greater than or equal to the value will
-#'   be kept.
+#' @param .value Filtering value. If a number, data greater than or equal to the
+#'   value will be kept. If a string, data equal to the value will be kept.
 #' @inheritParams dplyr::filter
+#'
+#' @return
+#' An object of the same type as `.data`. The output has the following
+#' properties:
+#'
+#' * Rows are a subset of the input, but appear in the same order.
+#' * Columns are not modified.
+#' * The number of groups may be reduced (if `.preserve` is not `TRUE`).
+#' * Data frame attributes are preserved.
 #'
 #' @name filter
 #' @seealso [dplyr::filter()] for more complex filtering operations.

@@ -143,6 +143,8 @@ mutation_prevalence.geno_tbl <- function(data, ...) {
 #'   of [mutation_prevalence()].
 #' @param ...	Other arguments passed to specific methods.
 #'
+#' @return A [ggplot2][ggplot2::ggplot2-package] object.
+#'
 #' @export
 #' @seealso [mutation_prevalence()] for generating the data for plotting.
 #' @examples

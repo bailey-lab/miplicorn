@@ -7,7 +7,9 @@
 #' Conversion is case-insensitive, but always returns capitalized 1-letter and
 #' 3-letter abbreviations in title-case.
 #'
-#' @param str String containing amino acids to convert.
+#' @param str Character vector containing amino acids to convert.
+#'
+#' @return Character vector with converted amino acid abbreviations.
 #'
 #' @aliases convert
 #' @export

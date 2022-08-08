@@ -10,6 +10,9 @@ miplicorn_example(path = NULL)
 \arguments{
 \item{path}{Name of file. If \code{NULL}, all example files will be listed.}
 }
+\value{
+A local filepath or a list of all available files.
+}
 \description{
 miplicorn contains several example files in its 'inst/extdata' directory.
 This function can be used to access file paths.

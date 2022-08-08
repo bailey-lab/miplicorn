@@ -6,6 +6,8 @@
 #'
 #' @param path Name of file. If `NULL`, all example files will be listed.
 #'
+#' @return A local filepath or a list of all available files.
+#'
 #' @aliases example
 #' @export
 #' @examples

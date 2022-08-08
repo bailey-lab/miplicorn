@@ -4,7 +4,7 @@
 \name{miplicorn-package}
 \alias{miplicorn}
 \alias{miplicorn-package}
-\title{miplicorn: A Framework for MIP and Amplicon Analysis}
+\title{miplicorn: A Framework for Molecular Inversion Probe and Amplicon Analysis}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 

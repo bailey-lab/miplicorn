@@ -17,7 +17,7 @@
 #' sequenced.
 #'
 #' @section Useful filter functions:
-#' The [dplyr::filter()] function is employed to subset the rows of the data
+#' The [dplyr::filter()] function is employed to subset the rows of the data by
 #' applying the expressions in `...` to the column values to determine which
 #' rows should be retained.
 #'
@@ -47,11 +47,9 @@
 #' @param gene `r lifecycle::badge("deprecated")` The gene(s) to filter to.
 #'
 #' @return
-#' A [`tibble()`][tibble::tibble-package]. The first six columns contain the
-#' metadata associated with each sample and mutation. The last column contains
-#' the information parsed from the table. In some cases, this may be the
-#' umi_count and in other cases it may be the coverage of the associated data
-#' point.
+#' A [`tibble()`][tibble::tibble-package] subclass. Each function defines a
+#' unique subclass to store the data. Data typically contains the sample,
+#' associated metadata, and the value of interest.
 #'
 #' @seealso [vroom::vroom()] [dplyr::filter()]
 #' @name read-tbl

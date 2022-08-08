@@ -56,11 +56,9 @@ to.}
 \item{gene}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} The gene(s) to filter to.}
 }
 \value{
-A \code{\link[tibble:tibble-package]{tibble()}}. The first six columns contain the
-metadata associated with each sample and mutation. The last column contains
-the information parsed from the table. In some cases, this may be the
-umi_count and in other cases it may be the coverage of the associated data
-point.
+A \code{\link[tibble:tibble-package]{tibble()}} subclass. Each function defines a
+unique subclass to store the data. Data typically contains the sample,
+associated metadata, and the value of interest.
 }
 \description{
 The \verb{read_tbl_*()} family of functions is designed to read data tables
@@ -81,7 +79,7 @@ sequenced.
 
 \section{Useful filter functions}{
 
-The \code{\link[dplyr:filter]{dplyr::filter()}} function is employed to subset the rows of the data
+The \code{\link[dplyr:filter]{dplyr::filter()}} function is employed to subset the rows of the data by
 applying the expressions in \code{...} to the column values to determine which
 rows should be retained.
 

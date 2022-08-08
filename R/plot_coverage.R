@@ -10,6 +10,8 @@
 #' @param group_by The grouping variable. The average coverage is computed for
 #'   each unique value of the variable.
 #'
+#' @return A [ggplot2][ggplot2::ggplot2-package] object.
+#'
 #' @export
 #' @examples
 #' # Read example data
