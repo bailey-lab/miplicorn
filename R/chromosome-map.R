@@ -32,7 +32,8 @@
 #'   [karyoploteR](https://bernatgel.github.io/karyoploter_tutorial/) packages
 #'   to create custom chromosome maps.
 #' @name chromosome-map
-#' @examplesIf interactive()
+#' @examples
+#' \donttest{
 #' probes <- tibble::tribble(
 #'   ~chrom, ~start, ~end, ~probe_set,
 #'   "chr14", 2342135L, 2342284L, "IBC",
@@ -46,26 +47,15 @@
 #'   "chr10", 93054L, 93223L, "IBC",
 #'   "chr7", 162127L, 162277L, "IBC"
 #' )
-#' single_probe <- tibble::tribble(
-#'   ~chrom, ~start, ~end, ~probe_set,
-#'   "chr14", 2342135L, 2342284L, "IBC",
-#'   "chr5", 482233L, 482391L, "IBC",
-#'   "chr9", 375274L, 375417L, "IBC",
-#'   "chr14", 1401991L, 1402160L, "IBC",
-#'   "chr10", 93054L, 93223L, "IBC",
-#'   "chr7", 162127L, 162277L, "IBC"
-#' )
 #'
 #' plot_chromoMap(genome_Pf3D7, probes)
-#' plot_chromoMap(genome_Pf3D7, single_probe, colours = "red")
 #'
-#' plot_karyoploteR(genome_Pf3D7, single_probe)
 #' plot_karyoploteR(
 #'   genome_Pf3D7,
 #'   probes,
 #'   title = "Example Chromosome Map",
 #'   colours = c("#006A8EFF", "#A8A6A7FF", "#B1283AFF")
-#' )
+#' )}
 NULL
 
 #' @rdname chromosome-map
