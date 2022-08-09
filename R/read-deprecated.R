@@ -92,13 +92,10 @@
 #' read(ref_file, alt_file, cov_file, gene == "atp6")
 #'
 #' # Filtering by multiple criteria within a single logical expression
-#' read_file(cov_file, gene == "atp6" & targeted == "Yes", .name = "coverage")
 #' read_file(cov_file, gene == "atp6" | targeted == "Yes", .name = "coverage")
 #' read(ref_file, alt_file, cov_file, gene == "atp6" & targeted == "Yes")
-#' read(ref_file, alt_file, cov_file, gene == "atp6" | targeted == "Yes")
 #'
 #' # When multiple expressions are used, they are combined using &
-#' read_file(cov_file, gene == "atp6", targeted == "Yes", .name = "coverage")
 #' read(ref_file, alt_file, cov_file, gene == "atp6", targeted == "Yes")
 #' @name read-deprecated
 NULL

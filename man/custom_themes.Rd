@@ -32,15 +32,17 @@ theme_rainbow(
 A \link[ggplot2:theme]{ggplot2} theme.
 }
 \description{
-These are custom \code{ggplot2} themes which control all non-data display. You
+These are custom \code{ggplot2} themes which control all non-data display. They
 may further tweak components of these themes using \code{\link[ggplot2:theme]{ggplot2::theme()}}.
 }
 \examples{
-library("ggplot2")
-p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
-  geom_point() +
-  facet_wrap(~am) +
-  geom_smooth(method = "lm", se = FALSE)
+data <- tibble::tibble(
+  gene = c("atp6", "k13", "dhps"),
+  coverage = c(10, 100, 50)
+)
+
+p <- ggplot2::ggplot(data, ggplot2::aes(x = gene, y = coverage, fill = factor(gene))) +
+  ggplot2::geom_col()
 
 p + theme_miplicorn()
 p + theme_rainbow()
