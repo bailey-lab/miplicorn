@@ -106,6 +106,13 @@ internal plotting functions.</p></dd>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A <a href="https://rdrr.io/pkg/chromoMap/man/chromoMap.html" class="external-link">chromoMap</a> or
+<a href="https://bernatgel.github.io/karyoploter_tutorial/" class="external-link">karyoploteR</a> object.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>See the <a href="https://rdrr.io/pkg/chromoMap/man/chromoMap.html" class="external-link">chromoMap</a> and
 <a href="https://bernatgel.github.io/karyoploter_tutorial/" class="external-link">karyoploteR</a> packages
@@ -114,7 +121,7 @@ to create custom chromosome maps.</p></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">probes</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="op">~</span><span class="va">chrom</span>, <span class="op">~</span><span class="va">start</span>, <span class="op">~</span><span class="va">end</span>, <span class="op">~</span><span class="va">probe_set</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"chr14"</span>, <span class="fl">2342135L</span>, <span class="fl">2342284L</span>, <span class="st">"IBC"</span>,</span></span>
@@ -128,27 +135,16 @@ to create custom chromosome maps.</p></div>
 <span class="r-in"><span>  <span class="st">"chr10"</span>, <span class="fl">93054L</span>, <span class="fl">93223L</span>, <span class="st">"IBC"</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"chr7"</span>, <span class="fl">162127L</span>, <span class="fl">162277L</span>, <span class="st">"IBC"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">single_probe</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="op">~</span><span class="va">chrom</span>, <span class="op">~</span><span class="va">start</span>, <span class="op">~</span><span class="va">end</span>, <span class="op">~</span><span class="va">probe_set</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr14"</span>, <span class="fl">2342135L</span>, <span class="fl">2342284L</span>, <span class="st">"IBC"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr5"</span>, <span class="fl">482233L</span>, <span class="fl">482391L</span>, <span class="st">"IBC"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr9"</span>, <span class="fl">375274L</span>, <span class="fl">375417L</span>, <span class="st">"IBC"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr14"</span>, <span class="fl">1401991L</span>, <span class="fl">1402160L</span>, <span class="st">"IBC"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr10"</span>, <span class="fl">93054L</span>, <span class="fl">93223L</span>, <span class="st">"IBC"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr7"</span>, <span class="fl">162127L</span>, <span class="fl">162277L</span>, <span class="st">"IBC"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plot_chromoMap</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">probes</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">plot_chromoMap</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">single_probe</span>, colours <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">plot_karyoploteR</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">single_probe</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plot_karyoploteR</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">genome_Pf3D7</span>,</span></span>
 <span class="r-in"><span>  <span class="va">probes</span>,</span></span>
 <span class="r-in"><span>  title <span class="op">=</span> <span class="st">"Example Chromosome Map"</span>,</span></span>
 <span class="r-in"><span>  colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#006A8EFF"</span>, <span class="st">"#A8A6A7FF"</span>, <span class="st">"#B1283AFF"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="co"># }</span></span></span>
+<span class="r-plt img"><img src="chromosome-map-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

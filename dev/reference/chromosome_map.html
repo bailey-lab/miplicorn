@@ -122,6 +122,13 @@ internal plotting functions.</p></dd>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A <a href="https://rdrr.io/pkg/chromoMap/man/chromoMap.html" class="external-link">chromoMap</a> or
+<a href="https://bernatgel.github.io/karyoploter_tutorial/" class="external-link">karyoploteR</a> object.</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Render a graphics visualization of entire chromosomes or chromosomal regions.
 Annotate multiple targeted regions to visualize probe targets.</p>
@@ -133,7 +140,8 @@ Annotate multiple targeted regions to visualize probe targets.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">probes</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">probes</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="op">~</span><span class="va">chrom</span>, <span class="op">~</span><span class="va">start</span>, <span class="op">~</span><span class="va">end</span>, <span class="op">~</span><span class="va">probe_set</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"chr14"</span>, <span class="fl">2342135L</span>, <span class="fl">2342284L</span>, <span class="st">"IBC"</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"chr3"</span>, <span class="fl">830503L</span>, <span class="fl">830769L</span>, <span class="st">"DR2"</span>,</span></span>
@@ -146,33 +154,15 @@ Annotate multiple targeted regions to visualize probe targets.</p>
 <span class="r-in"><span>  <span class="st">"chr10"</span>, <span class="fl">93054L</span>, <span class="fl">93223L</span>, <span class="st">"IBC"</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"chr7"</span>, <span class="fl">162127L</span>, <span class="fl">162277L</span>, <span class="st">"IBC"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">single_probe</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="op">~</span><span class="va">chrom</span>, <span class="op">~</span><span class="va">start</span>, <span class="op">~</span><span class="va">end</span>, <span class="op">~</span><span class="va">probe_set</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr14"</span>, <span class="fl">2342135L</span>, <span class="fl">2342284L</span>, <span class="st">"IBC"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr5"</span>, <span class="fl">482233L</span>, <span class="fl">482391L</span>, <span class="st">"IBC"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr9"</span>, <span class="fl">375274L</span>, <span class="fl">375417L</span>, <span class="st">"IBC"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr14"</span>, <span class="fl">1401991L</span>, <span class="fl">1402160L</span>, <span class="st">"IBC"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr10"</span>, <span class="fl">93054L</span>, <span class="fl">93223L</span>, <span class="st">"IBC"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"chr7"</span>, <span class="fl">162127L</span>, <span class="fl">162277L</span>, <span class="st">"IBC"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">chromosome_map</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">single_probe</span>, <span class="st">"karyoploteR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">chromosome_map</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">probes</span>, <span class="st">"chromoMap"</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`chromosome_map()` was deprecated in miplicorn 0.2.0.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> The function has been deprecated in favor of `plot_chromoMap()` and</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>  `plot_karyoploteR()`.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
 <span class="r-in"><span><span class="co"># -&gt;</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="chromosome-map.html">plot_karyoploteR</a></span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">single_probe</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="chromosome_map-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">chromosome_map</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">probes</span>, <span class="st">"chromoMap"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># -&gt;</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="chromosome-map.html">plot_chromoMap</a></span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">probes</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">chromosome_map</span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">single_probe</span>, <span class="st">"chromoMap"</span>, colours <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># -&gt;</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="chromosome-map.html">plot_chromoMap</a></span><span class="op">(</span><span class="va">genome_Pf3D7</span>, <span class="va">single_probe</span>, colours <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">chromosome_map</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">genome_Pf3D7</span>,</span></span>
@@ -181,14 +171,14 @@ Annotate multiple targeted regions to visualize probe targets.</p>
 <span class="r-in"><span>  title <span class="op">=</span> <span class="st">"Example Chromosome Map"</span>,</span></span>
 <span class="r-in"><span>  colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#006A8EFF"</span>, <span class="st">"#A8A6A7FF"</span>, <span class="st">"#B1283AFF"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="chromosome_map-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># -&gt;</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="chromosome-map.html">plot_karyoploteR</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">genome_Pf3D7</span>,</span></span>
 <span class="r-in"><span>  <span class="va">probes</span>,</span></span>
 <span class="r-in"><span>  title <span class="op">=</span> <span class="st">"Example Chromosome Map"</span>,</span></span>
 <span class="r-in"><span>  colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#006A8EFF"</span>, <span class="st">"#A8A6A7FF"</span>, <span class="st">"#B1283AFF"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="co"># }</span></span></span>
+<span class="r-plt img"><img src="chromosome_map-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

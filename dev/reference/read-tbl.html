@@ -148,11 +148,9 @@ to.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble()</a></code>. The first six columns contain the
-metadata associated with each sample and mutation. The last column contains
-the information parsed from the table. In some cases, this may be the
-umi_count and in other cases it may be the coverage of the associated data
-point.</p>
+<p>A <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble()</a></code> subclass. Each function defines a
+unique subclass to store the data. Data typically contains the sample,
+associated metadata, and the value of interest.</p>
     </div>
     <div class="section level2">
     <h2 id="data-structure">Data structure<a class="anchor" aria-label="anchor" href="#data-structure"></a></h2>
@@ -167,7 +165,7 @@ sequenced.</p>
     <h2 id="useful-filter-functions">Useful filter functions<a class="anchor" aria-label="anchor" href="#useful-filter-functions"></a></h2>
     
 
-<p>The <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code> function is employed to subset the rows of the data
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code> function is employed to subset the rows of the data by
 applying the expressions in <code>...</code> to the column values to determine which
 rows should be retained.</p>
 <p>There are many functions and operators that are useful when constructing the

@@ -102,8 +102,8 @@ data frame (e.g. from dbplyr or dtplyr).</p></dd>
 
 
 <dt>.value</dt>
-<dd><p>Filtering value. Data greater than or equal to the value will
-be kept.</p></dd>
+<dd><p>Filtering value. If a number, data greater than or equal to the
+value will be kept. If a string, data equal to the value will be kept.</p></dd>
 
 
 <dt>.preserve</dt>
@@ -112,6 +112,16 @@ If <code>.preserve = FALSE</code> (the default), the grouping structure
 is recalculated based on the resulting data, otherwise the grouping is kept as is.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>An object of the same type as <code>.data</code>. The output has the following
+properties:</p><ul><li><p>Rows are a subset of the input, but appear in the same order.</p></li>
+<li><p>Columns are not modified.</p></li>
+<li><p>The number of groups may be reduced (if <code>.preserve</code> is not <code>TRUE</code>).</p></li>
+<li><p>Data frame attributes are preserved.</p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code> for more complex filtering operations.</p></div>
