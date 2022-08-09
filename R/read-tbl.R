@@ -236,6 +236,7 @@ read_tbl_ref_alt_cov <- function(.tbl_ref,
 read_tbl_helper <- function(.tbl, ..., .name = "value", call = caller_env()) {
   dots <- enquos(..., .ignore_empty = "all")
   check_named(dots, call = call)
+  # dplyr:::check_filter(dots, error_call = call)
 
   if (empty_file(.tbl)) {
     return(tibble::tibble())
@@ -298,29 +299,25 @@ read_tbl_helper <- function(.tbl, ..., .name = "value", call = caller_env()) {
     dplyr::rename({{ .name }} := .data$value)
 }
 
-# Check named arguments for filtering step. This function is taken from the
-# {dplyr} source code. By bundling this code within our package, errors will
-# point to our functions instead of {dplyr}. The original code is here:
-# <https://github.com/tidyverse/dplyr/blob/a6df2a043449af2f70d98ba529293cbba5456a70/R/filter.R>
+# Check for the presence of named non-logical arguments
 check_named <- function(dots, call = caller_env()) {
   named <- rlang::have_name(dots)
 
-  for (i in which(named)) {
-    quo <- dots[[i]]
+  named_non_logical <- purrr::keep(dots[named], function(x) {
+    !rlang::is_logical(rlang::quo_get_expr(x))
+  })
 
-    # Only allow unnamed logical vectors, anything else is suspicious
-    expr <- rlang::quo_get_expr(quo)
-    if (!rlang::is_logical(expr)) {
-      name <- names(dots)[i]
-      cli_abort(
-        c(
-          "Input `{name}` is named.",
-          "i" = "This usually means that you've used `=` instead of `==`.",
-          "i" = "Did you mean `{name} == {as_label(expr)}`?"
-        ),
-        call = call
-      )
-    }
+  if (!rlang::is_empty(named_non_logical)) {
+    name <- names(named_non_logical[1])
+    expr <- rlang::quo_get_expr(named_non_logical[[1]])
+    cli_abort(
+      c(
+        "Input `{name}` is named.",
+        "i" = "This usually means that you've used `=` instead of `==`.",
+        "i" = "Did you mean `{name} == {as_label(expr)}`?"
+      ),
+      call = call
+    )
   }
 }
 
