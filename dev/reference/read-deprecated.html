@@ -142,10 +142,10 @@ point.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Read files containing
-<a href="https://github.com/bailey-lab/MIPTools" class="external-link">MIPtools'</a> data tables.
+<a href="https://github.com/bailey-lab/MIPTools" class="external-link">MIPTools'</a> data tables.
 <code>read_file()</code> reads a single file. <code>read()</code> is a convenience function that
 reads all files output by
-<a href="https://github.com/bailey-lab/MIPTools" class="external-link">MIPtools</a> and combines them.
+<a href="https://github.com/bailey-lab/MIPTools" class="external-link">MIPTools</a> and combines them.
 Data files include the reference table, the alternate table, and the coverage
 table. Data is read lazily using the
 <a href="https://vroom.r-lib.org/index.html" class="external-link"><code>vroom</code></a> package. Data can be
@@ -320,24 +320,6 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Filtering by multiple criteria within a single logical expression</span></span></span>
-<span class="r-in"><span><span class="fu">read_file</span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">&amp;</span> <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span>, .name <span class="op">=</span> <span class="st">"coverage"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Input detected as the coverage table.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A coverage table: 156 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exoni…¹ aa_ch…² targe…³ cover…⁴</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         608</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes          20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         158</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> D10-JJJ-15 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         129</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> D10-JJJ-27 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> D10-JJJ-10 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes          90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 146 more rows, and abbreviated variable names ¹​exonic_func,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​aa_change, ³​targeted, ⁴​coverage</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span>
 <span class="r-in"><span><span class="fu">read_file</span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">|</span> <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span>, .name <span class="op">=</span> <span class="st">"coverage"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Input detected as the coverage table.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A coverage table: 2,496 × 8</span></span>
@@ -374,44 +356,8 @@ expressions used to filter the data:</p><ul><li><p><code><a href="https://rdrr.i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​exonic_func, ³​aa_change, ⁴​targeted, ⁵​ref_umi_count, ⁶​alt_umi_count,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁷​coverage</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span>
-<span class="r-in"><span><span class="fu">read</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">alt_file</span>, <span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span> <span class="op">|</span> <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A ref alt cov table: 2,496 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    sample  gene_id gene  mutat…¹ exoni…² aa_ch…³ targe…⁴ ref_u…⁵ alt_u…⁶ cover…⁷</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes         608       0     608</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> D10-JJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes          20       0      20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> D10-JJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes         158       0     158</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> D10-JJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes           2       0       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> D10-JJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes           1       0       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> D10-JJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes         129       0     129</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> D10-JJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes           0       0       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> D10-JJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes           0       0       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes          90       0      90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJ… PF3D7_… atp6  atp6-A… missen… Ala623… Yes         175       0     175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 2,486 more rows, and abbreviated variable names ¹​mutation_name,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​exonic_func, ³​aa_change, ⁴​targeted, ⁵​ref_umi_count, ⁶​alt_umi_count,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁷​coverage</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># When multiple expressions are used, they are combined using &amp;</span></span></span>
-<span class="r-in"><span><span class="fu">read_file</span><span class="op">(</span><span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span>, <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span>, .name <span class="op">=</span> <span class="st">"coverage"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Input detected as the coverage table.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A coverage table: 156 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    sample     gene_id       gene  mutation_name  exoni…¹ aa_ch…² targe…³ cover…⁴</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> D10-JJJ-23 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         608</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> D10-JJJ-43 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes          20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> D10-JJJ-55 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         158</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> D10-JJJ-5  PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> D10-JJJ-47 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> D10-JJJ-15 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         129</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> D10-JJJ-27 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> D10-JJJ-10 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes           0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> D10-JJJ-28 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes          90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> D10-JJJ-52 PF3D7_0106300 atp6  atp6-Ala623Glu missen… Ala623… Yes         175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 146 more rows, and abbreviated variable names ¹​exonic_func,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​aa_change, ³​targeted, ⁴​coverage</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span>
 <span class="r-in"><span><span class="fu">read</span><span class="op">(</span><span class="va">ref_file</span>, <span class="va">alt_file</span>, <span class="va">cov_file</span>, <span class="va">gene</span> <span class="op">==</span> <span class="st">"atp6"</span>, <span class="va">targeted</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A ref alt cov table: 156 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample  gene_id gene  mutat…¹ exoni…² aa_ch…³ targe…⁴ ref_u…⁵ alt_u…⁶ cover…⁷</span>
