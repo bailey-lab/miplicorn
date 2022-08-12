@@ -12,10 +12,10 @@
 #'
 #' @details
 #' Read files containing
-#' \href{https://github.com/bailey-lab/MIPTools}{MIPtools'} data tables.
+#' \href{https://github.com/bailey-lab/MIPTools}{MIPTools'} data tables.
 #' `read_file()` reads a single file. `read()` is a convenience function that
 #' reads all files output by
-#' \href{https://github.com/bailey-lab/MIPTools}{MIPtools} and combines them.
+#' \href{https://github.com/bailey-lab/MIPTools}{MIPTools} and combines them.
 #' Data files include the reference table, the alternate table, and the coverage
 #' table. Data is read lazily using the
 #' \href{https://vroom.r-lib.org/index.html}{`vroom`} package. Data can be

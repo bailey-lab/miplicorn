@@ -1,5 +1,7 @@
 # miplicorn (development version)
 
+- Improve documentation by adding return values, rewriting examples, and
+  updating the README.
 - New `plot_coverage()` function can be used to plot the average coverage across
   a given grouping variable (#46).
 - The column created by `label_mutations()` has been renamed from
