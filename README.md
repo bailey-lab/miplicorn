@@ -14,10 +14,8 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 
 <!-- badges: end -->
 
-miplicorn establishes a unified framework for molecular inversion probe
-(MIP) and amplicon analysis. It provides the tools to quickly parse
-files several gigabytes large, filter and manipulate data, analyze data,
-and, most informatively, visualize data.
+miplicorn establishes a unified analysis framework in R for molecular inversion probe
+(MIP) and amplicon targeted seqeuencing analysis after microhaplotype and/or variant calling. Tools for parsing large variant files and filtering and manipulating the data along with basic analyses  and visualization. [Currently developmental]
 
 ## Installation
 
