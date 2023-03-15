@@ -1,7 +1,7 @@
 # read() is deprecated
 
     `read()` was deprecated in miplicorn 0.2.0.
-    Please use `read_tbl_ref_alt_cov()` instead.
+    i Please use `read_tbl_ref_alt_cov()` instead.
 
 # read_file() is deprecated
 
@@ -10,8 +10,7 @@
     Condition
       Warning:
       `read_file()` was deprecated in miplicorn 0.2.0.
-      The function has been replaced by three more specific functions:
-       `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
+      i The function has been replaced by three more specific functions: `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
     Message
       Input detected as the reference table.
     Output
@@ -30,8 +29,7 @@
     Condition
       Warning:
       `read_file()` was deprecated in miplicorn 0.2.0.
-      The function has been replaced by three more specific functions:
-       `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
+      i The function has been replaced by three more specific functions: `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
     Message
       Input detected as the reference table.
     Output
@@ -50,8 +48,7 @@
     Condition
       Warning:
       `read_file()` was deprecated in miplicorn 0.2.0.
-      The function has been replaced by three more specific functions:
-       `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
+      i The function has been replaced by three more specific functions: `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
     Message
       Input detected as the alternate table.
     Output
@@ -70,8 +67,7 @@
     Condition
       Warning:
       `read_file()` was deprecated in miplicorn 0.2.0.
-      The function has been replaced by three more specific functions:
-       `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
+      i The function has been replaced by three more specific functions: `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
     Message
       Input detected as the coverage table.
     Output
@@ -90,8 +86,7 @@
     Condition
       Warning:
       `read_file()` was deprecated in miplicorn 0.2.0.
-      The function has been replaced by three more specific functions:
-       `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
+      i The function has been replaced by three more specific functions: `read_tbl_reference()`, `read_tbl_alternate()`, and `read_tbl_coverage()`.
       Error in `read_file()`:
       ! Unable to detect the type of table input.
 

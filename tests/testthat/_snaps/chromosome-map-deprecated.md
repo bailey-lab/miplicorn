@@ -23,8 +23,7 @@
     Condition
       Warning:
       `chromosome_map()` was deprecated in miplicorn 0.2.0.
-      The function has been deprecated in favor of `plot_chromoMap()` and
-       `plot_karyoploteR()`.
+      i The function has been deprecated in favor of `plot_chromoMap()` and `plot_karyoploteR()`.
       Error in `chromosome_map()`:
       ! Genomic information is misformatted.
 
@@ -35,8 +34,7 @@
     Condition
       Warning:
       `chromosome_map()` was deprecated in miplicorn 0.2.0.
-      The function has been deprecated in favor of `plot_chromoMap()` and
-       `plot_karyoploteR()`.
+      i The function has been deprecated in favor of `plot_chromoMap()` and `plot_karyoploteR()`.
       Error in `chromosome_map()`:
       ! Genomic information is misformatted.
 
