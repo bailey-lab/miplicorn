@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 options(tibble.print_min = 5, tibble.print_max = 5)
 ```
 
-# miplicorn <a href='https://bailey-lab.github.io/miplicorn/'><img src='man/figures/logo.png' align="right" height="138" /></a>
+# miplicorn <a href='https://bailey-lab.github.io/miplicorn/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/bailey-lab/miplicorn/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/bailey-lab/miplicorn/actions/workflows/check-standard.yaml)
@@ -24,10 +24,10 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
-miplicorn establishes a unified framework for molecular inversion probe (MIP)
-and amplicon analysis. It provides the tools to quickly parse files several
-gigabytes large, filter and manipulate data, analyze data, and, most
-informatively, visualize data.
+miplicorn establishes a unified analysis framework in R for molecular inversion
+probe (MIP) and amplicon-targeted sequencing analysis after micro haplotyping or
+variant calling. It provides tools for parsing large variant files, filtering
+and manipulating the data, and basic analyses and visualization.
 
 ## Installation
 You may install the package from

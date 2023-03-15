@@ -1,6 +1,7 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# miplicorn <a href='https://bailey-lab.github.io/miplicorn/'><img src='man/figures/logo.png' align="right" height="138" /></a>
+# miplicorn <a href='https://bailey-lab.github.io/miplicorn/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
@@ -11,11 +12,13 @@ coverage](https://codecov.io/gh/bailey-lab/miplicorn/branch/main/graph/badge.svg
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 <!-- badges: end -->
 
-miplicorn establishes a unified analysis framework in R for molecular inversion probe
-(MIP) and amplicon targeted seqeuencing analysis after microhaplotype and/or variant calling. Tools for parsing large variant files and filtering and manipulating the data along with basic analyses  and visualization. [Currently developmental]
+miplicorn establishes a unified analysis framework in R for molecular
+inversion probe (MIP) and amplicon-targeted sequencing analysis after
+micro haplotyping or variant calling. It provides tools for parsing
+large variant files, filtering and manipulating the data, and basic
+analyses and visualization.
 
 ## Installation
 
@@ -24,7 +27,7 @@ You may install the package from
 
 <div class=".pkgdown-release">
 
-```r
+``` r
 # Install most recent released version
 devtools::install_github("bailey-lab/miplicorn@v0.2.1")
 ```
@@ -33,7 +36,7 @@ devtools::install_github("bailey-lab/miplicorn@v0.2.1")
 
 <div class=".pkgdown-devel">
 
-```r
+``` r
 # Install development version
 devtools::install_github("bailey-lab/miplicorn")
 ```
@@ -45,7 +48,7 @@ devtools::install_github("bailey-lab/miplicorn")
 See `vignette("miplicorn")` for a more extensive introduction and a
 demonstration of several features of the package.
 
-```r
+``` r
 library(miplicorn)
 
 ref_file <- miplicorn_example("reference_AA_table.csv")
@@ -65,14 +68,13 @@ data
 #> # … with 827 more rows, and abbreviated variable names ¹​mutation_name,
 #> #   ²​exonic_func, ³​aa_change, ⁴​targeted, ⁵​ref_umi_count, ⁶​alt_umi_count,
 #> #   ⁷​coverage
-#> # ℹ Use `print(n = ...)` to see more rows
 
 plot_coverage(data, mutation_name)
 ```
 
 <img src="man/figures/README-usage-1.png" width="100%" />
 
-```r
+``` r
 
 prev <- mutation_prevalence(data, threshold = 5)
 prev
@@ -85,7 +87,6 @@ prev
 #> 4 atp6-Ser466Asn      15        9      0.6
 #> 5 atp6-Ser769Asn      17        0      0
 #> # … with 11 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 
 plot(prev)
 ```
