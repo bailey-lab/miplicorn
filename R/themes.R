@@ -60,8 +60,8 @@ theme_rainbow <- function(base_size = 12,
   ) %+replace%
     ggplot2::theme(
       plot.title = ggplot2::element_text(hjust = 0.5),
-      axis.line.x = ggplot2::element_line(color = "black", size = 0.3),
-      axis.line.y = ggplot2::element_line(color = "black", size = 0.3),
+      axis.line.x = ggplot2::element_line(color = "black", linewidth = 0.3),
+      axis.line.y = ggplot2::element_line(color = "black", linewidth = 0.3),
       panel.grid.major = ggplot2::element_blank(),
       panel.grid.minor = ggplot2::element_blank(),
       legend.position = "bottom",

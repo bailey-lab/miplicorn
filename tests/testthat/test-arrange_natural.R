@@ -41,7 +41,9 @@ test_that("sorts on multiple variables", {
 
 test_that("arranges factors", {
   fdf <- df %>%
-    dplyr::mutate(dplyr::across(.fns = ~ forcats::as_factor(.)))
+    dplyr::mutate(
+      dplyr::across(.cols = dplyr::everything(), .fns = ~ forcats::as_factor(.))
+    )
 
   rf <- tibble::tribble(
     ~sample, ~gene,
