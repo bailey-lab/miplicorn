@@ -139,7 +139,7 @@ read_tbl_haplotype <- function(.tbl, ..., .col_select = NULL) {
   data <- .tbl %>%
     vroom::vroom(show_col_types = FALSE, col_select = {{ .col_select }}) %>%
     janitor::clean_names() %>%
-    dplyr::relocate(sample = .data$sample_id)
+    dplyr::relocate(sample = sample_id)
 
   # In some cases, the `chrom` column appears twice in the dataset, so we remove
   # the last occurrence.
@@ -246,10 +246,10 @@ read_tbl_helper <- function(.tbl, ..., .name = "value", call = caller_env()) {
   header <- .tbl %>%
     vroom::vroom(col_names = FALSE, show_col_types = FALSE, n_max = 6) %>%
     tibble::rownames_to_column() %>%
-    tidyr::pivot_longer(-.data$rowname) %>%
+    tidyr::pivot_longer(-rowname) %>%
     tidyr::pivot_wider(
-      names_from = .data$rowname,
-      values_from = .data$value
+      names_from = rowname,
+      values_from = value
     ) %>%
     janitor::row_to_names(1) %>%
     janitor::clean_names()
@@ -274,13 +274,13 @@ read_tbl_helper <- function(.tbl, ..., .name = "value", call = caller_env()) {
   # Take the transpose of our matrix, making rows columns and columns rows
   t_data <- data %>%
     tibble::rownames_to_column() %>%
-    tidyr::pivot_longer(-.data$rowname) %>%
+    tidyr::pivot_longer(-rowname) %>%
     tidyr::pivot_wider(
-      names_from = .data$rowname,
-      values_from = .data$value
+      names_from = rowname,
+      values_from = value
     ) %>%
     # Assign the column names of our tibble and clean them up
-    dplyr::select(-.data$name) %>%
+    dplyr::select(-name) %>%
     janitor::row_to_names(1)
 
   # We only want to clean the names of the metadata. We want to leave the
@@ -295,8 +295,8 @@ read_tbl_helper <- function(.tbl, ..., .name = "value", call = caller_env()) {
       values_to = "value"
     ) %>%
     dplyr::relocate(sample) %>%
-    dplyr::mutate(value = as.numeric(.data$value)) %>%
-    dplyr::rename({{ .name }} := .data$value)
+    dplyr::mutate(value = as.numeric(value)) %>%
+    dplyr::rename({{ .name }} := value)
 }
 
 # Check for the presence of named non-logical arguments

@@ -170,13 +170,13 @@ deprec_read_file <- function(file,
       # Take the transpose of our matrix, making rows columns and columns rows.
       # This will allows us to keep all the data in our .csv file.
       tibble::rownames_to_column() %>%
-      tidyr::pivot_longer(-.data$rowname) %>%
+      tidyr::pivot_longer(-rowname) %>%
       tidyr::pivot_wider(
-        names_from = .data$rowname,
-        values_from = .data$value
+        names_from = rowname,
+        values_from = value
       ) %>%
       # Assign the column names of our tibble and clean them up
-      dplyr::select(-.data$name) %>%
+      dplyr::select(-name) %>%
       janitor::row_to_names(1) %>%
       # Convert our data to a long format
       tidyr::pivot_longer(
@@ -186,7 +186,7 @@ deprec_read_file <- function(file,
       ) %>%
       janitor::clean_names() %>%
       dplyr::relocate(sample) %>%
-      dplyr::rename({{ name }} := .data$value)
+      dplyr::rename({{ name }} := value)
 
     return(combined)
   }
@@ -244,10 +244,10 @@ deprec_read_file <- function(file,
   # Transpose the header
   header_t <- header %>%
     tibble::rownames_to_column() %>%
-    tidyr::pivot_longer(-.data$rowname) %>%
+    tidyr::pivot_longer(-rowname) %>%
     tidyr::pivot_wider(
-      names_from = .data$rowname,
-      values_from = .data$value
+      names_from = rowname,
+      values_from = value
     ) %>%
     janitor::row_to_names(1) %>%
     janitor::clean_names()
@@ -256,12 +256,12 @@ deprec_read_file <- function(file,
   filtered_t <- filtered %>%
     tibble::rownames_to_column() %>%
     tidyr::pivot_longer(
-      -.data$rowname,
+      -rowname,
       values_transform = list(value = as.character)
     ) %>%
     tidyr::pivot_wider(
-      names_from = .data$rowname,
-      values_from = .data$value
+      names_from = rowname,
+      values_from = value
     ) %>%
     janitor::row_to_names(1) %>%
     tidyr::pivot_longer(
@@ -279,7 +279,7 @@ deprec_read_file <- function(file,
       ~ stringr::str_remove(., "\\.{3}.*")
     )) %>%
     dplyr::relocate(sample) %>%
-    dplyr::rename({{ name }} := .data$value)
+    dplyr::rename({{ name }} := value)
 
   return(combined)
 }

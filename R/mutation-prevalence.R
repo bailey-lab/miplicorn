@@ -86,11 +86,11 @@ mutation_prevalence.ref_alt_cov_tbl <- function(data, ..., threshold) {
   # Get counts of mutations
   total_count <- total %>%
     dplyr::count(.data$mutation_name) %>%
-    dplyr::rename(n_total = .data$n)
+    dplyr::rename(n_total = n)
 
   mutant_count <- mutant_data %>%
     dplyr::count(.data$mutation_name) %>%
-    dplyr::rename(n_mutant = .data$n)
+    dplyr::rename(n_mutant = n)
 
   # Compute prevalence
   prevalence <- total_count %>%
@@ -111,13 +111,13 @@ mutation_prevalence.geno_tbl <- function(data, ...) {
   total_count <- data %>%
     dplyr::filter(.data$genotype != -1) %>%
     dplyr::count(.data$mutation_name) %>%
-    dplyr::rename(n_total = .data$n)
+    dplyr::rename(n_total = n)
 
   # Get counts for mutant data
   mutant_count <- data %>%
     dplyr::filter(.data$genotype == 1 | .data$genotype == 2) %>%
     dplyr::count(.data$mutation_name) %>%
-    dplyr::rename(n_mutant = .data$n)
+    dplyr::rename(n_mutant = n)
 
   # Compute prevalence
   prevalence <- total_count %>%
