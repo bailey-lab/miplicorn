@@ -27,9 +27,9 @@
 </defs>
 <g clip-path='url(#cpMzYuNDh8NjU3LjI2fDE1LjczfDUxNS41MA==)'>
 <rect x='36.48' y='15.73' width='620.78' height='499.77' style='stroke-width: 0.97; stroke: none; fill: #FFFFFF;' />
-<rect x='65.58' y='38.45' width='174.59' height='454.33' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #440154;' />
-<rect x='259.58' y='492.78' width='174.59' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #440154;' />
-<rect x='453.57' y='265.61' width='174.59' height='227.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FDE725;' />
+<rect x='65.58' y='38.45' width='174.59' height='454.33' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #440154;' />
+<rect x='259.58' y='492.78' width='174.59' height='0.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #440154;' />
+<rect x='453.57' y='265.61' width='174.59' height='227.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FDE725;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 <polyline points='36.48,515.50 36.48,15.73 ' style='stroke-width: 0.97; stroke-linecap: butt;' />
@@ -54,8 +54,8 @@
 <text transform='translate(11.86,265.61) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: sans;' textLength='50.04px' lengthAdjust='spacingAndGlyphs'>Prevalence</text>
 <rect x='667.22' y='236.38' width='47.80' height='58.46' style='stroke-width: 0.97; stroke: none; fill: #FFFFFF;' />
 <text x='672.20' y='249.28' style='font-size: 10.00px; font-family: sans;' textLength='24.47px' lengthAdjust='spacingAndGlyphs'>Gene</text>
-<rect x='672.91' y='256.01' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #440154;' />
-<rect x='672.91' y='273.29' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FDE725;' />
+<rect x='672.91' y='256.01' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #440154;' />
+<rect x='672.91' y='273.29' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FDE725;' />
 <text x='694.47' y='266.70' style='font-size: 8.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>atp6</text>
 <text x='694.47' y='283.98' style='font-size: 8.00px; font-family: sans;' textLength='8.89px' lengthAdjust='spacingAndGlyphs'>crt</text>
 <text x='346.87' y='14.49' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='128.76px' lengthAdjust='spacingAndGlyphs'>Prevalence of Mutations</text>
