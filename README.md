@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # miplicorn <a href='https://bailey-lab.github.io/miplicorn/'><img src='man/figures/logo.png' align="right" height="139" /></a>
@@ -12,6 +11,7 @@ coverage](https://codecov.io/gh/bailey-lab/miplicorn/branch/main/graph/badge.svg
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 <!-- badges: end -->
 
 miplicorn establishes a unified analysis framework in R for molecular
@@ -27,7 +27,7 @@ You may install the package from
 
 <div class=".pkgdown-release">
 
-``` r
+```r
 # Install most recent released version
 devtools::install_github("bailey-lab/miplicorn@v0.2.1")
 ```
@@ -36,7 +36,7 @@ devtools::install_github("bailey-lab/miplicorn@v0.2.1")
 
 <div class=".pkgdown-devel">
 
-``` r
+```r
 # Install development version
 devtools::install_github("bailey-lab/miplicorn")
 ```
@@ -48,7 +48,7 @@ devtools::install_github("bailey-lab/miplicorn")
 See `vignette("miplicorn")` for a more extensive introduction and a
 demonstration of several features of the package.
 
-``` r
+```r
 library(miplicorn)
 
 ref_file <- miplicorn_example("reference_AA_table.csv")
@@ -74,7 +74,7 @@ plot_coverage(data, mutation_name)
 
 <img src="man/figures/README-usage-1.png" width="100%" />
 
-``` r
+```r
 
 prev <- mutation_prevalence(data, threshold = 5)
 prev
